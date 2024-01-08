@@ -1,0 +1,1 @@
+INSERT INTO pets_app.users values(2,"test","tessss","hhh@gmail.com","pesss","no content","2024-01-08 12:16:17","2024-01-08 12:16:17");
