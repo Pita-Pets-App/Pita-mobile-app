@@ -7,7 +7,7 @@ const AllEvents = async (req, res) => {
             order: [['event_date', 'ASC']], 
         });
 
-        const emailPromises = result.map(async (el, i) => {
+        const eventsWithOwners = result.map(async (el, i) => {
             const searchUserEmail = await Users.findOne({ where: { user_Email: el.dataValues.email } });
 
             if (searchUserEmail) {
@@ -25,9 +25,8 @@ const AllEvents = async (req, res) => {
             return el; 
         });
 
-        const eventsWithEmail = await Promise.all(emailPromises);
+        const eventsWithEmail = await Promise.all(eventsWithOwners);
 
-        console.log("email", eventsWithEmail);
         res.json(eventsWithEmail);
     } catch (error) {
         res.send(error);
