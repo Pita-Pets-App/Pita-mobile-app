@@ -12,7 +12,7 @@ const AllProvider= async(req,res) => {
 
 const AllType= async(req,res) => {
     try {
-    const result=await Provider.findAll({where:{provider_type:req.params.type}})
+    const result=await Provider.findAll({where:{serviceId:req.params.type}})
     res.json(result)   
     } catch (error) {
     res.send(error)    

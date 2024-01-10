@@ -1,14 +1,14 @@
 const Users = (connection, DataTypes) => {
   return connection.define("users", {
-    user_fname: {
+    fname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_lname: {
+    lname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_Email: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
