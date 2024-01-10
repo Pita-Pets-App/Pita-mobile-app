@@ -8,6 +8,7 @@ const providerRoute = require("./routes/providers.routes");
 const LFARoute = require("./routes/LFA.routes");
 const rateRoute = require("./routes/rate.routes");
 const eventRoute = require("./routes/event.routes");
+const serviceRoute = require("./routes/service.routes");
 const app = express();
 const PORT = process.env.PORT || 3000
 
@@ -32,6 +33,7 @@ app.use("/api",providerRoute)
 app.use("/api",LFARoute)
 app.use("/api",rateRoute)
 app.use("/api",eventRoute)
+app.use("/api",serviceRoute)
 
 
 app.listen(PORT, function () {

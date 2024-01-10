@@ -19,11 +19,17 @@ PetsApp.Provider = require ('./provider.js')(connection,DataTypes)
 PetsApp.LFA = require ('./LFA.js')(connection,DataTypes)
 PetsApp.Rate = require ('./rate.js')(connection,DataTypes)
 PetsApp.Event = require ('./event.js')(connection,DataTypes)
+PetsApp.Services = require ('./services.js')(connection,DataTypes)
 PetsApp.Chat = require ('./chat.js')(connection,DataTypes)
 
 // relation between User 1:n Pets
 PetsApp.Users.hasMany(PetsApp.Pets)
 PetsApp.Pets.belongsTo(PetsApp.Users)
+
+
+// relation between Services 1:n Provider
+PetsApp.Services.hasMany(PetsApp.Provider)
+PetsApp.Provider.belongsTo(PetsApp.Services)
 
 // Rate: relation between User n:m  Provider
 PetsApp.Users.belongsToMany(PetsApp.Provider ,{ through: PetsApp.Rate  })

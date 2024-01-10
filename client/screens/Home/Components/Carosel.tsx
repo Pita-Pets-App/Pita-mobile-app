@@ -21,7 +21,7 @@ import shop from "../../../assets/shop.png"
             <View style={styles.service}>
                 <Text style={{color:"white",fontSize:18,fontWeight:"bold"
 }}>Services</Text>
-                <TouchableOpacity style={{borderRadius:20,borderColor:"white",borderWidth:1.5,width:55,height:40,alignItems:"center",justifyContent:'center'}}>
+                <TouchableOpacity style={{borderRadius:20,borderColor:"white",borderWidth:1.5,width:width*0.17,height:40,alignItems:"center",justifyContent:'center'}}>
                     <Text style={{color:"white",fontSize:14
 }}> See All </Text >
                 </TouchableOpacity>

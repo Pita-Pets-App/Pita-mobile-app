@@ -1,14 +1,14 @@
 const Provider = (connection, DataTypes) => {
   return connection.define("provider", {
-    provider_fname: {
+    fname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    provider_lname: {
+    lname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    provider_email: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -17,20 +17,19 @@ const Provider = (connection, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    provider_image: {
+    image: {
       type: DataTypes.JSON,
-      allowNull: false,
-    },
-    provider_type: {
-      type: DataTypes.ENUM,
-      values: ["Veterinarian", "Emergency", "Pets sitter","Pets shop","Pets trainer","Pets events"],
       allowNull: false,
     },
     provider_experience: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    provider_location: {
+    provider_langitude : {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    provider_lattitude: {
       type: DataTypes.STRING,
       allowNull: false,
     },
