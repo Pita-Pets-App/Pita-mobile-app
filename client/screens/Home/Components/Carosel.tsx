@@ -1,19 +1,21 @@
 
 
 
+
 import React from 'react';
 import { ScrollView, View, Text,StyleSheet,Dimensions, TouchableOpacity, Image } from 'react-native';
 const { width, height } = Dimensions.get('screen')
 import Veto from "../../../assets/veterinaire.png"
 
-import emergecy from "../../../assets/emergecy.png"
+import emergecy from "../../../assets/veterinaire.png"
 import siiter from "../../../assets/sitter.png"
-
 import event from "../../../assets/event.png"
 import trainer from "../../../assets/trainer.png"
 import shop from "../../../assets/shop.png"
 
-const Carosel: React.FC = (): JSX.Element => {
+
+    const Carosel: React.FC = (): React.ReactElement => {
+
     return (
         <View style={styles.allPages}>
             <View style={styles.service}>
