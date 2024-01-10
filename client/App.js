@@ -3,17 +3,17 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
-
+import Vets from "./screens/Allvets/Allvets"
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="vets">
         <Stack.Screen
-        name="Home"
-        component={Home} />
+        name="vets"
+        component={Vets} />
        
       </Stack.Navigator>
     </NavigationContainer>

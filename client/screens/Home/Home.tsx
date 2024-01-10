@@ -5,7 +5,7 @@ import Carosel from "./Components/Carosel"
 import Publicite from "./Components/Publicité"
 import Adoptation from './Components/Adoptation';
 const { width, height } = Dimensions.get('screen')
-const Home: React.FC = (): TSX.Element => {
+const Home: React.FC = () => {
     return (
         <ScrollView>
             <View style={styles.allPages}>
