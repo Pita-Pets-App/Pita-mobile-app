@@ -1,7 +1,7 @@
 const config={
     database:"pets_app",
     user:"root",
-    password:"root"
+    password:"azerty3117zeineb25807457"
 
 }
 

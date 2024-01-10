@@ -1,5 +1,12 @@
 const {Users, Pets}=require('../database-Sequelize/index')
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const generateToken = (id, fname) => {
+    const expiresIn = 60 * 60 * 48;//2days
+    return jwt.sign({ id, fname }, 'secretKey', { expiresIn: expiresIn });
+  };
 
+  
 const AllUsers= async(req,res) => {
     try {
     const result=await Users.findAll()
@@ -27,14 +34,20 @@ const AllUsersWithPets= async(req,res) => {
     }
 };
 
-const AddUser= async(req,res) => {
+const createUser =async (req, res) =>{
+  
     try {
-    const result=await Users.create(req.body)
-    res.send(result.dataValues)
+      const newUser = await Users.create({fname:req.body.fname,lname:req.body.lname,email:req.body.email,image:req.body.image,user_password:req.body.user_password});
+     
+      const token = generateToken(newUser.id,newUser.fname);
+      newUser.dataValues.token=token
+      res.status(201).send(newUser);
     } catch (error) {
-    res.send(error)    
+    
+      res.status(400).json({ error: error.message });
+   
     }
-};
+  }
 
 const UpdateUser= async(req,res) => {
     try {
@@ -54,4 +67,4 @@ const DeleteUser= async(req,res) => {
     }
 };
 
-module.exports={AllUsers,OneUser,AllUsersWithPets,AddUser,UpdateUser,DeleteUser}
+module.exports={AllUsers,OneUser,AllUsersWithPets,createUser,UpdateUser,DeleteUser}
