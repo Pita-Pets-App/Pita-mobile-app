@@ -17,7 +17,7 @@ const Provider = (connection, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    provider_image: {
+    image: {
       type: DataTypes.JSON,
       allowNull: false,
     },
@@ -25,7 +25,11 @@ const Provider = (connection, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    provider_location: {
+    provider_langitude : {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    provider_lattitude: {
       type: DataTypes.STRING,
       allowNull: false,
     },

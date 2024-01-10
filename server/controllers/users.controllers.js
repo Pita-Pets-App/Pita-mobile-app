@@ -1,9 +1,9 @@
 const {Users, Pets}=require('../database-Sequelize/index')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const generateToken = (id, user_fname) => {
+const generateToken = (id, fname) => {
     const expiresIn = 60 * 60 * 48;//2days
-    return jwt.sign({ id, user_fname }, 'secretKey', { expiresIn: expiresIn });
+    return jwt.sign({ id, fname }, 'secretKey', { expiresIn: expiresIn });
   };
 
   
@@ -37,9 +37,9 @@ const AllUsersWithPets= async(req,res) => {
 const createUser =async (req, res) =>{
   
     try {
-      const newUser = await Users.create({user_fname:req.body.user_fname,user_lname:req.body.user_lname,user_Email:req.body.user_Email,user_image:req.body.user_image,user_password:req.body.user_password});
+      const newUser = await Users.create({fname:req.body.fname,lname:req.body.lname,email:req.body.email,image:req.body.image,user_password:req.body.user_password});
      
-      const token = generateToken(newUser.id,newUser.user_fname);
+      const token = generateToken(newUser.id,newUser.fname);
       newUser.dataValues.token=token
       res.status(201).send(newUser);
     } catch (error) {

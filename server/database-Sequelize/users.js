@@ -17,7 +17,7 @@ const Users = (connection, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_image: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },

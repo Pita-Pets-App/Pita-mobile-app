@@ -2,7 +2,8 @@ import React from 'react';
 import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
 
 const { width, height } = Dimensions.get('screen')
-const  LostAndFound: React.FC = (): JSX.Element => {
+const LostAndFound: React.FC = (): React.ReactElement  => {
+
     return (
         <View style={styles.allPages}>
         <View style={styles.service}>
