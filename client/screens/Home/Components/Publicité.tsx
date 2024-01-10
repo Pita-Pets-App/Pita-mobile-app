@@ -2,8 +2,7 @@ import React from 'react';
 import { ScrollView, View, Text,StyleSheet,Dimensions ,Image} from 'react-native';
 import chat from "../../../assets/chat.png"
 const { width, height } = Dimensions.get('screen')
-
-const Publicite: React.FC = (): JSX.Element => {
+const Publicite: React.FC = (): React.ReactElement => {
     return (
       
             <View style={styles.allPages}>

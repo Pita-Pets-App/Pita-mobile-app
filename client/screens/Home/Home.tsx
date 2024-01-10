@@ -4,8 +4,11 @@ import  LostAndFound from "./Components/LostAndFound"
 import Carosel from "./Components/Carosel"
 import Publicite from "./Components/Publicité"
 import Adoptation from './Components/Adoptation';
+import Navbar from "./Components/Navbar"
 const { width, height } = Dimensions.get('screen')
-const Home: React.FC = ()=> {
+
+const Home: React.FC = (): React.ReactElement => {
+
     return (
         <ScrollView>
             <View style={styles.allPages}>
@@ -13,6 +16,7 @@ const Home: React.FC = ()=> {
                <Carosel/>
                <Adoptation/>
                <LostAndFound/>
+               <Navbar />
             </View>
         </ScrollView>
     );
