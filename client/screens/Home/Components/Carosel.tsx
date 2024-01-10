@@ -7,7 +7,7 @@ import { ScrollView, View, Text,StyleSheet,Dimensions, TouchableOpacity, Image }
 const { width, height } = Dimensions.get('screen')
 import Veto from "../../../assets/veterinaire.png"
 
-import emergecy from "../../../assets/veterinaire.png"
+import emergecy from "../../../assets/emergecy.png"
 import siiter from "../../../assets/sitter.png"
 import event from "../../../assets/event.png"
 import trainer from "../../../assets/trainer.png"
