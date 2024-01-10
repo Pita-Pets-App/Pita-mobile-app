@@ -3,21 +3,21 @@ const {createUser} =require("./users.controllers")
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const generateToken = (id, user_fname) => {
+const generateToken = (id, fname) => {
     const expiresIn = 60 * 60 * 48;//2days
-    return jwt.sign({ id, user_fname }, 'secretKey', { expiresIn: expiresIn });
+    return jwt.sign({ id, fname }, 'secretKey', { expiresIn: expiresIn });
   };
 
   const Register = async (req, res) => {
-    const { user_fname,user_lname,  user_Email, user_password  } = req.body;
+    const { fname,lname,  email, user_password  } = req.body;
     try {
       const hashedPassword = await bcrypt.hash(user_password, 10);
   
       const newUser = {
-        user_fname,
-        user_lname,
-        user_Email,
-        user_image:'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+        fname,
+        lname,
+        email,
+        image:'https://cdn-icons-png.flaticon.com/512/149/149071.png',
         user_password: hashedPassword}
        
         createUser({ body: newUser }, res);
@@ -27,9 +27,9 @@ const generateToken = (id, user_fname) => {
     }
   };
   const Login = async(req, res) => {
-    const{user_Email,user_password}=req.body;
+    const{email,user_password}=req.body;
     try {
-         const result= await Users.findOne({ where :{user_Email:user_Email}})
+         const result= await Users.findOne({ where :{email:email}})
          if(result ===null) res.send("email not found")
          else {
           const verif=result.dataValues.user_password

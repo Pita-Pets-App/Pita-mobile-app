@@ -3,17 +3,17 @@ const {Event,Users, Provider}=require('../database-Sequelize/index')
 
 const AllEvents = async (req, res) => {
     try {
-        const result = await Event.findAll({ //get Events sorted by the most closest ones 
+        const result = await Event.findAll({
             order: [['event_date', 'ASC']], 
         });
 
         const eventsWithOwners = result.map(async (el, i) => {
-            const searchUserEmail = await Users.findOne({ where: { user_Email: el.dataValues.email } });
+            const searchUserEmail = await Users.findOne({ where: { email: el.dataValues.email } });
 
             if (searchUserEmail) {
                 el.dataValues.owner = searchUserEmail;
             } else {
-                const searchProviderEmail = await Provider.findOne({ where: { provider_email: el.dataValues.email } });
+                const searchProviderEmail = await Provider.findOne({ where: { email: el.dataValues.email } });
 
                 if (searchProviderEmail) {
                     el.dataValues.owner = searchProviderEmail;
@@ -32,6 +32,36 @@ const AllEvents = async (req, res) => {
         res.send(error);
     }
 }
+
+const OneEvent = async (req, res) => {
+    console.log("hh",req.params);
+    try {
+        const result = await Event.findOne({where:{id:req.params.id}});
+        console.log("hhhh",result);
+        
+
+
+            const searchUserEmail = await Users.findOne({ where: { email: result.dataValues.email } });
+
+            if (searchUserEmail) {
+                result.dataValues.owner = searchUserEmail;
+            } else {
+                const searchProviderEmail = await Provider.findOne({ where: { email: result.dataValues.email } });
+
+                if (searchProviderEmail) {
+                    result.dataValues.owner = searchProviderEmail;
+                } else {
+                    result.dataValues.owner = "Error Finding Email of Event Creator";
+                }
+            }
+
+
+        res.json(result);
+    } catch (error) {
+        res.send(error);
+    }
+}
+
 
 
 
@@ -62,4 +92,4 @@ const DeleteLEvent= async(req,res) => {
     }
 };
 
-module.exports={AllEvents,AddEvent,UpdateEvent,DeleteLEvent}
+module.exports={AllEvents,OneEvent,AddEvent,UpdateEvent,DeleteLEvent}

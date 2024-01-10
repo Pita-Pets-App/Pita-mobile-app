@@ -16,7 +16,11 @@ const Event = (connection, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    event_location: {
+    event_langitude : {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    event_lattitude: {
       type: DataTypes.STRING,
       allowNull: false,
     },
