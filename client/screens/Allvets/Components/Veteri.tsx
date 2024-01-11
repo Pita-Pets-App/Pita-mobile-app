@@ -1,21 +1,18 @@
 import React from 'react';
-import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
-
+import { ScrollView, View, Text,StyleSheet,Dimensions ,TouchableOpacity} from 'react-native';
 const { width, height } = Dimensions.get('screen')
-const LostAndFound: React.FC = (): React.ReactElement  => {
 
+const  Veter: React.FC = (): JSX.Element => {
     return (
         <View style={styles.allPages}>
-        <View style={styles.service}>
-          <Text style={{color:"white",fontSize:18,fontWeight:"bold"
-}}>Lost & Found</Text>
-          <View style={styles.container}>
-       
-          </View>
-      </View>
-</View>
+              <View style={styles.service}>
+                <Text style={{color:"white",fontSize:18,fontWeight:"bold"}}></Text>
+                <View style={styles.container}>
+             
+                </View>
+            </View>
+    </View>
     );
-
 };
 const styles = StyleSheet.create({
     allPages: {
@@ -40,5 +37,6 @@ const styles = StyleSheet.create({
         backgroundColor:"white",
         height:height*0.18,
         borderRadius:10
-    },})
-export default LostAndFound
+    }
+});
+export default Veter

@@ -7,7 +7,7 @@ import { ScrollView, View, Text,StyleSheet,Dimensions, TouchableOpacity, Image }
 const { width, height } = Dimensions.get('screen')
 import Veto from "../../../assets/veterinaire.png"
 
-import emergecy from "../../../assets/veterinaire.png"
+import emergecy from "../../../assets/emergecy.png"
 import siiter from "../../../assets/sitter.png"
 import event from "../../../assets/event.png"
 import trainer from "../../../assets/trainer.png"
@@ -21,7 +21,7 @@ import shop from "../../../assets/shop.png"
             <View style={styles.service}>
                 <Text style={{color:"white",fontSize:18,fontWeight:"bold"
 }}>Services</Text>
-                <TouchableOpacity style={{borderRadius:20,borderColor:"white",borderWidth:1.5,width:55,height:40,alignItems:"center",justifyContent:'center'}}>
+                <TouchableOpacity style={{borderRadius:20,borderColor:"white",borderWidth:1.5,width:width*0.17,height:40,alignItems:"center",justifyContent:'center'}}>
                     <Text style={{color:"white",fontSize:14
 }}> See All </Text >
                 </TouchableOpacity>
