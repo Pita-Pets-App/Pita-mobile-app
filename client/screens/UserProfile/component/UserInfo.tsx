@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text,StyleSheet ,Dimensions,Image,TouchableOpacity} from 'react-native';
-import addPet from '../../../assets/add-pet.png'
-import dog1 from '../../../assets/ownerdog2.png'
-import dog2 from '../../../assets/ownerdog1.png'
-import peticon from '../../../assets/peticon.png'
+import logOut from '../../../assets/logout.png'
+import email from '../../../assets/email.png'
+import edit from '../../../assets/edit.png'
 import axios from 'axios';
-
 
 
 const { width, height } = Dimensions.get('screen')
@@ -26,34 +24,46 @@ const UserInfo: React.FC = () => {
     
     return (
         <View style={styles.petContainer}>
-            <View style={styles.myPets}>
-            <Image style={{width:width*0.1,height:height*0.045}} source={peticon}></Image>
-            <Text style={{fontWeight:'bold',fontSize: 23}}>My Pets</Text>
+            <View style={styles.UserNameContainer}>
+                <Text style={{fontWeight:"bold",fontSize:20}}>UserName</Text>
+                <TouchableOpacity style={styles.logout}>
+                <Image style={{width:width*0.05,height:height*0.022}} source={logOut}></Image>
+                    <Text style={{color:"#e64d4d"}}>Log out</Text>
+                </TouchableOpacity>
             </View>
-        <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15}}>
-        <TouchableOpacity><Image style={styles.PetsImage} source={dog1}></Image></TouchableOpacity>
-        <TouchableOpacity><Image style={styles.PetsImage} source={dog2}></Image></TouchableOpacity>
-        <TouchableOpacity><Image style={styles.PetsImage} source={addPet}></Image></TouchableOpacity>
-        </View>
+            <View style={styles.UserNameContainer}>
+            <View style={styles.userEmail}>
+                <Image style={{width:width*0.055,height:height*0.0185}} source={email}></Image>
+                <Text>Exmple@gmail.com</Text>
+            </View>
+            <TouchableOpacity><Image style={{width:width*0.08,height:height*0.035}} source={edit}></Image></TouchableOpacity>
+            </View>
+
         </View>
     );
 };
 const styles = StyleSheet.create({
-    PetsImage: {
-        width:width*0.22,
-        height:height*0.1,
-        borderRadius:15
-       
-       
+    UserNameContainer: {
+        display:"flex",
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"space-between",
+        padding:7
     },
-    myPets : {
+    logout : {
         display:"flex",
         alignItems:"center",
-        justifyContent:"flex-start",
         flexDirection:"row",
         gap:10,
-       
-    },
+       },
+        userEmail: {
+        display:"flex",
+        alignItems:"center",
+        flexDirection:"row",
+        gap:10,
+        paddingHorizontal:25,
+        paddingVertical:10
+       },
     petContainer :{
         backgroundColor:"white",
         marginVertical:7,
@@ -63,5 +73,7 @@ const styles = StyleSheet.create({
     }
 
 })
+
+
 export default UserInfo;
 
