@@ -7,6 +7,7 @@ import {
  TouchableOpacity,
 } from 'react-native';
 import Navbar from "../../Home/Components/Navbar"
+import Top from "./Top"
 type DrNambuvanProps = {
  // You can add any props that the component needs here
 };
@@ -34,8 +35,11 @@ const Onevet: React.FC<DrNambuvanProps> = () => {
       <TouchableOpacity style={styles.bookButton}>
         <Text style={styles.bookText}>Book an Appointment</Text>
       </TouchableOpacity>
-      <Navbar/>
+      {/* <View>
+        <Navbar/>
+    </View> */}
     </View>
+    
  );
 };
 

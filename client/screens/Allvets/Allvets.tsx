@@ -2,24 +2,29 @@ import React from 'react';
 import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
 // import  LostAndFound from "./Components/LostAndFound"
 // import Carosel from "./Components/Carosel"
-import Vets from "./Components/Top"
+
 import Veter from  "./Components/Veteri";
 import Onevet from "./Components/Onevet"
+import Navbar from "../Home/Components/Navbar"
+import Top from "./Components/Top"
 // import Adoptation from './Components/Adoptation';
 const { width, height } = Dimensions.get('screen')
-const Home: React.FC = () => {
+const Vets: React.FC = () => {
     return (
         <ScrollView>
+            <View>
+                {/* <Top/> */}
+            </View>
             <View style={styles.allPages}>
-               <Onevet/>
+               {/* <Onevet/> */}
                
                {/* <Carosel/>
                <Adoptation/>
                <LostAndFound/> */}
             </View>
             <View>
-            {/* <Veter/>  */}
-            
+            <Veter/> 
+         
             </View>
         </ScrollView>
     );
@@ -35,5 +40,5 @@ const styles = StyleSheet.create({
         gap:20
        
     },})
-export default Home;
+export default Vets;
 

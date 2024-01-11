@@ -9,12 +9,11 @@ const Veter: React.FC = (): JSX.Element => {
         <View style={styles.allPages}>
             <View style={styles.service}>
                 <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}></Text>
-                <Image
-          style={[styles.vectorIcon4, styles.iconFrameLayout]}
-        //   contentFit="cover"
-          source={require("../../../assets/vector41.png")}
-        />
-                <View style={styles.container}>
+                <Text style={[styles.vectorIcon4, styles.iconFrameLayout]}>
+           HOW MAY WE HELP YOU
+       
+          </Text>
+                <TouchableOpacity style={styles.container}>
                     <Text style={styles.name}>
                         DR.BELHASENA
                     </Text  >
@@ -54,8 +53,104 @@ const Veter: React.FC = (): JSX.Element => {
           />
         </View>
         
+                </TouchableOpacity>
+                <View style={styles.service}>
+                
+                <TouchableOpacity style={styles.container}>
+                    <Text style={styles.name}>
+                        DR.BELHASENA
+                    </Text  >
+                    <Text style={[styles.vectorIcon8]} >
+                        100$
+                    </Text>
+                    
+                    <Image
+          style={[styles.vectorIcon1, styles.iconFrameLayout]}
+        //   contentFit="cover"
+          source={dol}
+        />
+         <Image
+          style={[styles.vectorIcon5, styles.vectorIcon5Position]}
+        //   contentFit="cover"
+          source={require("../../../assets//vector32.png")}
+        />
+        <Text style={[styles.loc]} >
+            2.5KM
+        </Text >
+        <Text style={[styles.exp]}>
+            10 Years of experience
+        </Text>
+        <View
+          style={[
+            styles.mondayFridayAt800Am5Parent,
+            styles.vectorIcon5Position,
+          ]}
+        >
+          <Text style={[styles.mondayFriday, styles.mondayFridayFlexBox]}>
+            Monday - Friday at 8.00 am - 5.00pm
+          </Text>
+          <Image
+            style={[styles.time1Icon, styles.time1IconPosition]}
+            // contentFit="cover"
+            source={require("../../../assets/time-1.png")}
+          />
+        </View>
+        
+                </TouchableOpacity>
+            </View>
+            <View style={styles.service}>
+                
+                <TouchableOpacity style={styles.container}>
+                    <Text style={styles.name}>
+                        DR.BELHASENA
+                    </Text  >
+                    <Text style={[styles.vectorIcon8]} >
+                        100$
+                    </Text>
+                    
+                    <Image
+          style={[styles.vectorIcon1, styles.iconFrameLayout]}
+        //   contentFit="cover"
+          source={dol}
+        />
+         <Image
+          style={[styles.vectorIcon5, styles.vectorIcon5Position]}
+        //   contentFit="cover"
+          source={require("../../../assets//vector32.png")}
+        />
+        <Text style={[styles.loc]} >
+            2.5KM
+        </Text >
+        <Text style={[styles.exp]}>
+            10 Years of experience
+        </Text>
+        <View
+          style={[
+            styles.mondayFridayAt800Am5Parent,
+            styles.vectorIcon5Position,
+          ]}
+        >
+          <Text style={[styles.mondayFriday, styles.mondayFridayFlexBox]}>
+            Monday - Friday at 8.00 am - 5.00pm
+          </Text>
+          <Image
+            style={[styles.time1Icon, styles.time1IconPosition]}
+            // contentFit="cover"
+            source={require("../../../assets/time-1.png")}
+          />
+        </View>
+        
+                </TouchableOpacity>
+                <View>
+                <Navbar/>
                 </View>
             </View>
+            
+            </View>
+            
+              
+           
+            
         </View>
     );
 };
@@ -211,14 +306,15 @@ const styles = StyleSheet.create({
     vectorIcon4: {
       height: "6.84%",
       width: "57.67%",
-      top: "21.58%",
+      top: "10%",
       right: "8.58%",
       bottom: "70.58%",
       left: "33.75%",
       position: "absolute",
       maxWidth: "100%",
       overflow: "hidden",
-      imageAlign: "center"
+      textAlignAlign: "center",
+      fontWeight: "bold",
     },
     vectorIcon5: {
         height: "10%",
