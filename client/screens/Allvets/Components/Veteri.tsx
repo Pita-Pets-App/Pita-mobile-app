@@ -9,6 +9,11 @@ const Veter: React.FC = (): JSX.Element => {
         <View style={styles.allPages}>
             <View style={styles.service}>
                 <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}></Text>
+                <Image
+          style={[styles.vectorIcon4, styles.iconFrameLayout]}
+        //   contentFit="cover"
+          source={require("../../../assets/vector41.png")}
+        />
                 <View style={styles.container}>
                     <Text style={styles.name}>
                         DR.BELHASENA
@@ -92,6 +97,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'flex-start', // Align content to the top
         alignItems: 'center', // Center horizontally
+        top: "10%",
     },
     mondayFridayFlexBox: {
       textAlign: "left",
@@ -203,7 +209,7 @@ const styles = StyleSheet.create({
       overflow: "hidden",
     },
     vectorIcon4: {
-      height: "7.84%",
+      height: "6.84%",
       width: "57.67%",
       top: "21.58%",
       right: "8.58%",
@@ -212,6 +218,7 @@ const styles = StyleSheet.create({
       position: "absolute",
       maxWidth: "100%",
       overflow: "hidden",
+      imageAlign: "center"
     },
     vectorIcon5: {
         height: "10%",

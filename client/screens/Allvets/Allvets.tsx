@@ -4,20 +4,21 @@ import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
 // import Carosel from "./Components/Carosel"
 import Vets from "./Components/Top"
 import Veter from  "./Components/Veteri";
+import Onevet from "./Components/Onevet"
 // import Adoptation from './Components/Adoptation';
 const { width, height } = Dimensions.get('screen')
 const Home: React.FC = () => {
     return (
         <ScrollView>
             <View style={styles.allPages}>
-               <Vets/>
+               <Onevet/>
                
                {/* <Carosel/>
                <Adoptation/>
                <LostAndFound/> */}
             </View>
             <View>
-            <Veter/> 
+            {/* <Veter/>  */}
             
             </View>
         </ScrollView>
