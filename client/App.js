@@ -7,12 +7,13 @@ import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
 import Adoptation from "./screens/Adoptation/Adoptation"
 import Navbar from "./screens/Home/Components/Navbar";
+import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Adoptation">
+      <Stack.Navigator initialRouteName="AdoptationDetails">
       
         <Stack.Screen
         name="Home"
@@ -27,6 +28,10 @@ export default function App() {
         
         name="Adoptation"
         component={Adoptation} />
+         <Stack.Screen
+        
+        name="AdoptationDetails"
+        component={AdoptationDetails} />
       </Stack.Navigator>
       <Navbar/>
 
