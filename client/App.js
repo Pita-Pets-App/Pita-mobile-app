@@ -5,13 +5,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
-
+import Adoptation from "./screens/Adoptation/Adoptation"
+import Navbar from "./screens/Home/Components/Navbar";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Adoptation">
+      
         <Stack.Screen
         name="Home"
         component={Home} />
@@ -21,17 +23,15 @@ export default function App() {
         <Stack.Screen
         name="Services"
         component={Services} />
-       
+        <Stack.Screen
+        
+        name="Adoptation"
+        component={Adoptation} />
       </Stack.Navigator>
+      <Navbar/>
+
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+

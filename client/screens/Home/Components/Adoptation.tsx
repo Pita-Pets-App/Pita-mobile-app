@@ -6,7 +6,7 @@ const  Adoptation: React.FC = (): JSX.Element => {
     return (
         <View style={styles.allPages}>
               <View style={styles.service}>
-                <Text style={{color:"white",fontSize:18,fontWeight:"bold"
+                <Text  style={{color:"white",fontSize:18,fontWeight:"bold"
 }}>Adoptation</Text>
                 <View style={styles.container}>
              
