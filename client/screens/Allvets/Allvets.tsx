@@ -18,6 +18,7 @@ const Home: React.FC = () => {
             </View>
             <View>
             <Veter/> 
+            
             </View>
         </ScrollView>
     );
