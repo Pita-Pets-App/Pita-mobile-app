@@ -27,10 +27,10 @@ const UserPets: React.FC = () => {
     return (
         <View style={styles.petContainer}>
             <View style={styles.myPets}>
-            <Image style={{width:width*0.1,height:height*0.045}} source={peticon}></Image>
-            <Text style={{fontWeight:'bold',fontSize: 23}}>My Pets</Text>
+            <Image style={{width:width*0.08,height:height*0.035}} source={peticon}></Image>
+            <Text style={{fontWeight:'bold',fontSize: 18}}>My Pets</Text>
             </View>
-        <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15}}>
+        <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15,justifyContent:"space-around",paddingHorizontal:15}}>
         <TouchableOpacity><Image style={styles.PetsImage} source={dog1}></Image></TouchableOpacity>
         <TouchableOpacity><Image style={styles.PetsImage} source={dog2}></Image></TouchableOpacity>
         <TouchableOpacity><Image style={styles.PetsImage} source={addPet}></Image></TouchableOpacity>
@@ -40,9 +40,9 @@ const UserPets: React.FC = () => {
 };
 const styles = StyleSheet.create({
     PetsImage: {
-        width:width*0.22,
-        height:height*0.1,
-        borderRadius:15
+        width:width*0.2,
+        height:height*0.09,
+        borderRadius:12
        
        
     },
