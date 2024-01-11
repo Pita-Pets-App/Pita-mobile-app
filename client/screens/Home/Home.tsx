@@ -4,6 +4,7 @@ import  LostAndFound from "./Components/LostAndFound"
 import Carosel from "./Components/Carosel"
 import Publicite from "./Components/Publicité"
 import Adoptation from './Components/Adoptation';
+// import Navbar from "./Components/Navbar"
 import Navbar from "./Components/Navbar"
 const { width, height } = Dimensions.get('screen')
 
