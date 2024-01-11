@@ -8,7 +8,7 @@ const instance = axios.create({
 
 export const register_me = async (formData : any) => {
   try {
-      const response = await axios.post('/auth/register', formData);
+      const response = await axios.post('/api/users/register', formData);
       return response.data;
   } catch (error) {
       console.error('Error in register (service) => ', error);
@@ -18,8 +18,7 @@ export const register_me = async (formData : any) => {
 
 export const login_me = async (formData : any) => {
   try {
-    const response = await axios.post('/auth/login', formData);
-
+    const response = await axios.post('/api/users/login', formData);
     return response.data;
   } catch (error) {
     console.log('error in login (service) => ', error);
