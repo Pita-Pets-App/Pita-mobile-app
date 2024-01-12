@@ -11,17 +11,15 @@ const { width, height } = Dimensions.get('screen')
 const Home: React.FC = (): React.ReactElement => {
 
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                <View style={styles.allPages}>
-                    <Publicite />
-                    <Carosel />
-                    <Adoptation />
-                    <LostAndFound />
-                </View>
-            </ScrollView>
-        
-        </View>
+        <ScrollView>
+            <View style={styles.allPages}>
+               <Publicite/>
+               <Carosel/>
+               <Adoptation   />
+               <LostAndFound/>
+            </View>
+        </ScrollView>
+
     );
 };
 const styles = StyleSheet.create({

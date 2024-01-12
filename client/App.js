@@ -6,13 +6,17 @@ import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
 import Vets from "./screens/Allvets/Allvets"
-import Navbar from "./screens/Home/Components/Navbar"
+import Adoptation from "./screens/Adoptation/Adoptation"
+import Navbar from "./screens/Home/Components/Navbar";
+import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
+      
         <Stack.Screen
         name="Home"
         component={Home} />
@@ -23,11 +27,14 @@ export default function App() {
         name="Services"
         component={Services} />
         <Stack.Screen
-        name="vets"
-        component={Vets} />
-       
+        
+        name="Adoptation"
+        component={Adoptation} />
+         <Stack.Screen
+        
+        name="AdoptationDetails"
+        component={AdoptationDetails} />
       </Stack.Navigator>
-      <Navbar />
     </NavigationContainer>
   );
 }
@@ -40,3 +47,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
