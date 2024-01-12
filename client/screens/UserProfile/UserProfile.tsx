@@ -3,6 +3,7 @@ import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
 
 const { width, height } = Dimensions.get('screen')
 const UserProfile: React.FC = () => {
+    
     return (
         <ScrollView>
             <View style={styles.UsersProfile}>

@@ -18,6 +18,7 @@ interface FormData {
 }
 
 const Register: React.FC = () => {
+  
   const navigation = useNavigation();
 
   const [formData, setFormData] = useState<FormData>({

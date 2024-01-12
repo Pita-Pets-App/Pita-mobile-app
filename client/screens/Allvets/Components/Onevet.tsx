@@ -6,7 +6,9 @@ import {
  Image,
  TouchableOpacity,
 } from 'react-native';
-import Navbar from "../../Home/Components/Navbar"
+
+import Navbar from "../../home/Components/Navbar"
+
 type DrNambuvanProps = {
  // You can add any props that the component needs here
 };

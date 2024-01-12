@@ -25,16 +25,16 @@ export const login_me = async (formData : any) => {
   }
 };
 
-export const fetchProducts = async (token: string) => {
-  try {
-    const response = await instance.get('/products/', {
-      headers: { Authorization: `Bearer ${token}` }, 
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    throw error;
-  }
-};
+// export const fetchProducts = async (token: string) => {
+//   try {
+//     const response = await instance.get('/products/', {
+//       headers: { Authorization: `Bearer ${token}` }, 
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching products:', error);
+//     throw error;
+//   }
+// };
 
 export const getServices = async (token: string) => {};
