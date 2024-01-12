@@ -11,7 +11,7 @@ const { width, height } = Dimensions.get('screen')
 const Home: React.FC = (): React.ReactElement => {
 
     return (
-        <ScrollView>
+        <ScrollView >
             <View style={styles.allPages}>
                <Publicite/>
                <Carosel/>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop:20,
         gap:20,
-        marginBottom:75
+        marginBottom:75,
        
     },})
 export default Home;

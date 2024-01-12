@@ -35,6 +35,7 @@ export default function App() {
         name="AdoptationDetails"
         component={AdoptationDetails} />
       </Stack.Navigator>
+      <Navbar/>
     </NavigationContainer>
   );
 }
