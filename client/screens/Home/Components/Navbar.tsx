@@ -19,6 +19,7 @@ const Navbar: React.FC = (): React.ReactElement => {
             <TouchableOpacity><Image source={location} style={styles.iconImage} /></TouchableOpacity>
             <TouchableOpacity><Image source={message} style={styles.iconImage} /></TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("UserProfile" as never)}}><Image source={user} style={styles.iconImage} /></TouchableOpacity>
+
         </View>
     );
 };
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffc368",
         flexDirection: 'row',
         width: width,
+
         height: height * 0.1,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,

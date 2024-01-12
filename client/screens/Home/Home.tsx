@@ -15,9 +15,8 @@ const Home: React.FC = (): React.ReactElement => {
             <View style={styles.allPages}>
                <Publicite/>
                <Carosel/>
-               <Adoptation/>
+               <Adoptation   />
                <LostAndFound/>
-               <Navbar />
             </View>
         </ScrollView>
     );
