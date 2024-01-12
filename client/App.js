@@ -5,16 +5,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
+import Vets from "./screens/Allvets/Allvets"
+import Adoptation from "./screens/Adoptation/Adoptation"
+import Navbar from "./screens/Home/Components/Navbar";
+import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
 import Allvets from "./screens/Allvets/Components/Veteri"
-import Navbar from "./screens/Home/Components/Navbar"
-import Onevet from "./screens/Allvets/Components/Onevett";
 import Review from "./screens/Allvets/Components/AddRate"
+import Onevet from "./screens/Allvets/Components/Onevett";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Onevet">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
         name="Home"
         component={Home} />
@@ -25,6 +28,9 @@ export default function App() {
         name="Services"
         component={Services} />
         <Stack.Screen
+        name="vets"
+        component={Vets} />
+         <Stack.Screen
         name="Allvets"
         component={Allvets} />
         <Stack.Screen
@@ -33,8 +39,16 @@ export default function App() {
         <Stack.Screen
         name="Review"
         component={Review} />
+         <Stack.Screen
+        
+        name="Adoptation"
+        component={Adoptation} />
+         <Stack.Screen
+        
+        name="AdoptationDetails"
+        component={AdoptationDetails} />
       </Stack.Navigator>
-        <Navbar/>
+      <Navbar/>
     </NavigationContainer>
   );
 }
