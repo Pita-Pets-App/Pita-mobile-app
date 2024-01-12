@@ -1,22 +1,25 @@
 import React from 'react';
 import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
-import  LostAndFound from "./Components/LostAndFound"
-import Carosel from "./Components/Carosel"
-import Publicite from "./Components/Publicité"
-import Adoptation from './Components/Adoptation';
-// import Navbar from "./Components/Navbar"
-import Navbar from "./Components/Navbar"
+// import  LostAndFound from "./Components/LostAndFound"
+// import Carosel from "./Components/Carosel"
+import Vets from "./Components/Top"
+import Veter from  "./Components/Veteri";
+import Onevet from "./Components/Onevet"
+// import Adoptation from './Components/Adoptation';
 const { width, height } = Dimensions.get('screen')
-
-const Home: React.FC = (): React.ReactElement => {
-
+const Home: React.FC = () => {
     return (
         <ScrollView>
             <View style={styles.allPages}>
-               <Publicite/>
-               <Carosel/>
-               <Adoptation   />
-               <LostAndFound/>
+               <Onevet/>
+               
+               {/* <Carosel/>
+               <Adoptation/>
+               <LostAndFound/> */}
+            </View>
+            <View>
+            {/* <Veter/>  */}
+            
             </View>
         </ScrollView>
     );

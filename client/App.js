@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
+import Vets from "./screens/Allvets/Allvets"
 import Adoptation from "./screens/Adoptation/Adoptation"
 import Navbar from "./screens/Home/Components/Navbar";
 import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
@@ -25,6 +26,9 @@ export default function App() {
         name="Services"
         component={Services} />
         <Stack.Screen
+        name="vets"
+        component={Vets} />
+       <Stack.Screen
         
         name="Adoptation"
         component={Adoptation} />
