@@ -12,7 +12,7 @@ const Vets: React.FC = (): JSX.Element => {
         <Text style={{ color: "black", fontSize: 18, fontWeight: "bold" }}>VETERINARIAN</Text>
       </View>
       <View style={styles.previousIcon}>
-        <Image source={previous} style={{ width: width * 0.06, height: height * 0.06 }} />
+        <Image source={previous} style={{ width: width * 0.12, height: height * 0.06 }} />
       </View>
     </View>
   );
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingLeft: 15,
     gap: 10,
+    backgroundColor:"black"
   },
   iconcaretRight: {
     height: "3.79%",
