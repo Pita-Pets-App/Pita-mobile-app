@@ -7,6 +7,7 @@ import event from '../../../assets/evenement.png'
 import sitter from '../../../assets/sitting-dog.png'
 import trainer from '../../../assets/trainer-pet.png'
 import shop from  '../../../assets/pet-shop.png'
+import {port} from "../../../port"
 const { width, height } = Dimensions.get('screen')
 const AllServices: React.FC = () => {
     const [serviceData,setServiceData]=useState<[]>([])
@@ -16,8 +17,8 @@ const AllServices: React.FC = () => {
 try {
     
     
-        const result=await axios.get("http://localhost:3000/api/service")
-        console.log(result);
+        const result=await axios.get(`${port}/api/service`)
+        console.log(result.data);
     }
 
  catch (error) {
