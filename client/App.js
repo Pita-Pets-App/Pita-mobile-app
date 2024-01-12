@@ -9,14 +9,15 @@ import Vets from "./screens/Allvets/Allvets"
 import Adoptation from "./screens/Adoptation/Adoptation"
 import Navbar from "./screens/Home/Components/Navbar";
 import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
-
+import Allvets from "./screens/Allvets/Components/Veteri"
+import Review from "./screens/Allvets/Components/AddRate"
+import Onevet from "./screens/Allvets/Components/Onevett";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-      
         <Stack.Screen
         name="Home"
         component={Home} />
@@ -27,6 +28,18 @@ export default function App() {
         name="Services"
         component={Services} />
         <Stack.Screen
+        name="vets"
+        component={Vets} />
+         <Stack.Screen
+        name="Allvets"
+        component={Allvets} />
+        <Stack.Screen
+        name="Onevet"
+        component={Onevet} />
+        <Stack.Screen
+        name="Review"
+        component={Review} />
+         <Stack.Screen
         
         name="Adoptation"
         component={Adoptation} />
@@ -43,9 +56,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff4",
     alignItems: "center",
     justifyContent: "center",
   },
 });
-
