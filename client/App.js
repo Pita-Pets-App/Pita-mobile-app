@@ -6,7 +6,7 @@ import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
 import Vets from "./screens/Allvets/Allvets"
-
+import Navbar from "./screens/Home/Components/Navbar"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -27,6 +27,7 @@ export default function App() {
         component={Vets} />
        
       </Stack.Navigator>
+      <Navbar />
     </NavigationContainer>
   );
 }

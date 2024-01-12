@@ -35,7 +35,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: 'white', 
         borderWidth: 0.5, 
-        padding:10
+        padding:10,
+        position: 'absolute', // Use absolute positioning
+        bottom: 0,
         
     },
     iconImage: {
