@@ -5,14 +5,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
-import Vets from "./screens/Allvets/Allvets"
-
+import Allvets from "./screens/Allvets/Components/Veteri"
+import Navbar from "./screens/Home/Components/Navbar"
+import Onevet from "./screens/Allvets/Components/Onevett";
+import Review from "./screens/Allvets/Components/AddRate"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Onevet">
         <Stack.Screen
         name="Home"
         component={Home} />
@@ -23,10 +25,16 @@ export default function App() {
         name="Services"
         component={Services} />
         <Stack.Screen
-        name="vets"
-        component={Vets} />
-       
+        name="Allvets"
+        component={Allvets} />
+        <Stack.Screen
+        name="Onevet"
+        component={Onevet} />
+        <Stack.Screen
+        name="Review"
+        component={Review} />
       </Stack.Navigator>
+        <Navbar/>
     </NavigationContainer>
   );
 }
@@ -34,7 +42,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff4",
     alignItems: "center",
     justifyContent: "center",
   },
