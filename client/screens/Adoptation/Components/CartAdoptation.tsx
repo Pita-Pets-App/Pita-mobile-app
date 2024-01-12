@@ -40,13 +40,7 @@ const styles = StyleSheet.create({
    height:height*0.3,
    gap:7,
    borderRadius:15
-        // justifyContent: 'center',
-        // alignItems: 'center',
-     
-        // // paddingVertical:width*0.15, 
-        // paddingTop:20,
-        // gap:20
-       
+    
     },
     animalPicture:{
         width:width*0.43,

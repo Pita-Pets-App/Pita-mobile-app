@@ -2,11 +2,13 @@ import React from 'react';
 import { ScrollView, View, Text,StyleSheet,Dimensions ,TouchableOpacity} from 'react-native';
 const { width, height } = Dimensions.get('screen')
 
-const  Adoptation: React.FC = (): JSX.Element => {
+const  Adoptation: React.FC = ({navigation}): React.ReactElement=> {
     return (
         <View style={styles.allPages}>
               <View style={styles.service}>
-                <Text  style={{color:"white",fontSize:18,fontWeight:"bold"
+                <Text onPress={()=>{
+                navigation.navigate("Adoptation")
+            }} style={{color:"white",fontSize:18,fontWeight:"bold"
 }}>Adoptation</Text>
                 <View style={styles.container}>
              
