@@ -5,9 +5,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
+import Vets from "./screens/Allvets/Allvets"
 import Adoptation from "./screens/Adoptation/Adoptation"
 import Navbar from "./screens/Home/Components/Navbar";
 import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -34,9 +36,16 @@ export default function App() {
         component={AdoptationDetails} />
       </Stack.Navigator>
       <Navbar/>
-
     </NavigationContainer>
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
