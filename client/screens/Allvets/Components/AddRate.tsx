@@ -6,6 +6,7 @@ interface ReviewData {
  userName: string;
  review: string;
  rating: number;
+ 
 }
 const reviewData: ReviewData[] = [
     {
