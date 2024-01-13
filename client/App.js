@@ -12,12 +12,14 @@ import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
 import Allvets from "./screens/Allvets/Components/Veteri"
 import Review from "./screens/Allvets/Components/AddRate"
 import Onevet from "./screens/Allvets/Components/Onevett";
+import Login from "./screens/authentification/Login/index.tsx"
+import Register from "./screens/authentification/Register/index.tsx"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Register">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -31,6 +33,12 @@ export default function App() {
             fontWeight: 'bold',
           },
         }} />
+        <Stack.Screen
+        name="Register"
+        component={Register} />
+        <Stack.Screen
+        name="Login"
+        component={Login} />
         <Stack.Screen
         name="UserProfile"
         component={UserProfile}
