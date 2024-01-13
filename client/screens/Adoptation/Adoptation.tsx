@@ -18,11 +18,7 @@ const Adoptation: React.FC<{ navigation: any }> = ({
   return (
     <ScrollView style={{ backgroundColor: "white", margin: 2 }}>
       <View style={styles.allPages}>
-        <CartAdoptation />
-        <CartAdoptation />
-        <CartAdoptation />
-        <CartAdoptation />
-        <CartAdoptation />
+       
       </View>
     </ScrollView>
   );
