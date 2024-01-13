@@ -76,7 +76,8 @@ UsersServices :{
     marginHorizontal:20,
     flexDirection:'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    paddingBottom:75
     
 },
  item :{
