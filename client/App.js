@@ -20,13 +20,44 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
         name="Home"
-        component={Home} />
+        component={Home}
+        options={{
+          title: 'Home', 
+          headerStyle: {
+            backgroundColor: '#ffc368', 
+          },
+          headerTintColor: '#fff', 
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
         <Stack.Screen
         name="UserProfile"
-        component={UserProfile} />
+        component={UserProfile}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false,
+        }} />
         <Stack.Screen
         name="Services"
-        component={Services} />
+        component={Services} 
+        options={{
+          title: 'Services',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
         <Stack.Screen
         name="vets"
         component={Vets} />
@@ -42,7 +73,17 @@ export default function App() {
          <Stack.Screen
         
         name="Adoptation"
-        component={Adoptation} />
+        component={Adoptation} 
+        options={{
+          title: 'Adaptaion Interface',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
          <Stack.Screen
         
         name="AdoptationDetails"

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         justifyContent:"flex-start",
         alignItems:"center",
    backgroundColor:"white",
-   width:width*0.43,
+   width:width*0.45,
    height:height*0.3,
    gap:7,
    borderRadius:15
