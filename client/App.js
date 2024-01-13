@@ -12,13 +12,14 @@ import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
 import Allvets from "./screens/Allvets/Components/Veteri"
 import Review from "./screens/Allvets/Components/AddRate"
 import Onevet from "./screens/Allvets/Components/Onevett";
+import PetsProfile from "./screens/PetsProfiles/PetsProfiles"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="PetsProfile">
  
         <Stack.Screen
         name="Home"
@@ -49,6 +50,10 @@ export default function App() {
         
         name="AdoptationDetails"
         component={AdoptationDetails} />
+        <Stack.Screen
+        
+        name="PetsProfile"
+        component={PetsProfile} />
       </Stack.Navigator>
       <Navbar/>
     </NavigationContainer>
