@@ -14,13 +14,14 @@ import Review from "./screens/Allvets/Components/AddRate"
 import Onevet from "./screens/Allvets/Components/Onevett";
 import PetsProfile from "./screens/PetsProfiles/PetsProfiles"
 import ChatContainer from "./screens/ChatContainer/ChatContainer"
+import ChatPage from "./screens/ChatPage/ChatPage";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="ChatContainer">
+      <Stack.Navigator initialRouteName="ChatPage">
  
         <Stack.Screen
         name="Home"
@@ -59,6 +60,9 @@ export default function App() {
         
         name="ChatContainer"
         component={ChatContainer} />
+           <Stack.Screen
+        name="ChatPage"
+        component={ChatPage} />
       </Stack.Navigator>
       <Navbar/>
     </NavigationContainer>
