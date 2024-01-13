@@ -1,16 +1,5 @@
 import React from 'react';
-
-import {
- View,
- Text,
- StyleSheet,
- Image,
- TouchableOpacity,
-} from 'react-native';
-
-import Navbar from "../../home/Components/Navbar"
-
-
+import {View,Text,StyleSheet,Image,TouchableOpacity,Dimensions} from 'react-native';
 type DrNambuvanProps = {
  // You can add any props that the component needs here
 };

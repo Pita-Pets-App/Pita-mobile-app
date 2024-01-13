@@ -14,7 +14,6 @@ import Navbar from "../Home/Components/Navbar";
 
 const { width, height } = Dimensions.get("screen");
 const UserProfile: React.FC = () => {
-
   return (
     <View style={styles.container}>
     <ScrollView>
@@ -27,7 +26,6 @@ const UserProfile: React.FC = () => {
     <Navbar/>
     </View>
   );
-
 };
 const styles = StyleSheet.create({
     container: {

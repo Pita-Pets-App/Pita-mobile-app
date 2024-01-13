@@ -7,6 +7,7 @@ export const FontFamily = {
   nunitoRegular: "Nunito-Regular",
   nunitoExtraBold: "Nunito-ExtraBold",
   poppinsMedium: "Poppins-Medium",
+  poppinsSemiBold: "Poppins-SemiBold",
   openSansSemiBold: "OpenSans-SemiBold",
   fredokaMedium: "Fredoka-Medium",
   fredokaRegular: "Fredoka-Regular",
@@ -19,7 +20,6 @@ export const FontFamily = {
   robotoBold: "Roboto-Bold",
   interBold: "Inter-Bold",
   interSemiBold: "Inter-SemiBold",
-  poppinsSemiBold: "Poppins-SemiBold",
 };
 /* font sizes */
 export const FontSize = {

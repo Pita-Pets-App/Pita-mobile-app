@@ -32,9 +32,10 @@ const Login: React.FC = () => {
   
           setLoading(false);
           Alert.alert('Success', data.message);
-          // setTimeout(() => {
-        //     navigation.navigate('Home'); to change
-        //   }, 2000);
+          setTimeout(() => {
+            navigation.navigate('Home' as never); 
+          }, 2000);
+
         } else {
           setLoading(false);
           Alert.alert('Error', data.message);
