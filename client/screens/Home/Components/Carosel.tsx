@@ -52,24 +52,24 @@ const Carosel: React.FC = (): React.ReactElement => {
       </View>
       <ScrollView style={styles.allService} horizontal>
         <View style={styles.horizontalScrollContainer}>
-          <View style={styles.oneService}>
+          <TouchableOpacity><View style={styles.oneService}>
             <Image style={{ width: 50, height: 50 }} source={Veto}></Image>
-          </View>
-          <View style={styles.oneService}>
+          </View></TouchableOpacity>
+          <TouchableOpacity><View style={styles.oneService}>
             <Image style={{ width: 50, height: 50 }} source={emergecy}></Image>
-          </View>
-          <View style={styles.oneService}>
+          </View></TouchableOpacity>
+          <TouchableOpacity><View style={styles.oneService}>
             <Image style={{ width: 50, height: 50 }} source={siiter}></Image>
-          </View>
-          <View style={styles.oneService}>
+          </View></TouchableOpacity>
+          <TouchableOpacity><View style={styles.oneService}>
             <Image style={{ width: 50, height: 50 }} source={shop}></Image>
-          </View>
-          <View style={styles.oneService}>
+          </View></TouchableOpacity>
+          <TouchableOpacity><View style={styles.oneService}>
             <Image style={{ width: 50, height: 50 }} source={trainer}></Image>
-          </View>
-          <View style={styles.oneService}>
+          </View></TouchableOpacity>
+          <TouchableOpacity><View style={styles.oneService}>
             <Image style={{ width: 50, height: 50 }} source={event}></Image>
-          </View>
+          </View></TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -110,11 +110,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 6,
     shadowRadius: 5,
     // Elevation for Android
-    elevation: 10,
+  
   },
   horizontalScrollContainer: {
     flexDirection: "row",
     gap: 10,
+    paddingEnd:15
   },
 });
 export default Carosel;
