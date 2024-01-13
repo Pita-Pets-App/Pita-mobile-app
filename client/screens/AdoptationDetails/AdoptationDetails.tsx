@@ -11,15 +11,16 @@ const AdoptationDetails=()=>{
 
     return(
 
-<View  style={styles.allPages}>
+<ScrollView  style={styles.allPages}>
 <Image style={styles.animalImage} source={chien}></Image>
-<View  style={{marginLeft:10}}>
+<View  style={{padding:20}}>
+<View >
     <Text style={{fontSize:24,color:"black"}}>Alex</Text>
     <Text  style={{fontSize:18,color:"grey"}}>Australia Sheltter dog</Text>
 
 </View>
 
-    <View  style={{flexDirection:"row",justifyContent:"center",alignItems:"center",gap:18,padding:10}}>
+    <View  style={{flexDirection:"row",justifyContent:"center",alignItems:"center",gap:18,padding:20}}>
 <View  style={{backgroundColor:"lightgrey",width:width*0.2,height:height*0.08,justifyContent:"center",alignItems:"center",borderRadius:10}}>
     <Text  style={{color:"black",fontWeight:"bold"}}>Male</Text>
     <Text>sex</Text>
@@ -32,17 +33,13 @@ const AdoptationDetails=()=>{
     <Text  style={{color:"black",fontWeight:"bold"}}>10kg</Text>
     <Text>weight</Text>
 </View>
-<View  style={{backgroundColor:"lightgrey",width:width*0.2,height:height*0.08,justifyContent:"center",alignItems:"center",borderRadius:10}}>
-    <Text  style={{color:"black",fontWeight:"bold"}}>Yes</Text>
-    <Text>Vaccin</Text>
-</View>
 
     </View>
-    <View  style={{padding:10,width:width,height:height*0.14,gap:10}}>
+    <View  style={{width:width*0.9,height:height*0.14,gap:10}}>
         <Text  style={{fontSize:20}}>Description:</Text>
         <Text>Le chien est un mammifère de la famille des canidés. C'est la première espèce animale à avoir été domestiquée par l'homme dans le but de la chasse.</Text>
     </View>
-    <View style={{justifyContent:"center" ,width:width,alignItems:"center",height:height*0.05}}>
+    <View style={{justifyContent:"center" ,width:width,alignItems:"center",height:height*0.05,marginTop:35,marginBottom:70,marginHorizontal:-20}}>
     <TouchableOpacity style={{backgroundColor:"black",height:height*0.05,width:width*0.5,justifyContent:"space-around",alignItems:"center",borderRadius:15,flexDirection:"row"}} >
         <Text  style={{color:"white",fontSize:16,fontWeight:"bold"}}>
             Adopt Me
@@ -72,8 +69,9 @@ const AdoptationDetails=()=>{
       </Svg>
     </TouchableOpacity>
     </View>
+    </View>
 
-</View>
+</ScrollView>
 
 
     )
@@ -85,13 +83,11 @@ const styles = StyleSheet.create({
   width:width,
   height:height,
   flexDirection:"column",
-  justifyContent:"flex-start",
-  alignItems:"flex-start",
 //   gap:5
     },
     animalImage:{
         width:width,
-        height:height*0.4,
+        height:height*0.35,
         backgroundColor:"#ffc368",
 
     }

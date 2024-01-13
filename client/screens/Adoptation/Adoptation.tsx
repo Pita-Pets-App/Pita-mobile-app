@@ -12,14 +12,10 @@ import CartAdoptation from "./Components/CartAdoptation";
 const { width, height } = Dimensions.get("screen");
 
 
-const Adoptation: React.FC<{ navigation: any }> = ({
-  navigation,
-}): React.ReactElement => {
+const Adoptation: React.FC = (): React.ReactElement => {
   return (
     <ScrollView style={{ backgroundColor: "white", margin: 2 }}>
-      <View style={styles.allPages}>
-       
-      </View>
+      <CartAdoptation/>
     </ScrollView>
   );
 };

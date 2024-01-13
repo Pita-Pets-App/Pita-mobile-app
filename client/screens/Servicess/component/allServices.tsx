@@ -28,7 +28,7 @@ getData()
     return (
         <View style={styles.UsersServices} >
             {serviceData.map((el,i)=>(
-                <View>
+                <View key={i}>
                     <TouchableOpacity style={styles.Service} >
                     <Image style={styles.images} source={{ uri: el.service_image }}></Image>
                     </TouchableOpacity>

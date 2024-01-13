@@ -64,8 +64,8 @@ getData()
       </View>
       <ScrollView style={styles.allService} horizontal>
         <View style={styles.horizontalScrollContainer}>
-          {serviceData.map((el)=>(
-            <TouchableOpacity><View style={styles.oneService}>
+          {serviceData.map((el,i)=>(
+            <TouchableOpacity key={i}><View style={styles.oneService}>
             <Image style={{ width: 50, height: 50 }} source={{uri:el.service_image}}></Image>
           </View></TouchableOpacity>
           ))}
