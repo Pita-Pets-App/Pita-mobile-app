@@ -14,12 +14,15 @@ import Review from "./screens/Allvets/Components/AddRate"
 import Onevet from "./screens/Allvets/Components/Onevett";
 import Login from "./screens/authentification/Login/index.tsx"
 import Register from "./screens/authentification/Register/index.tsx"
+import LostFound from "./screens/Lost&Found/Lost&Found";
+import LostFounDetails from "./screens/L&fDetails/L&FDetails";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Allvets">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -32,6 +35,7 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          headerBackVisible: false,
         }} />
         <Stack.Screen
         name="Register"
@@ -95,7 +99,47 @@ export default function App() {
          <Stack.Screen
         
         name="AdoptationDetails"
-        component={AdoptationDetails} />
+        component={AdoptationDetails} 
+        options={{
+          title: 'Adaptaion Interface',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+        <Stack.Screen
+        
+        name="LostFound"
+        component={LostFound} 
+        options={{
+          title: 'Lost And Found',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        />
+        <Stack.Screen
+        
+        name="LostFounDetails"
+        component={LostFounDetails} 
+        options={{
+          title: 'Lost And Found',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        />
       </Stack.Navigator>
       <Navbar/>
     </NavigationContainer>

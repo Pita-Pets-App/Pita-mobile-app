@@ -1,16 +1,11 @@
 import React,{useEffect, useState} from 'react';
 import { ScrollView, View, Text,StyleSheet ,Dimensions,TouchableOpacity,Image} from 'react-native';
 import axios from 'axios';
-import Veto from "../../../assets/veterinaire.png"
-import emergecy from "../../../assets/emergecy.png"
-import event from '../../../assets/evenement.png'
-import sitter from '../../../assets/sitting-dog.png'
-import trainer from '../../../assets/trainer-pet.png'
-import shop from  '../../../assets/pet-shop.png'
 import {port} from "../../../port"
 const { width, height } = Dimensions.get('screen')
+
 const AllServices: React.FC = () => {
-    const [serviceData,setServiceData]=useState<[]>([])
+    const [serviceData,setServiceData]=useState<Services[]|[]>([])
 
     useEffect(()=>{
         const getData=async()=>{
@@ -18,7 +13,9 @@ try {
     
     
         const result=await axios.get(`${port}/api/service`)
+        setServiceData(result.data);
         console.log(result.data);
+        
     }
 
  catch (error) {
@@ -30,42 +27,13 @@ getData()
         },[])
     return (
         <View style={styles.UsersServices} >
-                <View>
+            {serviceData.map((el,i)=>(
+                <View key={i}>
                     <TouchableOpacity style={styles.Service} >
-                    <Image style={styles.images} source={Veto}></Image>
+                    <Image style={styles.images} source={{ uri: el.service_image }}></Image>
                     </TouchableOpacity>
-                    <Text style={styles.item}>Veterinaitien</Text>
-                </View>
-                <View>
-                <TouchableOpacity style={styles.Service}>
-                    <Image style={styles.images} source={emergecy}></Image>
-                </TouchableOpacity>
-                <Text  style={styles.item}>Emergency</Text>
-                </View>
-                <View>
-                <TouchableOpacity style={styles.Service}>
-                    <Image style={styles.images} source={sitter}></Image>
-                </TouchableOpacity>
-                <Text  style={styles.item}>Pet's Sitter</Text>
-                </View>
-                <View>
-                <TouchableOpacity style={styles.Service}>
-                    <Image style={styles.images} source={shop}></Image>
-                </TouchableOpacity>
-                <Text  style={styles.item}>Pet's Shop</Text>
-                </View>
-                <View>
-                <TouchableOpacity style={styles.Service}>
-                    <Image style={styles.images} source={trainer}></Image>
-                </TouchableOpacity>
-                <Text  style={styles.item}>Pet's Trainer</Text>
-                </View>
-                <View>
-                <TouchableOpacity style={styles.Service}>
-                    <Image style={styles.images} source={event}></Image>
-                </TouchableOpacity>
-                <Text  style={styles.item}>Events</Text>
-                </View>
+                    <Text style={styles.item}>{el.service_name}</Text>
+                </View>))}
             </View>
     );
 };
