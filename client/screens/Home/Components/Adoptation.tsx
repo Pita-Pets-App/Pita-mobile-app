@@ -1,7 +1,8 @@
 import React from 'react';
-import { ScrollView, View, Text,StyleSheet,Dimensions ,TouchableOpacity} from 'react-native';
+import { ScrollView, View, Text,StyleSheet,Dimensions ,TouchableOpacity, Image} from 'react-native';
 const { width, height } = Dimensions.get('screen')
 import { useNavigation } from '@react-navigation/native';
+import adp from '../../../assets/adpimg.png'
 
 const  Adoptation: React.FC = (): React.ReactElement=> {
     const navigation=useNavigation()
@@ -13,7 +14,7 @@ const  Adoptation: React.FC = (): React.ReactElement=> {
                 <TouchableOpacity onPress={()=>{
                 navigation.navigate("Adoptation" as never)
             }}><View  style={styles.container}>
-                 
+                 <Image style={styles.image} source={adp}></Image>
                 </View>
                 </TouchableOpacity>
             </View>
@@ -41,6 +42,11 @@ const styles = StyleSheet.create({
     container: {
         width:width*0.85,
         backgroundColor:"white",
+        height:height*0.18,
+        borderRadius:10
+    },
+    image: {
+        width:width*0.85,
         height:height*0.18,
         borderRadius:10
     }
