@@ -16,13 +16,17 @@ import Login from "./screens/authentification/Login/index.tsx"
 import Register from "./screens/authentification/Register/index.tsx"
 import LostFound from "./screens/Lost&Found/Lost&Found";
 import LostFounDetails from "./screens/L&fDetails/L&FDetails";
+import Welcome1 from "./screens/welcomingPages/welcome1";
+import Welcome2 from "./screens/welcomingPages/welcome2";
+import welcome3 from "./screens/welcomingPages/welcome3";
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Allvets">
+      <Stack.Navigator initialRouteName="Welcome1">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -40,6 +44,24 @@ export default function App() {
         <Stack.Screen
         name="Register"
         component={Register} />
+        <Stack.Screen
+        name="Welcome1"
+        component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+        <Stack.Screen
+        name="Welcome2"
+        component={Welcome2}
+        options={{
+          headerShown:false
+        }} />
+        <Stack.Screen
+        name="welcome3"
+        component={welcome3}
+        options={{
+          headerShown:false
+        }} />
         <Stack.Screen
         name="Login"
         component={Login} />
@@ -141,7 +163,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
   );
 }
