@@ -14,13 +14,12 @@ const Veter: React.FC = (): JSX.Element => {
       <ScrollView>
         <View style={styles.allPages}>
             <View style={styles.service}>
-                <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}></Text>
-                <Text style={[styles.vectorIcon4, styles.iconFrameLayout]}>
-           HOW MAY WE HELP YOU
-       
-          </Text>
+              <View>
+                <View style={{padding:20}} >
+                <Text style={{fontSize:25,fontWeight:'bold',textAlign:"center"}} >HOW MAY WE HELP YOU </Text>
+          </View>
 
-          <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', justifyContent:"space-evenly",width:width*0.9,marginVertical:50}}>
           <TouchableOpacity style={styles.container1} >
                
         
@@ -33,6 +32,7 @@ const Veter: React.FC = (): JSX.Element => {
                
         
                </TouchableOpacity>
+               </View>
                </View>
                
                 <TouchableOpacity style={styles.container} onPress={()=>{navigation.navigate("Onevet" as never)}}>
@@ -238,9 +238,6 @@ const styles = StyleSheet.create({
     ,
     service: {
         width: width * 0.85,
-        justifyContent: "flex-start",
-        alignItems: 'flex-start',
-        flexDirection: "column",
         gap: 20,
         height: height * 0.25,
     },
@@ -249,18 +246,15 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         height: height * 0.18,
         borderRadius: 40,
-        justifyContent: 'flex-start', // Align content to the top
-        alignItems: 'center', // Center horizontally
-        top: "10%",
+        alignItems: 'center',
     },
     container1: {
-      width: width * 0.29,
+      width: width * 0.17,
       backgroundColor: "grey",
-      height: height * 0.13,
+      height: height * 0.07,
       flexDirection: "row", // Set the flexDirection to row
-      borderRadius: 50,
-      alignItems: 'center', // Center horizontally
-      top: "10%",
+      borderRadius: 20,
+      alignItems: 'center', // Center horizonta
       marginRight: 10, // Add margin to create space between the TouchableOpacity elements
     },
     mondayFridayFlexBox: {

@@ -2,10 +2,7 @@ import React from 'react';
 import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
 // import  LostAndFound from "./Components/LostAndFound"
 // import Carosel from "./Components/Carosel"
-import Vets from "./Components/Top"
-import Veter from  "./Components/Veteri";
-import Onevet from "./Components/Onevett"
-import Navbar from "../Home/Components/Navbar"
+
 import Top from "./Components/Top"
 // import Adoptation from './Components/Adoptation';
 const { width, height } = Dimensions.get('screen')
