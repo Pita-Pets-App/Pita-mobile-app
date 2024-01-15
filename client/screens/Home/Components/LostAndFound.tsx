@@ -1,17 +1,21 @@
 import React from 'react';
-import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
+import { ScrollView, View, Text,StyleSheet ,Dimensions,TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('screen')
 const LostAndFound: React.FC = (): React.ReactElement  => {
-
+     const navigation=useNavigation()
     return (
         <View style={styles.allPages}>
         <View style={styles.service}>
           <Text style={{color:"white",fontSize:18,fontWeight:"bold"
 }}>Lost & Found</Text>
+<TouchableOpacity onPress={()=>{
+                navigation.navigate("LostFound" as never)}}>
           <View style={styles.container}>
        
           </View>
+</TouchableOpacity>
       </View>
 </View>
     );

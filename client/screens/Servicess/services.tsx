@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     UsersServicesp: {
    backgroundColor:"#ffc368",
    display:"flex",
-   alignContent:"center"
+   alignContent:"center",
 },
 UsersServices :{
     paddingTop:20,
