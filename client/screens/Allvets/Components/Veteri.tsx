@@ -219,6 +219,7 @@ const styles = StyleSheet.create({
     iconFrameLayout: {
       maxHeight: "100%",
       maxWidth: "100%",
+  
     },
     name: {
         textAlign: 'center',
