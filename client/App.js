@@ -183,7 +183,16 @@ export default function App() {
         <Stack.Screen
         
         name="PetsProfile"
-        component={PetsProfile} />
+        component={PetsProfile}
+        options={{
+          title: 'Add Review',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
         <Stack.Screen
         
         name="ChatContainer"
