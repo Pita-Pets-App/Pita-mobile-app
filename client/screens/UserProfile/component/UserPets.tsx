@@ -5,23 +5,25 @@ import dog1 from '../../../assets/ownerdog2.png'
 import dog2 from '../../../assets/ownerdog1.png'
 import peticon from '../../../assets/peticon.png'
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const { width, height } = Dimensions.get('screen')
 const UserPets: React.FC = () => {
     const [hhh,setHhh]=useState([])
-    const getData=async()=>{
-        const result=await axios.get("http://localhost:3000/api/events")
-        setHhh(result.data);
+    const navigation=useNavigation()
+    // const getData=async()=>{
+    //     const result=await axios.get("http://localhost:3000/api/events")
+    //     setHhh(result.data);
 
         
-    }
+    // }
 
-    useEffect(()=>{
+    // useEffect(()=>{
         
-        getData()
-    },[])
+    //     getData()
+    // },[])
     console.log(hhh);
     
     return (
@@ -31,7 +33,7 @@ const UserPets: React.FC = () => {
             <Text style={{fontWeight:'bold',fontSize: 18}}>My Pets</Text>
             </View>
         <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15,justifyContent:"space-around",paddingHorizontal:15}}>
-        <TouchableOpacity><Image style={styles.PetsImage} source={dog1}></Image></TouchableOpacity>
+        <TouchableOpacity onPress={()=>{navigation.navigate('PetsProfile' as never)}}><Image style={styles.PetsImage} source={dog1}></Image></TouchableOpacity>
         <TouchableOpacity><Image style={styles.PetsImage} source={dog2}></Image></TouchableOpacity>
         <TouchableOpacity><Image style={styles.PetsImage} source={addPet}></Image></TouchableOpacity>
         </View>

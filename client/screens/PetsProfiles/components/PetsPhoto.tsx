@@ -13,7 +13,7 @@ const PetsPhoto: React.FC = (): React.ReactElement => {
           <TouchableOpacity style={styles.imageContainer}>
             <Image source={bele} style={styles.image}  />
           </TouchableOpacity>
-          <View style={{backgroundColor:'rgba(255, 255, 255, 0.5)',width:width*0.9,height:height*0.1,position:"absolute",justifyContent:"center",alignItems:"center",borderRadius:10,  position: 'absolute',
+          <View style={{backgroundColor:'rgba(255, 255, 255, 0.5)',width:width*0.9,height:height*0.1,position:"absolute",justifyContent:"center",alignItems:"center",borderRadius:10,
     top: 270,alignContent:"center",
     left: 20,
     right: 0,}}>
