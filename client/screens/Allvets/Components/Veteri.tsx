@@ -10,18 +10,113 @@ const { width, height } = Dimensions.get('screen')
 const Veter: React.FC = (): JSX.Element => {
   const navigation = useNavigation();
     return (
+      
+      <ScrollView>
         <View style={styles.allPages}>
             <View style={styles.service}>
-                <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}></Text>
-                <Text style={[styles.vectorIcon4, styles.iconFrameLayout]}>
-           HOW MAY WE HELP YOU
-       
-          </Text>
+              <View>
+                <View style={{padding:20}} >
+                <Text style={{fontSize:25,fontWeight:'bold',textAlign:"center"}} >HOW MAY WE HELP YOU </Text>
+          </View>
+
+          <View style={{ flexDirection: 'row', justifyContent:"space-evenly",width:width*0.9,marginVertical:50}}>
           <TouchableOpacity style={styles.container1} >
                
         
                 </TouchableOpacity>
-                
+                <TouchableOpacity style={styles.container1} >
+               
+        
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.container1} >
+               
+        
+               </TouchableOpacity>
+               </View>
+               </View>
+               
+                <TouchableOpacity style={styles.container} onPress={()=>{navigation.navigate("Onevet" as never)}}>
+                    <Text style={styles.name}>
+                        DR.BELHASENA
+                    </Text  >
+                    <Text style={[styles.vectorIcon8]} >
+                        100$
+                    </Text>
+                    
+                    <Image
+          style={[styles.vectorIcon1, styles.iconFrameLayout]}
+        //   contentFit="cover"
+          source={dol}
+        />
+         <Image
+          style={[styles.vectorIcon5, styles.vectorIcon5Position]}
+        //   contentFit="cover"
+          source={require("../../../assets//vector32.png")}
+        />
+        <Text style={[styles.loc]} >
+            2.5KM
+        </Text >
+        <Text style={[styles.exp]}>
+            10 Years of experience
+        </Text>
+        <View
+          style={[
+            styles.mondayFridayAt800Am5Parent,
+            styles.vectorIcon5Position,
+          ]}
+        >
+          <Text style={[styles.mondayFriday, styles.mondayFridayFlexBox]}>
+            Monday - Friday at 8.00 am - 5.00pm
+          </Text>
+          <Image
+            style={[styles.time1Icon, styles.time1IconPosition]}
+            // contentFit="cover"
+            source={require("../../../assets/time-1.png")}
+          />
+        </View>
+        
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.container} onPress={()=>{navigation.navigate("Onevet" as never)}}>
+                    <Text style={styles.name}>
+                        DR.BELHASENA
+                    </Text  >
+                    <Text style={[styles.vectorIcon8]} >
+                        100$
+                    </Text>
+                    
+                    <Image
+          style={[styles.vectorIcon1, styles.iconFrameLayout]}
+        //   contentFit="cover"
+          source={dol}
+        />
+         <Image
+          style={[styles.vectorIcon5, styles.vectorIcon5Position]}
+        //   contentFit="cover"
+          source={require("../../../assets//vector32.png")}
+        />
+        <Text style={[styles.loc]} >
+            2.5KM
+        </Text >
+        <Text style={[styles.exp]}>
+            10 Years of experience
+        </Text>
+        <View
+          style={[
+            styles.mondayFridayAt800Am5Parent,
+            styles.vectorIcon5Position,
+          ]}
+        >
+          <Text style={[styles.mondayFriday, styles.mondayFridayFlexBox]}>
+            Monday - Friday at 8.00 am - 5.00pm
+          </Text>
+          <Image
+            style={[styles.time1Icon, styles.time1IconPosition]}
+            // contentFit="cover"
+            source={require("../../../assets/time-1.png")}
+          />
+        </View>
+        
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.container} onPress={()=>{navigation.navigate("Onevet" as never)}}>
                     <Text style={styles.name}>
                         DR.BELHASENA
@@ -115,7 +210,7 @@ const Veter: React.FC = (): JSX.Element => {
            
            
         </View>
-        
+        </ScrollView>
     );
 };
 
@@ -143,9 +238,6 @@ const styles = StyleSheet.create({
     ,
     service: {
         width: width * 0.85,
-        justifyContent: "flex-start",
-        alignItems: 'flex-start',
-        flexDirection: "column",
         gap: 20,
         height: height * 0.25,
     },
@@ -154,21 +246,17 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         height: height * 0.18,
         borderRadius: 40,
-        justifyContent: 'flex-start', // Align content to the top
-        alignItems: 'center', // Center horizontally
-        top: "70%",
+        alignItems: 'center',
     },
     container1: {
-     
-      width: width * 0.29,
+      width: width * 0.17,
       backgroundColor: "grey",
-      height: height * 0.13,
-      flexDirection:"row",
-      borderRadius:50,
-      // justifyContent: 'flex', // Align content to the top
-      alignItems: 'center', // Center horizontally
-      top: "10%",
-  },
+      height: height * 0.07,
+      flexDirection: "row", // Set the flexDirection to row
+      borderRadius: 20,
+      alignItems: 'center', // Center horizonta
+      marginRight: 10, // Add margin to create space between the TouchableOpacity elements
+    },
     mondayFridayFlexBox: {
       textAlign: "left",
       position: "absolute",

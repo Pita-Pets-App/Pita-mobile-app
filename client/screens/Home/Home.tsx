@@ -11,7 +11,7 @@ const { width, height } = Dimensions.get('screen')
 const Home: React.FC = (): React.ReactElement => {
 
     return (
-        <ScrollView >
+        <ScrollView style={styles.container} >
             <View style={styles.allPages}>
                <Publicite/>
                <Carosel/>
@@ -24,10 +24,9 @@ const Home: React.FC = (): React.ReactElement => {
 };
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        display: "flex",
         backgroundColor: "#ffc368",
-        justifyContent: 'center',
-        alignItems: 'center',
+       
     },
     allPages: {
    backgroundColor:"#ffc368",
