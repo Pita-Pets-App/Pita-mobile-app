@@ -11,12 +11,12 @@ interface ReviewData {
 const reviewData: ReviewData[] = [
     {
       userName: 'John Doe',
-      review: 'This place is great! The food is amazing.',
+      review: 'hhiugguyguy',
       rating: 5,
     },
     {
       userName: 'Jane Doe',
-      review: 'The ambiance is very cozy. The service is great.',
+      review: 'uufdtslgi',
       rating: 4,
     },
  ];

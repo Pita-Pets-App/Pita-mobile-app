@@ -12,6 +12,7 @@ import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
 import Allvets from "./screens/Allvets/Components/Veteri"
 import Review from "./screens/Allvets/Components/AddRate"
 import Onevet from "./screens/Allvets/Components/Onevett";
+import AddReview from "./screens/Allvets/Components/Addreview"
 import PetsProfile from "./screens/PetsProfiles/PetsProfiles"
 import ChatContainer from "./screens/ChatContainer/ChatContainer"
 import ChatPage from "./screens/ChatPage/ChatPage";
@@ -23,14 +24,13 @@ import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
+      <Stack.Navigator initialRouteName="Allvets">
 
-      <Stack.Navigator initialRouteName="PetsProfile">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -137,6 +137,13 @@ export default function App() {
             fontWeight: 'bold',
           },
         }} />
+        <Stack.Screen
+        
+        name="AddReview"
+        component={AddReview} />
+
+
+       
         <Stack.Screen
         
         name="PetsProfile"
