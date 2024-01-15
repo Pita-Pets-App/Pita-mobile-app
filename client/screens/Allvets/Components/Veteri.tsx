@@ -10,6 +10,7 @@ const { width, height } = Dimensions.get('screen')
 const Veter: React.FC = (): JSX.Element => {
   const navigation = useNavigation();
     return (
+      
       <ScrollView>
         <View style={styles.allPages}>
             <View style={styles.service}>
