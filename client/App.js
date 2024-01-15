@@ -12,6 +12,9 @@ import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
 import Allvets from "./screens/Allvets/Components/Veteri"
 import Review from "./screens/Allvets/Components/AddRate"
 import Onevet from "./screens/Allvets/Components/Onevett";
+import PetsProfile from "./screens/PetsProfiles/PetsProfiles"
+import ChatContainer from "./screens/ChatContainer/ChatContainer"
+import ChatPage from "./screens/ChatPage/ChatPage";
 import Login from "./screens/authentification/Login/index.tsx"
 import Register from "./screens/authentification/Register/index.tsx"
 import LostFound from "./screens/Lost&Found/Lost&Found";
@@ -26,7 +29,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome1">
+
+      <Stack.Navigator initialRouteName="PetsProfile">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -121,6 +125,7 @@ export default function App() {
          <Stack.Screen
         
         name="AdoptationDetails"
+
         component={AdoptationDetails} 
         options={{
           title: 'Adaptaion Interface',
@@ -131,7 +136,18 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}/>
+        }} />
+        <Stack.Screen
+        
+        name="PetsProfile"
+        component={PetsProfile} />
+        <Stack.Screen
+        
+        name="ChatContainer"
+        component={ChatContainer} />
+           <Stack.Screen
+        name="ChatPage"
+        component={ChatPage} />        
         <Stack.Screen
         
         name="LostFound"
@@ -163,7 +179,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      {/* <Navbar/> */}
+      <Navbar/>
     </NavigationContainer>
   );
 }
