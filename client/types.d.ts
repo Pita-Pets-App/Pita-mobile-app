@@ -1,0 +1,14 @@
+declare module '*.png' {
+    const value: any;
+    export default value;
+  }
+  declare module '*.jpg' {
+    const value: any;
+    export default value;
+  }
+
+  interface Services {
+    id:number,
+    service_name:string,
+    service_image:string,
+  }
