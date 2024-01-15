@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Allvets">
+      <Stack.Navigator initialRouteName="Home">
 
         <Stack.Screen
         name="Home"
@@ -101,13 +101,40 @@ export default function App() {
         component={Vets} />
          <Stack.Screen
         name="Allvets"
-        component={Allvets} />
+        component={Allvets}
+        options={{
+          title: 'Veterinairians',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
         <Stack.Screen
         name="Onevet"
-        component={Onevet} />
+        component={Onevet}
+        options={{
+          title: 'Veterinairian',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
         <Stack.Screen
         name="Review"
-        component={Review} />
+        component={Review}
+        options={{
+          title: 'Review',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
          <Stack.Screen
         
         name="Adoptation"
@@ -140,7 +167,16 @@ export default function App() {
         <Stack.Screen
         
         name="AddReview"
-        component={AddReview} />
+        component={AddReview} 
+        options={{
+          title: 'Add Review',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}}/>
 
 
        
