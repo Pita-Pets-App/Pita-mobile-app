@@ -9,18 +9,18 @@ import axios from 'axios';
 const { width, height } = Dimensions.get('screen')
 const UserInfo: React.FC = () => {
     const [hhh,setHhh]=useState([])
-    const getData=async()=>{
-        const result=await axios.get("http://localhost:3000/api/users/1")
-        setHhh(result.data);
+    // const getData=async()=>{
+    //     const result=await axios.get("http://localhost:3000/api/users/1")
+    //     setHhh(result.data);
 
         
-    }
+    // }
 
-    useEffect(()=>{
+    // useEffect(()=>{
         
-        getData()
-    },[])
-    console.log(hhh);
+    //     getData()
+    // },[])
+    // console.log(hhh);
     
     return (
         <View style={styles.petContainer}>
