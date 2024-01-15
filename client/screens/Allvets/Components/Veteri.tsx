@@ -10,6 +10,7 @@ const { width, height } = Dimensions.get('screen')
 const Veter: React.FC = (): JSX.Element => {
   const navigation = useNavigation();
     return (
+      <ScrollView>
         <View style={styles.allPages}>
             <View style={styles.service}>
                 <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}></Text>
@@ -17,11 +18,104 @@ const Veter: React.FC = (): JSX.Element => {
            HOW MAY WE HELP YOU
        
           </Text>
+
+          <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity style={styles.container1} >
                
         
                 </TouchableOpacity>
-                
+                <TouchableOpacity style={styles.container1} >
+               
+        
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.container1} >
+               
+        
+               </TouchableOpacity>
+               </View>
+               
+                <TouchableOpacity style={styles.container} onPress={()=>{navigation.navigate("Onevet" as never)}}>
+                    <Text style={styles.name}>
+                        DR.BELHASENA
+                    </Text  >
+                    <Text style={[styles.vectorIcon8]} >
+                        100$
+                    </Text>
+                    
+                    <Image
+          style={[styles.vectorIcon1, styles.iconFrameLayout]}
+        //   contentFit="cover"
+          source={dol}
+        />
+         <Image
+          style={[styles.vectorIcon5, styles.vectorIcon5Position]}
+        //   contentFit="cover"
+          source={require("../../../assets//vector32.png")}
+        />
+        <Text style={[styles.loc]} >
+            2.5KM
+        </Text >
+        <Text style={[styles.exp]}>
+            10 Years of experience
+        </Text>
+        <View
+          style={[
+            styles.mondayFridayAt800Am5Parent,
+            styles.vectorIcon5Position,
+          ]}
+        >
+          <Text style={[styles.mondayFriday, styles.mondayFridayFlexBox]}>
+            Monday - Friday at 8.00 am - 5.00pm
+          </Text>
+          <Image
+            style={[styles.time1Icon, styles.time1IconPosition]}
+            // contentFit="cover"
+            source={require("../../../assets/time-1.png")}
+          />
+        </View>
+        
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.container} onPress={()=>{navigation.navigate("Onevet" as never)}}>
+                    <Text style={styles.name}>
+                        DR.BELHASENA
+                    </Text  >
+                    <Text style={[styles.vectorIcon8]} >
+                        100$
+                    </Text>
+                    
+                    <Image
+          style={[styles.vectorIcon1, styles.iconFrameLayout]}
+        //   contentFit="cover"
+          source={dol}
+        />
+         <Image
+          style={[styles.vectorIcon5, styles.vectorIcon5Position]}
+        //   contentFit="cover"
+          source={require("../../../assets//vector32.png")}
+        />
+        <Text style={[styles.loc]} >
+            2.5KM
+        </Text >
+        <Text style={[styles.exp]}>
+            10 Years of experience
+        </Text>
+        <View
+          style={[
+            styles.mondayFridayAt800Am5Parent,
+            styles.vectorIcon5Position,
+          ]}
+        >
+          <Text style={[styles.mondayFriday, styles.mondayFridayFlexBox]}>
+            Monday - Friday at 8.00 am - 5.00pm
+          </Text>
+          <Image
+            style={[styles.time1Icon, styles.time1IconPosition]}
+            // contentFit="cover"
+            source={require("../../../assets/time-1.png")}
+          />
+        </View>
+        
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.container} onPress={()=>{navigation.navigate("Onevet" as never)}}>
                     <Text style={styles.name}>
                         DR.BELHASENA
@@ -115,7 +209,7 @@ const Veter: React.FC = (): JSX.Element => {
            
            
         </View>
-        
+        </ScrollView>
     );
 };
 
@@ -156,19 +250,18 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         justifyContent: 'flex-start', // Align content to the top
         alignItems: 'center', // Center horizontally
-        top: "70%",
+        top: "10%",
     },
     container1: {
-     
       width: width * 0.29,
       backgroundColor: "grey",
       height: height * 0.13,
-      flexDirection:"row",
-      borderRadius:50,
-      // justifyContent: 'flex', // Align content to the top
+      flexDirection: "row", // Set the flexDirection to row
+      borderRadius: 50,
       alignItems: 'center', // Center horizontally
       top: "10%",
-  },
+      marginRight: 10, // Add margin to create space between the TouchableOpacity elements
+    },
     mondayFridayFlexBox: {
       textAlign: "left",
       position: "absolute",
