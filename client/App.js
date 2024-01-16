@@ -12,6 +12,7 @@ import AdoptationDetails from "./screens/AdoptationDetails/AdoptationDetails";
 import Allvets from "./screens/Allvets/Components/Veteri"
 import Review from "./screens/Allvets/Components/AddRate"
 import Onevet from "./screens/Allvets/Components/Onevett";
+import AddReview from "./screens/Allvets/Components/Addreview"
 import PetsProfile from "./screens/PetsProfiles/PetsProfiles"
 import ChatContainer from "./screens/ChatContainer/ChatContainer"
 import ChatPage from "./screens/ChatPage/ChatPage";
@@ -23,7 +24,6 @@ import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -31,6 +31,7 @@ export default function App() {
     <NavigationContainer>
 
       <Stack.Navigator initialRouteName="Welcome1">
+
         <Stack.Screen
         name="Home"
         component={Home}
@@ -101,13 +102,40 @@ export default function App() {
         component={Vets} />
          <Stack.Screen
         name="Allvets"
-        component={Allvets} />
+        component={Allvets}
+        options={{
+          title: 'Veterinairians',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
         <Stack.Screen
         name="Onevet"
-        component={Onevet} />
+        component={Onevet}
+        options={{
+          title: 'Veterinairian',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
         <Stack.Screen
         name="Review"
-        component={Review} />
+        component={Review}
+        options={{
+          title: 'Review',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
          <Stack.Screen
         
         name="Adoptation"
@@ -139,8 +167,33 @@ export default function App() {
         }} />
         <Stack.Screen
         
+        name="AddReview"
+        component={AddReview} 
+        options={{
+          title: 'Add Review',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}}/>
+
+
+       
+        <Stack.Screen
+        
         name="PetsProfile"
-        component={PetsProfile} />
+        component={PetsProfile}
+        options={{
+          title: 'Add Review',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
         <Stack.Screen
         
         name="ChatContainer"
