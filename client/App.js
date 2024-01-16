@@ -48,7 +48,7 @@ export default function App() {
         <Stack.Screen
         name="Register"
         component={Register} />
-        <Stack.Screen
+        {/* <Stack.Screen
         name="Welcome1"
         component={Welcome1}
         options={{
@@ -65,7 +65,7 @@ export default function App() {
         component={welcome3}
         options={{
           headerShown:false
-        }} />
+        }} /> */}
         <Stack.Screen
         name="Login"
         component={Login} />
