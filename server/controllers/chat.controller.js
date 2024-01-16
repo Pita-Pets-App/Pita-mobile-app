@@ -35,15 +35,18 @@ const getAllRomsOfUser=async (req,res)=>{
           });
         const ids=await result.map((el)=>{
             if(!arr.includes(el.user1)&&(el.user1!=req.params.id)){
-                arr.push(el)
+                arr.push(el.user1)
             }
             if(!arr.includes(el.user2)&&(el.user2!=req.params.id)){
-                arr.push(el)
+                arr.push(el.user2)
             }
             console.log(arr);
         })
-        const final=await Users.findAll({where:{id:arr}})
-        res.send(arr) 
+        const finalarr= arr.map(async(el)=>{
+          const hhh=await Users.findOne({where:{id:el}})
+        }) 
+        const final=Promise.all(finalarr)
+        res.send(final) 
     } catch (error) {
         res.send(error)
     }
