@@ -23,14 +23,17 @@ import LostFounDetails from "./screens/L&fDetails/L&FDetails";
 import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
-
+import store from "./store/store";
+import Map from "./screens/MapForUser/Map"
+import { Provider } from "react-redux";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    <Provider   store={store}>
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Map">
 
         <Stack.Screen
         name="Home"
@@ -178,7 +181,12 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },}}/>
-
+     <Stack.Screen
+        name="Map"
+        component={Map}
+        options={{
+          headerShown:false
+        }} />
 
        
         <Stack.Screen
@@ -232,8 +240,9 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
+    </Provider>
   );
 }
 
