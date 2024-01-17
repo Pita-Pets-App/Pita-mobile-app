@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 // TypeScript interface for user review data
 interface ReviewData {
  userName: string;
@@ -22,6 +22,7 @@ const reviewData: ReviewData[] = [
  ];
 // Review component that takes user review data as a prop
 const Review: React.FC<ReviewData> = ({ userName, review, rating }) => {
+   
  return (
     <View style={styles.reviewContainer}>
       <Text style={styles.userName}>{userName}</Text>
@@ -40,7 +41,7 @@ const Review: React.FC<ReviewData> = ({ userName, review, rating }) => {
 };
 
 const App = () => {
- 
+  const navigation=useNavigation()
 
  return (
     <View style={styles.container}>
@@ -48,7 +49,7 @@ const App = () => {
       {reviewData.map((data, index) => (
         <Review key={index} {...data} />
       ))}
-      <TouchableOpacity style={styles.postReviewButton}>
+      <TouchableOpacity style={styles.postReviewButton} onPress={()=>navigation.navigate('AddReview' as never)}>
         <Text style={styles.postReviewText}>Post a Review</Text>
       </TouchableOpacity>
     </View>
