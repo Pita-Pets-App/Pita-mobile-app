@@ -11,11 +11,13 @@ import {
 } from "react-native";
 import axios from "axios";
 import { port } from "../../../port";
+import { useNavigation } from "@react-navigation/native";
 const { width, height } = Dimensions.get("screen");
 
 const AllServices: React.FC = () => {
   const [serviceData, setServiceData] = useState<Services[] | []>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(true);
+  const navigation=useNavigation()
 
   useEffect(() => {
     const getData = async () => {
@@ -38,7 +40,7 @@ const AllServices: React.FC = () => {
       ) : (
         serviceData.map((el, i) => (
           <View key={i}>
-            <TouchableOpacity style={styles.Service}>
+            <TouchableOpacity onPress={()=>{navigation.navigate("Allvets" as never)}} style={styles.Service}>
               <Image
                 style={styles.images}
                 source={{ uri: el.service_image }}

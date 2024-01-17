@@ -1,23 +1,27 @@
 import React from 'react';
 import {View,Text,StyleSheet,Image,TouchableOpacity,Dimensions} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 type DrNambuvanProps = {
- // You can add any props that the component needs here
+
 };
 const { width, height } = Dimensions.get('screen')
 const Onevet: React.FC<DrNambuvanProps> = () => {
+   const navigation=useNavigation()
  return (
     <View style={styles.card}>
       <Image
         style={styles.image}
         source={require("../../../assets/vet.png")}
       />
-      <View style={styles.infoUser}>
+      <TouchableOpacity onPress={()=>navigation.navigate("Review" as never)}><View style={styles.infoUser}>
       <Text style={styles.name}>Dr. Nambuvan</Text>
       <Text style={styles.title}>Bachelor of Veterinary Science</Text>
       <View style={styles.rating}>
       </View>
+      
         {/* You can add a rating component here */}
       </View>
+      </TouchableOpacity>
       <Text style={styles.timings}>Monday - Friday at 8.00 am - 5.00pm</Text>
       <Text style={styles.price}>1000 LKR for an Appointment</Text>
       <Text style={styles.distance}>25 km</Text>
