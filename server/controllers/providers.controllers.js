@@ -30,6 +30,15 @@ const OneProvider= async(req,res) => {
 };
 
 
+
+const getAllVeto= async(req,res) => {
+    try {
+    const result=await Provider.findAll({where:{serviceId:1}})
+    res.json(result)   
+    } catch (error) {
+    res.send(error)    
+    }
+};
 const AddProvider= async(req,res) => {
     try {
     const result=await Provider.create(req.body)
@@ -57,4 +66,4 @@ const DeleteProvider= async(req,res) => {
     }
 };
 
-module.exports={AllProvider,AllType,OneProvider,AddProvider,DeleteProvider,UpdateProvider}
+module.exports={AllProvider,AllType,OneProvider,AddProvider,DeleteProvider,UpdateProvider,getAllVeto}

@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+    .all-\[unset\] {
+      all: unset;
+    }
+  }
+#div-div{
+    scroll-snap-type: x mandatory;
+   
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+#drop-account{
+background-color: gray;
+backdrop-filter: blur(15px);    
+}
+#unique h1{
+    margin-top:10px;
+    font-size: 17px;
+}
+#hr-unique{
+    top: 324px;
+    left: 65px;
+}
+#button-home{
+    top: 67%;
+    font-size: 25px;
+}
+#arrow-id{
+    color: white;
+    position: absolute;
+    top: 68%;
+    left: 38%;
+}
+#flash-sales-grid{
+    position: absolute;
+    top: 105%;
+    left: 20%;
+}
