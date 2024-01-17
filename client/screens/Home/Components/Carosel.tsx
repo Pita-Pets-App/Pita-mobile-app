@@ -1,4 +1,5 @@
-import React,{useEffect,useState} from "react";
+
+import React , { useEffect, useState } from "react"
 import {
   ScrollView,
   View,
@@ -66,7 +67,7 @@ getData()
         <View style={styles.horizontalScrollContainer}>
           {serviceData.map((el,i)=>(
             <TouchableOpacity key={i}><View style={styles.oneService}>
-            <Image style={{ width: 50, height: 50 }} source={{uri:el.service_image}}></Image>
+            <Image style={{ width: 50, height: 50 }} source={{uri:el.service_image }}></Image>
           </View></TouchableOpacity>
           ))}
         </View>
