@@ -40,8 +40,13 @@ PetsApp.Users.hasMany(PetsApp.LFA)
 PetsApp.LFA.belongsTo(PetsApp.Users)
 
 // Chat: relation between User n:n User
-PetsApp.Users.belongsToMany(PetsApp.Users ,{ as: 'user2',through: PetsApp.Chat,foreignKey: 'user1'  })
-PetsApp.Users.belongsToMany(PetsApp.Users ,{ as: "user1",through: PetsApp.Chat,foreignKey: 'user2' })
+PetsApp.Users.hasMany(PetsApp.Chat)
+PetsApp.Users.hasMany(PetsApp.Chat)
+PetsApp.Chat.belongsTo(PetsApp.Users,{as:'sender',foreignKey:'user1'})
+PetsApp.Chat.belongsTo(PetsApp.Users,{as:'asreciver',foreignKey:'user2'})
+
+
+// PetsApp.Users.belongsToMany(PetsApp.Users ,{ as: "user1",through: PetsApp.Chat,foreignKey: 'user1',unique:false })
 
 
 
