@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const { Chat, Users } = require("../database-Sequelize/index");
 const { Op } = require("sequelize");
 
@@ -24,6 +25,12 @@ const GetConv = async (req, res) => {
   }
 };
 
+const getAllData= (arr)=>{
+  return arr.map((el)=>{
+    return el.data
+  })
+}
+
 const getAllRomsOfUser=async (req,res)=>{
     let arr=[]
     try {
@@ -42,11 +49,14 @@ const getAllRomsOfUser=async (req,res)=>{
             }
             console.log(arr);
         })
-        const finalarr= arr.map(async(el)=>{
-          const hhh=await Users.findOne({where:{id:el}})
+        const finalarr= arr.map((el)=>{
+        return  axios.put(`http://localhost:3000/api/Chat/${req.params.id}`,{reciver:el})
+          
         }) 
-        const final=Promise.all(finalarr)
-        res.send(final) 
+        const final=Promise.all(finalarr).then((ress)=>{
+          
+          res.json(getAllData(ress))})
+
     } catch (error) {
         res.send(error)
     }
