@@ -67,4 +67,6 @@ const DeleteUser= async(req,res) => {
     }
 };
 
+
+
 module.exports={AllUsers,OneUser,AllUsersWithPets,createUser,UpdateUser,DeleteUser}
