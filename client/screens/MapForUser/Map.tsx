@@ -30,7 +30,6 @@ const Map = ({}) => {
     latitudeDelta: 0.01,
     longitudeDelta: 0.02,
   });
-  
   const [itineraryMode, setItineraryMode] = useState(false);
   const [filterRadius, setFilterRadius] = useState(10);
   const [sliderValue, setSliderValue] = useState(10);
@@ -41,7 +40,7 @@ const [providers,setProviders]=useState([])
   const [selectedProvider, setSelectedProvider] = useState(null);
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentProviderIndex, setCurrentProviderIndex] = useState(0);
- 
+console.log(getLocation,"het")
   const mapRef = useRef(null);
   // useEffect(() => {
   //   const loadFonts = async () => {
@@ -101,7 +100,7 @@ const [providers,setProviders]=useState([])
       featureType: "administrative.land_parcel",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -110,7 +109,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -119,7 +118,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -128,7 +127,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry.fill",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -136,7 +135,7 @@ const [providers,setProviders]=useState([])
       featureType: "administrative.neighborhood",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -145,7 +144,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -153,7 +152,7 @@ const [providers,setProviders]=useState([])
       featureType: "administrative.province",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -162,7 +161,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry.fill",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -171,7 +170,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry.fill",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -242,7 +241,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry.fill",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -251,7 +250,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry.fill",
       stylers: [
         {
-          visibility: "on",
+          visibility: "off",
         },
       ],
     },
@@ -598,10 +597,7 @@ useEffect(() => {
        strokeWidth={1}
        strokeColor="#ffc368"
      />
-    
-   )
-   
-   } console.log(lo)
+   )} 
     {itineraryMode && selectedProvider && getLocation && (
     <MapViewDirections
     origin={{
@@ -655,7 +651,6 @@ useEffect(() => {
         closeModal={() => setModalVisible(false)}
         startItinerary={() => handleStartItinerary(selectedAgency)}
       /> */}
-      
     </View>
   );
 };
