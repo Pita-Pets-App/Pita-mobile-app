@@ -33,7 +33,7 @@ export default function App() {
     <Provider   store={store}>
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="ChatPage">
+      <Stack.Navigator initialRouteName="ChatContainer">
 
         <Stack.Screen
         name="Home"
