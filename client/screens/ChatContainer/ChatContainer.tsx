@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { FlatList, View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import avatar from "../../assets/user.jpg";
 import axios from 'axios';
 import { port } from '../../port';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('screen');
 
+type RootStackParamList = {
+  ChatPage: { receiver: string };
+
+};
 
 const ChatContainer: React.FC = (): React.ReactElement => {
   const [roomsData, setRoomsData] = useState([]);
+
+
+  const navigation=useNavigation()
 
   const getData = async () => {
     try {
@@ -25,8 +33,16 @@ const ChatContainer: React.FC = (): React.ReactElement => {
   }, []);
 
   const renderItem = ({ item }) => (
+    <TouchableOpacity
+  onPress={() => {
+  navigation.push("ChatPage", {
+    receiver: item[0].id,
+  } as RouteProp<RootStackParamList, 'ChatPage'>);
+}}
+>
+
     <View style={styles.pageContainer}>
-      <Image source={avatar} style={{ width: width * 0.2, height: height * 0.09, borderRadius: 60 }} />
+      <Image source={{ uri: item[0].image }} style={{ width: width * 0.2, height: height * 0.09, borderRadius: 60 }} />
       <View style={{ justifyContent: "flex-start", alignItems: "flex-start", flexDirection: "column", flex: 1 }}>
         <Text style={{ fontWeight: "bold", fontSize: 18, color: "black" }}>{item[0].fname}</Text>
         <Text style={{ fontSize: 16, color: "grey" }}>{item[item.length-1].msg}</Text>
@@ -36,12 +52,14 @@ const ChatContainer: React.FC = (): React.ReactElement => {
         {(2==item[item.length-1].user1)&&<Text style={{ fontSize: 16, color: "grey" }}>You</Text>}
       </View>
     </View>
+    </TouchableOpacity>
   );
 
   return (
     <FlatList
       data={roomsData}
       renderItem={renderItem}
+      keyExtractor={(item) => item[0].id.toString()}
     />
   );
 };
