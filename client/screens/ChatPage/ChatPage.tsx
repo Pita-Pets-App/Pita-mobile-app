@@ -5,35 +5,53 @@ import axios from 'axios';
 import { port } from '../../port';
 import { useNavigation } from '@react-navigation/native';
 import send from '../../assets/paper-plane.png'
+import io from 'socket.io-client';
+
+const socket = io('http://192.168.103.20:3001');
 
 const {width,height} = Dimensions.get('screen')
 
 
-const ChatPage: React.FC = ({route}): React.ReactElement => {
+const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     const [conv, setConv] = useState([]);
+    const [name, setName] =  useState<Name>({});
     const [newMsg, setNewMsg] = useState("");
     const [refresh,setRefresh]=useState(false)
     const navigation = useNavigation(); 
+    console.log(conv);
+    
     const {receiver}=route.params
     console.log(receiver);
     
     const getData = async () => {
       try {
         const result = await axios.put(`${port}/api/Chat/2`,{reciver:receiver});
-        console.log(result.data);
-        setConv(result.data);
+        setName(result.data[0])
+        setConv(result.data.slice(1));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
+       
+    useEffect(() => {
+        socket.connect();
+        socket.on('recive', (message) => {
+          setConv([...conv,message])
+          setRefresh(!refresh); 
+        });
+    
+        return () => {
+          socket.disconnect();
+        };
+      }, [refresh]);
   
     useEffect(() => {
       getData();
-    }, [refresh]);
+    }, []);
 
     const renderConv=({item})=>(
         
-        <View>
+        <View key={item.id}>
             {(item.user2==2&&item.msg)?<View>
         <View style={{justifyContent:"center",alignItems:"flex-start",flexDirection:"column",backgroundColor:"orange", padding:10,width:width*0.5,borderRadius:20,height:height*0.05}}>
             <Text>{item.msg}</Text>
@@ -50,7 +68,7 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
     )
     useEffect(() => {
         navigation.setOptions({
-          title: `${conv[0]?.fname} ${conv[0]?.lname}`,
+          title: `${name?.fname} ${name?.lname}`,
           headerStyle: {
             backgroundColor: '#ffc368',
           },
@@ -60,7 +78,7 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
           },
           headerLeft: () => (
             <View style={styles.headerRightContainer}>
- <Image style={styles.profileImage} source={{ uri: conv[0]?.image }} />
+ <Image style={styles.profileImage} source={{ uri: name?.image }} />
             </View>
           ),
         });
@@ -68,13 +86,15 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
 
       const handleSend=async()=>{
         console.log("newMsg",newMsg);
-        
-        const result=await axios.post(`${port}/api/Chat`,{
+        let obj={
             msg:newMsg,
             user1:2,
             user2:receiver
-        })
+        }
+        const result=await axios.post(`${port}/api/Chat`,obj)
         Keyboard.dismiss()  
+        await socket.emit('add', { msg: newMsg, user1: 2, user2: receiver });
+        setConv([...conv,obj])
         setNewMsg("") 
         setRefresh(!refresh)
       }
@@ -83,9 +103,10 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
         
         <View style={{ flex: 1 }}>
   <FlatList
-    style={{ width: width, height: height, padding: 5,display:"flex",flexDirection:"column-reverse"}}
+    style={{ width: width, height: height, padding: 5}}
     data={conv}
     renderItem={renderConv}
+    keyExtractor={(item) => item.id}
 
   />
   <View  style={{display:"flex",flexDirection:"row",justifyContent:"space-between",padding:10}}>
@@ -93,6 +114,8 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
     style={{backgroundColor:"grey",width:width*0.8}}
       onChangeText={setNewMsg}
       value={newMsg}
+
+
     />
     <TouchableOpacity onPress={()=>{handleSend()}}>
     <Image source={send} style={{width:width*0.1,height:height*0.04}}></Image>
