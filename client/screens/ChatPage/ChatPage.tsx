@@ -14,7 +14,7 @@ const {width,height} = Dimensions.get('screen')
 
 const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     const [conv, setConv] = useState([]);
-    const [name, setName] = useState({});
+    const [name, setName] =  useState<Name>({});
     const [newMsg, setNewMsg] = useState("");
     const [refresh,setRefresh]=useState(false)
     const navigation = useNavigation(); 
@@ -114,7 +114,7 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     style={{backgroundColor:"grey",width:width*0.8}}
       onChangeText={setNewMsg}
       value={newMsg}
-      
+
 
     />
     <TouchableOpacity onPress={()=>{handleSend()}}>
