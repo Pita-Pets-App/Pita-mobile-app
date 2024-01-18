@@ -4,11 +4,12 @@ import { FontSize, FontFamily } from "../../../GlobalStyles";
 
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet, Image,Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker'; 
 import { register_me } from '../../../lib/apiCalls';
-
+const { width, height } = Dimensions.get("screen");
+import Pet from '../../../assets/peticon.png'
 interface FormData {
   user_fname: string;
   user_lname: string;
@@ -75,6 +76,14 @@ const Register: React.FC = () => {
 
   return (
     <View>
+
+      <View  style={styles.header}>
+      <View   style={styles.design}></View>
+      <Image   style={styles.userImage} source={Pet}></Image>
+      <Text   style={styles.pita}>
+Pita Pita      </Text>
+
+      </View>
       <TextInput
         placeholder="Email"
         value={formData.user_Email}
@@ -105,6 +114,36 @@ const Register: React.FC = () => {
     </View>
   );
 };
+
+
+
+
+const styles = StyleSheet.create({
+ header:{
+backgroundColor:"yellow",
+height:height*0.35,
+padding:5,
+flexDirection:"column",
+justifyContent:"flex-start",
+alignItems:"center",
+gap:10
+ },
+ design:{
+  backgroundColor:"rgb(244, 197, 127)",
+  width:width*0.9,
+  height:height*0.2,
+  borderBottomLeftRadius:width*0.4,
+  borderBottomRightRadius:width*0.4
+
+ },
+ userImage:{
+  position:"absolute",
+  marginTop:width*0.2,
+  borderRadius:width*0.5
+ },
+ pita:{}
+  
+});
 
 export default Register;
 
@@ -221,210 +260,6 @@ export default Register;
 //   );
 // };
 
-// const styles = StyleSheet.create({
-//   vectorIconLayout5: {
-//     maxHeight: "100%",
-//     overflow: "hidden",
-//     maxWidth: "100%",
-//     position: "absolute",
-//   },
-//   vectorIconLayout4: {
-//     width: "43.44%",
-//     height: "5.15%",
-//     maxHeight: "100%",
-//     overflow: "hidden",
-//     maxWidth: "100%",
-//     position: "absolute",
-//   },
-//   vectorIconLayout3: {
-//     height: "2.1%",
-//     maxHeight: "100%",
-//     overflow: "hidden",
-//     maxWidth: "100%",
-//     position: "absolute",
-//   },
-//   vectorIconLayout2: {
-//     width: "14.74%",
-//     height: "0.02%",
-//     maxHeight: "100%",
-//     overflow: "hidden",
-//     maxWidth: "100%",
-//     position: "absolute",
-//   },
-//   vectorIconLayout1: {
-//     height: "5.38%",
-//     width: "43.44%",
-//     maxHeight: "100%",
-//     overflow: "hidden",
-//     maxWidth: "100%",
-//     position: "absolute",
-//   },
-//   vectorIconLayout: {
-//     width: "2.66%",
-//     height: "2.21%",
-//     maxHeight: "100%",
-//     overflow: "hidden",
-//     maxWidth: "100%",
-//     position: "absolute",
-//   },
-//   vectorIcon: {
-//     height: "89.75%",
-//     width: "50.02%",
-//     top: "10.25%",
-//     right: "1.57%",
-//     bottom: "0%",
-//     left: "48.41%",
-//   },
-//   vectorIcon1: {
-//     top: "65.14%",
-//     right: "4.83%",
-//     bottom: "29.7%",
-//     left: "51.73%",
-//   },
-//   vectorIcon2: {
-//     width: "6.18%",
-//     top: "66.93%",
-//     right: "23.45%",
-//     bottom: "30.97%",
-//     left: "70.37%",
-//   },
-//   register: {
-//     top: 751,
-//     left: 0,
-//     fontSize: FontSize.size_lg,
-//     fontWeight: "600",
-//     fontFamily: FontFamily.poppinsSemiBold,
-//     color: "transparent",
-//     textAlign: "center",
-//     width: 102,
-//     position: "absolute",
-//   },
-//   vectorIcon3: {
-//     top: "83.14%",
-//     right: "4.77%",
-//     bottom: "11.71%",
-//     left: "51.79%",
-//   },
-//   vectorIcon4: {
-//     height: "1.87%",
-//     width: "18.67%",
-//     top: "84.89%",
-//     right: "17.12%",
-//     bottom: "13.24%",
-//     left: "64.21%",
-//   },
-//   vectorIcon5: {
-//     height: "3.1%",
-//     width: "3.73%",
-//     top: "84.19%",
-//     right: "42.09%",
-//     bottom: "12.71%",
-//     left: "54.18%",
-//   },
-//   vectorIcon6: {
-//     width: "26.14%",
-//     top: "42.33%",
-//     right: "21.99%",
-//     bottom: "55.57%",
-//     left: "51.87%",
-//   },
-//   vectorIcon7: {
-//     height: "1.36%",
-//     width: "13.9%",
-//     top: "60.73%",
-//     right: "4.98%",
-//     bottom: "37.91%",
-//     left: "81.12%",
-//   },
-//   vectorIcon8: {
-//     top: "77.67%",
-//     right: "33.48%",
-//     bottom: "22.31%",
-//     left: "51.77%",
-//   },
-//   vectorIcon9: {
-//     top: "77.62%",
-//     right: "4.8%",
-//     bottom: "22.36%",
-//     left: "80.46%",
-//   },
-//   vectorIcon10: {
-//     height: "1.38%",
-//     width: "2.78%",
-//     top: "77.07%",
-//     right: "25.12%",
-//     bottom: "21.55%",
-//     left: "72.1%",
-//   },
-//   vectorIcon11: {
-//     top: "46.04%",
-//     right: "4.87%",
-//     bottom: "48.59%",
-//     left: "51.69%",
-//   },
-//   vectorIcon12: {
-//     height: "1.62%",
-//     width: "6.45%",
-//     top: "47.91%",
-//     right: "32.06%",
-//     bottom: "50.47%",
-//     left: "61.48%",
-//   },
-//   vectorIcon13: {
-//     top: "47.65%",
-//     right: "44.46%",
-//     bottom: "50.13%",
-//     left: "52.89%",
-//   },
-//   vectorIcon14: {
-//     top: "53.65%",
-//     right: "4.85%",
-//     bottom: "40.97%",
-//     left: "51.7%",
-//   },
-//   vectorIcon15: {
-//     height: "1.59%",
-//     width: "11.75%",
-//     top: "55.46%",
-//     right: "26.74%",
-//     bottom: "42.95%",
-//     left: "61.51%",
-//   },
-//   vectorIcon16: {
-//     top: "55.26%",
-//     right: "45.1%",
-//     bottom: "42.52%",
-//     left: "52.25%",
-//   },
-//   vectorIcon17: {
-//     height: "29.45%",
-//     width: "51.58%",
-//     top: "0%",
-//     right: "-0.01%",
-//     bottom: "70.55%",
-//     left: "48.44%",
-//   },
-//   vectorIcon18: {
-//     height: "17.59%",
-//     width: "18.5%",
-//     top: "22.44%",
-//     right: "17.1%",
-//     bottom: "59.97%",
-//     left: "64.4%",
-//   },
-//   group: {
-//     height: "111.41%",
-//     width: "199.86%",
-//     top: "-11.42%",
-//     right: "-3.11%",
-//     bottom: "0.01%",
-//     left: "-96.75%",
-//     position: "absolute",
-//   },
-//   clipPathGroup: {
-//     width: 360,
-//     height: 800,
-//   },
-// });
+
 
 // export default Register;
