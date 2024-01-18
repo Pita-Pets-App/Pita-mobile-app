@@ -9,6 +9,7 @@ const generateToken = (id, name) => {
 
   const AddAdmin = async (req, res) => {
     const { name,  email, admin_password  } = req.body;
+    console.log(name,email,admin_password);
     try {
       const hashedPassword = await bcrypt.hash(admin_password, 10);
   
@@ -17,8 +18,8 @@ const generateToken = (id, name) => {
         email,
         image:'https://cdn-icons-png.flaticon.com/512/149/149071.png',
         admin_password: hashedPassword}
-       
-        createUser({ body: newUser }, res);
+       const result=await Admin.create(newUser)
+       res.send(result)
     } catch (error) {
      
       res.status(500).json({ error: 'Error' });

@@ -12,6 +12,7 @@ const rateRoute = require("./routes/rate.routes");
 const eventRoute = require("./routes/event.routes");
 const serviceRoute = require("./routes/service.routes");
 const ChatRoute = require("./routes/chat.routes");
+const adminRoute = require("./routes/admin.routes");
 const app = express();
 const PORT = process.env.PORT || 3000
 
@@ -37,6 +38,7 @@ app.use("/api",LFARoute)
 app.use("/api",rateRoute)
 app.use("/api",eventRoute)
 app.use("/api",serviceRoute)
+app.use("/api",adminRoute)
 app.use("/api",ChatRoute)
 
 ////// chat part 
