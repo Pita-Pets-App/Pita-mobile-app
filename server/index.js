@@ -47,13 +47,18 @@ const io = new Server(chatserv, {
     methods:["GET","POST"]
   },
   });
- io.on("connection",(socket)=>{
-   console.log(`Socket Connected${socket.id}`);   
-  //  socket.on("user connected:",socket.id)
-  //  socket.on("disconnect", () => {
-  //   console.log("user disconnected:", socket.id);
-  // });
- })
+  io.on("connection", (socket) => {
+    console.log(`Socket Connected: ${socket.id}`);
+  
+    socket.on('add', (message) => {
+      console.log('Received message:', message);
+      io.emit('recive', message);
+    });
+  
+    socket.on('disconnect', () => {
+      console.log(`User disconnected: ${socket.id}`);
+    });
+  });
 
 app.listen(PORT, function () {
   console.log("listening on port 3000!");

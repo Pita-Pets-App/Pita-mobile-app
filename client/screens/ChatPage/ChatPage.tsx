@@ -5,6 +5,9 @@ import axios from 'axios';
 import { port } from '../../port';
 import { useNavigation } from '@react-navigation/native';
 import send from '../../assets/paper-plane.png'
+import io from 'socket.io-client';
+
+const socket = io('http://192.168.103.20:3001');
 
 const {width,height} = Dimensions.get('screen')
 
@@ -26,6 +29,18 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
         console.error("Error fetching data:", error);
       }
     };
+       
+    useEffect(() => {
+        socket.connect();
+        socket.on('recive', (message) => {
+          console.log('Received message:', message);
+          setRefresh(!refresh); 
+        });
+    
+        return () => {
+          socket.disconnect();
+        };
+      }, []);
   
     useEffect(() => {
       getData();
@@ -75,6 +90,7 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
             user2:receiver
         })
         Keyboard.dismiss()  
+        await socket.emit('add', { msg: newMsg, user1: 2, user2: receiver });
         setNewMsg("") 
         setRefresh(!refresh)
       }
@@ -83,7 +99,7 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
         
         <View style={{ flex: 1 }}>
   <FlatList
-    style={{ width: width, height: height, padding: 5,display:"flex",flexDirection:"column-reverse"}}
+    style={{ width: width, height: height, padding: 5}}
     data={conv}
     renderItem={renderConv}
 

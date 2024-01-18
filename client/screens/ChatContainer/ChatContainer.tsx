@@ -35,7 +35,7 @@ const ChatContainer: React.FC = (): React.ReactElement => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
   onPress={() => {
-  navigation.push("ChatPage", {
+  navigation.navigate("ChatPage", {
     receiver: item[0].id,
   } as RouteProp<RootStackParamList, 'ChatPage'>);
 }}
