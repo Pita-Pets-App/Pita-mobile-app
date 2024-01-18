@@ -12,7 +12,7 @@ const socket = io('http://192.168.103.20:3001');
 const {width,height} = Dimensions.get('screen')
 
 
-const ChatPage: React.FC = ({route}): React.ReactElement => {
+const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     const [conv, setConv] = useState([]);
     const [newMsg, setNewMsg] = useState("");
     const [refresh,setRefresh]=useState(false)
