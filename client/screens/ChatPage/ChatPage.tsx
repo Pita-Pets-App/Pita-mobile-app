@@ -23,7 +23,6 @@ const ChatPage: React.FC = ({route}): React.ReactElement => {
     const getData = async () => {
       try {
         const result = await axios.put(`${port}/api/Chat/2`,{reciver:receiver});
-        console.log(result.data);
         setConv(result.data);
       } catch (error) {
         console.error("Error fetching data:", error);
