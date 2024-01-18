@@ -12,3 +12,10 @@ declare module '*.png' {
     service_name:string,
     service_image:string,
   }
+
+  interface Name {
+    id?:number,
+    fname?:string,
+    lname?:string,
+    image?:string
+  }
