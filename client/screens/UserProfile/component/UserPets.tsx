@@ -6,25 +6,14 @@ import dog2 from '../../../assets/ownerdog1.png'
 import peticon from '../../../assets/peticon.png'
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-
+import { port } from '../../../port';
 
 
 const { width, height } = Dimensions.get('screen')
 const UserPets: React.FC = () => {
-    const [hhh,setHhh]=useState([])
+
     const navigation=useNavigation()
-    // const getData=async()=>{
-    //     const result=await axios.get("http://localhost:3000/api/events")
-    //     setHhh(result.data);
-
-        
-    // }
-
-    // useEffect(()=>{
-        
-    //     getData()
-    // },[])
-    console.log(hhh);
+    
     
     return (
         <View style={styles.petContainer}>
