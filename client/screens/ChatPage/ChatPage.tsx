@@ -37,6 +37,7 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
         socket.connect();
         socket.on('recive', (message) => {
           setConv([...conv,message])
+
           setRefresh(!refresh); 
         });
     
@@ -44,6 +45,8 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
           socket.disconnect();
         };
       }, [refresh]);
+
+       
   
     useEffect(() => {
       getData();
