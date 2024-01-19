@@ -25,7 +25,9 @@ import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
 import store from "./store/store";
 import Map from "./screens/MapForUser/Map"
+import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -34,7 +36,7 @@ export default function App() {
     <NavigationContainer>
 
 
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Events">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -187,6 +189,12 @@ export default function App() {
         options={{
           headerShown:false
         }} />
+        <Stack.Screen
+        
+        name="Events"
+
+        component={Events} 
+       />
 
        
         <Stack.Screen
