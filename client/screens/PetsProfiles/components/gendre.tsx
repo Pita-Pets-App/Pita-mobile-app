@@ -1,10 +1,10 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import titi2 from "../../../assets/titi2.png";
-import titi3 from "../../../assets/titi3.png";
+import titi2 from "../../../assets/wieght.png";
+import titi3 from "../../../assets/birthdate.png";
 
-import tit from "../../../assets/titi1.png";
+import tit from "../../../assets/gender.png";
 import Svg, { Path } from 'react-native-svg';
 
 const { width, height } = Dimensions.get('screen');
@@ -12,11 +12,11 @@ const { width, height } = Dimensions.get('screen');
 const Poid: React.FC = (): React.ReactElement => {
   return (
     <View
-    style={{justifyContent:"center",flexDirection:"column",alignItems:"center",padding:3}}>
+    style={{justifyContent:"center",flexDirection:"column",alignItems:"center",padding:5,marginBottom:20}}>
     <View style={styles.Genre}>
    
         <Image source={tit} style={styles.image} />
-        <View style={styles.textContainer}>
+        <View >
           <Text style={[styles.text, { color: '#bcbcbc' }]}>Gendre</Text>
           <Text style={[styles.text, { color: '#bcbcbc' }]}>Femelle</Text>
         </View>
@@ -24,7 +24,7 @@ const Poid: React.FC = (): React.ReactElement => {
     <View style={styles.Genre}>
    
    <Image source={titi2} style={styles.image} />
-   <View style={styles.textContainer}>
+   <View >
      <Text style={[styles.text, { color: '#bcbcbc' }]}>Wieght</Text>
      <Text style={[styles.text, { color: '#bcbcbc' }]}>20</Text>
    </View>
@@ -43,7 +43,7 @@ const Poid: React.FC = (): React.ReactElement => {
 
 const styles = StyleSheet.create({
   Genre: {
-    backgroundColor: "#ececec",
+    backgroundColor: "#fff",
     width: width,
     height: width * 0.2,
     flexDirection:"row",
