@@ -16,7 +16,7 @@ return (
 
 <View>
 
-<View>
+<View style={{backgroundColor:"#fff"}}>
  <PetsPhoto/>
 <Gendre/>
 

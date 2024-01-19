@@ -13,11 +13,8 @@ const PetsPhoto: React.FC = (): React.ReactElement => {
           <TouchableOpacity style={styles.imageContainer}>
             <Image source={bele} style={styles.image}  />
           </TouchableOpacity>
-          <View style={{backgroundColor:'rgba(255, 255, 255, 0.5)',width:width*0.9,height:height*0.1,position:"absolute",justifyContent:"center",alignItems:"center",borderRadius:10,
-    top: 270,alignContent:"center",
-    left: 20,
-    right: 0,}}>
-            <Text style={{fontSize:30,fontWeight:"bold"}}>Bella</Text>
+          <View style={styles.nameContainer}>
+            <Text  style={{fontSize:30,fontWeight:"bold"}}>Bella</Text>
           </View>
         </View>
       </View>
@@ -27,18 +24,17 @@ const PetsPhoto: React.FC = (): React.ReactElement => {
 
 const styles = StyleSheet.create({
   container: {
-
-    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius:20
+    borderEndEndRadius:20,
+    marginBottom:35
   },
   imageContainer: {
     width: width * 0.9,
     height: width * 0.9,
  
     alignItems: 'center', 
-    justifyContent: 'center', 
+
    },
   image: {
     width: width*0.6,
@@ -56,8 +52,28 @@ const styles = StyleSheet.create({
     height: width,
     justifyContent:"center",
     alignItems:"center",
-borderRadius:20
+    borderBottomRightRadius:30,
+    borderBottomLeftRadius:30
+  },
+  nameContainer:{
+    backgroundColor: 'rgba(254, 254, 254, 0.7)',
+  width: width * 0.9,
+  height: height * 0.12,
+  position: "absolute",
+  justifyContent: "center",
+  alignItems: "center",
+  borderRadius: 20,
+  top: 290,
+  alignContent: "center",
+  left: 20,
+  right: 0,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.2 ,
+  shadowRadius: 4,
+  elevation: 4,
   }
+
 });
 
 export default PetsPhoto;

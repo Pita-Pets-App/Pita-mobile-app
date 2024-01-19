@@ -240,7 +240,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      {/* <Navbar/> */}
+      <Navbar/>
     </NavigationContainer>
     </Provider>
   );
