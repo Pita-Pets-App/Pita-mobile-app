@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   ScrollView,
   View,
@@ -11,9 +11,24 @@ import UserPets from "./component/UserPets";
 import UserInfo from "./component/UserInfo";
 import user from '../../assets/user.jpg'
 import Navbar from "../Home/Components/Navbar";
+import axios from "axios";
+import { port } from "../../port";
 
 const { width, height } = Dimensions.get("screen");
 const UserProfile: React.FC = () => {
+  const [hhh,setHhh]=useState([])
+  const getData=async()=>{
+    const result=await axios.get(`${port}/api/users/1`)
+    setHhh(result.data);
+
+    
+}
+
+useEffect(()=>{
+    
+    getData()
+},[])
+console.log(hhh);
   return (
     <View style={styles.container}>
     <ScrollView>

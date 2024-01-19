@@ -194,7 +194,7 @@ export default function App() {
         name="PetsProfile"
         component={PetsProfile}
         options={{
-          title: 'Add Review',
+          title: 'Pet Profile',
           headerStyle: {
             backgroundColor: '#ffc368',
           },
