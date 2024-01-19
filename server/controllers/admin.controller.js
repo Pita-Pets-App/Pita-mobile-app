@@ -6,7 +6,14 @@ const generateToken = (id, name) => {
     const expiresIn = 60 * 60 * 48;//2days
     return jwt.sign({ id, name }, 'secretKey', { expiresIn: expiresIn });
   };
-
+  const UpdateAdmin= async(req,res) => {
+    try {
+    const result=await Admin.update(req.body,{where:req.params})
+    res.json(result)   
+    } catch (error) {
+    res.send(error)    
+    }
+};
   const AddAdmin = async (req, res) => {
     const { name,  email, admin_password  } = req.body;
     console.log(name,email,admin_password);
@@ -48,4 +55,4 @@ const generateToken = (id, name) => {
     }
     catch (error) {res.status(500).json(error)}
 }
-module.exports = {AddAdmin , LoginAdmin }
+module.exports = {AddAdmin , LoginAdmin ,UpdateAdmin}
