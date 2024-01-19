@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require('cors')
+const { Server } = require("socket.io");
+const { createServer } = require("http")
 
 const db = require('./database-Sequelize');
 const usersRoute = require("./routes/users.routes");
@@ -10,6 +12,7 @@ const rateRoute = require("./routes/rate.routes");
 const eventRoute = require("./routes/event.routes");
 const serviceRoute = require("./routes/service.routes");
 const ChatRoute = require("./routes/chat.routes");
+const adminRoute = require("./routes/admin.routes");
 const app = express();
 const PORT = process.env.PORT || 3000
 
@@ -35,10 +38,35 @@ app.use("/api",LFARoute)
 app.use("/api",rateRoute)
 app.use("/api",eventRoute)
 app.use("/api",serviceRoute)
+app.use("/api",adminRoute)
 app.use("/api",ChatRoute)
 
-
+////// chat part 
+const chatserv = createServer(app);
+const io = new Server(chatserv, {
+  cors:{
+    origin:"http://localhost:3000",
+    methods:["GET","POST"]
+  },
+  });
+  io.on("connection", (socket) => {
+    console.log(`Socket Connected: ${socket.id}`);
+  
+    socket.on('add', (message) => {
+      console.log('Received message:', message);
+      io.emit('recive', message);
+    });
+  
+    socket.on('disconnect', () => {
+      console.log(`User disconnected: ${socket.id}`);
+    });
+  });
 
 app.listen(PORT, function () {
   console.log("listening on port 3000!");
 });
+
+chatserv.listen(3001,()=>{
+  console.log("Socket.io is running on port 3001");
+}
+)

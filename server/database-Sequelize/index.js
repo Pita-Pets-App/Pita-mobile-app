@@ -21,6 +21,7 @@ PetsApp.Rate = require ('./rate.js')(connection,DataTypes)
 PetsApp.Event = require ('./event.js')(connection,DataTypes)
 PetsApp.Services = require ('./services.js')(connection,DataTypes)
 PetsApp.Chat = require ('./chat.js')(connection,DataTypes)
+PetsApp.Admin = require ('./admin.js')(connection,DataTypes)
 
 // relation between User 1:n Pets
 PetsApp.Users.hasMany(PetsApp.Pets)
