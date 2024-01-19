@@ -4,35 +4,35 @@ import { FontSize, FontFamily } from "../../../GlobalStyles";
 
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet, Image,Dimensions } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet, Image,Dimensions, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker'; 
 import { register_me } from '../../../lib/apiCalls';
 const { width, height } = Dimensions.get("screen");
 import Pet from '../../../assets/peticon.png'
 interface FormData {
-  user_fname: string;
-  user_lname: string;
-  user_Email: string;
+  fname: string;
+  lname: string;
+  email: string;
   user_password: string;
-  user_image: string | null; 
+  image: string | null; 
 }
 
 const Register: React.FC = () => {
   
   const navigation = useNavigation();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [formData, setFormData] = useState<FormData>({
-    user_fname: '',
-    user_lname: '',
-    user_Email: '',
+    fname: '',
+    lname: '',
+    email: '',
     user_password: '',
-    user_image: null,
-  });
+    image: null,
+  })
 
   const [loading, setLoading] = useState(false);
 
-  // Function to handle image selection
   const selectImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -47,31 +47,26 @@ const Register: React.FC = () => {
       return;
     }
 
-    setFormData({ ...formData, user_image: (pickerResult as any).uri });
+    setFormData({ ...formData, image: (pickerResult as any).uri });
+    setSelectedImage((pickerResult as any).uri);
+
   };
 
   const handleSubmit = async () => {
     setLoading(true);
 
-    if (!formData.user_Email || !formData.user_password || !formData.user_fname || !formData.user_lname) {
+    if (!formData.email || !formData.user_password || !formData.fname || !formData.lname) {
       Alert.alert('Registration Error', 'All fields are required');
       setLoading(false);
       return;
     }
+else{
+  const data = await register_me(formData)
+  Alert.alert('You have successfully created your account')
+  // navigation.navigate('Home')
+}
+   
 
-    const data = await register_me(formData);
-
-    if (data.success) {
-      setLoading(false);
-      Alert.alert('Success', data.message);
-       // setTimeout(() => {
-        //     navigation.navigate('login'); to change
-        //   }, 2000);
-        
-    } else {
-      setLoading(false);
-      Alert.alert('Error', data.message);
-    }
   };
 
   return (
@@ -79,38 +74,49 @@ const Register: React.FC = () => {
 
       <View  style={styles.header}>
       <View   style={styles.design}></View>
-      <Image   style={styles.userImage} source={Pet}></Image>
+<TouchableOpacity  style={styles.userImage}  onPress={selectImage}>
+     
+     {formData.image ? <Image source={{ uri: formData.image }}  style={{borderRadius:width*0.2,  width:width*0.35,
+  height:height*0.16,}} />:<Image source={ Pet}   style={{borderRadius:width*0.2,  width:width*0.35,
+    height:height*0.16,}} />}
+      </TouchableOpacity>
       <Text   style={styles.pita}>
-Pita Pita      </Text>
+PITA PITA     </Text>
 
       </View>
-      <TextInput
-        placeholder="Email"
-        value={formData.user_Email}
-        onChangeText={(text) => setFormData({ ...formData, user_Email: text })}
+<View   style={styles.allInput}>
+<TextInput style={styles.input}
+        placeholder=" Enter Your Email"
+        value={formData.email}
+        onChangeText={(text) => setFormData({ ...formData, email: text })}
       />
       <TextInput
-        placeholder="Password"
+      style={styles.input}
+        placeholder="  Enter Your Password"
         secureTextEntry
         value={formData.user_password}
         onChangeText={(text) => setFormData({ ...formData, user_password: text })}
       />
       <TextInput
-        placeholder="First Name"
-        value={formData.user_fname}
-        onChangeText={(text) => setFormData({ ...formData, user_fname: text })}
+      style={styles.input}
+        placeholder= " Enter your First Name"
+        value={formData.fname}
+        onChangeText={(text) => setFormData({ ...formData, fname: text })}
       />
       <TextInput
-        placeholder="Family Name"
-        value={formData.user_lname}
-        onChangeText={(text) => setFormData({ ...formData, user_lname: text })}
+      style={styles.input}
+        placeholder=" Enter your Family Name"
+        value={formData.lname}
+        onChangeText={(text) => setFormData({ ...formData, lname: text })}
       />
 
-      {formData.user_image && <Image source={{ uri: formData.user_image }} style={{ width: 100, height: 100 }} />}
 
-      <Button title="Select Image" onPress={selectImage} />
+   
+      <TouchableOpacity    style={styles.registerButton} onPress={handleSubmit} disabled={loading} >
 
-      <Button title={loading ? 'Registering...' : 'Register'} onPress={handleSubmit} disabled={loading} />
+        <Text  style={{color:"white",fontSize:18,fontWeight:"bold"}}>Register</Text>
+      </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -120,7 +126,7 @@ Pita Pita      </Text>
 
 const styles = StyleSheet.create({
  header:{
-backgroundColor:"yellow",
+
 height:height*0.35,
 padding:5,
 flexDirection:"column",
@@ -129,8 +135,8 @@ alignItems:"center",
 gap:10
  },
  design:{
-  backgroundColor:"rgb(244, 197, 127)",
-  width:width*0.9,
+  backgroundColor: 'rgba(255, 195, 104,0.8)',
+      width:width*0.9,
   height:height*0.2,
   borderBottomLeftRadius:width*0.4,
   borderBottomRightRadius:width*0.4
@@ -139,9 +145,44 @@ gap:10
  userImage:{
   position:"absolute",
   marginTop:width*0.2,
-  borderRadius:width*0.5
+  borderRadius:width*0.5,
+  width:width*0.35,
+  height:height*0.16,
+  justifyContent:"center",
+  alignItems:"center",
+  backgroundColor:"red"
  },
- pita:{}
+ pita:{
+  marginTop:width*0.15,
+  fontSize:24,
+  fontWeight:"bold",
+marginLeft:25,
+ },
+ input:{
+  backgroundColor:"rgb(238, 238, 238)",
+  width:width*0.85,
+  height:height*0.07,
+  borderRadius:10,
+  textAlign: 'center', 
+  borderColor:"#ffc368",
+  borderWidth:2
+ },
+ allInput:{
+  padding:10,
+  justifyContent:"center",
+  alignItems:"center",
+
+  
+  gap:17
+ },
+ registerButton:{
+  backgroundColor:"#ffc368",
+  width:width*0.85,
+  height:height*0.06,
+  justifyContent:"center",
+  alignItems:"center",
+  borderRadius:10
+ }
   
 });
 

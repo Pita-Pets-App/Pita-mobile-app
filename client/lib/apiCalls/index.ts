@@ -7,8 +7,9 @@ const instance = axios.create({
 });
 
 export const register_me = async (formData : any) => {
+  console.log(formData,"formData")
   try {
-      const response = await instance.post('/api/users/register', formData);
+      const response = await axios.post(`${port}/api/users/register`, formData);
       return response.data;
   } catch (error) {
       console.error('Error in register (service) => ', error);
