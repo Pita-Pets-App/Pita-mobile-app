@@ -77,31 +77,31 @@ const EventCard = () => {
       fontSize: 22,
       fontWeight: "bold",
       marginBottom: 10,
-      color: "#FFA500", 
+      color: "#FFA500", // Light Orange
     },
     description: {
       fontSize: 16,
       marginBottom: 5,
-      color: "#333333", 
+      color: "#333333", // Darker Gray
     },
     date: {
       fontSize: 16,
       fontWeight: "bold",
       marginBottom: 5,
-      color: "#333333", 
+      color: "#333333", // Darker Gray
     },
     status: {
       fontSize: 16,
       marginBottom: 10,
-      color: "#333333", 
+      color: "#333333", // Darker Gray
     },
     customStyle: {
-      backgroundColor: "#FFA500", 
+      backgroundColor: "#FFA500", // Light Orange
       borderWidth: 2,
       borderColor: "black",
     },
     customText: {
-      color: "#333333", 
+      color: "#333333", // Darker Gray
       fontSize: 20,
     },
     buttonContainer: {
@@ -110,7 +110,7 @@ const EventCard = () => {
       marginBottom: 10,
     },
     addButton: {
-      backgroundColor: "#FFA500", 
+      backgroundColor: "#FFA500", // Light Orange
       padding: 15,
       borderRadius: 10,
       width: "100%",
@@ -143,7 +143,26 @@ const EventCard = () => {
       marginBottom: 10,
       paddingLeft: 10,
     },
-  
+    inputContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start", // Updated from "center" to "flex-start"
+        marginBottom: 10,
+        borderWidth: 1,
+        borderRadius: 12,
+        padding: 5,
+        borderColor: "#ddd",
+      },
+      
+    mapMarkerIcon: {
+      fontSize: 30,
+      color: "#333333", 
+    },
+    locationText: {
+      fontSize: 18,
+      color: "#333333", // Darker Gray
+      marginLeft: 5,
+    },
   });
 
   return (
@@ -191,10 +210,17 @@ const EventCard = () => {
             <TextInput style={styles.input} placeholder="Event Title" />
             <TextInput style={styles.input} placeholder="Event Description" />
             <TextInput style={styles.input} placeholder="Event Date" />
+
+            <View style={styles.inputContainer}>
+              <TouchableOpacity>
+                <FontAwesome name="map-marker" style={styles.mapMarkerIcon} />
+              </TouchableOpacity>
+              <Text style={styles.locationText}>Location</Text>
+            </View>
+
             <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
               <Text style={styles.addButtonText}>Add Event</Text>
             </TouchableOpacity>
-           
           </View>
         </View>
       </Modal>
