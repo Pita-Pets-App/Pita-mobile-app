@@ -34,7 +34,7 @@ export default function App() {
     <NavigationContainer>
 
 
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Welcome1">
         <Stack.Screen
         name="Home"
         component={Home}
