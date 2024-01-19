@@ -8,6 +8,7 @@ function Edit(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
     
+        
         // Handle the form submission logic here
         console.log("Form submitted:", { firstName, lastName, email, password });
       };
