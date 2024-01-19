@@ -72,48 +72,5 @@ const Addmsg = async (req, res) => {
   }
 };
 
-// const OneEvent = async (req, res) => {
-//     console.log("hh",req.params);
-//     try {
-//         const result = await Event.findOne({where:{id:req.params.id}});
-//         console.log("hhhh",result);
-
-//             const searchUserEmail = await Users.findOne({ where: { email: result.dataValues.email } });
-
-//             if (searchUserEmail) {
-//                 result.dataValues.owner = searchUserEmail;
-//             } else {
-//                 const searchProviderEmail = await Provider.findOne({ where: { email: result.dataValues.email } });
-
-//                 if (searchProviderEmail) {
-//                     result.dataValues.owner = searchProviderEmail;
-//                 } else {
-//                     result.dataValues.owner = "Error Finding Email of Event Creator";
-//                 }
-//             }
-
-//         res.json(result);
-//     } catch (error) {
-//         res.send(error);
-//     }
-// }
-
-// const UpdateEvent= async(req,res) => {
-//     try {
-//     const result=await Event.update(req.body,{where:req.params})
-//     res.json(result)
-//     } catch (error) {
-//     res.send(error)
-//     }
-// };
-
-// const DeleteLEvent= async(req,res) => {
-//     try {
-//     const result=await Event.destroy({where:req.params})
-//     res.json(result)
-//     } catch (error) {
-//     res.send(error)
-//     }
-// };
 
 module.exports = { GetConv, Addmsg ,getAllRomsOfUser};
