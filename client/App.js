@@ -29,6 +29,7 @@ import { Provider } from "react-redux";
 import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
 import AddPet from "./screens/UserProfile/AddPet";
+import EditPet from "./screens/PetsProfiles/EditPet";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -212,6 +213,19 @@ export default function App() {
         component={EditProfile}
         options={{
           title: 'Edit Profile',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+          <Stack.Screen
+        
+        name="EditPet"
+        component={EditPet}
+        options={{
+          title: 'Edit Pet',
           headerStyle: {
             backgroundColor: '#ffc368',
           },
