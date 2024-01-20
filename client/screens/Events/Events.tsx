@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import {
   View,
   Text,
@@ -9,16 +9,71 @@ import {
   TouchableOpacity,
   Modal,
   TextInput,
+  Pressable,
+  Alert,
 } from "react-native";
+import Pet from '../../assets/peticon.png'
+
 import { FontAwesome } from "@expo/vector-icons";
 import chien from "../../assets/chien.jpg";
-
+import { useSelector } from "react-redux";
+import * as Location from "expo-location";
+import axios from "axios";
+import { port } from "../../port";
 const { width, height } = Dimensions.get("screen");
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { format } from 'date-fns';
+import * as ImagePicker from 'expo-image-picker'; 
 
-const EventCard = () => {
+const EventCard = ({navigation}) => {
   const [showDetails, setShowDetails] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [allEvent,setAllEvent]=useState([])
 
+  const eventLocation = useSelector(
+    (state:any) => state.location.selecteEventLocation
+  ) || { longitude: '', latitude: '' };
+
+  const [latitude,setLatitude]=useState(eventLocation.latitude+"")
+
+
+
+console.log(eventLocation,"even")
+  const [form, setForm] = useState({
+    event_title: '',
+  event_description: '',
+  event_images: [],
+  event_date: Date.now(),
+  event_longitude:"" ,
+  event_latitude:"" ,
+  email: "aymen@gmail.com",
+  status: 'On Hold',
+  })
+  const [selectedImage, setSelectedImage] = useState(null);
+console.log(form.event_images,"image")
+  const selectImage = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      Alert.alert('Permission Denied', 'Permission to access camera roll is required!');
+      return;
+    }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+    if (pickerResult.canceled === true) {
+      return;
+    }
+
+    setForm({ ...form, event_images:[ (pickerResult as any).uri ]});
+    setSelectedImage((pickerResult as any).uri);
+
+  };
+  console.log(form,"form")
+
+const [loc,setLoc]=useState("")
+console.log(loc,"loc")
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
@@ -27,144 +82,78 @@ const EventCard = () => {
     setShowModal(!showModal);
   };
 
-  const styles = StyleSheet.create({
-    container: {
-      backgroundColor: "#fff",
-      borderRadius: 15,
-      margin: 15,
-      overflow: "hidden",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 3,
-      },
-      shadowOpacity: 0.27,
-      shadowRadius: 4.65,
-      elevation: 6,
-    },
-    image: {
-      width: "100%",
-      height: height * 0.3,
-      borderTopLeftRadius: 15,
-      borderTopRightRadius: 15,
-      borderBottomLeftRadius: 15,
-      borderBottomRightRadius: 15,
-    },
-    overlay: {
-      ...StyleSheet.absoluteFillObject,
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
-      justifyContent: "flex-end",
-      padding: 15,
-      borderRadius: 15,
-    },
-    createdByContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
-    createdBy: {
-      fontSize: 18,
-      fontWeight: "bold",
-      color: "#ffffff",
-    },
-    profileIcon: {
-      marginRight: 10,
-    },
-    content: {
-      padding: 20,
-    },
-    title: {
-      fontSize: 22,
-      fontWeight: "bold",
-      marginBottom: 10,
-      color: "#FFA500", // Light Orange
-    },
-    description: {
-      fontSize: 16,
-      marginBottom: 5,
-      color: "#333333", // Darker Gray
-    },
-    date: {
-      fontSize: 16,
-      fontWeight: "bold",
-      marginBottom: 5,
-      color: "#333333", // Darker Gray
-    },
-    status: {
-      fontSize: 16,
-      marginBottom: 10,
-      color: "#333333", // Darker Gray
-    },
-    customStyle: {
-      backgroundColor: "#FFA500", // Light Orange
-      borderWidth: 2,
-      borderColor: "black",
-    },
-    customText: {
-      color: "#333333", // Darker Gray
-      fontSize: 20,
-    },
-    buttonContainer: {
-      width: "100%",
-      alignItems: "center",
-      marginBottom: 10,
-    },
-    addButton: {
-      backgroundColor: "#FFA500", // Light Orange
-      padding: 15,
-      borderRadius: 10,
-      width: "100%",
-      alignItems: "center",
-    },
-    addButtonText: {
-      color: "#fff",
-      fontSize: 18,
-      fontWeight: "bold",
-    },
-    modalContainer: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "rgba(0,0,0,0.5)",
-    },
-    modalContent: {
-      backgroundColor: "#fff",
-      borderRadius: 10,
-      padding: 20,
-      width: width * 0.8,
-      alignItems: "center",
-    },
-    input: {
-      borderColor: "#ddd",
-      borderWidth: 1,
-      borderRadius: 5,
-      height: 40,
-      width: "100%",
-      marginBottom: 10,
-      paddingLeft: 10,
-    },
-    inputContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-start", // Updated from "center" to "flex-start"
-        marginBottom: 10,
-        borderWidth: 1,
-        borderRadius: 12,
-        padding: 5,
-        borderColor: "#ddd",
-      },
+const getAllevent=async()=>{
+  try {
+    const getEvent=await axios.get(`${port}/api/events`)
+    setAllEvent(getEvent.data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+const createEvent = async () => {
+  setForm({...form,event_latitude:eventLocation.latitude+"",event_longitude:eventLocation.longitude+""})
+  try {
+    const created = await axios.post(`${port}/api/events}`, form);
+    console.log("Event created successfully:", created.data);
+    Alert.alert("You successfully created your event");
+  } catch (error) {
+throw error
+  }
+};
+  useEffect(() => {
+ 
+    getUserLocationAndNearestAddress();
+    getAllevent()
+  }, [eventLocation.latitude,eventLocation.longitude,loc]);
+  const getUserLocationAndNearestAddress = async () => {
+    try {
+      const nearestAddressResponse = await Location.reverseGeocodeAsync({
+        latitude: JSON.parse(eventLocation).latitude,
+        longitude: JSON.parse(eventLocation).longitude,
+      });
+  
+      if (nearestAddressResponse.length > 0) {
+        const nearestAddress = nearestAddressResponse[0];
+        const place = `${nearestAddress.city}${nearestAddress.region} ${nearestAddress.country}`;
+        setLoc(place);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const handleAddEvent = () => {
+    toggleModal();  
+    createEvent();  
+  };
+  const convertAdress = async (latitude,longitude) => {
+   
+      const nearestAddressResponse = await Location.reverseGeocodeAsync({
+        latitude: JSON.parse(latitude).latitude,
+        longitude: JSON.parse(longitude).longitude,
+     
+      })
+        const nearestAddress = nearestAddressResponse[0];
+        const place =  `${nearestAddress.city}${nearestAddress.region} ${nearestAddress.country}`;
+       return place
       
-    mapMarkerIcon: {
-      fontSize: 30,
-      color: "#333333", 
-    },
-    locationText: {
-      fontSize: 18,
-      color: "#333333", // Darker Gray
-      marginLeft: 5,
-    },
-  });
 
+  }
+  
+
+
+  // const handleInputChange = (e:any,content:any):any => {
+ 
+  //   setForm({...form,content:e});
+  // };
+  const handleDateChange = (event, selectedDate) => {
+    setShowDatePicker(false);
+    if (selectedDate !== undefined && event.type !== "dismissed") {
+      // handleInputChange({ target: { name: "event_date", value: selectedDate } });
+      setForm({...form,event_date:selectedDate})
+    }
+  };
+  
   return (
     <ScrollView>
       <View style={styles.buttonContainer}>
@@ -172,10 +161,21 @@ const EventCard = () => {
           <Text style={styles.addButtonText}>Add Event</Text>
         </TouchableOpacity>
       </View>
+{allEvent.map((e)=>{
+  const convertAddressText :any= convertAdress(e.event_latitude, e.event_longitude);
+
+  return(
+
 
       <View style={[styles.container, styles.customStyle]}>
-        <TouchableOpacity activeOpacity={0.7} onPress={toggleDetails}>
-          <Image style={styles.image} source={chien} />
+      <TouchableOpacity
+  onPress={() => {
+    toggleDetails();
+  }}
+  activeOpacity={0.7}
+>
+
+          <Image    style={styles.image} source={e.event_images[0]} />
           <View style={styles.overlay}>
             <View style={styles.createdByContainer}>
               <FontAwesome
@@ -184,21 +184,22 @@ const EventCard = () => {
                 color="#fff"
                 style={styles.profileIcon}
               />
-              <Text style={styles.createdBy}>Created by: OussemaChrif</Text>
+              <Text style={styles.createdBy}>Created by: AymenLahrech</Text>
             </View>
           </View>
         </TouchableOpacity>
 
         {showDetails && (
           <View style={styles.content}>
-            <Text style={[styles.title, styles.customText]}>Event Title:</Text>
-            <Text style={[styles.title, styles.customText]}>Event Description: vfjibfucdj</Text>
-            <Text style={[styles.title, styles.customText]}>Event Date: January 20, 2024</Text>
-            <Text style={[styles.title, styles.customText]}>Status: Active</Text>
+            <Text style={[styles.title, styles.customText]}>Event Title:{e.event_title}</Text>
+            <Text style={[styles.title, styles.customText]}>Event Description: {e.event_description}</Text>
+            <Text style={[styles.title, styles.customText]}>Event Date:{e.event_date}</Text>
+            <Text style={[styles.title, styles.customText]}>Status: {e.status}</Text>
+            <Text style={[styles.title, styles.customText]}>Adress: {convertAddressText}</Text>
           </View>
         )}
       </View>
-
+)})}
       <Modal
         visible={showModal}
         transparent
@@ -207,19 +208,55 @@ const EventCard = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <TextInput style={styles.input} placeholder="Event Title" />
-            <TextInput style={styles.input} placeholder="Event Description" />
-            <TextInput style={styles.input} placeholder="Event Date" />
+          <TouchableOpacity  style={styles.userImage}  onPress={selectImage}>
+     
+     {form.event_images.length>0 ? <Image source={{ uri: selectedImage}}  style={{borderRadius:width*0.2,  width:width*0.35,
+  height:height*0.16,}} />:<Image source={ Pet}   style={{borderRadius:width*0.2,  width:width*0.35,
+    height:height*0.16,}} />}
+      </TouchableOpacity>
+            <TextInput  
+               
+                 value={form.event_title}
+                 onChange={(event) => setForm({ ...form, event_title: event.nativeEvent.text })}
+                 
+            style={styles.input} placeholder="Event Title" />
+            <TextInput value={form.event_description}
+  onChange={(event) => setForm({ ...form, event_description: event.nativeEvent.text })} 
+             style={styles.input} placeholder="Event Description" />
+             <TouchableOpacity
+              style={styles.input}
+              onPress={() => setShowDatePicker(true)}
+            >
+              <Text     style={{fontSize:16}}>{format(form.event_date, 'yyyy-MM-dd')}</Text>
+            </TouchableOpacity>
+            {showDatePicker && (
+  <DateTimePicker 
+    value={new Date(form.event_date)}
+    mode="datetime"
+    display="default"
+    onChange={handleDateChange}
+  />
+)}
 
-            <View style={styles.inputContainer}>
-              <TouchableOpacity>
-                <FontAwesome name="map-marker" style={styles.mapMarkerIcon} />
-              </TouchableOpacity>
-              <Text style={styles.locationText}>Location</Text>
-            </View>
-
-            <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
-              <Text style={styles.addButtonText}>Add Event</Text>
+{eventLocation.longitude==="" && eventLocation.latitude==="" ? (
+          <Pressable
+            onPress={() => 
+              
+          {    setShowModal(false)
+            navigation.navigate("MapForEvent")}
+              
+            }
+          >
+            {/* <Loc style={styles.icon} /> */}
+            <Text>Use Your Event Location </Text>
+          </Pressable>
+        ) : (
+          <Text style={styles.locationText}>{loc}</Text>
+        )}
+            <TouchableOpacity style={styles.addButton} 
+      onPress={() => handleAddEvent()}
+              >
+              <Text style={styles.addButtonText}    >Add  Event</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -228,4 +265,158 @@ const EventCard = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    margin: 15,
+    overflow: "hidden",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
+  },
+  userImage:{
+  
+    borderRadius:width*0.5,
+    width:width*0.35,
+    height:height*0.16,
+    justifyContent:"center",
+    alignItems:"center",
+    backgroundColor:"red"
+   },
+  image: {
+    width: "100%",
+    height: height * 0.3,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    justifyContent: "flex-end",
+    padding: 15,
+    borderRadius: 15,
+  },
+  createdByContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  createdBy: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#ffffff",
+  },
+  profileIcon: {
+    marginRight: 10,
+  },
+  content: {
+    padding: 20,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 10,
+    color: "#FFA500", 
+  },
+  description: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: "#333333", 
+  },
+  date: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+    color: "#333333", 
+  },
+  status: {
+    fontSize: 16,
+    marginBottom: 10,
+    color: "#333333", 
+  },
+  customStyle: {
+    backgroundColor: "#FFA500", 
+    borderWidth: 2,
+    borderColor: "black",
+  },
+  customText: {
+    color: "#333333", 
+    fontSize: 20,
+  },
+  buttonContainer: {
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  addButton: {
+    backgroundColor: "#FFA500", 
+    padding: 15,
+    borderRadius: 10,
+    width: "100%",
+    alignItems: "center",
+  },
+  addButtonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalContent: {
+    backgroundColor: "wh",
+    borderRadius: 10,
+    padding: 20,
+    width: width * 0.8,
+    alignItems: "center",
+    height:height*0.5,
+    flexDirection:"column",
+    justifyContent:"center",
+    alignContent:"center",
+    gap:10,
+    backgroundColor: "white",
+
+  },
+  input: {
+    borderColor: "#ddd",
+    borderWidth: 1,
+    borderRadius: 5,
+    height: 40,
+    width: "100%",
+    paddingLeft: 10,
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  inputContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "flex-start", 
+    
+      borderWidth: 1,
+      borderRadius: 12,
+      padding: 5,
+      borderColor: "#ddd",
+    },
+    
+  mapMarkerIcon: {
+    fontSize: 30,
+    color: "#333333", 
+  },
+  locationText: {
+    fontSize: 18,
+    color: "#333333", 
+  
+  },
+});
 export default EventCard;

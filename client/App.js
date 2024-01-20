@@ -27,6 +27,7 @@ import store from "./store/store";
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
+import MapForEvent from "./screens/MapForEvent/MapForEvent";
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,12 @@ export default function App() {
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="MapForEvent"
+        component={MapForEvent}
         options={{
           headerShown:false
         }} />
