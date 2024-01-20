@@ -20,7 +20,10 @@ const EditProfile: React.FC = () => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [newP, setNewP] = useState("");
+  const [conf, setConf] = useState("");
+  const [pass,setPass] = useState(true);
+  const [pword,setPword] = useState(true);
   const [image, setImage] = useState<string | null>(null);
   const navigation=useNavigation()
 
@@ -77,13 +80,29 @@ const EditProfile: React.FC = () => {
     UserData()
   },[])
   const updateProfile=async()=>{
-    const pass=await axios.put(`${port}/api/users/1`,{
+    if(fname===""||lname===""){
+        setPass(false)
+        Alert.alert(
+            "Please fill your info correctly"
+        )
+    }
+    else if (conf!==newP){
+        setPass(true)
+        setPword(false)
+        Alert.alert(
+            "New Password Didn't Match"
+        )
+    }
+    else {
+        setPass(true)
+        setPword(true)
+    const passs=await axios.put(`${port}/api/users/1`,{
         fname,
         lname,
-        image
+        image,
     })
     navigation.navigate("UserProfile" as never)
-
+}
   }
   return (
     <ScrollView>
@@ -95,13 +114,13 @@ const EditProfile: React.FC = () => {
         <View style={styles.allInput}>
       <View style={{display:'flex',flexDirection:'row',gap:20}} >
         <TextInput
-          style={styles.inputname}
+           style={pass ? styles.inputname : styles.non}
           placeholder=" Your First Name"
           value={fname}
           onChangeText={(text) => setFname(text)}
         />
         <TextInput
-          style={styles.inputname}
+          style={pass ? styles.inputname : styles.non}
           placeholder=" Your Family Name"
           value={lname}
           onChangeText={(text) => setLname(text)}
@@ -115,18 +134,18 @@ const EditProfile: React.FC = () => {
           onChangeText={(text) => setPassword(text)}
         />
         <TextInput
-          style={styles.input}
+          style={pword?styles.input:styles.inputn}
           placeholder="New Password"
           secureTextEntry
-          value={password}
-          onChangeText={(text) => setPassword(text)}
+          value={newP}
+          onChangeText={(text) => setNewP(text)}
         />
         <TextInput
-          style={styles.input}
+          style={pword?styles.input:styles.inputn}
           placeholder="Confirme Password"
+          value={conf}
           secureTextEntry
-          value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text) => setConf(text)}
         />
 
         <TouchableOpacity
@@ -167,6 +186,15 @@ const styles = StyleSheet.create({
     borderColor: "#ffc368",
     borderWidth: 2,
   },
+  inputn: {
+    backgroundColor: "rgb(238, 238, 238)",
+    width: width * 0.85,
+    height: height * 0.07,
+    borderRadius: 10,
+    textAlign: "center",
+    borderColor: "red",
+    borderWidth: 2,
+  },
   inputname: {
     backgroundColor: "rgb(238, 238, 238)",
     width: width * 0.4,
@@ -174,6 +202,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     textAlign: "center",
     borderColor: "#ffc368",
+    borderWidth: 2,
+  },
+  non: {
+    backgroundColor: "rgb(238, 238, 238)",
+    width: width * 0.4,
+    height: height * 0.07,
+    borderRadius: 10,
+    textAlign: "center",
+    borderColor: "red",
     borderWidth: 2,
   },
   allInput: {
