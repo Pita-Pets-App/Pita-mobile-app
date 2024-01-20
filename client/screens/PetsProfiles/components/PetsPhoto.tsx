@@ -1,20 +1,21 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
 import bele from '../../../assets/profile.jpg';
 
 const { width, height } = Dimensions.get('screen');
 
-const PetsPhoto: React.FC = (): React.ReactElement => {
+const PetsPhoto: React.FC<{ name: string; image: string[] }> = ({name,image}): React.ReactElement => {
+
+  const img=image?image[0]:"no"
   return (
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.View}>
           <TouchableOpacity style={styles.imageContainer}>
-            <Image source={bele} style={styles.image}  />
+            <Image source={{uri:img}} style={styles.image}  />
           </TouchableOpacity>
           <View style={styles.nameContainer}>
-            <Text  style={{fontSize:30,fontWeight:"bold"}}>Bella</Text>
+            <Text  style={{fontSize:30,fontWeight:"bold"}}>{name}</Text>
           </View>
         </View>
       </View>

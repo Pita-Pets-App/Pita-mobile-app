@@ -26,6 +26,9 @@ import welcome3 from "./screens/welcomingPages/welcome3";
 import store from "./store/store";
 import Map from "./screens/MapForUser/Map"
 import { Provider } from "react-redux";
+import EditProfile from "./screens/UserProfile/EditProfile";
+import AllPets from "./screens/UserProfile/AllPetsU";
+import AddPet from "./screens/UserProfile/AddPet";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -195,6 +198,47 @@ export default function App() {
         component={PetsProfile}
         options={{
           title: 'Pet Profile',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+
+<Stack.Screen
+        
+        name="EditProfile"
+        component={EditProfile}
+        options={{
+          title: 'Edit Profile',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+<Stack.Screen
+        
+        name="AllPets"
+        component={AllPets}
+        options={{
+          title: 'All Pets',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+
+<Stack.Screen
+        
+        name="AddPet"
+        component={AddPet}
+        options={{
+          title: 'Add Pet',
           headerStyle: {
             backgroundColor: '#ffc368',
           },

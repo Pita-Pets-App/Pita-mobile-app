@@ -5,7 +5,7 @@ import dog1 from '../../../assets/ownerdog2.png'
 import dog2 from '../../../assets/ownerdog1.png'
 import peticon from '../../../assets/peticon.png'
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { port } from '../../../port';
 
 interface UserPetsProps {
@@ -18,6 +18,11 @@ interface Pets {
     birth_date:string,
     pet_images:any[]
 }
+type PetsProfileRouteParams = {
+    PetsProfile: {
+      petData: Pets;
+    };
+  };
 
 const { width, height } = Dimensions.get('screen')
 const UserPets: React.FC <UserPetsProps>= ({pets}) => {
@@ -34,14 +39,16 @@ const UserPets: React.FC <UserPetsProps>= ({pets}) => {
             <Text style={{fontWeight:'bold',fontSize: 18}}>My Pets</Text>
             </View>
             <View style={{borderColor:"#ffc368",borderWidth:1,borderRadius:20,padding:5}}>
-            <Text style={{color:"#ffc368",fontWeight:"bold"}}>See All</Text>
+            <TouchableOpacity onPress={()=>{navigation.navigate('AllPets' as never)}}><Text style={{color:"#ffc368",fontWeight:"bold"}}>See All</Text></TouchableOpacity>
             </View>
             </View>
         <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15,justifyContent:"space-around",paddingHorizontal:15}}>
            {pets?.map((el)=>(
-        <TouchableOpacity key={(el.id).toString()} onPress={()=>{navigation.navigate('PetsProfile' as never)}}><Image style={styles.PetsImage} source={{uri:el.pet_images[0]}}></Image></TouchableOpacity>
+        <TouchableOpacity key={(el.id).toString()} onPress={()=>{ navigation.navigate('PetsProfile' as never, {
+            petData: el
+          } as RouteProp<PetsProfileRouteParams, 'PetsProfile'>)}}><Image style={styles.PetsImage} source={{uri:el.pet_images[0]}}></Image></TouchableOpacity>
         ))}
-        <TouchableOpacity><Image style={styles.PetsImage} source={addPet}></Image></TouchableOpacity>
+        <TouchableOpacity onPress={()=>{navigation.navigate('AddPet' as never)}}><Image style={styles.PetsImage} source={addPet}></Image></TouchableOpacity>
         </View>
         </View>
     );

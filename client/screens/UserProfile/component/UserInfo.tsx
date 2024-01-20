@@ -4,7 +4,7 @@ import logOut from '../../../assets/logout.png'
 import email from '../../../assets/email.png'
 import edit from '../../../assets/edit.png'
 import axios from 'axios';
-
+import { useNavigation } from '@react-navigation/native';
 interface UserInfoProps {
     UserInf: {
         fname:string;
@@ -16,7 +16,7 @@ interface UserInfoProps {
 
 const { width, height } = Dimensions.get('screen')
 const UserInfo: React.FC<UserInfoProps> = ({UserInf}) => {
-   
+   const navigation=useNavigation()
     return (
         <View style={styles.petContainer}>
             <View style={styles.UserNameContainer}>
@@ -31,7 +31,7 @@ const UserInfo: React.FC<UserInfoProps> = ({UserInf}) => {
                 <Image style={{width:width*0.055,height:height*0.0185}} source={email}></Image>
                 <Text>{UserInf.email}</Text>
             </View>
-            <TouchableOpacity><Image style={{width:width*0.08,height:height*0.035}} source={edit}></Image></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{navigation.navigate('EditProfile' as never)}} ><Image style={{width:width*0.08,height:height*0.035}} source={edit}></Image></TouchableOpacity>
             </View>
 
         </View>
