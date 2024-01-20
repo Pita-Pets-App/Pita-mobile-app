@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions, Image, FlatList,TextInput,TouchableOpacity,Keyboard } from 'react-native';
-import avatar  from "../../assets/user.jpg"
 import axios from 'axios';
 import { port } from '../../port';
 import { useNavigation } from '@react-navigation/native';

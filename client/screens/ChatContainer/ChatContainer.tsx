@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
-import avatar from "../../assets/user.jpg";
 import axios from 'axios';
 import { port } from '../../port';
-import { useNavigation } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -34,12 +33,12 @@ const ChatContainer: React.FC = (): React.ReactElement => {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
-  onPress={() => {
-  navigation.navigate("ChatPage", {
-    receiver: item[0].id,
-  } as RouteProp<RootStackParamList, 'ChatPage'>);
-}}
->
+    onPress={() => {
+      navigation.navigate("ChatPage", {
+        receiver: item[0].id,
+      } as RouteProp<RootStackParamList, 'ChatPage'>);
+    }}
+  >
 
     <View style={styles.pageContainer}>
       <Image source={{ uri: item[0].image }} style={{ width: width * 0.2, height: height * 0.09, borderRadius: 60 }} />

@@ -14,28 +14,46 @@ import Navbar from "../Home/Components/Navbar";
 import axios from "axios";
 import { port } from "../../port";
 
+interface UserInfo {
+  image:string;
+
+}
+interface UserInfoProps {
+  image: string;
+  fname: string;
+  lname: string;
+  email: string;
+}
+
 const { width, height } = Dimensions.get("screen");
 const UserProfile: React.FC = () => {
-  const [hhh,setHhh]=useState([])
+  const [userInfo, setUserInfo] = useState<UserInfoProps>({
+    image: 'nothing',
+    fname: '',
+    lname: '',
+    email: '',
+  });
+  const [pets,setPets]=useState([])
   const getData=async()=>{
     const result=await axios.get(`${port}/api/users/1`)
-    setHhh(result.data);
-
-    
+    setUserInfo(result.data);
+    setPets(result.data.pets)
 }
 
 useEffect(()=>{
     
     getData()
 },[])
-console.log(hhh);
+
+console.log(pets);
+console.log(userInfo.image);
   return (
     <View style={styles.container}>
     <ScrollView>
-        <View><Image style={{width:width*1,height:height*0.35}} source={user}></Image></View>
+        <View><Image style={{width:width*1,height:height*0.35}} source={{uri:userInfo?.image}}></Image></View>
       <View style={styles.UsersProfile}>
-        <UserInfo />
-        <UserPets />
+        <UserInfo UserInf={userInfo}  />
+        <UserPets pets={pets}/>
       </View>
     </ScrollView>
     <Navbar/>
