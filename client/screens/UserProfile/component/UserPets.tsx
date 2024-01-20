@@ -8,22 +8,39 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import { port } from '../../../port';
 
+interface UserPetsProps {
+    pets: Pets[];
+  }
+interface Pets {
+    id:Number,
+    pet_name:string,
+    pet_race:string,
+    birth_date:string,
+    pet_images:any[]
+}
 
 const { width, height } = Dimensions.get('screen')
-const UserPets: React.FC = () => {
+const UserPets: React.FC <UserPetsProps>= ({pets}) => {
 
     const navigation=useNavigation()
+    console.log(pets,"hhh");
     
     
     return (
         <View style={styles.petContainer}>
+            <View style={{display:"flex",flexDirection:'row',justifyContent:'space-between'}}>
             <View style={styles.myPets}>
             <Image style={{width:width*0.08,height:height*0.035}} source={peticon}></Image>
             <Text style={{fontWeight:'bold',fontSize: 18}}>My Pets</Text>
             </View>
+            <View style={{borderColor:"#ffc368",borderWidth:1,borderRadius:20,padding:5}}>
+            <Text style={{color:"#ffc368",fontWeight:"bold"}}>See All</Text>
+            </View>
+            </View>
         <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15,justifyContent:"space-around",paddingHorizontal:15}}>
-        <TouchableOpacity onPress={()=>{navigation.navigate('PetsProfile' as never)}}><Image style={styles.PetsImage} source={dog1}></Image></TouchableOpacity>
-        <TouchableOpacity><Image style={styles.PetsImage} source={dog2}></Image></TouchableOpacity>
+           {pets?.map((el)=>(
+        <TouchableOpacity key={(el.id).toString()} onPress={()=>{navigation.navigate('PetsProfile' as never)}}><Image style={styles.PetsImage} source={{uri:el.pet_images[0]}}></Image></TouchableOpacity>
+        ))}
         <TouchableOpacity><Image style={styles.PetsImage} source={addPet}></Image></TouchableOpacity>
         </View>
         </View>
@@ -50,7 +67,7 @@ const styles = StyleSheet.create({
         marginVertical:7,
         marginHorizontal:20,
         borderRadius:20,
-        padding:10,
+        padding:15,
     }
 
 })
