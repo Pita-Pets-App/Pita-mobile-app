@@ -5,6 +5,7 @@ import email from '../../../assets/email.png'
 import edit from '../../../assets/edit.png'
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
+
 interface UserInfoProps {
     UserInf: {
         fname:string;
@@ -15,7 +16,9 @@ interface UserInfoProps {
   }
 
 const { width, height } = Dimensions.get('screen')
+
 const UserInfo: React.FC<UserInfoProps> = ({UserInf}) => {
+
    const navigation=useNavigation()
     return (
         <View style={styles.petContainer}>
