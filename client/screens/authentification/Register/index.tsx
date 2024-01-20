@@ -127,6 +127,20 @@ const Register: React.FC = () => {
         <Text style={styles.pita}>PITA PITA </Text>
       </View>
       <View style={styles.allInput}>
+      <View style={{display:'flex',flexDirection:'row',gap:20}} >
+        <TextInput
+          style={styles.inputname}
+          placeholder=" Your First Name"
+          value={formData.fname}
+          onChangeText={(text) => setFormData({ ...formData, fname: text })}
+        />
+        <TextInput
+          style={styles.inputname}
+          placeholder=" Your Family Name"
+          value={formData.lname}
+          onChangeText={(text) => setFormData({ ...formData, lname: text })}
+        />
+        </View>
         <TextInput
           style={styles.input}
           placeholder=" Enter Your Email"
@@ -141,18 +155,6 @@ const Register: React.FC = () => {
           onChangeText={(text) =>
             setFormData({ ...formData, user_password: text })
           }
-        />
-        <TextInput
-          style={styles.input}
-          placeholder=" Enter your First Name"
-          value={formData.fname}
-          onChangeText={(text) => setFormData({ ...formData, fname: text })}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder=" Enter your Family Name"
-          value={formData.lname}
-          onChangeText={(text) => setFormData({ ...formData, lname: text })}
         />
 
         <TouchableOpacity
@@ -204,6 +206,15 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: "rgb(238, 238, 238)",
     width: width * 0.85,
+    height: height * 0.07,
+    borderRadius: 10,
+    textAlign: "center",
+    borderColor: "#ffc368",
+    borderWidth: 2,
+  },
+  inputname: {
+    backgroundColor: "rgb(238, 238, 238)",
+    width: width * 0.4,
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
