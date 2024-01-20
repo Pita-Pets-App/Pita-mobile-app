@@ -34,6 +34,7 @@ const UserProfile: React.FC = () => {
     email: '',
   });
   const [pets,setPets]=useState([])
+  const [ref,setRef]=useState(false)
   const getData=async()=>{
     const result=await axios.get(`${port}/api/users/1`)
     setUserInfo(result.data);
@@ -41,9 +42,8 @@ const UserProfile: React.FC = () => {
 }
 
 useEffect(()=>{
-    
     getData()
-},[])
+},[ref])
 
 console.log(pets);
 console.log(userInfo.image);
