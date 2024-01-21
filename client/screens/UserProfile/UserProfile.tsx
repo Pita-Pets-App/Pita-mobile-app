@@ -13,7 +13,7 @@ import user from '../../assets/user.jpg'
 import Navbar from "../Home/Components/Navbar";
 import axios from "axios";
 import { port } from "../../port";
-
+import { useSelector } from 'react-redux';
 interface UserInfo {
   image:string;
 
@@ -35,6 +35,9 @@ const UserProfile: React.FC = () => {
   });
   const [pets,setPets]=useState([])
   const [ref,setRef]=useState(false)
+  // const userData = useSelector((state: RootState) => state.user.userData);
+  // console.log("redux",userData);
+  
   const getData=async()=>{
     const result=await axios.get(`${port}/api/users/1`)
     setUserInfo(result.data);
