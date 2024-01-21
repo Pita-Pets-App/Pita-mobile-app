@@ -14,7 +14,17 @@ import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import { port } from "../../port";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserData, selectUserData } from '../../lib/redux/user/userSlice';
+import { AppDispatch } from '../../lib/redux/store';
+
+
+
 const { width, height } = Dimensions.get("screen");
+
+
+
+
 
 const EditProfile: React.FC = () => {
   const [fname, setFname] = useState("");
@@ -26,6 +36,9 @@ const EditProfile: React.FC = () => {
   const [pword,setPword] = useState(true);
   const [image, setImage] = useState<string | null>(null);
   const navigation=useNavigation()
+
+  const dispatch: AppDispatch = useDispatch();
+  // const userData = useSelector((state: RootState) => state.user.userData);
 
 
 
@@ -76,9 +89,13 @@ const EditProfile: React.FC = () => {
    setImage(user.data.image);
    
   }
+  
   useEffect(()=>{
     UserData()
   },[])
+
+
+
   const updateProfile=async()=>{
     if(fname===""||lname===""){
         setPass(false)
@@ -96,14 +113,30 @@ const EditProfile: React.FC = () => {
     else {
         setPass(true)
         setPword(true)
-    const passs=await axios.put(`${port}/api/users/1`,{
-        fname,
-        lname,
-        image,
-    })
-    navigation.navigate("UserProfile" as never)
+
+        const editedData = {
+            fname,
+            lname,
+            image,
+            user_password : newP
+        }
+
+        try {
+          
+          // const actionResult = await dispatch(updateUserData(editedData));
+          const upd=await axios.put(`${port}/api/users/1`,editedData)
+          navigation.goBack();
+
+        } catch (error) {
+          console.error('Error dispatching updateUserData:', error);
+        }
+    }
+
+
+
+ 
 }
-  }
+  
   return (
     <ScrollView>
       <View style={styles.container}>

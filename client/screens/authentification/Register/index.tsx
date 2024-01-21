@@ -75,6 +75,7 @@ const Register: React.FC = () => {
     } else {
       const data = await register_me(formData);
       Alert.alert("You have successfully created your account");
+      navigation.navigate("Login" as never)
     }
   };
   const showImagePickerOptions = () => {
