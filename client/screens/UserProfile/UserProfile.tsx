@@ -54,14 +54,14 @@ const UserProfile: React.FC = () => {
 
   return (
     <View style={styles.container}>
-    <ScrollView>
+    {/* <ScrollView>
         <View><Image style={{width:width*1,height:height*0.35}} source={{uri:userData?.image}}></Image></View>
       <View style={styles.UsersProfile}>
         <UserInfo UserInf={userData}  />
         <UserPets pets={userData.pets}/>
       </View>
     </ScrollView>
-    <Navbar/>
+    <Navbar/> */}
     </View>
   );
 };

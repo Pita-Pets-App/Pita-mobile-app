@@ -34,6 +34,10 @@ import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
 import AddPet from "./screens/UserProfile/AddPet";
 import EditPet from "./screens/PetsProfiles/EditPet";
+import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
+import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -59,6 +63,10 @@ export default function App() {
         <Stack.Screen
         name="Register"
         component={Register} />
+        <Stack.Screen
+        name="DynamicScreenAllServices"
+        component={DynamicScreenAllServices} />
+         <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}

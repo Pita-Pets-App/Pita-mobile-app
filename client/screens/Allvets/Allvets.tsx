@@ -6,6 +6,7 @@ import { ScrollView, View, Text,StyleSheet ,Dimensions} from 'react-native';
 import Top from "./Components/Top"
 // import Adoptation from './Components/Adoptation';
 const { width, height } = Dimensions.get('screen')
+
 const Allvets: React.FC = () => {
     return (
         <ScrollView>
