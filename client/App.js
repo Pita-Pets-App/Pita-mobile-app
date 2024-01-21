@@ -23,7 +23,8 @@ import LostFounDetails from "./screens/L&fDetails/L&FDetails";
 import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
-import store from "./store/store";
+import store from "./lib/redux/store"
+// import store from "./store/store";
 import Map from "./screens/MapForUser/Map"
 import { Provider } from "react-redux";
 import EditProfile from "./screens/UserProfile/EditProfile";
@@ -34,11 +35,11 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <Provider   store={store}>
+    <Provider store={store}>
     <NavigationContainer>
 
 
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
         component={Home}
