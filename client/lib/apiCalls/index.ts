@@ -11,7 +11,7 @@ const api = axios.create({
 
 export const register_me = async (formData : any) => {
   try {
-      const response = await api.post('/api/users/register', formData);
+      const response = await axios.post(`${port}/api/users/register`, formData);
       return response.data;
   } catch (error) {
       console.error('Error in register (service) => ', error);
@@ -25,6 +25,7 @@ export const login_me = async (formData : any) => {
     
     const response = await axios.post(`${port}/api/users/login`, formData);
     // console.log("res",response.data);
+    console.log("login from services",response.data);
     
     return response.data;
   } catch (error) {
@@ -63,6 +64,28 @@ export const updateUserData = async (userId : Number, authToken : String, userDa
   } catch (error) {
     throw error;
   }
+}
+
+
+export const getProvidersByServicesId =async (serviceId : Number, authToken : String) => {
+
+  try {
+    const response = await axios.get(`${port}/api/provider/type/${serviceId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+      // console.log("service index",response.data);
+      
+    return response.data;
+    
+  } catch (error) {
+    throw error;
+  }
+  
 }
 
 export default api;

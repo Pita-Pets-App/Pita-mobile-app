@@ -14,6 +14,8 @@ import { port } from "../../../port";
 import { useNavigation } from "@react-navigation/native";
 const { width, height } = Dimensions.get("screen");
 
+
+
 const AllServices: React.FC = () => {
   const [serviceData, setServiceData] = useState<Services[] | []>([]);
   const [isLoading, setIsLoading] = useState<Boolean>(true);
@@ -26,21 +28,25 @@ const AllServices: React.FC = () => {
         const result = await axios.get(`${port}/api/service`);
         setServiceData(result.data);
         setIsLoading(false)
-        console.log(result.data);
+        const data = result.data[1]
+        console.log("services from all services", data);
       } catch (error) {
         console.log(error);
       }
     };
     getData();
   }, []);
+
   return (
     <View style={styles.UsersServices}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
         serviceData.map((el, i) => (
-          <View key={i}>
-            <TouchableOpacity onPress={()=>{navigation.navigate("Allvets" as never)}} style={styles.Service}>
+          <View key ={i}>
+            <TouchableOpacity onPress={()=>{
+              navigation.navigate("DynamicScreenAllServices" as never, {serviceId : el.id} )}} 
+              style={styles.Service}>
               <Image
                 style={styles.images}
                 source={{ uri: el.service_image }}

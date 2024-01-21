@@ -24,4 +24,7 @@ declare module '*.png' {
     user: {
       userData: any;
     };
+    auth: {
+      authToken : any;
+    }
   }
