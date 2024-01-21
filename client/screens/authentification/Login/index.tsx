@@ -3,9 +3,14 @@ import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { login_me } from '../../../lib/apiCalls';
+import { useDispatch } from 'react-redux'; 
+import { setAuthTokenAction } from '../../../lib/redux/auth/authThunks';
+import { setUserData } from '../../../lib/redux/user/userSlice';
+
 
 const Login: React.FC = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
     user_Email: '',
@@ -26,12 +31,14 @@ const Login: React.FC = () => {
     try {
         const data = await login_me(formData);
   
-        if (data.success) {
-          
-          await AsyncStorage.setItem('authToken', data.token);
+        if (data) {
+          dispatch(setAuthTokenAction(data.token));
+          dispatch(setUserData(data))
   
           setLoading(false);
+
           Alert.alert('Success', data.message);
+          
           setTimeout(() => {
             navigation.navigate('Home' as never); 
           }, 2000);

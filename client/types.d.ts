@@ -19,3 +19,9 @@ declare module '*.png' {
     lname?:string,
     image?:string
   }
+
+  interface RootState {
+    user: {
+      userData: any;
+    };
+  }
