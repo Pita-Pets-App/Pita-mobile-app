@@ -3,6 +3,7 @@ const config={
     user:"root",
     password:"53037912Aa*"
 
+
 }
 
 module.exports=config

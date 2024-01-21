@@ -35,7 +35,7 @@ const AllUsersWithPets= async(req,res) => {
 };
 
 const createUser =async (req, res) =>{
-  
+  console.log(req.body,"req")
     try {
       const newUser = await Users.create({fname:req.body.fname,lname:req.body.lname,email:req.body.email,image:req.body.image,user_password:req.body.user_password});
      
@@ -43,7 +43,7 @@ const createUser =async (req, res) =>{
       newUser.dataValues.token=token
       res.status(201).send(newUser);
     } catch (error) {
-    
+    throw error
       res.status(400).json({ error: error.message });
    
     }
@@ -66,5 +66,7 @@ const DeleteUser= async(req,res) => {
     res.send(error)    
     }
 };
+
+
 
 module.exports={AllUsers,OneUser,AllUsersWithPets,createUser,UpdateUser,DeleteUser}
