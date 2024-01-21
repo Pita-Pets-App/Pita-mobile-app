@@ -16,7 +16,6 @@ import Pet from '../../assets/peticon.png'
 
 import { FontAwesome } from "@expo/vector-icons";
 import chien from "../../assets/chien.jpg";
-import { useSelector } from "react-redux";
 import * as Location from "expo-location";
 import axios from "axios";
 import { port } from "../../port";
@@ -24,6 +23,7 @@ const { width, height } = Dimensions.get("screen");
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
 import * as ImagePicker from 'expo-image-picker'; 
+import { useSelector } from "react-redux";
 
 const EventCard = ({navigation}) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -37,6 +37,7 @@ const EventCard = ({navigation}) => {
 
   const [latitude,setLatitude]=useState(eventLocation.latitude+"")
 
+  const userEmail = useSelector((state: RootState) => state.user?.userData.email);
 
 
 console.log(eventLocation,"even")
@@ -47,7 +48,7 @@ console.log(eventLocation,"even")
   event_date: Date.now(),
   event_langitude:eventLocation.longitude,
   event_lattitude:eventLocation.latitude ,
-  email: "aymen@gmail.com",
+  email: userEmail,
   status: 'On Hold',
   })
   const [selectedImage, setSelectedImage] = useState(null);
