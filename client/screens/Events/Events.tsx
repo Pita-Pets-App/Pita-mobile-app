@@ -45,8 +45,8 @@ console.log(eventLocation,"even")
   event_description: '',
   event_images: [],
   event_date: Date.now(),
-  event_longitude:"" ,
-  event_latitude:"" ,
+  event_langitude:eventLocation.longitude,
+  event_lattitude:eventLocation.latitude ,
   email: "aymen@gmail.com",
   status: 'On Hold',
   })
@@ -91,7 +91,7 @@ const getAllevent=async()=>{
   }
 }
 const createEvent = async () => {
-  setForm({...form,event_latitude:eventLocation.latitude+"",event_longitude:eventLocation.longitude+""})
+  setForm({...form,event_lattitude:eventLocation.latitude+"",event_langitude:eventLocation.longitude+""})
   try {
     const created = await axios.post(`${port}/api/events}`, form);
     console.log("Event created successfully:", created.data);
@@ -123,8 +123,9 @@ throw error
   };
   
   const handleAddEvent = () => {
-    toggleModal();  
     createEvent();  
+
+    toggleModal();  
   };
   const convertAdress = async (latitude,longitude) => {
    
@@ -162,7 +163,7 @@ throw error
         </TouchableOpacity>
       </View>
 {allEvent.map((e)=>{
-  const convertAddressText :any= convertAdress(e.event_latitude, e.event_longitude);
+  const convertAddressText :any= convertAdress(e.event_lattitude, e.event_langitude);
 
   return(
 
@@ -174,8 +175,12 @@ throw error
   }}
   activeOpacity={0.7}
 >
-
-          <Image    style={styles.image} source={e.event_images[0]} />
+<Image style={styles.image} source={Pet} />
+{/* {e.event_images[0] && typeof e.event_images[0] === 'string' ? (
+      <Image style={styles.image} source={{ uri: e.event_images[0] }} />
+    ) : (
+      <Text>Invalid Image Source</Text>
+    )} */}
           <View style={styles.overlay}>
             <View style={styles.createdByContainer}>
               <FontAwesome
