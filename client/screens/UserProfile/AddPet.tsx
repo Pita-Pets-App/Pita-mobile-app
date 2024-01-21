@@ -7,10 +7,15 @@ import {
   Dimensions,
   TextInput,
   TouchableOpacity,
-  Image
+  Image,
+  Alert,
 } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 import { port } from "../../port";
 import dog from '../../assets/dog.png'
+import cat from '../../assets/cat.png'
+import bird from '../../assets/bird.png'
+import fish from '../../assets/fish.png'
 
 interface AddForm {
   pet_name: string;
@@ -29,14 +34,62 @@ const AddPet: React.FC = () => {
     pet_weight: 0,
     pet_gender: "",
     pet_race: "",
+    pet_images:[],
     birth_date: "",
     userId:1
   });
 
+  
+  const selectImage = async () => {
+    const pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+    if (pickerResult.canceled === true) {
+      return;
+    }
+    const selected=pickerResult.assets[0]
+    setFormData({ ...formData, pet_images:[...formData.pet_images,selected.uri]  })
+  };
+
+  const takePhoto = async () => {
+    const pickerResult = await ImagePicker.launchCameraAsync();
+
+    if (pickerResult.canceled === true) {
+      return;
+    }
+    const selected=pickerResult.assets[0]
+    setFormData({ ...formData, pet_images:[...formData.pet_images,selected.uri]  })
+  };
+
+  const showImagePickerOptions = () => {
+    Alert.alert(
+      "Choose Image Source",
+      "Would you like to choose an image from the gallery or take a photo?",
+      [
+        {
+          text: "Choose from Gallery",
+          onPress: selectImage,
+        },
+        {
+          text: "Take a Photo",
+          onPress: takePhoto,
+        },
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+      ]
+    );
+  };
+  console.log("image",formData.pet_images[0]);
+  
 
   return (
-   <View><Text>Add Pet</Text>
+   <View>
    <View style={styles.header}>
+   {formData.pet_images[0] && <Image source={{uri:formData.pet_images[0]}} style={styles.selectedImage} />}
+        <TouchableOpacity onPress={showImagePickerOptions}>
+          <Text>Select Image</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.allInput}>
         <TextInput
@@ -50,25 +103,53 @@ const AddPet: React.FC = () => {
             <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
           </TouchableOpacity>
           <TouchableOpacity style={styles.choose} >
-            <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
+            <Image style={{width:width*0.13,height:height*0.04}} source={cat}></Image>
           </TouchableOpacity>
           <TouchableOpacity style={styles.choose} >
-            <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
+            <Image style={{width:width*0.11,height:height*0.04}} source={bird}></Image>
           </TouchableOpacity>
           <TouchableOpacity style={styles.choose} >
-            <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
+            <Image style={{width:width*0.13,height:height*0.04}} source={fish}></Image>
           </TouchableOpacity>
           
         </View>
+        <View style={{padding:7,width:width*0.9,display:'flex',flexDirection:'row',justifyContent:"space-between"}}>
         <TextInput
-          style={styles.input}
-          placeholder="  Enter Your Password"
-          secureTextEntry
+          style={styles.inputname}
+          placeholder="Pet Race"
           value={formData.pet_name}
           onChangeText={(text) =>
             setFormData({ ...formData, pet_name: text })
           }
         />
+        <TextInput
+          style={styles.inputname}
+          placeholder="Pet Gender"
+          value={formData.pet_name}
+          onChangeText={(text) =>
+            setFormData({ ...formData, pet_name: text })
+          }
+        />
+        </View>
+        <View style={{padding:7,width:width*0.9,display:'flex',flexDirection:'row',justifyContent:"space-between"}}>
+        <TextInput
+          style={styles.inputname}
+          placeholder="Pet Weight"
+          keyboardType="numeric"
+          value={formData.pet_name}
+          onChangeText={(text) =>
+            setFormData({ ...formData, pet_name: text })
+          }
+        />
+        <TextInput
+          style={styles.inputname}
+          placeholder="Birth Date"
+          value={formData.pet_name}
+          onChangeText={(text) =>
+            setFormData({ ...formData, pet_name: text })
+          }
+        />
+         </View>
 
         <TouchableOpacity
           style={styles.registerButton}
@@ -85,7 +166,7 @@ const AddPet: React.FC = () => {
 };
 const styles = StyleSheet.create({
   header: {
-    height: height * 0.35,
+    height: height * 0.3,
     padding: 5,
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -98,6 +179,13 @@ const styles = StyleSheet.create({
     height: height * 0.2,
     borderBottomLeftRadius: width * 0.4,
     borderBottomRightRadius: width * 0.4,
+  },
+  selectedImage: {
+    width: width * 0.6,
+    height: width * 0.6,
+    borderRadius: 10,
+    marginVertical: 10,
+
   },
   choose:{
     width:width*0.15,
@@ -138,13 +226,12 @@ const styles = StyleSheet.create({
     
   },
   inputname: {
-    backgroundColor: "rgb(238, 238, 238)",
+    backgroundColor: "#d4d4d4",
     width: width * 0.4,
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
-    borderWidth: 2,
+    fontWeight:"bold"
   },
   allInput: {
     padding: 10,
