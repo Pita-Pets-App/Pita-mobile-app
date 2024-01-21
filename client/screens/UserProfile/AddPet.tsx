@@ -10,6 +10,7 @@ import {
   Image
 } from "react-native";
 import { port } from "../../port";
+import dog from '../../assets/dog.png'
 
 interface AddForm {
   pet_name: string;
@@ -38,14 +39,27 @@ const AddPet: React.FC = () => {
    <View style={styles.header}>
       </View>
       <View style={styles.allInput}>
-      <View style={{display:'flex',flexDirection:'row',gap:20}} >
-        </View>
         <TextInput
           style={styles.input}
           placeholder="Pet Name"
           value={formData.pet_gender}
           onChangeText={(text) => setFormData({ ...formData, pet_gender: text })}
         />
+         <View style={{padding:7,width:width*0.85,display:'flex',flexDirection:'row',justifyContent:"space-between"}} >
+          <TouchableOpacity style={styles.choose} >
+            <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.choose} >
+            <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.choose} >
+            <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.choose} >
+            <Image style={{width:width*0.13,height:height*0.04}} source={dog}></Image>
+          </TouchableOpacity>
+          
+        </View>
         <TextInput
           style={styles.input}
           placeholder="  Enter Your Password"
@@ -62,7 +76,7 @@ const AddPet: React.FC = () => {
           // disabled={loading}
         >
           <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>
-            Register
+            Add Pet
           </Text>
         </TouchableOpacity>
       </View>
@@ -85,6 +99,17 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: width * 0.4,
     borderBottomRightRadius: width * 0.4,
   },
+  choose:{
+    width:width*0.15,
+    height:width*0.15,
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    borderWidth:2,
+    borderColor:"#d4d4d4",
+    padding:5,
+    borderRadius:10
+  },
   userImage: {
     position: "absolute",
     marginTop: width * 0.2,
@@ -102,13 +127,14 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
   input: {
-    backgroundColor: "grey",
+    backgroundColor: "#d4d4d4",
     width: width * 0.85,
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "grey",
-    borderWidth: 2,
+    fontWeight:"bold"
+    // borderColor: "grey",
+    // borderWidth: 2,
     
   },
   inputname: {
