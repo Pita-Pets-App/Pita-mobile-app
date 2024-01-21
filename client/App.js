@@ -26,7 +26,10 @@ import welcome3 from "./screens/welcomingPages/welcome3";
 import store from "./lib/redux/store"
 // import store from "./store/store";
 import Map from "./screens/MapForUser/Map"
+import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
+
+import MapForEvent from "./screens/MapForEvent/MapForEvent";
 import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
 import AddPet from "./screens/UserProfile/AddPet";
@@ -41,7 +44,6 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-
 
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
@@ -68,6 +70,12 @@ export default function App() {
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="MapForEvent"
+        component={MapForEvent}
         options={{
           headerShown:false
         }} />
@@ -200,6 +208,12 @@ export default function App() {
         options={{
           headerShown:false
         }} />
+        <Stack.Screen
+        
+        name="Events"
+
+        component={Events} 
+       />
 
        
         <Stack.Screen

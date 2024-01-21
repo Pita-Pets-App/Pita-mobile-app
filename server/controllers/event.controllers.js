@@ -66,11 +66,12 @@ const OneEvent = async (req, res) => {
 
 
 const AddEvent= async(req,res) => {
+    console.log('hi')
     try {
     const result=await Event.create(req.body)
     res.send(result)
     } catch (error) {
-    res.send(error)    
+ throw error 
     }
 };
 
