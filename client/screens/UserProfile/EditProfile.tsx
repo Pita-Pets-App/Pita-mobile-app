@@ -27,18 +27,18 @@ const { width, height } = Dimensions.get("screen");
 
 
 const EditProfile: React.FC = () => {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
+  const userData = useSelector((state: RootState) => state.user.userData);
+  const [fname, setFname] = useState(userData.fname);
+  const [lname, setLname] = useState(userData.lname);
   const [password, setPassword] = useState("");
   const [newP, setNewP] = useState("");
   const [conf, setConf] = useState("");
   const [pass,setPass] = useState(true);
   const [pword,setPword] = useState(true);
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string | null>(userData.image);
   const navigation=useNavigation()
 
   const dispatch: AppDispatch = useDispatch();
-  // const userData = useSelector((state: RootState) => state.user.userData);
 
 
 
@@ -82,17 +82,17 @@ const EditProfile: React.FC = () => {
       ]
     );
   };
-  const UserData=async()=>{
-   const user= await axios.get(`${port}/api/users/1`)
-   setFname(user.data.fname)
-   setLname(user.data.lname)
-   setImage(user.data.image);
+  // const UserData=async()=>{
+  //  const user= await axios.get(`${port}/api/users/1`)
+  //  setFname(user.data.fname)
+  //  setLname(user.data.lname)
+  //  setImage(user.data.image);
    
-  }
+  // }
   
-  useEffect(()=>{
-    UserData()
-  },[])
+  // useEffect(()=>{
+  //   UserData()
+  // },[])
 
 
 
@@ -118,13 +118,12 @@ const EditProfile: React.FC = () => {
             fname,
             lname,
             image,
-            user_password : newP
+            user_password : newP?newP:userData.password
         }
 
         try {
           
-          // const actionResult = await dispatch(updateUserData(editedData));
-          const upd=await axios.put(`${port}/api/users/1`,editedData)
+          const actionResult = await dispatch(updateUserData(editedData));
           navigation.goBack();
 
         } catch (error) {
