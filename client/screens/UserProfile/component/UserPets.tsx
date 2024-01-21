@@ -43,11 +43,14 @@ const UserPets: React.FC <UserPetsProps>= ({pets}) => {
             </View>
             </View>
         <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15,justifyContent:"space-around",paddingHorizontal:15}}>
-           {pets?.map((el)=>(
-        <TouchableOpacity key={(el.id).toString()} onPress={()=>{ navigation.navigate('PetsProfile' as never, {
-            petData: el
-          } as RouteProp<PetsProfileRouteParams, 'PetsProfile'>)}}><Image style={styles.PetsImage} source={{uri:el.pet_images[0]}}></Image></TouchableOpacity>
-        ))}
+          
+        {pets[0]&&<TouchableOpacity key={(pets[0]?.id).toString()} onPress={()=>{ navigation.navigate('PetsProfile' as never, { petData: pets[0]} as RouteProp<PetsProfileRouteParams, 'PetsProfile'>)}}>
+            <Image style={styles.PetsImage} source={{uri:pets[0]?.pet_images[0]}}></Image>
+            </TouchableOpacity>}
+            {pets[1]&& <TouchableOpacity key={(pets[1]?.id).toString()} onPress={()=>{ navigation.navigate('PetsProfile' as never, { petData: pets[1]} as RouteProp<PetsProfileRouteParams, 'PetsProfile'>)}}>
+            <Image style={styles.PetsImage} source={{uri:pets[1]?.pet_images[0]}}></Image>
+            </TouchableOpacity>}
+        
         <TouchableOpacity onPress={()=>{navigation.navigate('AddPet' as never)}}><Image style={styles.PetsImage} source={addPet}></Image></TouchableOpacity>
         </View>
         </View>
