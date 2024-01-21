@@ -38,7 +38,7 @@ const EditProfile: React.FC = () => {
   const navigation=useNavigation()
 
   const dispatch: AppDispatch = useDispatch();
-  const userData = useSelector((state: RootState) => state.user.userData);
+  // const userData = useSelector((state: RootState) => state.user.userData);
 
 
 
@@ -94,20 +94,7 @@ const EditProfile: React.FC = () => {
     UserData()
   },[])
 
-  const handleSavePress = async () => {
-    try {
-      // Dispatch the action to update user data
-      // const actionResult = await dispatch(updateUserData(editedData));
 
-      // Log the action result
-      // console.log('Action Result:', actionResult);
-
-      // Navigate back to the previous screen
-      navigation.goBack();
-    } catch (error) {
-      console.error('Error dispatching updateUserData:', error);
-    }
-  };
 
   const updateProfile=async()=>{
     if(fname===""||lname===""){
@@ -136,7 +123,8 @@ const EditProfile: React.FC = () => {
 
         try {
           
-          const actionResult = await dispatch(updateUserData(editedData));
+          // const actionResult = await dispatch(updateUserData(editedData));
+          const upd=await axios.put(`${port}/api/users/1`,editedData)
           navigation.goBack();
 
         } catch (error) {
@@ -146,7 +134,7 @@ const EditProfile: React.FC = () => {
 
 
 
-    navigation.goBack();
+ 
 }
   
   return (

@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
-    user_Email: '',
+    email: '',
     user_password: '',
   });
 
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   const handleSubmit = async () => {
     setLoading(true);
 
-    if (!formData.user_Email || !formData.user_password) {
+    if (!formData.email || !formData.user_password) {
       Alert.alert('Login Error', 'All fields are required');
       setLoading(false);
       return;
@@ -60,8 +60,8 @@ const Login: React.FC = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        value={formData.user_Email}
-        onChangeText={(text) => setFormData({ ...formData, user_Email: text })}
+        value={formData.email}
+        onChangeText={(text) => setFormData({ ...formData, email: text })}
       />
       <TextInput
         style={styles.input}
