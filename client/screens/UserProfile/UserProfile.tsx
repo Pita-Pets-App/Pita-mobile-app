@@ -27,36 +27,38 @@ interface UserInfoProps {
 
 const { width, height } = Dimensions.get("screen");
 const UserProfile: React.FC = () => {
-  const [userInfo, setUserInfo] = useState<UserInfoProps>({
-    image: 'nothing',
-    fname: '',
-    lname: '',
-    email: '',
-  });
-  const [pets,setPets]=useState([])
-  const [ref,setRef]=useState(false)
-  // const userData = useSelector((state: RootState) => state.user.userData);
-  // console.log("redux",userData);
+  // const [userInfo, setUserInfo] = useState<UserInfoProps>({
+  //   image: 'nothing',
+  //   fname: '',
+  //   lname: '',
+  //   email: '',
+  // });
+  // const [pets,setPets]=useState([])
+  // const [ref,setRef]=useState(false)
+
+  const userData = useSelector((state: RootState) => state.user?.userData);
+  const authData = useSelector((state: RootState) => state.auth);
+  console.log("user from user profile",userData);
+  console.log("auth from userprofule",authData);
   
-  const getData=async()=>{
-    const result=await axios.get(`${port}/api/users/1`)
-    setUserInfo(result.data);
-    setPets(result.data.pets)
-}
+  
+//   const getData=async()=>{
+//     const result=await axios.get(`${port}/api/users/1`)
+//     setUserInfo(result.data);
+//     setPets(result.data.pets)
+// }
 
-useEffect(()=>{
-    getData()
-},[ref])
+// useEffect(()=>{
+//     getData()
+// },[ref])
 
-console.log(pets);
-console.log(userInfo.image);
   return (
     <View style={styles.container}>
     <ScrollView>
-        <View><Image style={{width:width*1,height:height*0.35}} source={{uri:userInfo?.image}}></Image></View>
+        <View><Image style={{width:width*1,height:height*0.35}} source={{uri:userData?.image}}></Image></View>
       <View style={styles.UsersProfile}>
-        <UserInfo UserInf={userInfo}  />
-        <UserPets pets={pets}/>
+        <UserInfo UserInf={userData}  />
+        <UserPets pets={userData.pets}/>
       </View>
     </ScrollView>
     <Navbar/>
