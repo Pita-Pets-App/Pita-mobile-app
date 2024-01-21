@@ -285,7 +285,17 @@ export default function App() {
         <Stack.Screen
         
         name="ChatContainer"
-        component={ChatContainer} />
+        component={ChatContainer}
+        options={{
+          title: 'Chat',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false}} />
            <Stack.Screen
         name="ChatPage"
         component={ChatPage} />        

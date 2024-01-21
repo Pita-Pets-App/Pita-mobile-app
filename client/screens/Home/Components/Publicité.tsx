@@ -1,10 +1,13 @@
 import React from 'react';
-import { ScrollView, View, Text,StyleSheet,Dimensions ,Image} from 'react-native';
+import { ScrollView, View, Text,StyleSheet,Dimensions ,Image, TouchableOpacity} from 'react-native';
 import chat from "../../../assets/chat.png"
+import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('screen')
+
 const Publicite: React.FC = (): React.ReactElement => {
+    const navigation=useNavigation()
     return (
-      
+           <TouchableOpacity  onPress={()=>{navigation.navigate("ChatContainer" as never)}}>
             <View style={styles.allPages}>
                 <View style={styles.description}>
                 <Text style={{color:"white",fontSize:18,fontWeight:"bold"
@@ -14,6 +17,7 @@ const Publicite: React.FC = (): React.ReactElement => {
                 </View>
                 <Image source={chat}></Image>
             </View>
+            </TouchableOpacity>
       
     );
 };
