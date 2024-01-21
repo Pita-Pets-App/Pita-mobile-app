@@ -3,9 +3,10 @@ import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { login_me } from '../../../lib/apiCalls';
-import { useDispatch } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 import { setAuthTokenAction } from '../../../lib/redux/auth/authThunks';
 import { setUserData } from '../../../lib/redux/user/userSlice';
+// import { UseSelector } from 'react-redux';
 
 
 const Login: React.FC = () => {
@@ -13,7 +14,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
-    user_Email: '',
+    email: '',
     user_password: '',
   });
 
@@ -22,7 +23,7 @@ const Login: React.FC = () => {
   const handleSubmit = async () => {
     setLoading(true);
 
-    if (!formData.user_Email || !formData.user_password) {
+    if (!formData.email || !formData.user_password) {
       Alert.alert('Login Error', 'All fields are required');
       setLoading(false);
       return;
@@ -30,8 +31,10 @@ const Login: React.FC = () => {
       
     try {
         const data = await login_me(formData);
+        // console.log("data from Api above succes",data);
   
         if (data) {
+           console.log("data from Api succes",data);// when use useSelector the login crashes
           dispatch(setAuthTokenAction(data.token));
           dispatch(setUserData(data))
   
@@ -45,6 +48,7 @@ const Login: React.FC = () => {
 
         } else {
           setLoading(false);
+          
           Alert.alert('Error', data.message);
         }
       } catch (error) {
@@ -52,6 +56,8 @@ const Login: React.FC = () => {
         Alert.alert('Error', 'An unexpected error occurred');
       }
     };
+    
+    
   
 
   return (
@@ -60,8 +66,8 @@ const Login: React.FC = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        value={formData.user_Email}
-        onChangeText={(text) => setFormData({ ...formData, user_Email: text })}
+        value={formData.email}
+        onChangeText={(text) => setFormData({ ...formData, email: text })}
       />
       <TextInput
         style={styles.input}
