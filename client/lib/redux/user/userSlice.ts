@@ -42,6 +42,9 @@ const userSlice = createSlice({
     setUserData: (state, action: PayloadAction<any>) => {
       state.userData = action.payload;
     },
+    clearUser: (state) => {
+      state.userData = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(updateUserData.pending, (state) => {
@@ -58,7 +61,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserData } = userSlice.actions;
+export const { setUserData, clearUser } = userSlice.actions;
 export const selectUserData = (state: { user: UserState }) => state.user.userData;
 
 export default userSlice.reducer;

@@ -4,6 +4,8 @@ import authReducer from './auth/authSlice';
 import userReducer from './user/userSlice';
 import location from '../../store/location'
 import { useDispatch } from 'react-redux';
+import mapReducer from './map/mapSlice'
+import location from './map/location';
 
 
 
