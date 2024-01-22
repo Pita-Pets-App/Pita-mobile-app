@@ -31,6 +31,9 @@ const authSlice = createSlice({
     setAuthToken: (state, action) => {
       state.authToken = action.payload;
     },
+    clearToken: (state) => {
+      state.authToken = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loadAuthToken.pending, (state) => {
@@ -46,7 +49,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuthToken } = authSlice.actions;
+export const { setAuthToken, clearToken } = authSlice.actions;
 export const selectAuthToken = (state: { auth: AuthState }) => state.auth.authToken;
 
 export default authSlice.reducer;

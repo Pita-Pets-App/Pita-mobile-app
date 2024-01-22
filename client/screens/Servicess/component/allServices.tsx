@@ -43,9 +43,20 @@ const AllServices: React.FC = () => {
         <ActivityIndicator />
       ) : (
         serviceData.map((el, i) => (
+          el.service_name!=="Events"?
           <View key ={i}>
             <TouchableOpacity onPress={()=>{
               navigation.navigate("DynamicScreenAllServices" as never, {serviceId : el.id} )}} 
+              style={styles.Service}>
+              <Image
+                style={styles.images}
+                source={{ uri: el.service_image }}
+              ></Image>
+            </TouchableOpacity>
+            <Text style={styles.item}>{el.service_name}</Text>
+          </View>:<View key ={i}>
+            <TouchableOpacity onPress={()=>{
+              navigation.navigate("Events" as never)}} 
               style={styles.Service}>
               <Image
                 style={styles.images}

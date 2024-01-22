@@ -64,7 +64,16 @@ export default function App() {
         component={Register} />
         <Stack.Screen
         name="DynamicScreenAllServices"
-        component={DynamicScreenAllServices} />
+        component={DynamicScreenAllServices} 
+        options={{
+          title: 'Service',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
          <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
@@ -212,6 +221,15 @@ export default function App() {
         name="Events"
 
         component={Events} 
+        options={{
+          title: 'Events',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} 
        />
 
        
@@ -330,7 +348,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
     </Provider>
   );
