@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import {View, Text, StyleSheet, Dimensions, Image, FlatList,TextInput,TouchableOpacity,Keyboard } from 'react-native';
-import avatar  from "../../assets/user.jpg"
 import axios from 'axios';
 import { port } from '../../port';
 import { useNavigation } from '@react-navigation/native';
 import send from '../../assets/paper-plane.png'
 import io from 'socket.io-client';
+import { useSelector } from 'react-redux';
 
-const socket = io('http://192.168.103.20:3001');
+const socket = io(`http://${process.env.EXPO_PUBLIC_SERVER_IP}:3001`);
 
 const {width,height} = Dimensions.get('screen')
 
@@ -19,13 +19,13 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     const [refresh,setRefresh]=useState(false)
     const navigation = useNavigation(); 
     console.log(conv);
-    
+    const userId = useSelector((state: RootState) => state.user?.userData.id);
     const {receiver}=route.params
     console.log(receiver);
     
     const getData = async () => {
       try {
-        const result = await axios.put(`${port}/api/Chat/2`,{reciver:receiver});
+        const result = await axios.put(`${port}/api/Chat/${userId}`,{reciver:receiver});
         setName(result.data[0])
         setConv(result.data.slice(1));
       } catch (error) {
@@ -55,7 +55,7 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     const renderConv=({item})=>(
         
         <View key={item.id}>
-            {(item.user2==2&&item.msg)?<View>
+            {(item.user2==userId&&item.msg)?<View>
         <View style={{justifyContent:"center",alignItems:"flex-start",flexDirection:"column",backgroundColor:"orange", padding:10,width:width*0.5,borderRadius:20,height:height*0.05}}>
             <Text>{item.msg}</Text>
 
@@ -91,12 +91,12 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
         console.log("newMsg",newMsg);
         let obj={
             msg:newMsg,
-            user1:2,
+            user1:userId,
             user2:receiver
         }
         const result=await axios.post(`${port}/api/Chat`,obj)
         Keyboard.dismiss()  
-        await socket.emit('add', { msg: newMsg, user1: 2, user2: receiver });
+        await socket.emit('add', { msg: newMsg, user1: userId, user2: receiver });
         setConv([...conv,obj])
         setNewMsg("") 
         setRefresh(!refresh)

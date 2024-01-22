@@ -23,18 +23,28 @@ import LostFounDetails from "./screens/L&fDetails/L&FDetails";
 import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
-import store from "./store/store";
+import store from "./lib/redux/store"
+// import store from "./store/store";
 import Map from "./screens/MapForUser/Map"
+import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
+
+import MapForEvent from "./screens/MapForEvent/MapForEvent";
+import EditProfile from "./screens/UserProfile/EditProfile";
+import AllPets from "./screens/UserProfile/AllPetsU";
+import AddPet from "./screens/UserProfile/AddPet";
+import EditPet from "./screens/PetsProfiles/EditPet";
+import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
+import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <Provider   store={store}>
+    <Provider store={store}>
     <NavigationContainer>
-
-
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -53,8 +63,18 @@ export default function App() {
         name="Register"
         component={Register} />
         <Stack.Screen
+        name="DynamicScreenAllServices"
+        component={DynamicScreenAllServices} />
+         <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
+        <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="MapForEvent"
+        component={MapForEvent}
         options={{
           headerShown:false
         }} />
@@ -187,6 +207,12 @@ export default function App() {
         options={{
           headerShown:false
         }} />
+        <Stack.Screen
+        
+        name="Events"
+
+        component={Events} 
+       />
 
        
         <Stack.Screen
@@ -194,7 +220,61 @@ export default function App() {
         name="PetsProfile"
         component={PetsProfile}
         options={{
-          title: 'Add Review',
+          title: 'Pet Profile',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+
+<Stack.Screen
+        
+        name="EditProfile"
+        component={EditProfile}
+        options={{
+          title: 'Edit Profile',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+          <Stack.Screen
+        
+        name="EditPet"
+        component={EditPet}
+        options={{
+          title: 'Edit Pet',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+<Stack.Screen
+        
+        name="AllPets"
+        component={AllPets}
+        options={{
+          title: 'All Pets',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+
+<Stack.Screen
+        
+        name="AddPet"
+        component={AddPet}
+        options={{
+          title: 'Add Pet',
           headerStyle: {
             backgroundColor: '#ffc368',
           },
@@ -205,7 +285,17 @@ export default function App() {
         <Stack.Screen
         
         name="ChatContainer"
-        component={ChatContainer} />
+        component={ChatContainer}
+        options={{
+          title: 'Chat',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false}} />
            <Stack.Screen
         name="ChatPage"
         component={ChatPage} />        
@@ -240,7 +330,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      {/* <Navbar/> */}
+      <Navbar/>
     </NavigationContainer>
     </Provider>
   );

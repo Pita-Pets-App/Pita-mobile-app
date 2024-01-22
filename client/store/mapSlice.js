@@ -22,6 +22,8 @@ export const getProviderData = createAsyncThunk("map/getProviderData", async () 
     }
   });
  
+
+  
   const mapSlice = createSlice({
     name: "map",
     initialState,

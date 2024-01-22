@@ -30,7 +30,7 @@ try {
 
     const result=await axios.get(`${port}/api/service`)
     setServiceData(result.data);
-    console.log(result.data);
+    // console.log(result.data);
     
 }
 

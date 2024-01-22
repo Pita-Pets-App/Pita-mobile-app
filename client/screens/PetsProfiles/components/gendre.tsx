@@ -1,32 +1,32 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import titi2 from "../../../assets/titi2.png";
-import titi3 from "../../../assets/titi3.png";
+import titi2 from "../../../assets/wieght.png";
+import titi3 from "../../../assets/birthdate.png";
 
-import tit from "../../../assets/titi1.png";
+import tit from "../../../assets/gender.png";
 import Svg, { Path } from 'react-native-svg';
 
 const { width, height } = Dimensions.get('screen');
 
-const Poid: React.FC = (): React.ReactElement => {
+const Poid: React.FC<{gender:string,weight:number,birth_date:string}> = ({gender,weight,birth_date}): React.ReactElement => {
   return (
     <View
-    style={{justifyContent:"center",flexDirection:"column",alignItems:"center",padding:3}}>
+    style={{justifyContent:"center",flexDirection:"column",alignItems:"center",padding:5,marginBottom:20}}>
     <View style={styles.Genre}>
    
         <Image source={tit} style={styles.image} />
-        <View style={styles.textContainer}>
+        <View >
           <Text style={[styles.text, { color: '#bcbcbc' }]}>Gendre</Text>
-          <Text style={[styles.text, { color: '#bcbcbc' }]}>Femelle</Text>
+          <Text style={[styles.text, { color: '#bcbcbc' }]}>{gender}</Text>
         </View>
     </View>
     <View style={styles.Genre}>
    
    <Image source={titi2} style={styles.image} />
-   <View style={styles.textContainer}>
+   <View >
      <Text style={[styles.text, { color: '#bcbcbc' }]}>Wieght</Text>
-     <Text style={[styles.text, { color: '#bcbcbc' }]}>20</Text>
+     <Text style={[styles.text, { color: '#bcbcbc' }]}>{weight}kg</Text>
    </View>
 </View>
 <View style={styles.Genre}>
@@ -34,7 +34,7 @@ const Poid: React.FC = (): React.ReactElement => {
    <Image source={titi3} style={styles.image} />
    <View >
      <Text style={[styles.text, { color: '#bcbcbc' }]}>Birth date</Text>
-     <Text style={[styles.text, { color: '#bcbcbc' }]}>12-12-2023</Text>
+     <Text style={[styles.text, { color: '#bcbcbc' }]}>{birth_date}</Text>
    </View>
 </View>
     </View>
@@ -43,7 +43,7 @@ const Poid: React.FC = (): React.ReactElement => {
 
 const styles = StyleSheet.create({
   Genre: {
-    backgroundColor: "#ececec",
+    backgroundColor: "#fff",
     width: width,
     height: width * 0.2,
     flexDirection:"row",

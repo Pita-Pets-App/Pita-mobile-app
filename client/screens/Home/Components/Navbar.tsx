@@ -17,7 +17,7 @@ const Navbar: React.FC = (): React.ReactElement => {
         <View style={styles.navbar}>
             <TouchableOpacity onPress={()=>{navigation.navigate("Home" as never)}}><Image source={Home} style={styles.iconImage} /></TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("Map" as never)}}><Image source={location} style={styles.iconImage} /></TouchableOpacity>
-            <TouchableOpacity><Image source={message} style={styles.iconImage} /></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{navigation.navigate("ChatContainer" as never)}}><Image source={message} style={styles.iconImage} /></TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("UserProfile" as never)}}><Image source={user} style={styles.iconImage} /></TouchableOpacity>
 
         </View>
