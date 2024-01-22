@@ -2,6 +2,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/authSlice';
 import userReducer from './user/userSlice';
+import location from '../../store/location'
 import { useDispatch } from 'react-redux';
 
 
@@ -9,7 +10,8 @@ import { useDispatch } from 'react-redux';
 const store = configureStore({
   reducer: {
     user: userReducer,
-    auth: authReducer
+    auth: authReducer,
+    location:location
 }
 });
 
