@@ -44,7 +44,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -348,7 +348,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
     </Provider>
   );
