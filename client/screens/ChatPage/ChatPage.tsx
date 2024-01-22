@@ -7,7 +7,7 @@ import send from '../../assets/paper-plane.png'
 import io from 'socket.io-client';
 import { useSelector } from 'react-redux';
 
-const socket = io('http://192.168.58.155:3001');
+const socket = io(`http://${process.env.EXPO_PUBLIC_SERVER_IP}:3001`);
 
 const {width,height} = Dimensions.get('screen')
 
