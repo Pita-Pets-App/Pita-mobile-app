@@ -15,6 +15,7 @@ const GetConv = async (req, res) => {
           },
         ],
       },
+      order: [['createdAt', 'ASC']],
     });
     const other = await Users.findOne({where:{id:req.body.reciver}})
     result.unshift(other)

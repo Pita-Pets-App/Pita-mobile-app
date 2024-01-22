@@ -302,6 +302,8 @@ const [providers,setProviders]=useState([])
           `http://${process.env.EXPO_PUBLIC_SERVER_IP}:3000/api/provider`
         );
         setProviders(res.data);
+        console.log(res.data);
+        
       } catch (er) {
         console.error(JSON.stringify(er));
       }

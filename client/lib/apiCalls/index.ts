@@ -66,4 +66,26 @@ export const updateUserData = async (userId : Number, authToken : String, userDa
   }
 }
 
+
+export const getProvidersByServicesId =async (serviceId : Number, authToken : String) => {
+
+  try {
+    const response = await axios.get(`${port}/api/provider/type/${serviceId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+      // console.log("service index",response.data);
+      
+    return response.data;
+    
+  } catch (error) {
+    throw error;
+  }
+  
+}
+
 export default api;

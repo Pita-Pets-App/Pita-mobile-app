@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet ,Dimensions,TouchableOpacity} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { login_me } from '../../../lib/apiCalls';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { setAuthTokenAction } from '../../../lib/redux/auth/authThunks';
 import { setUserData } from '../../../lib/redux/user/userSlice';
-// import { UseSelector } from 'react-redux';
+const { width, height } = Dimensions.get("screen");
 
 
 const Login: React.FC = () => {
@@ -76,7 +76,15 @@ const Login: React.FC = () => {
         value={formData.user_password}
         onChangeText={(text) => setFormData({ ...formData, user_password: text })}
       />
-      <Button title={loading ? 'Logging in...' : 'Login'} onPress={handleSubmit} disabled={loading} />
+      <TouchableOpacity
+          style={styles.button}
+          onPress={handleSubmit}
+          disabled={loading}
+        >
+          <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>
+            Login
+          </Text>
+        </TouchableOpacity>
     </View>
   );
 };
@@ -94,13 +102,23 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   input: {
-    height: 40,
-    width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 8,
+    backgroundColor: "rgb(238, 238, 238)",
+    width: width * 0.85,
+    height: height * 0.07,
+    borderRadius: 10,
+    textAlign: "center",
+    borderColor: "#ffc368",
+    borderWidth: 2,
+    marginBottom:20
   },
+  button:{
+    backgroundColor: "#ffc368",
+    width: width * 0.85,
+    height: height * 0.06,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+  }
 });
 
 export default Login;

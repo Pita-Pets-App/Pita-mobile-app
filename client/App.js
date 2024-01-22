@@ -34,13 +34,16 @@ import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
 import AddPet from "./screens/UserProfile/AddPet";
 import EditPet from "./screens/PetsProfiles/EditPet";
+import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
+import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
@@ -59,6 +62,10 @@ export default function App() {
         <Stack.Screen
         name="Register"
         component={Register} />
+        <Stack.Screen
+        name="DynamicScreenAllServices"
+        component={DynamicScreenAllServices} />
+         <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
@@ -278,7 +285,17 @@ export default function App() {
         <Stack.Screen
         
         name="ChatContainer"
-        component={ChatContainer} />
+        component={ChatContainer}
+        options={{
+          title: 'Chat',
+          headerStyle: {
+            backgroundColor: '#ffc368',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false}} />
            <Stack.Screen
         name="ChatPage"
         component={ChatPage} />        
