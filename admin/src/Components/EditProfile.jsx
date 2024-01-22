@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import Cookies from "js-cookie";
 function Edit(props) {
     const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -37,10 +38,10 @@ function Edit(props) {
                             className="aspect-[0.99] object-contain object-center w-[86px] overflow-hidden max-w-full self-start"
                         />
                         <div className="text-white text-3xl font-semibold leading-9 self-stretch mt-7">
-                            Samantha
+                        {Cookies.get('name', { expires: 60 * 60 * 24 })}
                         </div>
                         <div className="text-white text-lg leading-7 self-stretch whitespace-nowrap mt-5">
-                            samantha@email.com
+                        {Cookies.get('email', { expires: 60 * 60 * 24 })}
                         </div>
                         <div className="text-white text-2xl font-semibold leading-9 self-stretch mt-32 max-md:mt-10">
                             Dashboard:
@@ -121,15 +122,7 @@ function Edit(props) {
 
                         </div>
                     </div>
-                    {/* <div className="text-zinc-900 text-2xl font-semibold self-stretch mt-5 max-md:max-w-full">
-                        Password
-                    </div>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="bg-white self-stretch flex items-center justify-between gap-5 mt-3 px-7 py-5 rounded-md border-2 border-solid border-zinc-500 max-md:max-w-full max-md:flex-wrap max-md:px-5"
-                    /> */}
+                   
                     <div className="flex items-stretch justify-between gap-5 mt-12 self-start max-md:mt-10">
               <button
                 className="text-orange-500 text-3xl whitespace-nowrap bg-white grow justify-center items-stretch px-12 py-5 rounded-md border-2 border-solid border-orange-500 max-md:px-5"
