@@ -54,7 +54,8 @@ INSERT INTO pets_app.providers VALUES (19, "Ella", "Gomez", "ella.gomez@example.
 
 
 INSERT INTO pets_app.providers VALUES (20, "Mason", "Turner", "mason.turner@example.com", "hashed_password_20",'[ "https://i.imgur.com/qwerty.png"]', "5 years", "32.7767", "-96.7970", "Passionate about promoting a healthy and active lifestyle for pets.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 4);
-
+INSERT INTO pets_app.events VALUES (1, 'Sample Event', 'This is a sample event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '["https://tse2.mm.bing.net/th?id=OIP.Aevc8-UM2ZZvvy47lpELVwHaE7&pid=Api&P=0&h=180\", "image2.jpg"]', '2024-02-01 10:00:00', '-122.4194', '37.7749', 'bassem@gmail.com', 'On Hold', '2024-01-21 13:35:56', '2024-01-21 13:35:56')
+INSERT INTO pets_app.events VALUES(2, 'Sample Event', 'This is a sample event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '["https://tse1.mm.bing.net/th?id=OIP.N7TlKpcPDT6LMG4gKYhMMAHaEe&pid=Api&P=0&h=180\", "image2.jpg"]', '2024-02-01 10:00:00', '-122.4194', '37.7749', 'ouss@gmail.com', 'On Hold', '2024-01-21 13:36:16', '2024-01-21 13:36:16')
 
 
 
