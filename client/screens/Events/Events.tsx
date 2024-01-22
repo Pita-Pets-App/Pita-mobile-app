@@ -37,7 +37,6 @@ const EventCard = ({navigation}) => {
 
   const [latitude,setLatitude]=useState(eventLocation.latitude+"")
 
-  const userEmail = useSelector((state: RootState) => state.user?.userData.email);
 
 
 console.log(eventLocation,"even")
@@ -48,7 +47,7 @@ console.log(eventLocation,"even")
   event_date: Date.now(),
   event_langitude:eventLocation.longitude,
   event_lattitude:eventLocation.latitude ,
-  email: userEmail,
+  email: "oussch1109@gmail.com",
   status: 'On Hold',
   })
   const [selectedImage, setSelectedImage] = useState(null);
@@ -87,6 +86,8 @@ const getAllevent=async()=>{
   try {
     const getEvent=await axios.get(`${port}/api/events`)
     setAllEvent(getEvent.data)
+    console.log("oooo",getEvent.data,"oooo");
+    
   } catch (error) {
     console.log(error)
   }
@@ -134,7 +135,7 @@ throw error
         latitude: JSON.parse(latitude).latitude,
         longitude: JSON.parse(longitude).longitude,
      
-      })
+      })  
         const nearestAddress = nearestAddressResponse[0];
         const place =  `${nearestAddress.city}${nearestAddress.region} ${nearestAddress.country}`;
        return place
@@ -176,7 +177,7 @@ throw error
   }}
   activeOpacity={0.7}
 >
-<Image style={styles.image} source={Pet} />
+<Image style={styles.image} source={{uri:e.event_images[0]}} />
 {/* {e.event_images[0] && typeof e.event_images[0] === 'string' ? (
       <Image style={styles.image} source={{ uri: e.event_images[0] }} />
     ) : (
@@ -190,18 +191,17 @@ throw error
                 color="#fff"
                 style={styles.profileIcon}
               />
-              <Text style={styles.createdBy}>Created by: AymenLahrech</Text>
+              <Text style={styles.createdBy}>Created by: {e.owner.fname}</Text>
             </View>
           </View>
         </TouchableOpacity>
 
         {showDetails && (
           <View style={styles.content}>
-            <Text style={[styles.title, styles.customText]}>Event Title:{e.event_title}</Text>
-            <Text style={[styles.title, styles.customText]}>Event Description: {e.event_description}</Text>
-            <Text style={[styles.title, styles.customText]}>Event Date:{e.event_date}</Text>
-            <Text style={[styles.title, styles.customText]}>Status: {e.status}</Text>
-            <Text style={[styles.title, styles.customText]}>Adress: {convertAddressText}</Text>
+            <Text style={[styles.title, styles.customText]}>Event Title : {e.event_title}</Text>
+            <Text style={[styles.title, styles.customText]}>Event Description : {e.event_description}</Text>
+            <Text style={[styles.title, styles.customText]}>Event Date:{e.createdAt.slice(0,10)}</Text>
+            <Text style={[styles.title, styles.customText]}>Adress:</Text>
           </View>
         )}
       </View>
@@ -349,7 +349,6 @@ const styles = StyleSheet.create({
     color: "#333333", 
   },
   customStyle: {
-    backgroundColor: "#FFA500", 
     borderWidth: 2,
     borderColor: "black",
   },
@@ -381,6 +380,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   modalContent: {
+    backgroundColor: "white",
     borderRadius: 10,
     padding: 20,
     width: width * 0.8,
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignContent:"center",
     gap:10,
-    backgroundColor: "white",
+   
 
   },
   input: {

@@ -23,6 +23,11 @@ const Carosel: React.FC = (): React.ReactElement => {
     navigation.navigate("Services" as never);
     
   };
+
+  const navigateToServiceDetails = (serviceId) => {
+    navigation.navigate('DynamicScreenAllServices', { serviceId });
+  };
+
   useEffect(()=>{
     const getData=async()=>{
 try {
@@ -66,9 +71,16 @@ getData()
       <ScrollView style={styles.allService} horizontal>
         <View style={styles.horizontalScrollContainer}>
           {serviceData.map((el,i)=>(
-            <TouchableOpacity key={i}><View style={styles.oneService}>
-            <Image style={{ width: 50, height: 50 }} source={{uri:el.service_image }}></Image>
-          </View></TouchableOpacity>
+            el.service_name!=="Events"?
+            <TouchableOpacity key={i} onPress={() => navigateToServiceDetails(el.id)}>
+              <View style={styles.oneService}>
+                <Image style={{ width: 50, height: 50 }} source={{uri:el.service_image }}></Image>
+              </View>
+          </TouchableOpacity>:<TouchableOpacity key={i} onPress={() => navigation.navigate("Events" as never)}>
+              <View style={styles.oneService}>
+                <Image style={{ width: 50, height: 50 }} source={{uri:el.service_image }}></Image>
+              </View>
+          </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
