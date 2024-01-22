@@ -50,6 +50,7 @@ function Login(props) {
   return (
     <div className="bg-neutral-900 flex flex-col items-stretch pl-16 pr-20 pt-10  max-md:px-5" style={{ backgroundColor: 'black' }} >
       <div className="flex items-center justify-between gap-5 mr-10 max-md:max-w-full max-md:flex-wrap max-md:mr-2.5" >
+       
         {/* <img
           loading="lazy"
           srcSet=""
