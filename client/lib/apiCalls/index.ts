@@ -88,4 +88,25 @@ export const getProvidersByServicesId =async (serviceId : Number, authToken : St
   
 }
 
+  export const updatePassword = async (userId : Number, authToken : String) =>{
+
+    try {
+      const response = await axios.get(`${port}/api/users/updatePassword/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+        console.log("updatePas in apiCall",response.data);
+        
+      return response.data;
+      
+    } catch (error) {
+      throw error;
+      }
+
+  }
+
 export default api;
