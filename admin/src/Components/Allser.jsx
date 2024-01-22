@@ -9,6 +9,7 @@ const Allser = ({ ser, veterinarian }) => {
         form.append('upload_preset', 'patient');
     
         try {
+            
           const response = await axios.post(
             'CLOUDINARY_URL=cloudinary://816311168758259:lKk_npPdSBcFtddPkZXQDEYlV7w@dvr6fxw3p',
             form,
