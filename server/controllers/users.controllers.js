@@ -49,14 +49,23 @@ const createUser =async (req, res) =>{
     }
   }
 
-const UpdateUser= async(req,res) => {
+  const UpdateUser = async (req, res) => {
     try {
-    const result=await Users.update(req.body,{where:req.params})
-    res.json(result)   
+      const userId = req.params.id;
+  
+      const result = await Users.update(req.body, { where: { id: userId } });
+  
+      if (result[0] > 0) {
+        const updatedUser = await Users.findOne({ where: { id: userId }, include: Pets });
+  
+        res.json(updatedUser);
+      } else {
+        res.json({ message: 'No user was updated.' });
+      }
     } catch (error) {
-    res.send(error)    
+      res.send(error);
     }
-};
+  };
 
 const DeleteUser= async(req,res) => {
     try {
