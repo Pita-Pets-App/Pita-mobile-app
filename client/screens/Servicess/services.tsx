@@ -2,6 +2,8 @@ import React from 'react';
 import { ScrollView, View,StyleSheet ,Dimensions} from 'react-native';
 import AllServices from './component/allServices';
 const { width, height } = Dimensions.get('screen')
+
+
 const Services: React.FC = () => {
     return (
         <ScrollView style={styles.UsersServicesp}>

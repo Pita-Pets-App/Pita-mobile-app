@@ -34,7 +34,7 @@ const PetsPhoto: React.FC<{ name: string; image: string[] }> = ({
               }}
             >
               <Image
-                style={{ width: width * 0.08, height: height * 0.035 }}
+                style={{ width: width * 0.08, height: width * 0.08 }}
                 source={edit}
               ></Image>
             </TouchableOpacity>

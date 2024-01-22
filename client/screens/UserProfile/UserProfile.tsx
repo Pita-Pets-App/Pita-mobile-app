@@ -27,31 +27,11 @@ interface UserInfoProps {
 
 const { width, height } = Dimensions.get("screen");
 const UserProfile: React.FC = () => {
-  // const [userInfo, setUserInfo] = useState<UserInfoProps>({
-  //   image: 'nothing',
-  //   fname: '',
-  //   lname: '',
-  //   email: '',
-  // });
-  // const [pets,setPets]=useState([])
-  // const [ref,setRef]=useState(false)
-
   const userData = useSelector((state: RootState) => state.user?.userData);
   const authData = useSelector((state: RootState) => state.auth);
   console.log("user from user profile",userData);
   console.log("auth from userprofule",authData);
   
-  
-//   const getData=async()=>{
-//     const result=await axios.get(`${port}/api/users/1`)
-//     setUserInfo(result.data);
-//     setPets(result.data.pets)
-// }
-
-// useEffect(()=>{
-//     getData()
-// },[ref])
-
   return (
     <View style={styles.container}>
     <ScrollView>
@@ -61,7 +41,7 @@ const UserProfile: React.FC = () => {
         <UserPets pets={userData.pets}/>
       </View>
     </ScrollView>
-    <Navbar/>
+    <Navbar/> 
     </View>
   );
 };
