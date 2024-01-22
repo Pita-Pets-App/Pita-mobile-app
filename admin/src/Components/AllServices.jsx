@@ -145,7 +145,8 @@ function DashboardOverview(props) {
           <span className="flex flex-col mt-11 max-md:mt-10">
             <img
               loading="lazy"
-              srcSet="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png"
+              src={Cookies.get('image', { expires: 60 * 60 * 24 })}
+              
               className="aspect-[0.99] object-contain object-center w-[86px] overflow-hidden max-w-full self-start"
             />
             <div className="text-white text-3xl font-semibold leading-9 self-stretch mt-7">
@@ -198,11 +199,11 @@ function DashboardOverview(props) {
                       className="aspect-[3.97] object-contain object-center w-[123px] overflow-hidden shrink-0 max-w-full self-start"
                     />
                   </div>
-                  <img
+                  {/* <img
                     loading="lazy"
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/7828f9828a0665dcbbc753ef69b3be2ba7105914e9b9c58c0f22359bf7246524?"
                     className="aspect-[8.5] object-contain object-center w-[510px] overflow-hidden mt-12 max-md:max-w-full max-md:mt-10"
-                  />
+                  /> */}
 
 
 
@@ -296,7 +297,7 @@ function DashboardOverview(props) {
                                 </div>
                               </span>
                               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-full" style={{ backgroundColor: "#28608F" }} onClick={() => handleDeleteUser(e.id)}>
-                                Delete Veterinarian
+                                Delete 
                               </button>
                             </div>
                           ))}
@@ -358,37 +359,6 @@ function DashboardOverview(props) {
                     <div className="bg-emerald-400 flex shrink-0 h-[5px] flex-col rounded-md" />
                   </div>
 
-{/* 
-                  <span className="bg-slate-100 flex w-full flex-col items-stretch mt-24 mb-2.5 pb-6 px-6 rounded-2xl max-md:mt-10 max-md:px-5">
-                    <div className="input-div">
-                      <label className="file-label">
-                        <input
-                          className="input"
-                          name="picture"
-                          type="file"
-                          onChange={handleImageUpload}
-                        />
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="1em"
-                          height="1em"
-                          strokeLinejoin="round"
-                          strokeLinecap="round"
-                          viewBox="0 0 24 24"
-                          strokeWidth="2"
-                          fill="none"
-                          stroke="currentColor"
-                          className="icon"
-                        >
-                          <polyline points="16 16 12 12 8 16"></polyline>
-                          <line y2="21" x2="12" y1="12" x1="12"></line>
-                          <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
-                          <polyline points="16 16 12 12 8 16"></polyline>
-                        </svg>
-                      </label>
-                    </div>
-
-                  </span> */}
 
 
                 </span>
