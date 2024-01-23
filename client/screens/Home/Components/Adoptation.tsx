@@ -9,7 +9,7 @@ const  Adoptation: React.FC = (): React.ReactElement=> {
     return (
         <View style={styles.allPages}>
               <View style={styles.service}>
-                <Text  style={{color:"white",fontSize:18,fontWeight:"bold"
+                <Text  style={{color:"black",fontSize:18,fontWeight:"bold"
 }}>Adoptation</Text>
                 <TouchableOpacity onPress={()=>{
                 navigation.navigate("Adoptation" as never)
