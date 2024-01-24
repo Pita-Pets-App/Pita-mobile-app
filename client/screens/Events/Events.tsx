@@ -82,9 +82,19 @@ console.log(loc,"loc")
     setShowModal(!showModal);
   };
 
+  const token = useSelector((state: RootState) => state.auth.authToken);
+  console.log("token", token);
+  
+
 const getAllevent=async()=>{
   try {
-    const getEvent=await axios.get(`${port}/api/events`)
+    const getEvent=await axios.get(`${port}/api/events`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
     setAllEvent(getEvent.data)
     console.log("oooo",getEvent.data,"oooo");
     
