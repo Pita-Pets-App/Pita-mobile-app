@@ -9,14 +9,23 @@ import {
   TouchableOpacity,
   Modal,
   TextInput,
-  Button
+  Button,
+  Alert
 
 } from "react-native";
+import { format } from "date-fns";
+
+import DateTimePicker from "@react-native-community/datetimepicker";
+import * as ImagePicker from 'expo-image-picker';
+
 import chien from "../../assets/chien.jpg";
 import { port } from "../../port";
 import axios from "axios";
 const { width, height } = Dimensions.get("screen");
 const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showImagePicker, setShowImagePicker] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [petName, setPetName] = useState("");
   const [petWeight, setPetWeight] = useState("");
@@ -27,15 +36,15 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   const [petDescription, setPetDescription] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [formData, setFormData] = useState({
-    "pet_name": petName,
-    "pet_weight":petWeight ,
-    "pet_gender":petGender ,
-    "pet_race": petRace,
-    "pet_images": petImages,
-    "birth_date": birthDate,
-    "pet_description": petDescription,
-    "status": 'Not Adopted',
-  })
+    "pet_name": "",
+    "pet_weight": 0,
+    "pet_gender": "",
+    "pet_race": "",
+    "pet_images": [],
+    "birth_date": "",
+    "pet_description": "",
+    "status": 'Lost',
+  });
 
   const handleAddEntry =async () => {
     try {
@@ -50,6 +59,31 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
     setModalVisible(false);
   };
 
+
+  const handleDateChange = (event, selectedDate) => {
+    setShowDatePicker(false);
+    if (selectedDate !== undefined && event.type !== "dismissed") {
+      setFormData({ ...formData, birth_date: format(selectedDate, 'yyyy-MM-dd') });
+    }
+  };
+  const selectImage = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      Alert.alert('Permission Denied', 'Permission to access camera roll is required!');
+      return;
+    }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+    if (pickerResult.canceled === true) {
+      return;
+    }
+
+    setFormData({ ...formData,pet_images:[ (pickerResult as any).uri ]});
+    setSelectedImage((pickerResult as any).uri);
+
+  };
   return (
     <View style={styles.alllf}>
       <View style={styles.search}>
@@ -63,7 +97,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             <Text style={{ color: "#fff", fontSize: 17 }}>Found</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bt}>
+        <TouchableOpacity    onPress={() => setModalVisible(true)} style={styles.bt}>
           <View>
             <Text style={{ color: "#fff", fontSize: 17 }}>Add</Text>
           </View>
@@ -191,33 +225,80 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             {/* Input fields for the new entry */}
             <TextInput
               style={styles.input}
-              placeholder="Pet Name"
-              value={petName}
-              onChangeText={(text) => setPetName(text)}
+              value={formData.pet_name}
+              onChangeText={(text) =>   setFormData({
+                ...formData,
+                "pet_name": text,
+              })}
             />
-            <TextInput
-              style={styles.input}
-              placeholder="Pet Weight"
-              value={petWeight}
-              onChangeText={(text) => setPetWeight(text)}
-            />
+             <TextInput
+  style={styles.input}
+  placeholder="Pet Weight"
+  value={formData.pet_weight.toString()}
+  onChangeText={(text) => {
+    const weight = parseFloat(text);
+    if (!isNaN(weight)) {
+      setFormData({
+        ...formData,
+        "pet_weight": weight,
+      });
+    }
+  }}/>
             <TextInput
               style={styles.input}
               placeholder="Pet Gender"
-              value={petGender}
-              onChangeText={(text) => setPetGender(text)}
+              value={formData.pet_gender}
+              onChangeText={(text) =>   setFormData({
+                ...formData,
+                "pet_gender": text,
+              })}
             />
             <TextInput
               style={styles.input}
-              placeholder="Pet Race"
-              value={petRace}
-              onChangeText={(text) => setPetRace(text)}
+              value={formData.pet_race}
+          onChangeText={(text) =>   setFormData({
+            ...formData,
+            "pet_race": text,
+          })}
             />
-            {/* Add other input fields as needed */}
-            
-            {/* Buttons to add or cancel the entry */}
-            <Button title="Add Entry" onPress={handleAddEntry} />
-            <Button title="Cancel" onPress={() => setModalVisible(false)} />
+              <TextInput
+              style={styles.input}
+              value={formData.pet_description}
+              onChangeText={(text) =>   setFormData({
+                ...formData,
+                "pet_description": text,
+              })}
+            />
+      <TouchableOpacity
+          style={styles.input}
+          onPress={() => setShowDatePicker(true)}
+        >
+          <Text style={styles.dateText}>{formData.birth_date || "Select Birth Date"}</Text>
+        </TouchableOpacity>
+        {showDatePicker && (
+          <DateTimePicker
+            value={formData.birth_date ? new Date(formData.birth_date) : new Date()}
+            mode="date"
+            display="default"
+            onChange={handleDateChange}
+          />
+        )}
+        <TouchableOpacity
+          style={styles.imageButton}
+          onPress={selectImage}
+        >
+          <Text style={styles.imageButtonText}>Select Photo</Text>
+        </TouchableOpacity>
+        {selectedImage && (
+          <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
+        )}
+      <TouchableOpacity    onPress={handleAddEntry}>
+        <Text>Add Lost Animal</Text>
+      </TouchableOpacity>
+           <TouchableOpacity    onPress={() => setModalVisible(false)}>
+            <Text>Cancel</Text>
+           </TouchableOpacity>
+          
           </View>
         </View>
       </Modal>
@@ -301,11 +382,16 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
+    width:width,
     justifyContent: "center",
     alignItems: "center",
+    heigth:height*0.9,
+
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContent: {
+    width:width*0.7,
+height:height*0.7,
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
@@ -316,6 +402,38 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 10,
+  },
+  saveButton: {
+    backgroundColor: "orange",
+    padding: 10,
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  saveButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize:18
+  },
+  imageButton: {
+    backgroundColor: "#ddd",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+    alignItems: "center",
+  },
+  imageButtonText: {
+    color: "#333",
+    fontWeight: "bold",
+  },
+  imagePreview: {
+    width: 100,
+    height: 100,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  dateText: {
+    fontSize: 16,
+    color: "#333",
   },
 });
 export default LostFound;
