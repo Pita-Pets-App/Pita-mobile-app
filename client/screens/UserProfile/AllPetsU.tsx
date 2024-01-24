@@ -57,7 +57,7 @@ const AllPets: React.FC = () => {
     <ScrollView>
       <View style={styles.container}>
         {petData.map((el: Pets, i: number) => (
-          <TouchableOpacity key={i} style={styles.view} onPress={()=>{navigation.navigate('PetsProfile' as never, { petData: el})}}>
+          <TouchableOpacity key={i} style={styles.view} onPress={()=>{navigation.navigate(...['PetsProfile', { petData: el}]as never)}}>
             <Image style={styles.petsImage} source={{ uri: el?.pet_images[0] }} />
             <View style={{ width: width * 0.2 }}>
               <Text style={{ fontSize: 16, fontWeight: "bold" }}>{el.pet_name}</Text>

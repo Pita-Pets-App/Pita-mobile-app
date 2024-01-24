@@ -6,6 +6,7 @@ const { createServer } = require("http")
 const db = require('./database-Sequelize');
 const usersRoute = require("./routes/users.routes");
 const petRoute = require("./routes/pets.routes");
+const providerBRoute = require("./routes/provbf.routes");
 const providerRoute = require("./routes/providers.routes");
 const LFARoute = require("./routes/LFA.routes");
 const rateRoute = require("./routes/rate.routes");
@@ -33,6 +34,7 @@ app.use(cors())
 //secured routes
 app.use("/api",usersRoute)
 app.use("/api",petRoute)
+app.use("/api",providerBRoute)
 app.use("/api",providerRoute)
 app.use("/api",LFARoute)
 app.use("/api",rateRoute)
