@@ -46,7 +46,7 @@ const AllServices: React.FC = () => {
           el.service_name!=="Events"?
           <View key ={i}>
             <TouchableOpacity onPress={()=>{
-              navigation.navigate("DynamicScreenAllServices" as never, {serviceId : el.id} )}} 
+              navigation.navigate(...["DynamicScreenAllServices" as never, {serviceId : el.id}] as never )}} 
               style={styles.Service}>
               <Image
                 style={styles.images}

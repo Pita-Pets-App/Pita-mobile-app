@@ -14,6 +14,10 @@ const eventRoute = require("./routes/event.routes");
 const serviceRoute = require("./routes/service.routes");
 const ChatRoute = require("./routes/chat.routes");
 const adminRoute = require("./routes/admin.routes");
+const authRoute = require("./routes/auth.routes")
+const authenticateToken = require ("./middlewares/authMiddelware")
+
+
 const app = express();
 const PORT = process.env.PORT || 3000
 
@@ -24,14 +28,11 @@ app.use(express.static(__dirname + "/../client/dist"));
 app.use(cors())
 
 
-//public eroutes
-// app.use("auth", authRoute)
-// app.use("home")
 
+app.use("/api",authRoute)
 
-// app.use(isAuth())
+app.use("/api", authenticateToken);
 
-//secured routes
 app.use("/api",usersRoute)
 app.use("/api",petRoute)
 app.use("/api",providerBRoute)
