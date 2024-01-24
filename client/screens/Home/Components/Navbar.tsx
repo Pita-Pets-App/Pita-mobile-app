@@ -2,12 +2,12 @@ import React from 'react';
 import { View, Image, StyleSheet, Dimensions,TouchableOpacity} from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
-import location from "../../../assets/google-maps.png";
-import Home from "../../../assets/homee.png";
-import message from "../../../assets/msgg.png";
+import location from "../../../assets/maps-and-flags.png";
+import Home from "../../../assets/homepage.png";
+import message from "../../../assets/messenger.png";
 import user from "../../../assets/usernav.png";
 import { useSelector } from 'react-redux';
-
+import {AntDesign} from 'react-native-vector-icons'
 const { width, height } = Dimensions.get('screen');
 ///#DFBDE7
 const Navbar: React.FC = (): React.ReactElement => {
@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
 
     },
     iconHome:{
-        width: width*0.084,
-        height: height*0.035,
+        width: width*0.085,
+        height: height*0.045,
         marginHorizontal: 18, 
 
     },
     iconImage: {
-        width: width*0.08,
-        height: height*0.033,
+        width: width*0.081,
+        height: height*0.036,
         marginHorizontal: 18, 
     },
     iconProfile:{

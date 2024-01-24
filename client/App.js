@@ -126,13 +126,12 @@ export default function App() {
         options={{
           title: 'Profile',
           headerStyle: {
-            backgroundColor: '#DFBDE7',
+            backgroundColor: '#fff',
           },
-          headerTintColor: '#fff',
+          headerTintColor: 'black ',
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          headerBackVisible: false,
         }} />
         <Stack.Screen
         name="Services"

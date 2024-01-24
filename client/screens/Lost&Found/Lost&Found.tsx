@@ -47,7 +47,12 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   }, [navigation]);
   return (
     <View style={styles.alllf}>
-      {/* <View style={styles.search}>
+      <View style={styles.search}>
+      <TouchableOpacity style={styles.bt} >
+          <View>
+            <Text style={{ color: "#fff", fontSize: 17 }}>All</Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.bt} >
           <View>
             <Text style={{ color: "#fff", fontSize: 17 }}>Lost</Text>
@@ -58,27 +63,8 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             <Text style={{ color: "#fff", fontSize: 17 }}>Found</Text>
           </View>
         </TouchableOpacity>
-      // </View> */}
-       {/* <View style={styles.line} /> */}
-    
-        {/* <TouchableOpacity onPress={()=>{navigation.navigate('LostFounDetails')}}>
-        <View style={styles.onepost}>
-          <Image style={styles.image} source={chien}></Image>
-          <View  style={{width:width*0.45,marginLeft:10}}>
-            <View style={styles.found}>
-              <Text style={styles.statusText}>Found</Text>
-            </View>
-            <View>
-              <View>
-                <Text style={{fontSize:20,fontWeight:"bold"}}>PetName</Text>
-              </View>
-              <View>
-                <Text>14/01/2024</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-        </TouchableOpacity> */}
+      </View>
+       <View style={styles.line} />
           <ScrollView style={styles.apdpostes}>
             {lfdata.map((el,i)=>(
         <TouchableOpacity key={i} style={{padding:5,marginBottom:30}}>
