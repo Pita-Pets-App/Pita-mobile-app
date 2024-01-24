@@ -22,7 +22,7 @@ const { width, height } = Dimensions.get("screen");
 const AddNewAdoptation: React.FC = (): React.ReactElement => {
   const [formData, setFormData] = useState({
     "pet_name": "",
-    "pet_weight": "",
+    "pet_weight": 0,
     "pet_gender": "",
     "pet_race": "",
     "pet_images": [],
@@ -43,23 +43,25 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
       }
     })();
   }, []);
+  console.log(formData,"form")
 
-  const handleInputChange = (name: string, value: string) => {
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  // const handleInputChange = (name: any, value: any) => {
+  //   setFormData({
+  //     ...formData,
+  //     value,
+  //   });
+  // };
 
   const handleSaveAdoptation = async () => {
     try {
-      // Your save logic here
+      console.log("rr");
+
       const create = await axios.post(`${port}/api/LFA`, formData);
-      // handle success
+      console.log("rr",create.data);
+
     } catch (error) {
       console.log(error);
-      // handle error
-    }
+}
   };
 
   const handleDateChange = (event, selectedDate) => {
@@ -68,62 +70,74 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
       setFormData({ ...formData, birth_date: format(selectedDate, 'yyyy-MM-dd') });
     }
   };
+  const selectImage = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-  const pickImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-
-      if (!result.cancelled) {
-        setFormData({ ...formData, pet_images: [result.uri] });
-        setSelectedImage(result.uri);
-        setShowImagePicker(false); // Close the modal after selecting an image
-      }
-    } catch (error) {
-      console.log(error);
+    if (permissionResult.granted === false) {
+      Alert.alert('Permission Denied', 'Permission to access camera roll is required!');
+      return;
     }
+
+    const pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+    if (pickerResult.canceled === true) {
+      return;
+    }
+
+    setFormData({ ...formData,pet_images:[ (pickerResult as any).uri ]});
+    setSelectedImage((pickerResult as any).uri);
+
   };
 
   return (
     <ScrollView style={{ backgroundColor: "white", margin: 2 }}>
       <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.imageButton}
-          onPress={() => setShowImagePicker(true)}
-        >
-          <Text style={styles.imageButtonText}>Select Photo</Text>
-        </TouchableOpacity>
-        {selectedImage && (
-          <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
-        )}
+    
         <Text style={styles.title}>New Animal Adoption</Text>
         <TextInput
           style={styles.input}
           placeholder="Pet Name"
           value={formData.pet_name}
-          onChangeText={(text) => handleInputChange("pet_name", text)}
+          onChangeText={(text) =>   setFormData({
+            ...formData,
+            "pet_name": text,
+          })}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Pet Weight"
-          value={formData.pet_weight}
-          onChangeText={(text) => handleInputChange("pet_weight", text)}
-        />
+      <TextInput
+  style={styles.input}
+  placeholder="Pet Weight"
+  value={formData.pet_weight.toString()}
+  onChangeText={(text) => {
+    const weight = parseFloat(text);
+    if (!isNaN(weight)) {
+      setFormData({
+        ...formData,
+        "pet_weight": weight,
+      });
+    }
+  }}
+/>
         <TextInput
           style={styles.input}
           placeholder="Pet Gender"
           value={formData.pet_gender}
-          onChangeText={(text) => handleInputChange("pet_gender", text)}
+          onChangeText={(text) =>setFormData({
+            ...formData,
+            "pet_gender": text,
+          })}
+         
         />
         <TextInput
           style={styles.input}
           placeholder="Pet Race"
           value={formData.pet_race}
-          onChangeText={(text) => handleInputChange("pet_race", text)}
+
+
+          onChangeText={(text) =>setFormData({
+            ...formData,
+            "pet_race": text,
+          })
+          }
         />
         <TouchableOpacity
           style={styles.input}
@@ -143,13 +157,28 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
           style={styles.input}
           placeholder="Pet Description"
           value={formData.pet_description}
-          onChangeText={(text) => handleInputChange("pet_description", text)}
+          onChangeText={(text) =>setFormData({
+            ...formData,
+            "pet_description": text,
+          })
+          }
+          
         />
+
+<TouchableOpacity
+          style={styles.imageButton}
+          onPress={selectImage}
+        >
+          <Text style={styles.imageButtonText}>Select Photo</Text>
+        </TouchableOpacity>
+        {selectedImage && (
+          <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
+        )}
         <TouchableOpacity
           style={styles.saveButton}
           onPress={handleSaveAdoptation}
         >
-          <Text style={styles.saveButtonText}>Add</Text>
+          <Text style={styles.saveButtonText}>Add New Animal For Adaptation</Text>
         </TouchableOpacity>
 
         {showImagePicker && (
@@ -179,12 +208,13 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    marginTop:20
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
-    justifyContent: "center",
+    
   },
   input: {
     height: 40,
@@ -203,6 +233,7 @@ const styles = StyleSheet.create({
   saveButtonText: {
     color: "white",
     fontWeight: "bold",
+    fontSize:18
   },
   imageButton: {
     backgroundColor: "#ddd",

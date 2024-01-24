@@ -43,7 +43,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Adoptation">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
         name="Home"
         component={Home}

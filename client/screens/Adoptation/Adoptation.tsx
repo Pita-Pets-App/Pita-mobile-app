@@ -78,7 +78,7 @@ const navigation=useNavigation()
 
     }>
     <View style={styles.allPag}>
-      <Image source={chien} style={styles.animalPicture}></Image>
+      <Image src={e.pet_images[0]} style={styles.animalPicture}></Image>
       <Text style={{ fontSize: 11, fontWeight: "bold" }}>
         {e.pet_name}
       </Text>

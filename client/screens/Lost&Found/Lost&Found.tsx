@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ScrollView,
   View,
@@ -7,10 +7,49 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  Modal,
+  TextInput,
+  Button
+
 } from "react-native";
 import chien from "../../assets/chien.jpg";
+import { port } from "../../port";
+import axios from "axios";
 const { width, height } = Dimensions.get("screen");
 const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
+
+  const [petName, setPetName] = useState("");
+  const [petWeight, setPetWeight] = useState("");
+  const [petGender, setPetGender] = useState("");
+  const [petRace, setPetRace] = useState("");
+  const [petImages, setPetImages] = useState([]);
+  const [birthDate, setBirthDate] = useState("");
+  const [petDescription, setPetDescription] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    "pet_name": petName,
+    "pet_weight":petWeight ,
+    "pet_gender":petGender ,
+    "pet_race": petRace,
+    "pet_images": petImages,
+    "birth_date": birthDate,
+    "pet_description": petDescription,
+    "status": 'Not Adopted',
+  })
+
+  const handleAddEntry =async () => {
+    try {
+      console.log("rr");
+
+      const create = await axios.post(`${port}/api/LFA`, formData);
+      console.log("rr",create.data);
+
+    } catch (error) {
+      console.log(error);
+}
+    setModalVisible(false);
+  };
+
   return (
     <View style={styles.alllf}>
       <View style={styles.search}>
@@ -22,6 +61,11 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
         <TouchableOpacity style={styles.bt}>
           <View>
             <Text style={{ color: "#fff", fontSize: 17 }}>Found</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.bt}>
+          <View>
+            <Text style={{ color: "#fff", fontSize: 17 }}>Add</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -136,6 +180,47 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
         </View>
         </TouchableOpacity>
       </ScrollView>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            {/* Input fields for the new entry */}
+            <TextInput
+              style={styles.input}
+              placeholder="Pet Name"
+              value={petName}
+              onChangeText={(text) => setPetName(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Pet Weight"
+              value={petWeight}
+              onChangeText={(text) => setPetWeight(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Pet Gender"
+              value={petGender}
+              onChangeText={(text) => setPetGender(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Pet Race"
+              value={petRace}
+              onChangeText={(text) => setPetRace(text)}
+            />
+            {/* Add other input fields as needed */}
+            
+            {/* Buttons to add or cancel the entry */}
+            <Button title="Add Entry" onPress={handleAddEntry} />
+            <Button title="Cancel" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -213,6 +298,24 @@ const styles = StyleSheet.create({
     borderBottomColor: '#7f7f7f',
     backgroundColor:"#fff",
     paddingVertical: 5,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    marginBottom: 20,
+    paddingLeft: 10,
   },
 });
 export default LostFound;
