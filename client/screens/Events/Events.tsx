@@ -160,9 +160,9 @@ throw error
   return (
     <ScrollView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
+        {/* <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
           <Text style={styles.addButtonText}>Add Event</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 {allEvent.map((e)=>{
   const convertAddressText :any= convertAdress(e.event_lattitude, e.event_langitude);

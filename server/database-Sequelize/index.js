@@ -16,6 +16,7 @@ PetsApp.Sequelize=Sequelize
 PetsApp.Users = require ('./users.js')(connection,DataTypes)
 PetsApp.Pets = require ('./pets.js')(connection,DataTypes)
 PetsApp.Provider = require ('./provider.js')(connection,DataTypes)
+PetsApp.ProviderBf = require ('./providerbefore.js')(connection,DataTypes)
 PetsApp.LFA = require ('./LFA.js')(connection,DataTypes)
 PetsApp.Rate = require ('./rate.js')(connection,DataTypes)
 PetsApp.Event = require ('./event.js')(connection,DataTypes)
@@ -31,6 +32,10 @@ PetsApp.Pets.belongsTo(PetsApp.Users)
 // relation between Services 1:n Provider
 PetsApp.Services.hasMany(PetsApp.Provider)
 PetsApp.Provider.belongsTo(PetsApp.Services)
+
+//
+PetsApp.Services.hasMany(PetsApp.ProviderBf)
+PetsApp.ProviderBf.belongsTo(PetsApp.Services)
 
 // Rate: relation between User n:m  Provider
 PetsApp.Users.belongsToMany(PetsApp.Provider ,{ through: PetsApp.Rate  })
