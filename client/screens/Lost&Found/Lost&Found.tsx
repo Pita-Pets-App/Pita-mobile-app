@@ -223,7 +223,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             {/* Input fields for the new entry */}
-            <TextInput
+            <TextInput placeholder="Name"
               style={styles.input}
               value={formData.pet_name}
               onChangeText={(text) =>   setFormData({
@@ -253,7 +253,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
                 "pet_gender": text,
               })}
             />
-            <TextInput
+            <TextInput placeholder="race"
               style={styles.input}
               value={formData.pet_race}
           onChangeText={(text) =>   setFormData({
@@ -261,7 +261,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             "pet_race": text,
           })}
             />
-              <TextInput
+              <TextInput placeholder="Description"
               style={styles.input}
               value={formData.pet_description}
               onChangeText={(text) =>   setFormData({
@@ -292,11 +292,11 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
         {selectedImage && (
           <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
         )}
-      <TouchableOpacity    onPress={handleAddEntry}>
+      <TouchableOpacity style={styles.AddLA}   onPress={handleAddEntry}>
         <Text>Add Lost Animal</Text>
       </TouchableOpacity>
-           <TouchableOpacity    onPress={() => setModalVisible(false)}>
-            <Text>Cancel</Text>
+           <TouchableOpacity style={ styles.cancelButton}   onPress={() => setModalVisible(false)}>
+            <Text >Cancel</Text>
            </TouchableOpacity>
           
           </View>
@@ -306,6 +306,20 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   );
 };
 const styles = StyleSheet.create({
+  cancelButton: {
+    backgroundColor: "orange", 
+    borderRadius: 20,
+    padding: 15, 
+    alignItems: "center",
+    justifyContent: "center", 
+    marginTop: 10, 
+  },
+  AddLA: {
+    backgroundColor: "orange",
+    borderRadius: 20,
+    padding: 15, 
+    alignItems: "center",
+  },
   alllf: {
     height: height,
   },
@@ -382,26 +396,25 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    width:width,
     justifyContent: "center",
     alignItems: "center",
-    heigth:height*0.9,
-
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContent: {
-    width:width*0.7,
-height:height*0.7,
+    width: width * 0.7,
+    height: height * 0.7,
+    alignSelf: 'center', 
     backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
   },
   input: {
     height: 40,
-    borderColor: "#ddd",
+    borderColor: "#ccc", 
     borderWidth: 1,
     marginBottom: 20,
-    paddingLeft: 10,
+    paddingLeft: 15, 
+    fontSize: 16, 
   },
   saveButton: {
     backgroundColor: "orange",
