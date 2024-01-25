@@ -19,6 +19,10 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios'
 import chien from "../../assets/chien.jpg";
+import like from "../../assets/coeur.png"
+import likeact from "../../assets/likeact.png"
+import commenter from "../../assets/commenter.png"
+import messager from "../../assets/messager.png"
 const { width, height } = Dimensions.get("screen");
 import { Ionicons } from "@expo/vector-icons"
 import { useSelector } from "react-redux";
@@ -167,16 +171,11 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             <Text style={active==2?styles.textact:styles.text}>Found</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity    onPress={() => setModalVisible(true)} style={styles.bt}>
-          <View>
-            <Text style={{ color: "#fff", fontSize: 17 }}>Add</Text>
-          </View>
-        </TouchableOpacity>
       </View>
        <View style={styles.line} />
           <ScrollView style={styles.apdpostes}>
             {lfdata.map((el,i)=>(
-        <TouchableOpacity key={i} style={{padding:5,marginBottom:30}}>
+        <View key={i} style={{padding:5,marginBottom:30}}>
         <View style={styles.onepost}>
           <Image style={styles.image} source={{uri:el?.user?.image}}></Image>
           <View  style={{width:width*0.45,marginLeft:10}}>
@@ -199,7 +198,21 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
         <View style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
           <Image style={{width:width*0.9,height:height*0.27,borderRadius:25}} source={{uri:el?.pet_images[0]}}></Image>
         </View>
-        </TouchableOpacity>
+        <View style={{display:"flex",flexDirection:"row",marginHorizontal:20,marginVertical:10,justifyContent:"space-between"}}>
+        <TouchableOpacity style={{display:"flex",flexDirection:'row',alignItems:"center",gap:4}}>
+          <Image style={{width:width*0.075,height:width*0.075}} source={like}></Image>
+          <Text>Likes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{navigation.navigate("comment")}}  style={{display:"flex",flexDirection:'row',alignItems:"center",gap:4}}>
+            <Image style={{width:width*0.065,height:width*0.065}} source={commenter}></Image>
+            <Text>Comments</Text></TouchableOpacity>
+          <TouchableOpacity style={{display:"flex",flexDirection:'row',alignItems:"center",gap:4}}>
+            <Image style={{width:width*0.08,height:width*0.08}} source={messager}></Image>
+            <Text>message</Text>
+            </TouchableOpacity>
+
+          </View>
+        </View>
         ))}
       </ScrollView>
       <Modal

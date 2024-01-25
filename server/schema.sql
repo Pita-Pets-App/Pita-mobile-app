@@ -19,7 +19,7 @@ INSERT INTO pets_app.providers VALUES (6, "William", "Taylor", "william.taylor@e
 
 INSERT INTO pets_app.providers VALUES (7, "Olivia", "Martinez", "olivia.martinez@example.com", "hashed_password_7", '["https://i.imgur.com/xyz123.png"]', "2 years", "39.9526", "-75.1652", "Committed to delivering personalized care for every pet.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 1);
 
-INSERT INTO pets_app.providers VALUES (8, "James", "Davis", "james.davis@example.com", "hashed_password_8", '["https://i.imgur.com/456def.png"]', "4 years", "32.7767", "-96.7970", "Experienced in handling various types of pets.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 6);
+INSERT INTO pets_app.providers VALUES (8, "James", "Davis", "james.davis@example.com", "hashed_password_8", '["https://i.imgur.com/456def.png"]', "4 years", "32.7767", "-96.7970", "Experienced in handling various types of pets.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 2);
 
 INSERT INTO pets_app.providers VALUES (9, "Sophia", "Rodriguez", "sophia.rodriguez@example.com", "hashed_password_9", '["https://i.imgur.com/789ghi.png"]', "1 year", "35.6895", "-105.9384", "Dedicated to creating a safe and happy environment for pets.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 4);
 
@@ -44,7 +44,7 @@ INSERT INTO pets_app.providers VALUES (15, "Aria", "Evans", "aria.evans@example.
  INTO pets_app.providers VALUES (16, "Ethan", "Fisher", "ethan.fisher@example.com", "hashed_password_16", '["https://i.imgur.com/uiop789.png"]', "2 years", "41.8781", "-87.6298", "Enjoys creating enriching experiences for pets.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 1);
 
 
-INSERT INTO pets_app.providers VALUES (17, "Amelia", "Cruz", "amelia.cruz@example.com", "hashed_password_17", '["https://i.imgur.com/xyz123.png"]', "4 years", "37.7749", "-122.4194", "Advocates for the well-being of animals.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 6);
+INSERT INTO pets_app.providers VALUES (17, "Amelia", "Cruz", "amelia.cruz@example.com", "hashed_password_17", '["https://i.imgur.com/xyz123.png"]', "4 years", "37.7749", "-122.4194", "Advocates for the well-being of animals.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 1);
 
 
 INSERT INTO pets_app.providers VALUES (18, "Logan", "Barnes", "logan.barnes@example.com", "hashed_password_18", '["https://i.imgur.com/456def.png"]', "1 year", "33.7490", "-84.3880", "Excels in creating a comfortable environment for pets.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 3);
@@ -54,8 +54,13 @@ INSERT INTO pets_app.providers VALUES (19, "Ella", "Gomez", "ella.gomez@example.
 
 
 INSERT INTO pets_app.providers VALUES (20, "Mason", "Turner", "mason.turner@example.com", "hashed_password_20",'[ "https://i.imgur.com/qwerty.png"]', "5 years", "32.7767", "-96.7970", "Passionate about promoting a healthy and active lifestyle for pets.", "2024-01-08 12:16:17", "2024-01-08 12:16:17", 4);
-INSERT INTO pets_app.events VALUES (1, 'Sample Event', 'This is a sample event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '["https://tse2.mm.bing.net/th?id=OIP.Aevc8-UM2ZZvvy47lpELVwHaE7&pid=Api&P=0&h=180\", "image2.jpg"]', '2024-02-01 10:00:00', '-122.4194', '37.7749', 'bassem@gmail.com', 'On Hold', '2024-01-21 13:35:56', '2024-01-21 13:35:56')
-INSERT INTO pets_app.events VALUES(2, 'Sample Event', 'This is a sample event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '["https://tse1.mm.bing.net/th?id=OIP.N7TlKpcPDT6LMG4gKYhMMAHaEe&pid=Api&P=0&h=180\", "image2.jpg"]', '2024-02-01 10:00:00', '-122.4194', '37.7749', 'ouss@gmail.com', 'On Hold', '2024-01-21 13:36:16', '2024-01-21 13:36:16')
+INSERT INTO pets_app.events VALUES (1, 'Sample Event', 'This is a sample event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '["https://tse2.mm.bing.net/th?id=OIP.Aevc8-UM2ZZvvy47lpELVwHaE7&pid=Api&P=0&h=180\", "image2.jpg"]', '2024-02-01 10:00:00', '-122.4194', '37.7749', 'bassem@gmail.com', 'On Hold', '2024-01-21 13:35:56', '2024-01-21 13:35:56');
+INSERT INTO pets_app.events VALUES(2, 'Sample Event', 'This is a sample event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '["https://tse1.mm.bing.net/th?id=OIP.N7TlKpcPDT6LMG4gKYhMMAHaEe&pid=Api&P=0&h=180\", "image2.jpg"]', '2024-02-01 10:00:00', '-122.4194', '37.7749', 'ouss@gmail.com', 'On Hold', '2024-01-21 13:36:16', '2024-01-21 13:36:16');
 
+INSERT INTO pets_app.lfas VALUES(1, 'CHiwawa',10,"Male","Dog", '["https://shorturl.at/jMRT1"]','2024-01-21 13:36:16', 'dùlsfdmlfdmsl edfsdlfdsfd fdùsfdsfsdgfsk efsdfsdfsdgsd  eglsfgsfgsdfg sgsdglsflgslglglsfglkf', '-122.4194', '37.7749', 'Not Adopted', '2024-01-21 13:36:16', '2024-01-21 13:36:16',1);
+INSERT INTO pets_app.lfas VALUES(2, 'CHiwawa',10,"Male","Dog", '["https://shorturl.at/jMRT1"]','2024-01-21 13:36:16', 'dùlsfdmlfdmsl edfsdlfdsfd fdùsfdsfsdgfsk efsdfsdfsdgsd  eglsfgsfgsdfg sgsdglsflgslglglsfglkf', '-122.4194', '37.7749', 'Not Adopted', '2024-01-21 13:36:16', '2024-01-21 13:36:16',2);
+INSERT INTO pets_app.lfas VALUES(3, 'CHiwawa',10,"Male","Dog", '["https://shorturl.at/jMRT1"]','2024-01-21 13:36:16', 'dùlsfdmlfdmsl edfsdlfdsfd fdùsfdsfsdgfsk efsdfsdfsdgsd  eglsfgsfgsdfg sgsdglsflgslglglsfglkf', '-122.4194', '37.7749', 'Lost', '2024-01-21 13:36:16', '2024-01-21 13:36:16',2);
+INSERT INTO pets_app.lfas VALUES(4, 'CHiwawa',10,"Female","Dog", '["https://shorturl.at/bftOW"]','2024-01-21 13:36:16', 'dùlsfdmlfdmsl edfsdlfdsfd fdùsfdsfsdgfsk efsdfsdfsdgsd  eglsfgsfgsdfg sgsdglsflgslglglsfglkf', '-122.4194', '37.7749', 'Found', '2024-01-21 13:36:16', '2024-01-21 13:36:16',1);
+INSERT INTO pets_app.lfas VALUES(5, 'CHiwawa',10,"Female","Dog", '["https://shorturl.at/imsAK"]','2024-01-21 13:36:16', 'dùlsfdmlfdmsl edfsdlfdsfd fdùsfdsfsdgfsk efsdfsdfsdgsd  eglsfgsfgsdfg sgsdglsflgslglglsfglkf', '-122.4194', '37.7749', 'Not Adopted', '2024-01-21 13:36:16', '2024-01-21 13:36:16',3);
 
 

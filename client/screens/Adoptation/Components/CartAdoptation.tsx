@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   ScrollView,
   View,
@@ -15,46 +15,25 @@ const { width, height } = Dimensions.get("screen");
 import chien from "../../../assets/chien.jpg";
 import exem from "../../../assets/exemple.png";
 import exem1 from "../../../assets/exemple1.png";
+import { port } from "../../../port";
+import { useDispatch,useSelector } from "react-redux";
+import axios from "axios";
 
-const CartAdoptation: React.FC = (): React.ReactElement => {
+const CartAdoptation: React.FC <any>= ({el}:any): React.ReactElement => {
   const navigation=useNavigation()
   return (
-    <View style={styles.allPages}>
-      <TouchableOpacity style={{marginBottom:25}} onPress={()=>navigation.navigate("AdoptationDetails" as never)}>
+    <View key={el.id} style={styles.allPages}>
+      <TouchableOpacity style={{marginBottom:25}} onPress={()=>navigation.navigate(...["AdoptationDetails",{petData:el}]as never)}>
     <View style={styles.allPag}>
-      <Image source={chien} style={styles.animalPicture}></Image>
+      <Image source={{uri:el.pet_images[0]}} style={styles.animalPicture}></Image>
         <View style={{marginLeft:10}} >
-        <Text style={{fontSize:18,fontWeight:"bold",marginBottom:10}}>PetName</Text>
-        <Text style={{marginBottom:10}}>14/10/2020</Text>
+        <Text style={{fontSize:18,fontWeight:"bold",marginBottom:10}}>{el.pet_name}</Text>
+        <Text style={{marginBottom:10}}>{el.createdAt.slice(8,10)+"-"+el.createdAt.slice(5,7)+"-"+el.createdAt.slice(0,4)}</Text>
         <Text >location</Text>
       </View>
-      <Image style={{width:width*0.11,height:width*0.11,position:"absolute",top:6,right:12}} source={male}></Image>
+      <Image style={{width:width*0.11,height:width*0.11,position:"absolute",top:6,right:12}} source={el.pet_gender==="Male"?male:female}></Image>
     </View>
     </TouchableOpacity>
-    <TouchableOpacity style={{marginBottom:25}} onPress={()=>navigation.navigate("AdoptationDetails" as never)}>
-    <View style={styles.allPag}>
-      <Image source={exem1} style={styles.animalPicture}></Image>
-        <View style={{marginLeft:10}} >
-        <Text style={{fontSize:18,fontWeight:"bold",marginBottom:10}}>PetName</Text>
-        <Text style={{marginBottom:10}}>14/10/2020</Text>
-        <Text >location</Text>
-      </View>
-      <Image style={{width:width*0.11,height:width*0.11,position:"absolute",top:6,right:12}} source={female}></Image>
-    </View>
-    </TouchableOpacity>
-    <TouchableOpacity style={{marginBottom:25}} onPress={()=>navigation.navigate("AdoptationDetails" as never)}>
-    <View style={styles.allPag}>
-      <Image source={exem} style={styles.animalPicture}></Image>
-        <View style={{marginLeft:10}} >
-        <Text style={{fontSize:18,fontWeight:"bold",marginBottom:10}}>PetName</Text>
-        <Text style={{marginBottom:10}}>14/10/2020</Text>
-        <Text >location</Text>
-      </View>
-      <Image style={{width:width*0.11,height:width*0.11,position:"absolute",top:6,right:12}} source={male}></Image>
-    </View>
-    </TouchableOpacity>
-   
-    
     </View>
   );
 };

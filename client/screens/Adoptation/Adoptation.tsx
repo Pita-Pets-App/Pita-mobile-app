@@ -18,7 +18,7 @@ import Svg, { Rect, Path } from 'react-native-svg';
 import { port } from "../../port";
 import axios from "axios";
 import {getOneAnimal} from "../../store/adaptSlice"
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import chien from "../../assets/chien.jpg";
 
@@ -40,18 +40,83 @@ const dispatch=useDispatch()
   const [adaptationTable,setAdaptationTable]=useState([])
 const [element,setElement]=useState({})
 const [active,setActive]=useState(0)
+const token = useSelector((state: RootState) => state.auth.authToken);
 const getAllAdapt=async ()=>{
 try {
-  const get=await axios.get(`${port}/api/Adp`)
+  const get=await axios.get(`${port}/api/Adp`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
   setAdaptationTable(get.data)
 } catch (error) {
   console.log(error)
 }
 
 }
-useEffect(()=>{getAllAdapt()
-  // dispatch(getOneAnimal(element))
-},[dispatch])
+const getAllDogs=async ()=>{
+  try {
+    const get=await axios.get(`${port}/api/Adp`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    setAdaptationTable(get.data.filter((el)=>el.pet_race=="Dog"))
+  } catch (error) {
+    console.log(error)
+  }
+  
+  }
+  const getAllCates=async ()=>{
+    try {
+      const get=await axios.get(`${port}/api/Adp`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      setAdaptationTable(get.data.filter((el)=>el.pet_race=="Cat"))
+    } catch (error) {
+      console.log(error)
+    }
+    
+    }
+    const getAllFishs=async ()=>{
+      try {
+        const get=await axios.get(`${port}/api/Adp`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
+        setAdaptationTable(get.data.filter((el)=>el.pet_race=="Fish"))
+      } catch (error) {
+        console.log(error)
+      }
+      
+      }
+      const getAllBirds=async ()=>{
+        try {
+          const get=await axios.get(`${port}/api/Adp`,{
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+          setAdaptationTable(get.data.filter((el)=>el.pet_race=="Bird"))
+        } catch (error) {
+          console.log(error)
+        }
+        
+        }
+useEffect(()=>{
+  active===0?getAllAdapt():
+  active===1?getAllDogs():
+  active===2?getAllCates():
+  active===3?getAllBirds():getAllFishs()
+},[active])
 
 console.log(adaptationTable)
 const navigation=useNavigation()
@@ -124,7 +189,8 @@ const navigation=useNavigation()
       </View>
       <View style={{marginLeft:10,marginVertical:10}}>
         </View>
-      <CartAdoptation />
+        {adaptationTable.map((el)=>( <CartAdoptation el={el}/>))}
+     
     </ScrollView>
   );
 };
