@@ -24,7 +24,7 @@ import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
 import store from "./lib/redux/store"
-// import store from "./store/store";
+import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
@@ -214,13 +214,15 @@ export default function App() {
             fontWeight: 'bold',
           },
         }}/>
-         <Stack.Screen
+        <Stack.Screen
         
-        name="AdoptationDetails"
-
-        component={AdoptationDetails} 
+        name="comment"
+        component={Comment} 
         options={{
-          title: 'Adaptaion Interface',
+          
+            headerShown:true,
+          
+          title: 'Comment',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },
@@ -228,6 +230,14 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+        }}/>
+         <Stack.Screen
+        
+        name="AdoptationDetails"
+
+        component={AdoptationDetails} 
+        options={{
+          headerShown:false
         }} />
         <Stack.Screen
         
