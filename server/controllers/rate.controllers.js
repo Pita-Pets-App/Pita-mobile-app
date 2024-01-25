@@ -18,6 +18,26 @@ const AllRatesProv= async(req,res) => {
     }
 };
 
+const MoyRatesProv= async(req,res) => {
+    console.log(req.params);
+    try {
+    const result=await Provider.findAll({where:{id:req.params.id},include:Users})
+    const som=result[0].users.reduce((acc,el)=>(
+        acc+el.rate.rate_value
+    ),0)
+    som===0? res.json({
+        reviewsVal:0,
+        reviewsNum:result[0].users.length
+}) :
+    res.json({
+        reviewsVal:som/result[0].users.length,
+        reviewsNum:result[0].users.length
+})   
+    } catch (error) {
+    res.send(error)    
+    }
+};
+
 const AddRate= async(req,res) => {
     
     try {
@@ -39,4 +59,4 @@ const DeleteRate= async(req,res) => {
 };
 
 
-module.exports={AddRate,AllRatesProv,AllRates,DeleteRate}
+module.exports={AddRate,AllRatesProv,AllRates,DeleteRate,MoyRatesProv}

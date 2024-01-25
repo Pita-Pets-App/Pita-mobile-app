@@ -83,9 +83,19 @@ const [loc,setLoc]=useState("")
     setShowModal(!showModal);
   };
 
+  const token = useSelector((state: RootState) => state.auth.authToken);
+  console.log("token", token);
+  
+
 const getAllevent=async()=>{
   try {
-    const getEvent=await axios.get(`${port}/api/events`)
+    const getEvent=await axios.get(`${port}/api/events`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
     setAllEvent(getEvent.data)
     // console.log("allevents",getEvent.data[0]);
     
@@ -200,9 +210,9 @@ const createEvent = async () => {
   return (
     <ScrollView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
+        {/* <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
           <Text style={styles.addButtonText}>Add Event</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 {allEvent.map((e)=>{
     // console.log("event latt before conv",typeof e.event_lattitude);

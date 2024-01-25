@@ -34,6 +34,7 @@ const LFA =(connection,DataTypes)=>{
            values: ['Lost', 'Found', 'Adopted','Not Adopted'],
            allowNull: false,
          },
+         
 
  })
 

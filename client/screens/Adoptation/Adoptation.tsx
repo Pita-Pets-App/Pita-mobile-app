@@ -9,6 +9,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CartAdoptation from "./Components/CartAdoptation";
+import dog from "../../assets/dogcategories.png";
+import cat from "../../assets/catcategory.png";
+import bird from "../../assets/birdcategory.png";
+import fish from "../../assets/fishcategory.png";
+
 import Svg, { Rect, Path } from 'react-native-svg';
 import { port } from "../../port";
 import axios from "axios";
@@ -50,63 +55,75 @@ useEffect(()=>{getAllAdapt()
 console.log(adaptationTable)
 const navigation=useNavigation()
   return (
-    <ScrollView style={{ backgroundColor: "white", margin: 2 }}>
-        <TouchableOpacity  onPress={()=>{navigation.navigate("AddNewAdoptation" as never,)}} style={{width:width*0.98,height:height*0.05,justifyContent:"flex-start",alignItems:"flex-end"}}>
-        <Svg  
-        width="40"
-        height="40"
-        viewBox="0 0 16 16"
-      
-        fill="#d54444"
-      >
-        <Rect x="11" y="11" width="4.958" height="0.918" fill="#eaabf7" />
-        <Rect x="13" y="9" width="0.918" height="4.957" fill="#eaabf7" />
-        <Path
-          d="M11.917,7.958 L14.972,7.958 C15.577,6.823 15.969,5.527 15.969,4.062 C15.969,1.833 14.174,0.031 11.958,0.031 C10.045,0.031 8.447,1.379 8.047,3.179 C7.631,1.376 6.026,0.031 4.102,0.031 C1.865,0.031 0.052,1.855 0.052,4.103 C0.052,10.599 8.057,13.941 8.057,13.941 C8.057,13.941 8.842,13.617 9.917,12.967 L9.917,9.917 L11.917,9.917 L11.917,7.958 L11.917,7.958 Z"
-          fill="#eaabf7"
-        />
-      </Svg>
-        </TouchableOpacity>
-    {adaptationTable.map((e:Animal):any=>{
-    // setElement(e.id)
-
-      return (
-        <View   key={e.id}>
-   {/* <CartAdoptation    /> */}
-   <View style={styles.allPages1}>
-      <TouchableOpacity onPress={()=>{navigation.navigate("AdoptationDetails" as never,)}
-
-    }>
-    <View style={styles.allPag}>
-      <Image src={e.pet_images[0]} style={styles.animalPicture}></Image>
-      <Text style={{ fontSize: 11, fontWeight: "bold" }}>
-        {e.pet_name}
-      </Text>
-      <View style={styles.description}>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Genre:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-          {e.pet_gender}
-          </Text>
+    <ScrollView >
+      <View style={{backgroundColor:"white",paddingBottom:10,borderBottomWidth:1,borderColor:"#4e9d91"}}>
+      <View style={{marginLeft:10,marginVertical:7}}>
         </View>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Age:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-          2 monthes
-          </Text>
-        </View>
+        <ScrollView  horizontal>
+          <TouchableOpacity onPress={()=>{setActive(0)}}>
+            <View
+              style={active==0?styles.allact:styles.all}
+            >
+              <Text style={active==0?styles.alltact:styles.allt}>All</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{setActive(1)}}>
+            <View style={active==1?styles.categoriesact:styles.categories}>
+              <Image
+                style={{ width: width * 0.08, height: width * 0.08 }}
+                source={dog}
+              ></Image>
+              <Text
+               style={active==1?styles.alltact:styles.allt}
+              >
+                Dogs
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{setActive(2)}}>
+            <View style={active==2?styles.categoriesact:styles.categories}>
+              <Image
+                style={{ width: width * 0.08, height: width * 0.08 }}
+                source={cat}
+              ></Image>
+              <Text
+                 style={active==2?styles.alltact:styles.allt}
+              >
+                Cats
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{setActive(3)}}>
+            <View style={active==3?styles.categoriesact:styles.categories}>
+              <Image
+                style={{ width: width * 0.08, height: width * 0.08 }}
+                source={bird}
+              ></Image>
+              <Text
+                 style={active==3?styles.alltact:styles.allt}
+              >
+                Birds
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>{setActive(4)}}>
+            <View style={active==4?styles.categoriesact:styles.categories}>
+              <Image
+                style={{ width: width * 0.08, height: width * 0.08 }}
+                source={fish}
+              ></Image>
+              <Text
+                style={active==4?styles.alltact:styles.allt}
+              >
+                Fishes
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </ScrollView>
       </View>
-    </View>
-    </TouchableOpacity>
-   
-    
-    </View>
+      <View style={{marginLeft:10,marginVertical:10}}>
         </View>
-      )
-    })}
-   
+      <CartAdoptation />
     </ScrollView>
   );
 };
@@ -127,9 +144,70 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#ffc368",
     height: height * 0.09,
     gap: 60,
+  },
+  allact:{
+    
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 10,
+      backgroundColor: "#6fbbb1",
+      borderColor: "#4e9d91",
+      borderWidth: 1,
+      borderRadius: 20,
+      margin: 10,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+    
+  },
+  all:{
+    
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 10,
+      backgroundColor: "white",
+      borderColor: "#4e9d91",
+      borderWidth: 1,
+      borderRadius: 20,
+      margin: 10,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+    
+  },
+  alltact:{
+    fontSize: 15, color: "white", fontWeight: "bold" 
+  },
+  allt:{
+    fontSize: 15, color: "#4e9d91", fontWeight: "bold" 
+  },
+  categories: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    backgroundColor: "white",
+    borderColor: "#4e9d91",
+    borderWidth: 1,
+    borderRadius: 20,
+    margin: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+  },
+  categoriesact: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    backgroundColor: "#6fbbb1",
+    borderColor: "#4e9d91",
+    borderWidth: 1,
+    borderRadius: 20,
+    margin: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   allPages1: {
     padding: 10,

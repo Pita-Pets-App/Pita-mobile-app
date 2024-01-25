@@ -2,7 +2,30 @@ import * as React from "react";
 import VeterinarianList from "./VeterinarianList";
 const Allser = ({ ser, veterinarian }) => {
     const [showVets, setShowVets] = React.useState(false);
-
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        const form = new FormData();
+        form.append('file', file);
+        form.append('upload_preset', 'patient');
+    
+        try {
+            
+          const response = await axios.post(
+            'CLOUDINARY_URL=cloudinary://816311168758259:lKk_npPdSBcFtddPkZXQDEYlV7w@dvr6fxw3p',
+            form,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            }
+          );
+    
+          const imageUrl = response.data.secure_url;
+          setFormData((prev) => ({ ...prev, ca_img: imageUrl }));
+        } catch (err) {
+          console.log(err);
+        }
+      };
     return (
         <div className="flex flex-col items-stretch w-[59%] max-md:w-full max-md:ml-0">
             <div className="flex flex-col items-center my-auto max-md:max-w-full max-md:mt-10" >
