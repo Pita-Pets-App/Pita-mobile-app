@@ -34,6 +34,7 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showImagePicker, setShowImagePicker] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -43,25 +44,14 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
       }
     })();
   }, []);
-  console.log(formData,"form")
-
-  // const handleInputChange = (name: any, value: any) => {
-  //   setFormData({
-  //     ...formData,
-  //     value,
-  //   });
-  // };
 
   const handleSaveAdoptation = async () => {
     try {
-      console.log("rr");
-
       const create = await axios.post(`${port}/api/LFA`, formData);
-      console.log("rr",create.data);
-
+      console.log("rr", create.data);
     } catch (error) {
       console.log(error);
-}
+    }
   };
 
   const handleDateChange = (event, selectedDate) => {
@@ -70,6 +60,7 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
       setFormData({ ...formData, birth_date: format(selectedDate, 'yyyy-MM-dd') });
     }
   };
+
   const selectImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -86,115 +77,35 @@ const AddNewAdoptation: React.FC = (): React.ReactElement => {
 
     setFormData({ ...formData,pet_images:[ (pickerResult as any).uri ]});
     setSelectedImage((pickerResult as any).uri);
+  };
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
     <ScrollView style={{ backgroundColor: "white", margin: 2 }}>
       <View style={styles.container}>
-    
-        <Text style={styles.title}>New Animal Adoption</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Pet Name"
-          value={formData.pet_name}
-          onChangeText={(text) =>   setFormData({
-            ...formData,
-            "pet_name": text,
-          })}
-        />
-      <TextInput
-  style={styles.input}
-  placeholder="Pet Weight"
-  value={formData.pet_weight.toString()}
-  onChangeText={(text) => {
-    const weight = parseFloat(text);
-    if (!isNaN(weight)) {
-      setFormData({
-        ...formData,
-        "pet_weight": weight,
-      });
-    }
-  }}
-/>
-        <TextInput
-          style={styles.input}
-          placeholder="Pet Gender"
-          value={formData.pet_gender}
-          onChangeText={(text) =>setFormData({
-            ...formData,
-            "pet_gender": text,
-          })}
-         
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Pet Race"
-          value={formData.pet_race}
-
-
-          onChangeText={(text) =>setFormData({
-            ...formData,
-            "pet_race": text,
-          })
-          }
-        />
-        <TouchableOpacity
-          style={styles.input}
-          onPress={() => setShowDatePicker(true)}
-        >
-          <Text style={styles.dateText}>{formData.birth_date || "Select Birth Date"}</Text>
-        </TouchableOpacity>
-        {showDatePicker && (
-          <DateTimePicker
-            value={formData.birth_date ? new Date(formData.birth_date) : new Date()}
-            mode="date"
-            display="default"
-            onChange={handleDateChange}
-          />
-        )}
-        <TextInput
-          style={styles.input}
-          placeholder="Pet Description"
-          value={formData.pet_description}
-          onChangeText={(text) =>setFormData({
-            ...formData,
-            "pet_description": text,
-          })
-          }
-          
-        />
-
-<TouchableOpacity
-          style={styles.imageButton}
-          onPress={selectImage}
-        >
-          <Text style={styles.imageButtonText}>Select Photo</Text>
-        </TouchableOpacity>
-        {selectedImage && (
-          <Image source={{ uri: selectedImage }} style={styles.imagePreview} />
-        )}
         <TouchableOpacity
           style={styles.saveButton}
-          onPress={handleSaveAdoptation}
+          onPress={toggleModal}
         >
           <Text style={styles.saveButtonText}>Add New Animal For Adaptation</Text>
         </TouchableOpacity>
 
-        {showImagePicker && (
+        {showModal && (
           <Modal
             animationType="slide"
             transparent={true}
-            visible={showImagePicker}
-            onRequestClose={() => setShowImagePicker(false)}
+            visible={showModal}
+            onRequestClose={toggleModal}
           >
             <View style={styles.modalContainer}>
               <View style={styles.modalContent}>
-                <TouchableOpacity onPress={pickImage}>
-                  <Text style={styles.modalOption}>Select an Image</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => setShowImagePicker(false)}>
-                  <Text style={styles.modalOption}>Cancel</Text>
+                {/* Your modal content goes here */}
+                <Text>Modal Content</Text>
+                <TouchableOpacity onPress={toggleModal}>
+                  <Text>Close Modal</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -214,7 +125,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
-    
   },
   input: {
     height: 40,
@@ -265,7 +175,7 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: "white",
     borderRadius: 10,
-    padding: 20,
+    padding:20
   },
   modalOption: {
     fontSize: 18,

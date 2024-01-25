@@ -38,13 +38,14 @@ import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/inde
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
 import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
 import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
+import Blogs from "./screens/Blogs/Blogs";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Blogs">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -69,6 +70,12 @@ export default function App() {
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="Blogs"
+        component={Blogs}
         options={{
           headerShown:false
         }} />
@@ -373,7 +380,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      {/* <Navbar/> */}
+      <Navbar/>
     </NavigationContainer>
     </Provider>
   );
