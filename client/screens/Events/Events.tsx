@@ -39,7 +39,7 @@ const EventCard = ({navigation}) => {
 
 
 
-console.log(eventLocation,"even")
+// console.log(eventLocation,"even")
   const [form, setForm] = useState({
     event_title: '',
   event_description: '',
@@ -47,11 +47,12 @@ console.log(eventLocation,"even")
   event_date: Date.now(),
   event_langitude:eventLocation.longitude,
   event_lattitude:eventLocation.latitude ,
-  email: "oussch1109@gmail.com",
+  email: "oussch1109@gmail.com",// to get it from the store
   status: 'On Hold',
   })
   const [selectedImage, setSelectedImage] = useState(null);
-console.log(form.event_images,"image")
+// console.log(form.event_images,"image")
+
   const selectImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -70,10 +71,10 @@ console.log(form.event_images,"image")
     setSelectedImage((pickerResult as any).uri);
 
   };
-  console.log(form,"form")
+  // console.log(form,"form")
 
 const [loc,setLoc]=useState("")
-console.log(loc,"loc")
+// console.log(loc,"loc")
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
@@ -82,26 +83,61 @@ console.log(loc,"loc")
     setShowModal(!showModal);
   };
 
+  const token = useSelector((state: RootState) => state.auth.authToken);
+  console.log("token", token);
+  
+
 const getAllevent=async()=>{
   try {
-    const getEvent=await axios.get(`${port}/api/events`)
+    const getEvent=await axios.get(`${port}/api/events`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
     setAllEvent(getEvent.data)
-    console.log("oooo",getEvent.data,"oooo");
+    // console.log("allevents",getEvent.data[0]);
     
   } catch (error) {
     console.log(error)
   }
 }
 const createEvent = async () => {
-  setForm({...form,event_lattitude:eventLocation.latitude+"",event_langitude:eventLocation.longitude+""})
+  setForm({
+    ...form,
+    event_lattitude: eventLocation.latitude + "",
+    event_langitude: eventLocation.longitude + "",
+  });
+
   try {
+    const latit = form.event_langitude 
+    console.log("latitude ",latit);
+    
     const created = await axios.post(`${port}/api/events}`, form);
+
     console.log("Event created successfully:", created.data);
-    Alert.alert("You successfully created your event");
+
+    Alert.alert("Success", "You successfully created your event");
   } catch (error) {
-throw error
+    console.error("Error creating event:", error);
+
+    if (error.response) {
+     
+      console.error("Server responded with an error status:", error.response.data);
+      Alert.alert("Error", `Server responded with an error: ${error.response.data}`);
+    } else if (error.request) {
+ 
+      console.error("No response received from the server:", error.request);
+      Alert.alert("Error", "No response received from the server");
+    } else {
+      
+      console.error("Error setting up the request:", error.message);
+      Alert.alert("Error", `An error occurred: ${error.message}`);
+    }
   }
 };
+
   useEffect(() => {
  
     getUserLocationAndNearestAddress();
@@ -110,8 +146,8 @@ throw error
   const getUserLocationAndNearestAddress = async () => {
     try {
       const nearestAddressResponse = await Location.reverseGeocodeAsync({
-        latitude: JSON.parse(eventLocation).latitude,
-        longitude: JSON.parse(eventLocation).longitude,
+        latitude: JSON.parse(eventLocation.latitude),
+        longitude: JSON.parse(eventLocation.longitude),
       });
   
       if (nearestAddressResponse.length > 0) {
@@ -124,24 +160,38 @@ throw error
     }
   };
   
+  
   const handleAddEvent = () => {
     createEvent();  
 
     toggleModal();  
   };
-  const convertAdress = async (latitude,longitude) => {
-   
-      const nearestAddressResponse = await Location.reverseGeocodeAsync({
-        latitude: JSON.parse(latitude).latitude,
-        longitude: JSON.parse(longitude).longitude,
-     
-      })  
-        const nearestAddress = nearestAddressResponse[0];
-        const place =  `${nearestAddress.city}${nearestAddress.region} ${nearestAddress.country}`;
-       return place
-      
+  const convertAdress = async (latitude, longitude) => {
+  try {
+    const parsedLatitude = parseFloat(JSON.parse(latitude));
+    // console.log("parsedLati",typeof parsedLatitude);
+    
+    const parsedLongitude = parseFloat(JSON.parse(longitude));
 
+    if (isNaN(parsedLatitude) || isNaN(parsedLongitude)) {
+      throw new Error('Invalid latitude or longitude values.');
+    }
+
+    const nearestAddressResponse = await Location.reverseGeocodeAsync({
+      latitude: parsedLatitude,
+      longitude: parsedLongitude,
+    });
+
+    const nearestAddress = nearestAddressResponse[0];
+    const place = `${nearestAddress.city} ${nearestAddress.region} ${nearestAddress.country}`;
+    // console.log("place",place); return valid place
+    
+    return place;
+  } catch (error) {
+    console.error('Error converting address:', error);
+    return null; // or throw the error if needed
   }
+};
   
 
 
@@ -160,12 +210,17 @@ throw error
   return (
     <ScrollView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
+        {/* <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
           <Text style={styles.addButtonText}>Add Event</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 {allEvent.map((e)=>{
+    // console.log("event latt before conv",typeof e.event_lattitude);
   const convertAddressText :any= convertAdress(e.event_lattitude, e.event_langitude);
+  // console.log("event latt after conver",typeof e.event_lattitude);
+  
+  // console.log("converted",convertAddressText);
+  
 
   return(
 

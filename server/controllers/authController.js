@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 
 const generateToken = (id, fname) => {
     const expiresIn = 60 * 60 * 48;//2days
-    return jwt.sign({ id, fname }, 'secretKey', { expiresIn: expiresIn });
+    return jwt.sign({ id, fname }, "process.env.ACCESS_TOKEN_SECRET", { expiresIn: expiresIn });
   };
 
   const Register = async (req, res) => {
@@ -26,6 +26,7 @@ const generateToken = (id, fname) => {
       res.status(500).json({ error: 'Error' });
     }
   };
+
   const Login = async(req, res) => {
     const{email,user_password}=req.body;
     try {
