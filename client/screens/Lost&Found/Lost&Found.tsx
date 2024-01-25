@@ -167,11 +167,6 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             <Text style={active==2?styles.textact:styles.text}>Found</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity    onPress={() => setModalVisible(true)} style={styles.bt}>
-          <View>
-            <Text style={{ color: "#fff", fontSize: 17 }}>Add</Text>
-          </View>
-        </TouchableOpacity>
       </View>
        <View style={styles.line} />
           <ScrollView style={styles.apdpostes}>

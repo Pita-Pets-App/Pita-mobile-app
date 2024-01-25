@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import { port } from "../../../port";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 const { width, height } = Dimensions.get("screen");
 
 
@@ -21,11 +22,17 @@ const AllServices: React.FC = () => {
   const [isLoading, setIsLoading] = useState<Boolean>(true);
   const navigation=useNavigation()
 
+  const token = useSelector((state: RootState) => state.auth.authToken);
   useEffect(() => {
     const getData = async () => {
         setIsLoading(true)
       try {
-        const result = await axios.get(`${port}/api/service`);
+        const result = await axios.get(`${port}/api/service`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
         setServiceData(result.data);
         setIsLoading(false)
         const data = result.data[1]
@@ -108,7 +115,7 @@ const AllServices: React.FC = () => {
           <View  key ={serviceData[5]?.id}>
             <View style={{borderColor:"#d5eef6",borderWidth:1,borderRadius:25}}>
             <TouchableOpacity onPress={()=>{
-              navigation.navigate(...["DynamicScreenAllServices", {serviceId : serviceData[5]?.id}] as never )}} 
+              navigation.navigate("Events"as never )}} 
               style={styles.Service}>
               <Image
                 style={styles.images}

@@ -82,18 +82,6 @@ const EditProfile: React.FC = () => {
       ]
     );
   };
-  // const UserData=async()=>{
-  //  const user= await axios.get(`${port}/api/users/1`)
-  //  setFname(user.data.fname)
-  //  setLname(user.data.lname)
-  //  setImage(user.data.image);
-   
-  // }
-  
-  // useEffect(()=>{
-  //   UserData()
-  // },[])
-
 
 
   const updateProfile=async()=>{
@@ -215,7 +203,7 @@ const styles = StyleSheet.create({
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
   },
   inputn: {
@@ -233,7 +221,7 @@ const styles = StyleSheet.create({
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
   },
   non: {
@@ -253,7 +241,7 @@ const styles = StyleSheet.create({
     gap: 17,
   },
   registerButton: {
-    backgroundColor: "#ffc368",
+    backgroundColor: "#4e9d91",
     width: width * 0.85,
     height: height * 0.06,
     justifyContent: "center",
