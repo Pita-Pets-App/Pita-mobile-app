@@ -37,8 +37,7 @@ import EditPet from "./screens/PetsProfiles/EditPet";
 import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
 import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
-
-
+import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -72,6 +71,12 @@ export default function App() {
         component={Welcome1}
         options={{
           headerShown:false
+        }} />
+         <Stack.Screen
+        name="AddNewAdoptation"
+        component={AddNewAdoptation}
+        options={{
+          headerShown:true
         }} />
          <Stack.Screen
         name="MapForEvent"
@@ -190,6 +195,9 @@ export default function App() {
         name="Adoptation"
         component={Adoptation} 
         options={{
+          
+            headerShown:true,
+          
           title: 'Adaptaion Interface',
           headerStyle: {
             backgroundColor: '#4e9d91',
@@ -365,7 +373,7 @@ export default function App() {
         }}
         />
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
     </Provider>
   );

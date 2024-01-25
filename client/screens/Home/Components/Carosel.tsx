@@ -12,13 +12,13 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { port } from "../../../port";
-
+import { useSelector } from "react-redux";
 
 const { width, height } = Dimensions.get("screen");
 const Carosel: React.FC = (): React.ReactElement => {
   const navigation = useNavigation();
   const [serviceData,setServiceData]=useState<Services[]|[]>([])
-  
+  const token = useSelector((state: RootState) => state.auth.authToken);
   const navigateToHome = () => {
     navigation.navigate("Services" as never);
     
@@ -33,7 +33,12 @@ const Carosel: React.FC = (): React.ReactElement => {
 try {
 
 
-    const result=await axios.get(`${port}/api/service`)
+    const result=await axios.get(`${port}/api/service`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
     setServiceData(result.data);
     console.log("ser",result.data);
     
