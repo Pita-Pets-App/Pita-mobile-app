@@ -13,7 +13,7 @@ import dog from "../../assets/dogcategories.png";
 import cat from "../../assets/catcategory.png";
 import bird from "../../assets/birdcategory.png";
 import fish from "../../assets/fishcategory.png";
-
+import { Ionicons } from "@expo/vector-icons"
 import Svg, { Rect, Path } from 'react-native-svg';
 import { port } from "../../port";
 import axios from "axios";
@@ -35,7 +35,7 @@ interface Animal {
   status:  'Adopted' | 'Not Adopted';
 }
 
-const Adoptation: React.FC = ({route}:any): React.ReactElement => {
+const Adoptation: React.FC<any> = ({route,navigation:any}): React.ReactElement => {
 const dispatch=useDispatch()
   const [adaptationTable,setAdaptationTable]=useState([])
 const [element,setElement]=useState({})
@@ -55,6 +55,27 @@ try {
 }
 
 }
+useEffect(() => {
+  navigation.setOptions({
+    title: `Adoptation interface`,
+    headerStyle: {
+      backgroundColor: '#4e9d91',
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+    headerRight: () => (
+      <TouchableOpacity
+        onPress={() => {
+          console.log("hhhh");
+          
+        }}
+      >
+        <Ionicons name="add" size={27} color="white" />
+      </TouchableOpacity>)
+  });
+}, []);
 const getAllDogs=async ()=>{
   try {
     const get=await axios.get(`${port}/api/Adp`,{

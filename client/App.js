@@ -28,7 +28,7 @@ import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
-
+import MapForAdopt from "./screens/MapForAdopt/MapForAdopt"
 import MapForEvent from "./screens/MapForEvent/MapForEvent";
 import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
@@ -45,7 +45,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Blogs">
+      <Stack.Navigator initialRouteName="LostFound">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -66,6 +66,12 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },}} />
+           <Stack.Screen
+        name="MapForAdopt"
+        component={MapForAdopt}
+        options={{
+          headerShown:false
+        }} />
          <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"

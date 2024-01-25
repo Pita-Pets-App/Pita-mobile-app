@@ -48,6 +48,8 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
     "birth_date": "",
     "pet_description": "",
     "status": 'Lost',
+    "post_langitude":"222",
+    "post_lattitude":"5555"
   });
   const [lfdata,setLfdata]=useState([])
   const [active,setActive]=useState(0)
@@ -114,12 +116,8 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
     try {
       console.log("rr");
 
-      const create = await axios.post(`${port}/api/LFA`, formData,{
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const create = await axios.post(`${port}/api/LFA`, formData)
+      ;
       console.log("rr",create.data);
 
     } catch (error) {
@@ -169,6 +167,11 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
         <TouchableOpacity onPress={()=>{setActive(2)}} style={active==2?styles.btact:styles.bt}>
           <View>
             <Text style={active==2?styles.textact:styles.text}>Found</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>{setModalVisible(true)}} style={active==2?styles.btact:styles.bt}>
+          <View>
+            <Text style={active==2?styles.textact:styles.text}>Add</Text>
           </View>
         </TouchableOpacity>
       </View>
