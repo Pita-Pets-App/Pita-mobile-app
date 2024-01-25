@@ -1,6 +1,7 @@
 const { where } = require('sequelize');
 const { default: axios } = require("axios");
 const {Provider}=require('../database-Sequelize/index')
+const bcrypt = require('bcrypt')
 
 const AllProvider= async(req,res) => {
     try {
@@ -49,10 +50,23 @@ const getAllVeto= async(req,res) => {
     res.send(error)    
     }
 };
+
 const AddProvider= async(req,res) => {
+    const { fname, lname,  email, image, provider_langitude, provider_lattitude,provider_description, provider_password  } = req.body;
     try {
-    const result=await Provider.create(req.body)
-    res.send(result.dataValues)
+        const hashedPassword = await bcrypt.hash(provider_password, 10);
+        const provider = {
+            fname,
+            lname,
+            email,
+            provider_langitude,
+            provider_lattitude,
+            provider_description,
+            image,
+            provider_password: hashedPassword
+        }
+    const result = await Provider.create(provider)
+    res.send(result)
     } catch (error) {
     res.send(error)    
     }
