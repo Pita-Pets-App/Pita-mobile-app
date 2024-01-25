@@ -26,5 +26,7 @@ declare module '*.png' {
     };
     auth: {
       authToken : any;
+    }; provider : {
+      providerData : any
     }
   }
