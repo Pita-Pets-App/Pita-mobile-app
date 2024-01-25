@@ -1,10 +1,10 @@
 const {Users, Pets}=require('../database-Sequelize/index')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const generateToken = (id, fname) => {
-    const expiresIn = 60 * 60 * 48;
-    return jwt.sign({ id, fname }, 'secretKey', { expiresIn: expiresIn });
-  };
+// const generateToken = (id, fname) => {
+//     const expiresIn = 60 * 60 * 48;
+//     return jwt.sign({ id, fname }, 'secretKey', { expiresIn: expiresIn });
+//   };
 
   
 const AllUsers= async(req,res) => {
@@ -38,14 +38,9 @@ const createUser =async (req, res) =>{
   console.log(req.body,"req")
     try {
       const newUser = await Users.create({fname:req.body.fname,lname:req.body.lname,email:req.body.email,image:req.body.image,user_password:req.body.user_password});
-     
-      const token = generateToken(newUser.id,newUser.fname);
-      newUser.dataValues.token=token
       res.status(201).send(newUser);
     } catch (error) {
-    throw error
       res.status(400).json({ error: error.message });
-   
     }
   }
 

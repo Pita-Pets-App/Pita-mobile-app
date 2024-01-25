@@ -36,9 +36,15 @@ const AllPets: React.FC = () => {
   const [selectedPetId, setSelectedPetId] = useState<number | null>(null);
   const [isModalVisible, setModalVisible] = useState(false);
  const navigation=useNavigation()
+ const token = useSelector((state: RootState) => state.auth.authToken);
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`${port}/api/pets/${id}`);
+      await axios.delete(`${port}/api/pets/${id}`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
       const actionResult = await dispatch(updateUserData({ fname: user.fname }));
     } catch (error) {
       console.error("Error deleting pet:", error);
@@ -57,7 +63,7 @@ const AllPets: React.FC = () => {
     <ScrollView>
       <View style={styles.container}>
         {petData.map((el: Pets, i: number) => (
-          <TouchableOpacity key={i} style={styles.view} onPress={()=>{navigation.navigate('PetsProfile' as never, { petData: el})}}>
+          <TouchableOpacity key={i} style={styles.view} onPress={()=>{navigation.navigate(...['PetsProfile', { petData: el}]as never)}}>
             <Image style={styles.petsImage} source={{ uri: el?.pet_images[0] }} />
             <View style={{ width: width * 0.2 }}>
               <Text style={{ fontSize: 16, fontWeight: "bold" }}>{el.pet_name}</Text>

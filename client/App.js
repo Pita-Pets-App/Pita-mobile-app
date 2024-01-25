@@ -24,7 +24,7 @@ import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
 import store from "./lib/redux/store"
-// import store from "./store/store";
+import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
@@ -36,7 +36,10 @@ import AddPet from "./screens/UserProfile/AddPet";
 import EditPet from "./screens/PetsProfiles/EditPet";
 import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
-
+import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
+import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
+import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
+import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 
 const Stack = createNativeStackNavigator();
 
@@ -44,33 +47,45 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
         component={Home}
         options={{
-          title: 'Home', 
-          headerStyle: {
-            backgroundColor: '#ffc368', 
-          },
-          headerTintColor: '#fff', 
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-          headerBackVisible: false,
-        }} />
+          headerShown: false,}} />
         <Stack.Screen
         name="Register"
         component={Register} />
         <Stack.Screen
+        name="RegisterProvider"
+        component={RegisterProvider} />
+        <Stack.Screen
+        name="LoginProvider"
+        component={LoginProvider} />
+        <Stack.Screen
         name="DynamicScreenAllServices"
-        component={DynamicScreenAllServices} />
+        component={DynamicScreenAllServices} 
+        options={{
+          title: 'Service',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
          <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
         options={{
           headerShown:false
+        }} />
+         <Stack.Screen
+        name="AddNewAdoptation"
+        component={AddNewAdoptation}
+        options={{
+          headerShown:true
         }} />
          <Stack.Screen
         name="MapForEvent"
@@ -92,14 +107,11 @@ export default function App() {
         }} />
         <Stack.Screen
         name="Login"
-        component={Login} />
-        <Stack.Screen
-        name="UserProfile"
-        component={UserProfile}
+        component={Login}
         options={{
-          title: 'Profile',
+          title: 'Login',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -108,12 +120,40 @@ export default function App() {
           headerBackVisible: false,
         }} />
         <Stack.Screen
+        name="RegisterOrLogin"
+        component={RegisterOrLogin}
+        options={{
+          title: 'Welcome',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false,
+        }} />
+        
+        <Stack.Screen
+        name="UserProfile"
+        component={UserProfile}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
+        <Stack.Screen
         name="Services"
         component={Services} 
         options={{
           title: 'Services',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -129,7 +169,7 @@ export default function App() {
         options={{
           title: 'Veterinairians',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -141,7 +181,7 @@ export default function App() {
         options={{
           title: 'Veterinairian',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -153,7 +193,7 @@ export default function App() {
         options={{
           title: 'Review',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -164,9 +204,29 @@ export default function App() {
         name="Adoptation"
         component={Adoptation} 
         options={{
+          
+            headerShown:true,
+          
           title: 'Adaptaion Interface',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+        <Stack.Screen
+        
+        name="comment"
+        component={Comment} 
+        options={{
+          
+            headerShown:true,
+          
+          title: 'Comment',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -179,14 +239,7 @@ export default function App() {
 
         component={AdoptationDetails} 
         options={{
-          title: 'Adaptaion Interface',
-          headerStyle: {
-            backgroundColor: '#ffc368',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+          headerShown:false
         }} />
         <Stack.Screen
         
@@ -195,7 +248,7 @@ export default function App() {
         options={{
           title: 'Add Review',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -212,6 +265,15 @@ export default function App() {
         name="Events"
 
         component={Events} 
+        options={{
+          title: 'Events',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} 
        />
 
        
@@ -222,7 +284,7 @@ export default function App() {
         options={{
           title: 'Pet Profile',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -236,7 +298,7 @@ export default function App() {
         options={{
           title: 'Edit Profile',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -249,7 +311,7 @@ export default function App() {
         options={{
           title: 'Edit Pet',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -262,7 +324,7 @@ export default function App() {
         options={{
           title: 'All Pets',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -276,7 +338,7 @@ export default function App() {
         options={{
           title: 'Add Pet',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -289,7 +351,7 @@ export default function App() {
         options={{
           title: 'Chat',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -306,7 +368,7 @@ export default function App() {
         options={{
           title: 'Lost And Found',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -321,7 +383,7 @@ export default function App() {
         options={{
           title: 'Lost And Found',
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {

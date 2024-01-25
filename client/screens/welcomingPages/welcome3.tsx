@@ -25,7 +25,7 @@ const Welcome3: React.FC <{navigation:any}>= ({navigation}) => {
             <View style={{backgroundColor:"#d9d9d9",width:10,height:10,borderRadius:10}}></View>
             <View style={{backgroundColor:"#ffc368",width:10,height:10,borderRadius:10}}></View>
             </View>
-            <TouchableOpacity onPress={()=>navigation.navigate("Home")}><View style={{backgroundColor: '#ffc368', paddingVertical:5,paddingHorizontal:15,borderRadius:20,borderColor:"#ffc368",borderWidth:1}}><Text style={{color: '#fff',}}>Get Started</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("Register")}><View style={{backgroundColor: '#ffc368', paddingVertical:5,paddingHorizontal:15,borderRadius:20,borderColor:"#ffc368",borderWidth:1}}><Text style={{color: '#fff',}}>Get Started</Text></View></TouchableOpacity>
         
       </View>
     </View>

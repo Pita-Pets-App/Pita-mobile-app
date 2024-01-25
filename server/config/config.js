@@ -1,9 +1,7 @@
 const config={
     database:"pets_app",
     user:"root",
-    password:"fill_me"
-
-
+    password:"oussch1109"
 }
 
 module.exports=config

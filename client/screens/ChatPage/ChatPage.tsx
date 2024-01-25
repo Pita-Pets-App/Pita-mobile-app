@@ -22,7 +22,7 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     const userId = useSelector((state: RootState) => state.user?.userData.id);
     const {receiver}=route.params
     console.log(receiver);
-    
+    const token = useSelector((state: RootState) => state.auth.authToken);
     const getData = async () => {
       try {
         const result = await axios.put(`${port}/api/Chat/${userId}`,{reciver:receiver});
@@ -94,7 +94,12 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
             user1:userId,
             user2:receiver
         }
-        const result=await axios.post(`${port}/api/Chat`,obj)
+        const result=await axios.post(`${port}/api/Chat`,obj,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
         Keyboard.dismiss()  
         await socket.emit('add', { msg: newMsg, user1: userId, user2: receiver });
         setConv([...conv,obj])

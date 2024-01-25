@@ -11,7 +11,7 @@ const api = axios.create({
 
 export const register_me = async (formData : any) => {
   try {
-      const response = await axios.post(`${port}/api/users/register`, formData);
+      const response = await axios.post(`${port}/api/register`, formData);
       return response.data;
   } catch (error) {
       console.error('Error in register (service) => ', error);
@@ -23,15 +23,35 @@ export const login_me = async (formData : any) => {
   try {
     // console.log("form",formData);
     
-    const response = await axios.post(`${port}/api/users/login`, formData);
+    const response = await axios.post(`${port}/api/login`, formData);
     // console.log("res",response.data);
-    console.log("login from services",response.data);
+    // console.log("login from services",response.data);
     
     return response.data;
   } catch (error) {
     console.log('error in login (service) => ', error);
   }
 };
+
+export const register_provider = async (formData : any) => {
+  try {
+    const response = await axios.post(`${port}/api/providerBf`,formData)
+
+    return response.data;
+  } catch (error){
+    console.error(error)
+  }
+}
+
+export const login_provider = async (formData : any) => {
+  try {
+    const response = await axios.post(`${port}/api/loginProvider`,formData)
+
+    return response.data;
+  } catch (error){
+    console.error(error)
+  }
+}
 
 export const getUserData = async (userId : Number, token : string) => {
   try {
@@ -66,6 +86,23 @@ export const updateUserData = async (userId : Number, authToken : String, userDa
   }
 }
 
+export const updateProviderData = async (providerId : Number, authToken : String, providerData :any) => {
+  try {
+    
+    const response = await axios.put(`${port}/api/provider//${providerId}`, providerData,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
 
 export const getProvidersByServicesId =async (serviceId : Number, authToken : String) => {
 
