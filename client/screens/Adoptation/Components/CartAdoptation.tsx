@@ -22,8 +22,8 @@ import axios from "axios";
 const CartAdoptation: React.FC <any>= ({el}:any): React.ReactElement => {
   const navigation=useNavigation()
   return (
-    <View style={styles.allPages}>
-      <TouchableOpacity style={{marginBottom:25}} onPress={()=>navigation.navigate("AdoptationDetails" as never)}>
+    <View key={el.id} style={styles.allPages}>
+      <TouchableOpacity style={{marginBottom:25}} onPress={()=>navigation.navigate(...["AdoptationDetails",{petData:el}]as never)}>
     <View style={styles.allPag}>
       <Image source={{uri:el.pet_images[0]}} style={styles.animalPicture}></Image>
         <View style={{marginLeft:10}} >
