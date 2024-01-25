@@ -16,6 +16,7 @@ const ChatRoute = require("./routes/chat.routes");
 const adminRoute = require("./routes/admin.routes");
 const authRoute = require("./routes/auth.routes")
 const likeslfRoute = require("./routes/likeslf.routes")
+const commentslfRoute = require("./routes/commentslf.routes")
 const authenticateToken = require ("./middlewares/authMiddelware")
 
 
@@ -35,6 +36,7 @@ app.use("/api",ChatRoute)
 app.use("/api",adminRoute)
 app.use("/api",providerBRoute)
 app.use("/api",likeslfRoute)
+app.use("/api",commentslfRoute)
 
 // app.use("/api", authenticateToken);
 
