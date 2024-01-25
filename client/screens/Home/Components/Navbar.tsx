@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, Dimensions,TouchableOpacity} from 'react-nativ
 import { useNavigation } from "@react-navigation/native";
 
 import location from "../../../assets/maps-and-flags.png";
-import Home from "../../../assets/homepage.png";
+import Home from "../../../assets/homegreen.png";
 import message from "../../../assets/messenger.png";
 import user from "../../../assets/usernav.png";
 import { useSelector } from 'react-redux';
@@ -31,17 +31,16 @@ const Navbar: React.FC = (): React.ReactElement => {
 
 const styles = StyleSheet.create({
     navbar: {
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.9)",
         flexDirection: 'row',
         width: width*0.9,
         marginHorizontal:17,
         height: height * 0.077,
-        // borderTopLeftRadius: 40,
         borderRadius: 40,
         justifyContent: 'space-between', 
         alignItems: 'center',
-        borderColor: '#DFBDE7', 
-        borderWidth: 0.5, 
+        borderColor: '#4e9d91', 
+        borderWidth: 1, 
         padding:10,
         position: 'absolute', 
         bottom: 4,
@@ -50,25 +49,25 @@ const styles = StyleSheet.create({
         
     },
     iconloc:{
-        width: width*0.08,
-        height: height*0.04,
+        width: width*0.075,
+        height: height*0.035,
         marginHorizontal: 18, 
 
     },
     iconHome:{
-        width: width*0.085,
-        height: height*0.045,
+        width: width*0.075,
+        height: height*0.035,
         marginHorizontal: 18, 
 
     },
     iconImage: {
-        width: width*0.081,
-        height: height*0.036,
+        width: width*0.075,
+        height: height*0.034,
         marginHorizontal: 18, 
     },
     iconProfile:{
-        width: width*0.08,
-        height: height*0.04,
+        width: width*0.085,
+        height: width*0.085,
         marginHorizontal: 18, 
         borderRadius:50
     }

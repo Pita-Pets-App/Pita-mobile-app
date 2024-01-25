@@ -9,8 +9,8 @@ const LostAndFound: React.FC = (): React.ReactElement  => {
     return (
         <View style={styles.allPages}>
         <View style={styles.service}>
-          <Text style={{color:"black",fontSize:18,fontWeight:"bold"
-}}>Lost & Found</Text>
+          <Text style={{color:"#4e9d91",fontSize:18,fontWeight:"bold"
+}}>| Lost & Found</Text>
 <TouchableOpacity onPress={()=>{
                 navigation.navigate("LostFound" as never)}}>
           <View style={styles.container}>

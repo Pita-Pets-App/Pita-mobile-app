@@ -16,20 +16,34 @@ const { width, height } = Dimensions.get("screen");
 
 const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   const [lfdata,setLfdata]=useState([])
+  const [active,setActive]=useState(0)
   const getLf=async()=>{
     const gett=await axios.get(`${port}/api/LF`)
     setLfdata(gett.data);
      }
+     const getL=async()=>{
+      const gett=await axios.get(`${port}/api/LF`)
+      setLfdata(gett.data.filter((el:any)=>{
+        return el.status==='Lost'
+      }));
+      
+      }
+       const getF=async()=>{
+        const gett=await axios.get(`${port}/api/LF`)
+        setLfdata(gett.data.filter((el:any)=>{
+          return el.status==='Found'
+        }));
+        }
   useEffect(()=>{
-    getLf()
-  },[])
+   active==0?getLf():active==1?getL():getF()
+  },[active])
   useEffect(() => {
     navigation.setOptions({
       title: `Lost and Found`,
       headerStyle: {
-        backgroundColor: '#ffc368',
+        backgroundColor: '#4e9d91',
       },
-      headerTintColor: '#fff',
+      headerTintColor: 'white',
       headerTitleStyle: {
         fontWeight: 'bold',
       },
@@ -41,26 +55,27 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             
           }}
         >
-          <Ionicons name="add" size={27} color="#fff" />
+          <Ionicons name="add" size={27} color="white" />
         </TouchableOpacity>)
     });
   }, [navigation]);
+  
   return (
     <View style={styles.alllf}>
       <View style={styles.search}>
-      <TouchableOpacity style={styles.bt} >
+      <TouchableOpacity onPress={()=>{setActive(0)}} style={active==0?styles.btact:styles.bt} >
           <View>
-            <Text style={{ color: "#fff", fontSize: 17 }}>All</Text>
+            <Text style={active==0?styles.textact:styles.text}>All</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bt} >
+        <TouchableOpacity onPress={()=>{setActive(1)}} style={active==1?styles.btact:styles.bt} >
           <View>
-            <Text style={{ color: "#fff", fontSize: 17 }}>Lost</Text>
+            <Text style={active==1?styles.textact:styles.text}>Lost</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bt}>
+        <TouchableOpacity onPress={()=>{setActive(2)}} style={active==2?styles.btact:styles.bt}>
           <View>
-            <Text style={{ color: "#fff", fontSize: 17 }}>Found</Text>
+            <Text style={active==2?styles.textact:styles.text}>Found</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -81,7 +96,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             </View>
           </View>
           <View >
-              <Text >{el.status}</Text>
+              <Text style={el.status==='Found'?styles.found:styles.lost} >{el.status}</Text>
             </View>
         </View>
         <View style={{marginHorizontal:20,marginBottom:10}}>
@@ -181,14 +196,35 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
   },
+  text:{
+    color: "#4e9d91",
+   fontSize: 17 
+  },
+  textact:{
+    color: "#fff",
+    fontSize: 17 
+  },
   bt: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ffc368",
-    height: height * 0.06,
-    width: width * 0.25,
-    borderRadius: 10,
+    backgroundColor: "#fff",
+    paddingVertical:10,
+    paddingHorizontal:18,
+    borderRadius: 25,
+    borderWidth:1.5,
+    borderColor:"#4e9d91"
+  },
+  btact: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#4e9d91",
+    paddingVertical:10,
+    paddingHorizontal:18,
+    borderRadius: 25,
+    borderWidth:1.5,
+    borderColor:"#4e9d91"
   },
   apdpostes: {
     backgroundColor: "#fff",
@@ -215,12 +251,27 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent:"center",
     alignItems: "center", 
-    backgroundColor: "green",
     marginBottom: 20,
-    borderRadius: 10,
-    width:width*0.17,
-    padding: 5,
-    marginLeft:80
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical:5, 
+    marginLeft:22,
+    borderWidth:1.5,
+    borderColor:'green',
+    color:"green"
+  },
+  lost:{
+    display: "flex",
+    justifyContent:"center",
+    alignItems: "center", 
+    marginBottom: 20,
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical:5, 
+    marginLeft:30,
+    borderWidth:1.5,
+    borderColor:'red',
+    color:"red"
   },
   statusText: {
     color: "#fff",
@@ -229,7 +280,7 @@ const styles = StyleSheet.create({
   },
   line: {
     borderBottomWidth: 1,
-    borderBottomColor: '#7f7f7f',
+    borderBottomColor: '#4e9d91',
     backgroundColor:"#fff",
     paddingVertical: 5,
   },
