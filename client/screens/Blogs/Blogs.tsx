@@ -9,6 +9,7 @@ import {
   TextInput,
   Image,
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome"; // Import the icon library
 
 const { width, height } = Dimensions.get("screen");
 
@@ -56,6 +57,16 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
     setNewSubject("");
   };
 
+  const handleLike = (articleId: number) => {
+    // Handle the like action for the specified articleId
+    console.log(`Liked article with id ${articleId}`);
+  };
+
+  const handleDislike = (articleId: number) => {
+    // Handle the dislike action for the specified articleId
+    console.log(`Disliked article with id ${articleId}`);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Header */}
@@ -99,6 +110,22 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
               <Text style={styles.authorName}>{article.author}</Text>
               <Text style={styles.blogTitle}>{article.title}</Text>
               <Text style={styles.blogContent}>{article.subject}</Text>
+
+              {/* Like and Dislike Icons */}
+              <View style={styles.iconContainer}>
+                <TouchableOpacity
+                  onPress={() => handleLike(article.id)}
+                  style={styles.iconButton}
+                >
+                  <Icon name="thumbs-up" size={20} color="#4e9d91" />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => handleDislike(article.id)}
+                  style={styles.iconButton}
+                >
+                  <Icon name="thumbs-down" size={20} color="#4e9d91" />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         ))}
@@ -183,6 +210,13 @@ const styles = StyleSheet.create({
   blogContent: {
     fontSize: 16,
     color: "#555",
+  },
+  iconContainer: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+  iconButton: {
+    marginRight: 10,
   },
 });
 
