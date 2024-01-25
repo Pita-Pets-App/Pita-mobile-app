@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 15, 
-    fontSize: 16, 
+    fontSize: 16, // Increase font size
   },
   saveButton: {
     backgroundColor: "orange",
