@@ -49,13 +49,13 @@ getData()
   return (
     <View style={styles.allPages}>
       <View style={styles.service}>
-        <Text style={{ color: "black", fontSize: 18, fontWeight: "bold" }}>
-          Services
+        <Text style={{ color: "#4e9d91", fontSize: 18, fontWeight: "bold" }}>
+          | Services
         </Text>
         <TouchableOpacity
           style={{
             borderRadius: 20,
-            borderColor: "white",
+            borderColor: "#4e9d91",
             borderWidth: 1.5,
             width: width * 0.17,
             height: 40,
@@ -65,7 +65,7 @@ getData()
           }}
           onPress={navigateToHome}
         >
-          <Text style={{ color: "black", fontSize: 14 }} > See All </Text>
+          <Text style={{ color: "#4e9d91", fontSize: 14 ,fontWeight:"bold"}} > See All </Text>
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.allService} horizontal>
@@ -80,8 +80,8 @@ getData()
               </View>
           </TouchableOpacity>
           <TouchableOpacity key={serviceData[1]?.id} onPress={() => navigateToServiceDetails(serviceData[1]?.id)}>
-              <View style={styles.oneServicee1}>
-              <View style={styles.oneService1}>
+              <View style={styles.oneServicee4}>
+              <View style={styles.oneService4}>
                 <Image style={{ width: 50, height: 50 }} source={{uri:serviceData[1]?.service_image }}></Image>
               </View>
               </View>
@@ -101,8 +101,8 @@ getData()
               </View>
           </TouchableOpacity>
           <TouchableOpacity key={serviceData[4]?.id} onPress={() => navigateToServiceDetails(serviceData[4]?.id)}>
-              <View style={styles.oneServicee4}>
-              <View style={styles.oneService4}>
+              <View style={styles.oneServicee1}>
+              <View style={styles.oneService1}>
                 <Image style={{ width: 50, height: 50 }} source={{uri:serviceData[4]?.service_image }}></Image>
               </View>
               </View>

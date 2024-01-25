@@ -60,7 +60,7 @@ export default function App() {
         options={{
           title: 'Service',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -97,7 +97,7 @@ export default function App() {
         options={{
           title: 'Login',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -111,7 +111,7 @@ export default function App() {
         options={{
           title: 'Welcome',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -126,9 +126,9 @@ export default function App() {
         options={{
           title: 'Profile',
           headerStyle: {
-            backgroundColor: '#fff',
+            backgroundColor: '#4e9d91',
           },
-          headerTintColor: 'black ',
+          headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
           },
@@ -139,7 +139,7 @@ export default function App() {
         options={{
           title: 'Services',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -155,7 +155,7 @@ export default function App() {
         options={{
           title: 'Veterinairians',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -167,7 +167,7 @@ export default function App() {
         options={{
           title: 'Veterinairian',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -179,7 +179,7 @@ export default function App() {
         options={{
           title: 'Review',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -192,7 +192,7 @@ export default function App() {
         options={{
           title: 'Adaptaion Interface',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -207,7 +207,7 @@ export default function App() {
         options={{
           title: 'Adaptaion Interface',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -221,7 +221,7 @@ export default function App() {
         options={{
           title: 'Add Review',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -241,7 +241,7 @@ export default function App() {
         options={{
           title: 'Events',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -257,7 +257,7 @@ export default function App() {
         options={{
           title: 'Pet Profile',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -271,7 +271,7 @@ export default function App() {
         options={{
           title: 'Edit Profile',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -284,7 +284,7 @@ export default function App() {
         options={{
           title: 'Edit Pet',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -297,7 +297,7 @@ export default function App() {
         options={{
           title: 'All Pets',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -311,7 +311,7 @@ export default function App() {
         options={{
           title: 'Add Pet',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -324,7 +324,7 @@ export default function App() {
         options={{
           title: 'Chat',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -341,7 +341,7 @@ export default function App() {
         options={{
           title: 'Lost And Found',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -356,7 +356,7 @@ export default function App() {
         options={{
           title: 'Lost And Found',
           headerStyle: {
-            backgroundColor: '#9adeff',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
