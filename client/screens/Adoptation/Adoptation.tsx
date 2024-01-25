@@ -39,6 +39,7 @@ const Adoptation: React.FC = ({route}:any): React.ReactElement => {
 const dispatch=useDispatch()
   const [adaptationTable,setAdaptationTable]=useState([])
 const [element,setElement]=useState({})
+const [active,setActive]=useState(0)
 const getAllAdapt=async ()=>{
 try {
   const get=await axios.get(`${port}/api/Adp`)

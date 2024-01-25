@@ -21,6 +21,7 @@ import axios from 'axios'
 import chien from "../../assets/chien.jpg";
 const { width, height } = Dimensions.get("screen");
 import { Ionicons } from "@expo/vector-icons"
+import { useSelector } from "react-redux";
 const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showImagePicker, setShowImagePicker] = useState(false);
@@ -46,19 +47,35 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   });
   const [lfdata,setLfdata]=useState([])
   const [active,setActive]=useState(0)
+  const token = useSelector((state: RootState) => state.auth.authToken);
   const getLf=async()=>{
-    const gett=await axios.get(`${port}/api/LF`)
+    const gett=await axios.get(`${port}/api/LF`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
     setLfdata(gett.data);
      }
      const getL=async()=>{
-      const gett=await axios.get(`${port}/api/LF`)
+      const gett=await axios.get(`${port}/api/LF`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
       setLfdata(gett.data.filter((el:any)=>{
         return el.status==='Lost'
       }));
       
       }
        const getF=async()=>{
-        const gett=await axios.get(`${port}/api/LF`)
+        const gett=await axios.get(`${port}/api/LF`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
         setLfdata(gett.data.filter((el:any)=>{
           return el.status==='Found'
         }));
@@ -93,7 +110,12 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
     try {
       console.log("rr");
 
-      const create = await axios.post(`${port}/api/LFA`, formData);
+      const create = await axios.post(`${port}/api/LFA`, formData,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
       console.log("rr",create.data);
 
     } catch (error) {
@@ -156,11 +178,11 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             {lfdata.map((el,i)=>(
         <TouchableOpacity key={i} style={{padding:5,marginBottom:30}}>
         <View style={styles.onepost}>
-          <Image style={styles.image} source={{uri:el.user.image}}></Image>
+          <Image style={styles.image} source={{uri:el?.user?.image}}></Image>
           <View  style={{width:width*0.45,marginLeft:10}}>
             <View>
               <View>
-                <Text style={{fontSize:20,fontWeight:"bold"}}>{el.user.fname+" "+el.user.lname}</Text>
+                <Text style={{fontSize:20,fontWeight:"bold"}}>{el?.user?.fname+" "+el?.user?.lname}</Text>
               </View>
               <View>
                 <Text>14/01/2024</Text>
@@ -175,7 +197,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
           <Text>{el.pet_description}</Text>
         </View>
         <View style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-          <Image style={{width:width*0.9,height:height*0.27,borderRadius:25}} source={{uri:el.pet_images[0]}}></Image>
+          <Image style={{width:width*0.9,height:height*0.27,borderRadius:25}} source={{uri:el?.pet_images[0]}}></Image>
         </View>
         </TouchableOpacity>
         ))}
