@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Modal,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome"; // Import the icon library
 
@@ -20,21 +21,24 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
   const [authorImage, setAuthorImage] = useState(
     "https://placekitten.com/100/100" // Default author image
   );
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const articles = [
     {
       id: 1,
-      title: "Exploring React Native",
+      title: " React Native",
       subject: "Learn how to build mobile apps with React Native.",
       author: "Jane Smith",
       image: "https://placekitten.com/100/101",
+      articleImage: "https://placekitten.com/200/200", // Additional photo for the article
     },
     {
       id: 2,
-      title: "Cooking Tips for Beginners",
+      title: "Cooking Tips ",
       subject: "Discover easy recipes and cooking techniques for beginners.",
       author: "Mike Johnson",
       image: "https://placekitten.com/100/102",
+      articleImage: "https://placekitten.com/201/201", // Additional photo for the article
     },
     {
       id: 3,
@@ -42,19 +46,27 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
       subject: "Stay fit at home with these simple workout routines.",
       author: "Emily Davis",
       image: "https://placekitten.com/100/103",
+      articleImage: "https://placekitten.com/202/202", // Additional photo for the article
     },
   ];
 
   const handleAddBlog = () => {
-    // Handle adding a new blog (you can implement this functionality)
+    // Open the modal
+    setModalVisible(true);
+  };
+
+  const handleSaveBlog = () => {
+    // Handle saving a new blog (you can implement this functionality)
     // For now, let's just log the new title, subject, author name, and author image
     console.log("New Title:", newTitle);
     console.log("New Subject:", newSubject);
     console.log("Author Name:", authorName);
     console.log("Author Image:", authorImage);
-    // Clear the input fields after adding the blog
+    // Clear the input fields after saving the blog
     setNewTitle("");
     setNewSubject("");
+    // Close the modal
+    setModalVisible(false);
   };
 
   const handleLike = (articleId: number) => {
@@ -76,22 +88,6 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
 
       {/* Add Blog Form */}
       <View style={styles.addBlogContainer}>
-        {/* Title Input */}
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Blog Title"
-          value={newTitle}
-          onChangeText={(text) => setNewTitle(text)}
-        />
-
-        {/* Subject Input */}
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Blog Subject"
-          value={newSubject}
-          onChangeText={(text) => setNewSubject(text)}
-        />
-
         <TouchableOpacity style={styles.addButton} onPress={handleAddBlog}>
           <Text style={styles.buttonText}>Add Blog</Text>
         </TouchableOpacity>
@@ -107,9 +103,18 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
               resizeMode="cover"
             />
             <View style={styles.blogInfo}>
-              <Text style={styles.authorName}>{article.author}</Text>
-              <Text style={styles.blogTitle}>{article.title}</Text>
+              <View style={styles.titleContainer}>
+                <Text style={styles.authorName}>{article.author}</Text>
+                <Text style={styles.blogTitle}>{article.title}</Text>
+              </View>
               <Text style={styles.blogContent}>{article.subject}</Text>
+
+              {/* Additional Photo for the Article */}
+              <Image
+                source={{ uri: article.articleImage }}
+                style={styles.articleImage}
+                resizeMode="cover"
+              />
 
               {/* Like and Dislike Icons */}
               <View style={styles.iconContainer}>
@@ -130,6 +135,41 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
           </View>
         ))}
       </View>
+
+      {/* Modal for Adding Blog */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            {/* Title Input */}
+            <TextInput
+              style={styles.input}
+              placeholder="Enter Blog Title"
+              value={newTitle}
+              onChangeText={(text) => setNewTitle(text)}
+            />
+
+            {/* Subject Input */}
+            <TextInput
+              style={styles.input}
+              placeholder="Enter Blog Subject"
+              value={newSubject}
+              onChangeText={(text) => setNewSubject(text)}
+            />
+
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={handleSaveBlog}
+            >
+              <Text style={styles.buttonText}>Save Blog</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 };
@@ -150,15 +190,7 @@ const styles = StyleSheet.create({
   },
   addBlogContainer: {
     marginBottom: 20,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#4e9d91",
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 8,
-    fontSize: 16,
-    color: "#333",
+    alignItems: "center",
   },
   addButton: {
     backgroundColor: "#4e9d91",
@@ -195,21 +227,29 @@ const styles = StyleSheet.create({
   blogInfo: {
     flex: 1,
   },
+  titleContainer: {
+    flexDirection: "row",
+    marginBottom: 8,
+  },
   authorName: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#4e9d91",
-    marginBottom: 8,
+    marginRight: 8,
   },
   blogTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 8,
     color: "#333",
   },
   blogContent: {
     fontSize: 16,
     color: "#555",
+  },
+  articleImage: {
+    height: 200,
+    borderRadius: 8,
+    marginTop: 10,
   },
   iconContainer: {
     flexDirection: "row",
@@ -217,6 +257,25 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     marginRight: 10,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 8,
+    width: width - 40,
+  },
+  saveButton: {
+    backgroundColor: "#4e9d91",
+    padding: 14,
+    borderRadius: 8,
+    alignItems: "center",
+    marginTop: 10,
   },
 });
 
