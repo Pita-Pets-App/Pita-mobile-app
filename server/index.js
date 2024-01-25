@@ -31,12 +31,13 @@ app.use(cors())
 
 app.use("/api",authRoute)
 app.use("/api",adminRoute)
+app.use("/api",providerBRoute)
 
-app.use("/api", authenticateToken);
+// app.use("/api", authenticateToken);
 
 app.use("/api",usersRoute)
 app.use("/api",petRoute)
-app.use("/api",providerBRoute)
+
 app.use("/api",providerRoute)
 app.use("/api",LFARoute)
 app.use("/api",rateRoute)

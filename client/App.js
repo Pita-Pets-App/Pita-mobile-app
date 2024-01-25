@@ -37,7 +37,8 @@ import EditPet from "./screens/PetsProfiles/EditPet";
 import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
 import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
-
+import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
+import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 
 const Stack = createNativeStackNavigator();
 
@@ -45,7 +46,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="RegisterProviderr">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -54,6 +55,12 @@ export default function App() {
         <Stack.Screen
         name="Register"
         component={Register} />
+        <Stack.Screen
+        name="RegisterProvider"
+        component={RegisterProvider} />
+        <Stack.Screen
+        name="LoginProvider"
+        component={LoginProvider} />
         <Stack.Screen
         name="DynamicScreenAllServices"
         component={DynamicScreenAllServices} 

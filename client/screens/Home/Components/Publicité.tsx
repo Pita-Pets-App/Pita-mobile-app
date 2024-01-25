@@ -8,11 +8,15 @@ const { width, height } = Dimensions.get('screen')
 
 const Publicite: React.FC = (): React.ReactElement => {
     const navigation=useNavigation()
-    const userName = useSelector((state: RootState) => state.user?.userData.fname);
+    const userName = useSelector((state: RootState) => state.user?.userData?.fname);
+    const providerName = useSelector((state: RootState) => state.provider?.providerData?.fname);
+    
+    const Name = userName || providerName;
+    
     return (
            <TouchableOpacity>
             <Image style={{width:width*0.95,height:height*0.4}} source={pub}></Image>
-            <View style={styles.imageText}><Text style={{fontSize: 27,fontWeight: 'bold',color: '#26117a',}}>Hi </Text><Text style={{fontSize: 27,fontWeight: 'bold',color: '#fa5672',}}>{userName}</Text></View>
+            <View style={styles.imageText}><Text style={{fontSize: 27,fontWeight: 'bold',color: '#26117a',}}>Hi </Text><Text style={{fontSize: 27,fontWeight: 'bold',color: '#fa5672',}}>{Name}</Text></View>
             </TouchableOpacity>
       
     );
