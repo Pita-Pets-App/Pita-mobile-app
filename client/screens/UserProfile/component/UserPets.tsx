@@ -38,8 +38,8 @@ const UserPets: React.FC <UserPetsProps>= ({pets}) => {
             <Image style={{width:width*0.08,height:height*0.035}} source={peticon}></Image>
             <Text style={{fontWeight:'bold',fontSize: 18}}>My Pets</Text>
             </View>
-            <View style={{borderColor:"#DFBDE7",borderWidth:1,borderRadius:20,padding:5}}>
-            <TouchableOpacity onPress={()=>{navigation.navigate('AllPets' as never)}}><Text style={{color:"#DFBDE7",fontWeight:"bold"}}>See All</Text></TouchableOpacity>
+            <View style={{borderColor:"#4e9d91",borderWidth:1,borderRadius:20,padding:5}}>
+            <TouchableOpacity onPress={()=>{navigation.navigate('AllPets' as never)}}><Text style={{color:"#4e9d91",fontWeight:"bold"}}>See All</Text></TouchableOpacity>
             </View>
             </View>
         <View style={{display:"flex",flexDirection:'row', gap:20,  marginVertical:15,justifyContent:"space-around",paddingHorizontal:15}}>

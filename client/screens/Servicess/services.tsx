@@ -7,14 +7,14 @@ const { width, height } = Dimensions.get('screen')
 const Services: React.FC = () => {
     return (
         <ScrollView style={styles.UsersServicesp}>
-            <View style={styles.logo}></View>
+            {/* <View style={styles.logo}></View> */}
             <AllServices/>
         </ScrollView>
     );
 };
 const styles = StyleSheet.create({
     UsersServicesp: {
-   backgroundColor:"#ffc368",
+   backgroundColor:"#fff",
    display:"flex",
    alignContent:"center",
 },
@@ -33,7 +33,7 @@ logo :{
     height:height*0.155,
     justifyContent:"center",
     alignItems:"center",
-    borderRadius:20,
+    borderRadius:25,
     marginHorizontal:20,
     marginVertical:20,
     display:'flex',

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   View: {
-    backgroundColor: "#ffc368",
+    backgroundColor: "#4e9d91",
     width: width,
     height: width,
     justifyContent: "center",
