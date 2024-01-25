@@ -12,13 +12,13 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { port } from "../../../port";
-
+import { useSelector } from "react-redux";
 
 const { width, height } = Dimensions.get("screen");
 const Carosel: React.FC = (): React.ReactElement => {
   const navigation = useNavigation();
   const [serviceData,setServiceData]=useState<Services[]|[]>([])
-  
+  const token = useSelector((state: RootState) => state.auth.authToken);
   const navigateToHome = () => {
     navigation.navigate("Services" as never);
     
@@ -33,7 +33,12 @@ const Carosel: React.FC = (): React.ReactElement => {
 try {
 
 
-    const result=await axios.get(`${port}/api/service`)
+    const result=await axios.get(`${port}/api/service`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
     setServiceData(result.data);
     console.log("ser",result.data);
     
@@ -49,13 +54,13 @@ getData()
   return (
     <View style={styles.allPages}>
       <View style={styles.service}>
-        <Text style={{ color: "black", fontSize: 18, fontWeight: "bold" }}>
-          Services
+        <Text style={{ color: "#4e9d91", fontSize: 18, fontWeight: "bold" }}>
+          | Services
         </Text>
         <TouchableOpacity
           style={{
             borderRadius: 20,
-            borderColor: "white",
+            borderColor: "#4e9d91",
             borderWidth: 1.5,
             width: width * 0.17,
             height: 40,
@@ -65,7 +70,7 @@ getData()
           }}
           onPress={navigateToHome}
         >
-          <Text style={{ color: "black", fontSize: 14 }} > See All </Text>
+          <Text style={{ color: "#4e9d91", fontSize: 14 ,fontWeight:"bold"}} > See All </Text>
         </TouchableOpacity>
       </View>
       <ScrollView style={styles.allService} horizontal>
@@ -80,8 +85,8 @@ getData()
               </View>
           </TouchableOpacity>
           <TouchableOpacity key={serviceData[1]?.id} onPress={() => navigateToServiceDetails(serviceData[1]?.id)}>
-              <View style={styles.oneServicee1}>
-              <View style={styles.oneService1}>
+              <View style={styles.oneServicee4}>
+              <View style={styles.oneService4}>
                 <Image style={{ width: 50, height: 50 }} source={{uri:serviceData[1]?.service_image }}></Image>
               </View>
               </View>
@@ -101,8 +106,8 @@ getData()
               </View>
           </TouchableOpacity>
           <TouchableOpacity key={serviceData[4]?.id} onPress={() => navigateToServiceDetails(serviceData[4]?.id)}>
-              <View style={styles.oneServicee4}>
-              <View style={styles.oneService4}>
+              <View style={styles.oneServicee1}>
+              <View style={styles.oneService1}>
                 <Image style={{ width: 50, height: 50 }} source={{uri:serviceData[4]?.service_image }}></Image>
               </View>
               </View>
@@ -148,10 +153,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"",
   
   },
@@ -162,10 +163,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"#d5eef6",
     borderWidth:2,
   },
@@ -176,10 +173,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"",
   
   },
@@ -190,10 +183,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"#f8e3fb",
     borderWidth:2,
   },
@@ -204,12 +193,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"",
-  
   },
   oneServicee2: {
     backgroundColor: "white",
@@ -218,10 +202,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"#f9efcb",
     borderWidth:2,
   },
@@ -232,10 +212,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"",
   
   },
@@ -246,10 +222,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"#e3edfb",
     borderWidth:2,
   },
@@ -260,10 +232,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"",
   
   },
@@ -274,10 +242,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    shadowColor: "black",
-    shadowOffset: { width: 1, height: 5 },
-    shadowOpacity: 6,
-    shadowRadius: 5,
     borderColor:"#fbe3e3",
     borderWidth:2,
   },

@@ -14,7 +14,8 @@ type RootStackParamList = {
 
 const ChatContainer: React.FC = (): React.ReactElement => {
   const [roomsData, setRoomsData] = useState([]);
-
+  const token = useSelector((state: RootState) => state.auth.authToken);
+console.log(token);
 
   const navigation=useNavigation()
 
@@ -24,7 +25,12 @@ const ChatContainer: React.FC = (): React.ReactElement => {
 
   const getData = async () => {
     try {
-      const result = await axios.put(`${port}/api/Rooms/${userId}`);
+      const result = await axios.put(`${port}/api/Rooms/${userId}`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
       console.log(result.data);
       setRoomsData(result.data);
     } catch (error) {
@@ -39,9 +45,9 @@ const ChatContainer: React.FC = (): React.ReactElement => {
   const renderItem = ({ item }) => (
     <TouchableOpacity
     onPress={() => {
-      navigation.navigate("ChatPage", {
+      navigation.navigate(...["ChatPage", {
         receiver: item[0].id,
-      } as RouteProp<RootStackParamList, 'ChatPage'>);
+      }]as never);
     }}
   >
 

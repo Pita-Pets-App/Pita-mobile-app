@@ -30,6 +30,7 @@ app.use(cors())
 
 
 app.use("/api",authRoute)
+app.use("/api",ChatRoute)
 app.use("/api",adminRoute)
 app.use("/api",providerBRoute)
 
@@ -43,7 +44,7 @@ app.use("/api",LFARoute)
 app.use("/api",rateRoute)
 app.use("/api",eventRoute)
 app.use("/api",serviceRoute)
-app.use("/api",ChatRoute)
+
 
 ////// chat part 
 const chatserv = createServer(app);

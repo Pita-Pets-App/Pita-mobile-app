@@ -32,10 +32,10 @@ const Login: React.FC = () => {
       
     try {
         const data = await login_me(formData);
-        // console.log("data from Api above succes",data);
+        const {fname, email, user_password} = data
+        console.log("data from Api above succes",data);
   
-        if (data) {
-           console.log("data from Api succes",data);// when use useSelector the login crashes
+        if (fname & email & user_password) {
           dispatch(setAuthTokenAction(data.token));
           dispatch(setUserData(data))
   
