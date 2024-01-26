@@ -53,7 +53,7 @@ const AddPet: React.FC = () => {
   const navigation=useNavigation()
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [st, setSt] = useState("");
-
+  const token = useSelector((state: RootState) => state.auth.authToken);
   
   const selectImage = async () => {
     const pickerResult = await ImagePicker.launchImageLibraryAsync();
@@ -102,7 +102,12 @@ const AddPet: React.FC = () => {
     }
   };
   const handleSubmit=async()=>{
-    const addina=await axios.post(`${port}/api/pets`,formData)
+    const addina=await axios.post(`${port}/api/pets`,formData,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
     const actionResult = await dispatch(updateUserData({
       fname:userData.fname
     }));
@@ -294,7 +299,7 @@ const styles = StyleSheet.create({
     gap: 17,
   },
   registerButton: {
-    backgroundColor: "#ffc368",
+    backgroundColor: "#4e9d91",
     width: width * 0.85,
     height: height * 0.06,
     justifyContent: "center",

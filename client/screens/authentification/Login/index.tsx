@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet ,Dimensions,TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, Button, Alert, StyleSheet ,Dimensions,TouchableOpacity,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { login_me } from '../../../lib/apiCalls';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { setAuthTokenAction } from '../../../lib/redux/auth/authThunks';
 import { setUserData } from '../../../lib/redux/user/userSlice';
+import pita from "../../../assets/pita.png"
 const { width, height } = Dimensions.get("screen");
 
 
@@ -31,10 +32,10 @@ const Login: React.FC = () => {
       
     try {
         const data = await login_me(formData);
-        // console.log("data from Api above succes",data);
+        const {token} = data
+        console.log("data from Api above succes",data);
   
-        if (data) {
-           console.log("data from Api succes",data);// when use useSelector the login crashes
+        if (token) {
           dispatch(setAuthTokenAction(data.token));
           dispatch(setUserData(data))
   
@@ -62,7 +63,7 @@ const Login: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Image style={{width:width*0.8,height:width*0.8,}} source={pita}></Image>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -91,10 +92,12 @@ const Login: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display:'flex',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
+    backgroundColor:"#fff",
+    
   },
   title: {
     fontSize: 24,
@@ -118,6 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    marginBottom:145
   }
 });
 

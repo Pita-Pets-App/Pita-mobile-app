@@ -25,11 +25,10 @@ const Home: React.FC = (): React.ReactElement => {
 const styles = StyleSheet.create({
     container: {
         display: "flex",
-        backgroundColor: "#ffc368",
+        backgroundColor: "#fff",
        
     },
     allPages: {
-   backgroundColor:"#ffc368",
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop:20,
