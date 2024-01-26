@@ -19,14 +19,13 @@ interface UserInfo {
 
 }
 interface UserInfoProps {
-  image: string;
-  fname: string;
-  lname: string;
-  email: string;
+  image?: string;
+  fname?: string;
+  lname?: string;
+  email?: string;
 }
 
 const { width, height } = Dimensions.get("screen");
-
 const UserProfile: React.FC = () => {
   const userData = useSelector((state: RootState) => state.user?.userData);
   const authData = useSelector((state: RootState) => state.auth);
