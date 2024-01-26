@@ -1,37 +1,24 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { clearToken } from '../../../lib/redux/auth/authSlice';
-import { clearUser } from '../../../lib/redux/user/userSlice'; 
+import { clearUser } from '../../../lib/redux/user/userSlice';
 
-const LogoutButton = () => {
+const useLogout = ({ navigation }) => {
   const dispatch = useDispatch();
-  const navigation = useNavigation()
 
   const handleLogout = async () => {
     try {
-      
       await AsyncStorage.removeItem('authToken');
-
-      dispatch(clearToken()); 
+      dispatch(clearToken());
       dispatch(clearUser());
-    
-      navigation.navigate('Login' as never)
-      
+      navigation.navigate('Login' as never);
     } catch (error) {
       console.error('Error during logout:', error);
     }
   };
 
-  return (
-    <View>
-      <TouchableOpacity onPress={handleLogout}>
-        <Text>Logout</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  return handleLogout;
 };
 
-export default LogoutButton;
+export default useLogout;
