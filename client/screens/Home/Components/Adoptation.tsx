@@ -6,6 +6,7 @@ import adp from '../../../assets/adpimg.png'
 
 const  Adoptation: React.FC = (): React.ReactElement=> {
     const navigation=useNavigation()
+    
     return (
         <View style={styles.allPages}>
               <View style={styles.service}>

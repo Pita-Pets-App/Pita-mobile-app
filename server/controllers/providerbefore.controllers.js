@@ -1,6 +1,7 @@
 const { where } = require('sequelize');
 const { default: axios } = require("axios");
 const {ProviderBf, Services}=require('../database-Sequelize/index')
+const bcrypt = require('bcrypt');
 
 const AllProviderBf= async(req,res) => {
     try {
@@ -32,9 +33,18 @@ const OneProviderBf= async(req,res) => {
     }
 };
 
-const RegisterProv= async(req,res) => {
+const RegisterProv= async(req,res) => { //after fill th required inputs send req to admin (add it to the table providerBF)
+    const { fname,lname,  email, provider_cv, provider_password  } = req.body;
     try {
-    const result=await ProviderBf.create(req.body)
+        const hashedPassword = await bcrypt.hash(provider_password, 10);
+        const provider = {
+            fname,
+            lname,
+            email,
+            provider_cv,
+            provider_password: hashedPassword
+        }
+    const result=await ProviderBf.create(provider)
     res.send(result)
     } catch (error) {
     res.send(error)    

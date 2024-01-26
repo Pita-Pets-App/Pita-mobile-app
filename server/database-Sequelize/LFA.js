@@ -29,6 +29,14 @@ const LFA =(connection,DataTypes)=>{
             type: DataTypes.TEXT("long"),
            allowNull: false,
          },
+         post_langitude : {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        post_lattitude: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
         status: {
            type: DataTypes.ENUM,
            values: ['Lost', 'Found', 'Adopted','Not Adopted'],

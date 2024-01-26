@@ -9,6 +9,7 @@ const { width, height } = Dimensions.get('screen')
 
 const Publicite: React.FC = (): React.ReactElement => {
     const navigation=useNavigation()
+
     const user = useSelector((state: RootState) => state.user?.userData);
     return (
            <View style={{marginTop:20,padding:20}}>
@@ -21,11 +22,10 @@ const Publicite: React.FC = (): React.ReactElement => {
                     <TouchableOpacity>
                     <Image style={{width:width*0.07,height:width*0.07,position:'absolute',left:40,top:10}} source={notif}></Image>
                 </TouchableOpacity>
-                </View>
-                
+                </View>    
             <Image style={{width:width*0.95,height:height*0.2,borderRadius:20}} source={pub}></Image>
-           
             </View>
+
       
     );
 };

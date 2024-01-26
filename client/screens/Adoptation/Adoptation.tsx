@@ -1,4 +1,5 @@
 import React ,{useEffect, useState}from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   ScrollView,
   View,
@@ -7,19 +8,21 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  
 } from "react-native";
 import CartAdoptation from "./Components/CartAdoptation";
 import dog from "../../assets/dogcategories.png";
 import cat from "../../assets/catcategory.png";
 import bird from "../../assets/birdcategory.png";
 import fish from "../../assets/fishcategory.png";
-
+import { Ionicons } from "@expo/vector-icons"
 import Svg, { Rect, Path } from 'react-native-svg';
 import { port } from "../../port";
 import axios from "axios";
 import {getOneAnimal} from "../../store/adaptSlice"
-import { useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import { useDispatch,useSelector} from "react-redux";
+
+
 import chien from "../../assets/chien.jpg";
 
 const { width, height } = Dimensions.get("screen");
@@ -35,23 +38,108 @@ interface Animal {
   status:  'Adopted' | 'Not Adopted';
 }
 
-const Adoptation: React.FC = ({route}:any): React.ReactElement => {
+const Adoptation: React.FC<any> = ({route,navigation:any}): React.ReactElement => {
+  
 const dispatch=useDispatch()
   const [adaptationTable,setAdaptationTable]=useState([])
 const [element,setElement]=useState({})
 const [active,setActive]=useState(0)
+const token = useSelector((state: RootState) => state.auth.authToken);
+
 const getAllAdapt=async ()=>{
 try {
-  const get=await axios.get(`${port}/api/Adp`)
+  const get=await axios.get(`${port}/api/Adp`,{
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
   setAdaptationTable(get.data)
 } catch (error) {
   console.log(error)
 }
 
 }
-useEffect(()=>{getAllAdapt()
-  // dispatch(getOneAnimal(element))
-},[dispatch])
+useEffect(() => {
+  navigation.setOptions({
+    title: `Adoptation interface`,
+    headerStyle: {
+      backgroundColor: '#4e9d91',
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+    headerRight: () => (
+      <TouchableOpacity
+      onPress={() => navigation.navigate("AddNewAdoptation" as never)}
+      >
+        <Ionicons name="add" size={27} color="white" />
+      </TouchableOpacity>)
+  });
+}, []);
+const getAllDogs=async ()=>{
+  try {
+    const get=await axios.get(`${port}/api/Adp`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    setAdaptationTable(get.data.filter((el)=>el.pet_race=="Dog"))
+  } catch (error) {
+    console.log(error)
+  }
+  
+  }
+  const getAllCates=async ()=>{
+    try {
+      const get=await axios.get(`${port}/api/Adp`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      setAdaptationTable(get.data.filter((el)=>el.pet_race=="Cat"))
+    } catch (error) {
+      console.log(error)
+    }
+    
+    }
+    const getAllFishs=async ()=>{
+      try {
+        const get=await axios.get(`${port}/api/Adp`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
+        setAdaptationTable(get.data.filter((el)=>el.pet_race=="Fish"))
+      } catch (error) {
+        console.log(error)
+      }
+      
+      }
+      const getAllBirds=async ()=>{
+        try {
+          const get=await axios.get(`${port}/api/Adp`,{
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+          setAdaptationTable(get.data.filter((el)=>el.pet_race=="Bird"))
+        } catch (error) {
+          console.log(error)
+        }
+        
+        }
+useEffect(()=>{
+  active===0?getAllAdapt():
+  active===1?getAllDogs():
+  active===2?getAllCates():
+  active===3?getAllBirds():getAllFishs()
+},[active,route.params])
 
 console.log(adaptationTable)
 const navigation=useNavigation()
@@ -124,7 +212,8 @@ const navigation=useNavigation()
       </View>
       <View style={{marginLeft:10,marginVertical:10}}>
         </View>
-      <CartAdoptation />
+        {adaptationTable.map((el,i)=>( <CartAdoptation key={i} el={el}/>))}
+     
     </ScrollView>
   );
 };

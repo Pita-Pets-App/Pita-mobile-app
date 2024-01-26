@@ -36,9 +36,15 @@ const AllPets: React.FC = () => {
   const [selectedPetId, setSelectedPetId] = useState<number | null>(null);
   const [isModalVisible, setModalVisible] = useState(false);
  const navigation=useNavigation()
+ const token = useSelector((state: RootState) => state.auth.authToken);
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`${port}/api/pets/${id}`);
+      await axios.delete(`${port}/api/pets/${id}`,{
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
       const actionResult = await dispatch(updateUserData({ fname: user.fname }));
     } catch (error) {
       console.error("Error deleting pet:", error);

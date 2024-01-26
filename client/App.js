@@ -24,11 +24,11 @@ import Welcome1 from "./screens/welcomingPages/welcome1";
 import Welcome2 from "./screens/welcomingPages/welcome2";
 import welcome3 from "./screens/welcomingPages/welcome3";
 import store from "./lib/redux/store"
-// import store from "./store/store";
+import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
-
+import MapForAdopt from "./screens/MapForAdopt/MapForAdopt"
 import MapForEvent from "./screens/MapForEvent/MapForEvent";
 import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
@@ -38,13 +38,20 @@ import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/inde
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
 import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
 import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
+
+import Blogs from "./screens/Blogs/Blogs";
+
+import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
+import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
+
       <Stack.Navigator initialRouteName="Login">
+
         <Stack.Screen
         name="Home"
         component={Home}
@@ -53,6 +60,12 @@ export default function App() {
         <Stack.Screen
         name="Register"
         component={Register} />
+        <Stack.Screen
+        name="RegisterProvider"
+        component={RegisterProvider} />
+        <Stack.Screen
+        name="LoginProvider"
+        component={LoginProvider} />
         <Stack.Screen
         name="DynamicScreenAllServices"
         component={DynamicScreenAllServices} 
@@ -65,10 +78,22 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },}} />
+           <Stack.Screen
+        name="MapForAdopt"
+        component={MapForAdopt}
+        options={{
+          headerShown:false
+        }} />
          <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="Blogs"
+        component={Blogs}
         options={{
           headerShown:false
         }} />
@@ -207,13 +232,15 @@ export default function App() {
             fontWeight: 'bold',
           },
         }}/>
-         <Stack.Screen
+        <Stack.Screen
         
-        name="AdoptationDetails"
-
-        component={AdoptationDetails} 
+        name="comment"
+        component={Comment} 
         options={{
-          title: 'Adaptaion Interface',
+          
+            headerShown:true,
+          
+          title: 'Comment',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },
@@ -221,6 +248,14 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+        }}/>
+         <Stack.Screen
+        
+        name="AdoptationDetails"
+
+        component={AdoptationDetails} 
+        options={{
+          headerShown:false
         }} />
         <Stack.Screen
         

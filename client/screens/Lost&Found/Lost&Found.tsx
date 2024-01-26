@@ -19,9 +19,14 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios'
 import chien from "../../assets/chien.jpg";
+import like from "../../assets/coeur.png"
+import likeact from "../../assets/likeact.png"
+import commenter from "../../assets/commenter.png"
+import messager from "../../assets/messager.png"
 const { width, height } = Dimensions.get("screen");
 import { Ionicons } from "@expo/vector-icons"
 import { useSelector } from "react-redux";
+import LFPost from "./lfPost";
 const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showImagePicker, setShowImagePicker] = useState(false);
@@ -35,6 +40,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
   const [birthDate, setBirthDate] = useState("");
   const [petDescription, setPetDescription] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const userId = useSelector((state: RootState) => state.user?.userData.id);
   const [formData, setFormData] = useState({
     "pet_name": "",
     "pet_weight": 0,
@@ -44,6 +50,10 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
     "birth_date": "",
     "pet_description": "",
     "status": 'Lost',
+    "post_langitude":"222",
+    "post_lattitude":"5555",
+    "userId":userId,
+    
   });
   const [lfdata,setLfdata]=useState([])
   const [active,setActive]=useState(0)
@@ -101,7 +111,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             
           }}
         >
-          <Ionicons name="add" size={27} color="white" />
+          <Ionicons name="add" size={27} color="white" onPress={()=>{setModalVisible(true)}} />
         </TouchableOpacity>)
     });
   }, [navigation]);
@@ -110,12 +120,8 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
     try {
       console.log("rr");
 
-      const create = await axios.post(`${port}/api/LFA`, formData,{
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      const create = await axios.post(`${port}/api/LFA`, formData)
+      ;
       console.log("rr",create.data);
 
     } catch (error) {
@@ -167,40 +173,15 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             <Text style={active==2?styles.textact:styles.text}>Found</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity    onPress={() => setModalVisible(true)} style={styles.bt}>
+        {/* <TouchableOpacity onPress={()=>{setModalVisible(true)}} style={active==2?styles.btact:styles.bt}>
           <View>
-            <Text style={{ color: "#fff", fontSize: 17 }}>Add</Text>
+            <Text style={active==2?styles.textact:styles.text}>Add</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
        <View style={styles.line} />
           <ScrollView style={styles.apdpostes}>
-            {lfdata.map((el,i)=>(
-        <TouchableOpacity key={i} style={{padding:5,marginBottom:30}}>
-        <View style={styles.onepost}>
-          <Image style={styles.image} source={{uri:el?.user?.image}}></Image>
-          <View  style={{width:width*0.45,marginLeft:10}}>
-            <View>
-              <View>
-                <Text style={{fontSize:20,fontWeight:"bold"}}>{el?.user?.fname+" "+el?.user?.lname}</Text>
-              </View>
-              <View>
-                <Text>14/01/2024</Text>
-              </View>
-            </View>
-          </View>
-          <View >
-              <Text style={el.status==='Found'?styles.found:styles.lost} >{el.status}</Text>
-            </View>
-        </View>
-        <View style={{marginHorizontal:20,marginBottom:10}}>
-          <Text>{el.pet_description}</Text>
-        </View>
-        <View style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-          <Image style={{width:width*0.9,height:height*0.27,borderRadius:25}} source={{uri:el?.pet_images[0]}}></Image>
-        </View>
-        </TouchableOpacity>
-        ))}
+            {lfdata.map((el,i)=>(<LFPost key={i} el={el}/>))}
       </ScrollView>
       <Modal
         animationType="slide"
@@ -295,7 +276,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
 };
 const styles = StyleSheet.create({
   cancelButton: {
-    backgroundColor: "orange", 
+    backgroundColor: "#e3edfb", 
     borderRadius: 20,
     padding: 15, 
     alignItems: "center",
@@ -303,7 +284,7 @@ const styles = StyleSheet.create({
     marginTop: 10, 
   },
   AddLA: {
-    backgroundColor: "orange",
+    backgroundColor: "#e3edfb",
     borderRadius: 20,
     padding: 15, 
     alignItems: "center",
@@ -428,7 +409,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 15, 
-    fontSize: 16, // Increase font size
+    fontSize: 16, 
   },
   saveButton: {
     backgroundColor: "orange",
