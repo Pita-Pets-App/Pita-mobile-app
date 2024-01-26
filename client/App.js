@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
@@ -27,6 +27,7 @@ import store from "./lib/redux/store"
 import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
+import ProvCV from "./screens/authentification/Provider/RegisterForm/putcv";
 import { Provider } from "react-redux";
 import MapForAdopt from "./screens/MapForAdopt/MapForAdopt"
 import MapForEvent from "./screens/MapForEvent/MapForEvent";
@@ -46,10 +47,17 @@ import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const navigation = useNavigation();
+  const isWelcome1Screen = () => {
+    const routeName = navigation.getCurrentRoute()?.name;
+    return routeName === 'Welcome1';
+  };
+
+
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Blogs">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -93,8 +101,16 @@ export default function App() {
         name="Blogs"
         component={Blogs}
         options={{
-          headerShown:false
-        }} />
+          title: 'Blogs',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false,
+        }}/>
          <Stack.Screen
         name="AddNewAdoptation"
         component={AddNewAdoptation}
@@ -134,6 +150,12 @@ export default function App() {
           headerBackVisible: false,
         }} />
         <Stack.Screen
+        name="ProvCV"
+        component={ProvCV}
+        options={{
+          headerShown:false
+        }} />
+        <Stack.Screen
         name="RegisterOrLogin"
         component={RegisterOrLogin}
         options={{
@@ -166,6 +188,19 @@ export default function App() {
         component={Services} 
         options={{
           title: 'Services',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+         <Stack.Screen
+        name="ProviderProfile"
+        component={ProviderProfile} 
+        options={{
+          title: 'ProviderProfile',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },
