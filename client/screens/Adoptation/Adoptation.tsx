@@ -189,7 +189,7 @@ const navigation=useNavigation()
       </View>
       <View style={{marginLeft:10,marginVertical:10}}>
         </View>
-        {adaptationTable.map((el)=>( <CartAdoptation el={el}/>))}
+        {adaptationTable.map((el,i)=>( <CartAdoptation key={i} el={el}/>))}
      
     </ScrollView>
   );

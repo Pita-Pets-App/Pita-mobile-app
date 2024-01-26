@@ -32,10 +32,10 @@ const Login: React.FC = () => {
       
     try {
         const data = await login_me(formData);
-        const {fname, email, user_password} = data
+        const {token} = data
         console.log("data from Api above succes",data);
   
-        if (fname & email & user_password) {
+        if (token) {
           dispatch(setAuthTokenAction(data.token));
           dispatch(setUserData(data))
   
