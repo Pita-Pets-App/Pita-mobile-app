@@ -3,7 +3,7 @@ const {AllProviderBf,AllTypeBf,OneProviderBf,RegisterProv,DeleteProviderBf,Updat
 
 providerBRoute.get("/providerBf",AllProviderBf)
 providerBRoute.get("/providerBf/type/:type",AllTypeBf)
-providerBRoute.get("/providerBf/:id",OneProviderBf)
+providerBRoute.get("/providerBf/:email",OneProviderBf)
 providerBRoute.post("/providerBf",RegisterProv)
 providerBRoute.put("/providerBf/:id",UpdateProviderBf)
 providerBRoute.delete("/providerBf/:id",DeleteProviderBf)
