@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet, Dimensions,TouchableOpacity} from 'react-native';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import location from "../../../assets/maps-and-flags.png";
 import Home from "../../../assets/homegreen.png";
@@ -9,11 +9,17 @@ import user from "../../../assets/usernav.png";
 import { useSelector } from 'react-redux';
 import {AntDesign} from 'react-native-vector-icons'
 const { width, height } = Dimensions.get('screen');
+
 ///#DFBDE7
 const Navbar: React.FC = (): React.ReactElement => {
     const navigation = useNavigation();
+    // const route = useRoute()
     const userImage = useSelector((state: RootState) => state.user?.userData?.image);
-  console.log(userImage);
+    // const isWelcomeScreen = route.name === "Welcome1" 
+
+    // if (isWelcomeScreen) {
+    //     return null;
+    //   }
   
     return (
 
