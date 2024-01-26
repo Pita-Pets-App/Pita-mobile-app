@@ -139,7 +139,7 @@ useEffect(()=>{
   active===1?getAllDogs():
   active===2?getAllCates():
   active===3?getAllBirds():getAllFishs()
-},[active])
+},[active,route.params])
 
 console.log(adaptationTable)
 const navigation=useNavigation()
@@ -212,7 +212,7 @@ const navigation=useNavigation()
       </View>
       <View style={{marginLeft:10,marginVertical:10}}>
         </View>
-        {adaptationTable.map((el)=>( <CartAdoptation el={el}/>))}
+        {adaptationTable.map((el,i)=>( <CartAdoptation key={i} el={el}/>))}
      
     </ScrollView>
   );

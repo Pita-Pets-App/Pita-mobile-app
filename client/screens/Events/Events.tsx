@@ -84,7 +84,7 @@ const [loc,setLoc]=useState("")
   };
 
   const token = useSelector((state: RootState) => state.auth.authToken);
-  console.log("token", token);
+  
   
 
 const getAllevent=async()=>{
@@ -95,6 +95,8 @@ const getAllevent=async()=>{
         'Content-Type': 'application/json',
       },
     })
+    console.log("events",getEvent.data);
+    
 
     setAllEvent(getEvent.data)
     // console.log("allevents",getEvent.data[0]);

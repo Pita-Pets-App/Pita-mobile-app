@@ -23,10 +23,12 @@ import * as Location from "expo-location";
 
 const { width, height } = Dimensions.get("screen");
 
-const AddNewAdoptation: React.FC = ({ navigation }): React.ReactElement => {
+const AddNewAdoptation: React.FC<any> = ({ navigation }): React.ReactElement => {
   const eventLocation = useSelector(
     (state: any) => state.location.selecteEventLocation
   ) || { longitude: '', latitude: '' };
+  const userId = useSelector((state: RootState) => state.user?.userData.id);
+  console.log(userId,"test")
   const [formData, setFormData] = useState({
     "pet_name": "",
     "pet_weight": "",
@@ -37,7 +39,9 @@ const AddNewAdoptation: React.FC = ({ navigation }): React.ReactElement => {
     "pet_description": "",
     "status": 'Not Adopted',
     "post_langitude": eventLocation.longitude,
-    "post_lattitude": eventLocation.latitude
+    "post_lattitude": eventLocation.latitude,
+    "userId":userId,
+    
   });
   const [loc, setLoc] = useState("");
   const [showDetails, setShowDetails] = useState(false);
@@ -105,7 +109,7 @@ const AddNewAdoptation: React.FC = ({ navigation }): React.ReactElement => {
           'Content-Type': 'application/json',
         },
       });
-      navigation.navigate("Adoptation" as never)
+      navigation.navigate("Adoptation",{id:1})
     } catch (error) {
       console.log(error);
       // handle error
