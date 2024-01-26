@@ -10,7 +10,8 @@ import Edit from "./Components/UpdateProfile.jsx"
 import AllUsers from "./Components/AllUsers.jsx"
 import AddService from "./Components/AddService.jsx"
 import CustomersOverview from "./Components/Allproviders.jsx"
-
+import  AddAdmin  from './Components/AddAdmin.jsx';
+import Newprov from "./Components/NewProvider.jsx"
 import { createContext, useState } from 'react';
 function App() {
  
@@ -27,6 +28,8 @@ function App() {
           <Route path="/test" element={<CustomersOverview/>} />
           <Route path="/AllUsers" element={<AllUsers />} />
           <Route path="/AddService" element={<AddService />} />
+          <Route path="/AddAdmin" element={<AddAdmin />} />
+          <Route path="/Newprov" element={<Newprov />} />
         </Routes>
       </IdentityProvider>
     
