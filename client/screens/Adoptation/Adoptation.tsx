@@ -1,4 +1,5 @@
 import React ,{useEffect, useState}from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   ScrollView,
   View,
@@ -7,19 +8,21 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  
 } from "react-native";
 import CartAdoptation from "./Components/CartAdoptation";
 import dog from "../../assets/dogcategories.png";
 import cat from "../../assets/catcategory.png";
 import bird from "../../assets/birdcategory.png";
 import fish from "../../assets/fishcategory.png";
-
+import { Ionicons } from "@expo/vector-icons"
 import Svg, { Rect, Path } from 'react-native-svg';
 import { port } from "../../port";
 import axios from "axios";
 import {getOneAnimal} from "../../store/adaptSlice"
 import { useDispatch,useSelector} from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+
+
 import chien from "../../assets/chien.jpg";
 
 const { width, height } = Dimensions.get("screen");
@@ -35,12 +38,14 @@ interface Animal {
   status:  'Adopted' | 'Not Adopted';
 }
 
-const Adoptation: React.FC = ({route}:any): React.ReactElement => {
+const Adoptation: React.FC<any> = ({route,navigation:any}): React.ReactElement => {
+  
 const dispatch=useDispatch()
   const [adaptationTable,setAdaptationTable]=useState([])
 const [element,setElement]=useState({})
 const [active,setActive]=useState(0)
 const token = useSelector((state: RootState) => state.auth.authToken);
+
 const getAllAdapt=async ()=>{
 try {
   const get=await axios.get(`${port}/api/Adp`,{
@@ -55,6 +60,24 @@ try {
 }
 
 }
+useEffect(() => {
+  navigation.setOptions({
+    title: `Adoptation interface`,
+    headerStyle: {
+      backgroundColor: '#4e9d91',
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+    headerRight: () => (
+      <TouchableOpacity
+      onPress={() => navigation.navigate("AddNewAdoptation" as never)}
+      >
+        <Ionicons name="add" size={27} color="white" />
+      </TouchableOpacity>)
+  });
+}, []);
 const getAllDogs=async ()=>{
   try {
     const get=await axios.get(`${port}/api/Adp`,{
@@ -116,7 +139,7 @@ useEffect(()=>{
   active===1?getAllDogs():
   active===2?getAllCates():
   active===3?getAllBirds():getAllFishs()
-},[active])
+},[active,route.params])
 
 console.log(adaptationTable)
 const navigation=useNavigation()
