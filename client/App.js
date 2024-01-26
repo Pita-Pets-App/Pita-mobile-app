@@ -51,7 +51,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Blogs">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -95,8 +95,16 @@ export default function App() {
         name="Blogs"
         component={Blogs}
         options={{
-          headerShown:false
-        }} />
+          title: 'Blogs',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false,
+        }}/>
          <Stack.Screen
         name="AddNewAdoptation"
         component={AddNewAdoptation}
