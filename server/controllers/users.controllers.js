@@ -1,10 +1,6 @@
 const {Users, Pets}=require('../database-Sequelize/index')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-// const generateToken = (id, fname) => {
-//     const expiresIn = 60 * 60 * 48;
-//     return jwt.sign({ id, fname }, 'secretKey', { expiresIn: expiresIn });
-//   };
 
   
 const AllUsers= async(req,res) => {
@@ -44,23 +40,38 @@ const createUser =async (req, res) =>{
     }
   }
 
-  const UpdateUser = async (req, res) => {
-    try {
-      const userId = req.params.id;
-  
-      const result = await Users.update(req.body, { where: { id: userId } });
-  
-      if (result[0] > 0) {
-        const updatedUser = await Users.findOne({ where: { id: userId }, include: Pets });
-  
-        res.json(updatedUser);
-      } else {
-        res.json({ message: 'No user was updated.' });
-      }
-    } catch (error) {
-      res.send(error);
-    }
-  };
+
+// const UpdateUser = async (req, res) => {
+//     const userId = req.params.id;
+//     const { password, fname, lname} = req.body;
+
+//     try {
+//         if (!password) {
+           
+//             await Users.update(req.body,{ where: { id: userId } });
+
+//         } else {
+//             const hashedPassword = await bcrypt.hash(password, 10);
+//             const newUser = {
+//               fname,
+//             }
+//             await Users.update(otherUpdateFields, { where: { id: userId } });
+//         }
+
+//         const result = await Users.findOne({ where: { id: userId } });
+
+//         if (result) {
+//             res.json(result);
+//         } else {
+//             res.json({ message: 'No user was updated.' });
+//         }
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// };
+
+
 
 const DeleteUser= async(req,res) => {
     try {
@@ -71,40 +82,44 @@ const DeleteUser= async(req,res) => {
     }
 };
 
-const updatePassword = async (req, res) => {
-  const { id } = req.params;
-  const { currentPassword, newPassword } = req.body;
+const UpdateUser = async (req, res) => {
+    const userId = req.params.id;
+    const { user_password, fname, lname } = req.body;
 
-  try {
-    const user = await Users.findOne({
-      where: { id : id },
-    });
+    try {
+        let updateFields = {};
 
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+        if (fname) {
+            updateFields.fname = fname;
+        }
+
+        if (lname) {
+            updateFields.lname = lname;
+        }
+
+        if (user_password) {
+            const hashedPassword = await bcrypt.hash(user_password, 10);
+            console.log("hash",hashedPassword);
+            updateFields.user_password = hashedPassword;
+        }
+
+        await Users.update(updateFields, { where: { id: userId } });
+
+        const result = await Users.findOne({ where: { id: userId },include: Pets  });
+
+        if (result) {
+            res.json(result);
+        } else {
+            res.json({ message: 'No user was updated.' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-    console.log("userr",user);
-    console.log("userpassword in controller",user.user_password);
-    const passwordMatch = await bcrypt.compare(currentPassword, user.user_password);
-
-    if (!passwordMatch) {
-      return res.status(400).json({ error: 'Current password is incorrect' });
-    }
-
-    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
-
-    await user.update({ password: hashedNewPassword });
-
-    return res.status(200).json({ message: 'Password updated successfully' });
-
-  } catch (error) {
-
-    console.error('Error updating password:', error);
-    
-    return res.status(500).json({ error: 'Internal Server Error' });
-  }
 };
 
 
 
-module.exports={AllUsers,OneUser,AllUsersWithPets,createUser,UpdateUser,DeleteUser, updatePassword}
+
+
+module.exports={AllUsers,OneUser,AllUsersWithPets,createUser,UpdateUser,DeleteUser}

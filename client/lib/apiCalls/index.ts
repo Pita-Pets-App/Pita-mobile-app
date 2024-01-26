@@ -79,6 +79,8 @@ export const updateUserData = async (userId : Number, authToken : String, userDa
         },
       }
     );
+    console.log("respon in apicalls",response.data);
+    
 
     return response.data;
   } catch (error) {
@@ -125,7 +127,7 @@ export const getProvidersByServicesId =async (serviceId : Number, authToken : St
   
 }
 
-  export const updatePassword = async (userId : Number, authToken : String) =>{
+  export const updateUserPassword = async (userId : Number, authToken : String) =>{
 
     try {
       const response = await axios.get(`${port}/api/users/updatePassword/${userId}`,

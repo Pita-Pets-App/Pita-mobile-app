@@ -5,16 +5,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { clearToken } from '../../../lib/redux/auth/authSlice';
 import { clearUser } from '../../../lib/redux/user/userSlice';
+import { clearProvider } from '../../../lib/redux/provider/providerSlice';
 
 const useLogout = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('authToken');
+      navigation.navigate('Login' as never);
       dispatch(clearToken());
       dispatch(clearUser());
-      navigation.navigate('Login' as never);
+      await AsyncStorage.removeItem('authToken');
+      
     } catch (error) {
       console.error('Error during logout:', error);
     }
@@ -23,4 +25,4 @@ const useLogout = ({ navigation }) => {
   return handleLogout;
 };
 
-export default LogoutButton;
+export default useLogout;
