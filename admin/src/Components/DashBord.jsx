@@ -109,6 +109,7 @@ function DashboardOverview(props) {
             </div>
            
               <div className="flex flex-col items-stretch w-[60%] ml-5 max-md:w-full max-md:ml-0">
+                
                 <BarChart
                       series={[
                         { data: [35, 44] },

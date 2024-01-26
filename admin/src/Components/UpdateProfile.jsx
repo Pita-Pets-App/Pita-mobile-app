@@ -26,6 +26,7 @@ const Edit = () => {
   };
 
   return (
+    <div className="bg-stone-950 ">
     <div className="flex w-full items-stretch justify-between gap-5 max-md:max-w-full max-md:flex-wrap">
     <div className="max-md:max-w-full">
       <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
@@ -112,7 +113,7 @@ const Edit = () => {
     </div>
     </div>
    </div>
-    
+   </div>
   );
 };
 
