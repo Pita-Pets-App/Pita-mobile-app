@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   ScrollView,
   View,
@@ -10,11 +10,12 @@ import {
   Image,
   Modal,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons"
 import Icon from "react-native-vector-icons/FontAwesome"; // Import the icon library
 
 const { width, height } = Dimensions.get("screen");
 
-const Blogs: React.FC = ({ route }: any): React.ReactElement => {
+const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
   const [newTitle, setNewTitle] = useState("");
   const [newSubject, setNewSubject] = useState("");
   const [authorName, setAuthorName] = useState("John Doe"); // Default author name
@@ -68,14 +69,34 @@ const Blogs: React.FC = ({ route }: any): React.ReactElement => {
     // Close the modal
     setModalVisible(false);
   };
+  useEffect(() => {
+    navigation.setOptions({
+      title: `Blogs`,
+      headerStyle: {
+        backgroundColor: '#4e9d91',
+      },
+      headerTintColor: 'white',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerRight: () => (
+        <TouchableOpacity
+          style={styles.headerButton}
+          onPress={() => {
+            console.log("hhhh");
+            
+          }}
+        >
+          <Ionicons name="add" size={27} color="white" onPress={()=>{setModalVisible(true)}} />
+        </TouchableOpacity>)
+    });
+  }, [navigation]);
 
   const handleLike = (articleId: number) => {
-    // Handle the like action for the specified articleId
     console.log(`Liked article with id ${articleId}`);
   };
 
   const handleDislike = (articleId: number) => {
-    // Handle the dislike action for the specified articleId
     console.log(`Disliked article with id ${articleId}`);
   };
 
@@ -276,6 +297,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     marginTop: 10,
+  },
+  headerButton: {
+    marginRight: 15,
   },
 });
 
