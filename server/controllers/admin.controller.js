@@ -55,4 +55,20 @@ const generateToken = (id, name) => {
     }
     catch (error) {res.status(500).json(error)}
 }
-module.exports = {AddAdmin , LoginAdmin ,UpdateAdmin}
+const UpdatePassword = async (req, res) => {
+  const { newPassword } = req.body;
+  const { id } = req.params; 
+
+  try {
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    await Admin.update({ admin_password: hashedNewPassword }, { where: { id } });
+
+    return res.status(200).json({ message: 'Password updated successfully' });
+  } catch (error) {
+    console.error('Error updating password:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+module.exports = { AddAdmin, LoginAdmin, UpdateAdmin, UpdatePassword };
