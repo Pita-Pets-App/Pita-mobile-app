@@ -34,7 +34,7 @@ const UserInfo: React.FC<UserInfoProps> = ({UserInf}) => {
             <View style={styles.UserNameContainer}>
             <View style={styles.userEmail}>
                 <Image style={{width:width*0.055,height:height*0.0185}} source={email}></Image>
-                <Text>{UserInf.email}</Text>
+                <Text>{UserInf?.email}</Text>
             </View>
             <TouchableOpacity onPress={()=>{navigation.navigate('EditProfile' as never)}} ><Image style={{width:width*0.08,height:height*0.035}} source={edit}></Image></TouchableOpacity>
             </View>

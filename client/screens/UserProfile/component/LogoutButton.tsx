@@ -1,4 +1,6 @@
-
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { clearToken } from '../../../lib/redux/auth/authSlice';
@@ -21,4 +23,4 @@ const useLogout = ({ navigation }) => {
   return handleLogout;
 };
 
-export default useLogout;
+export default LogoutButton;
