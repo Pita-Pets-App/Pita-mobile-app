@@ -25,7 +25,7 @@ const UserInfo: React.FC<UserInfoProps> = ({UserInf}) => {
     return (
         <View style={styles.petContainer}>
             <View style={styles.UserNameContainer}>
-                <Text style={{fontWeight:"bold",fontSize:20}}>{UserInf?.fname+" "+UserInf?.lname}</Text>
+                <Text style={{fontWeight:"bold",fontSize:20}}>{UserInf.fname+" "+UserInf.lname}</Text>
                 <TouchableOpacity style={styles.logout} onPress={logout}>
                 <Image style={{width:width*0.05,height:height*0.022}} source={logOut}></Image>
                     <Text style={{color:"#e64d4d"}}>Log out</Text>

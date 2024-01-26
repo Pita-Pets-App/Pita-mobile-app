@@ -29,7 +29,7 @@ import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
 import ProvCV from "./screens/authentification/Provider/RegisterForm/putcv";
 import { Provider } from "react-redux";
-
+import MapForAdopt from "./screens/MapForAdopt/MapForAdopt"
 import MapForEvent from "./screens/MapForEvent/MapForEvent";
 import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
@@ -39,6 +39,9 @@ import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/inde
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
 import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
 import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
+
+import Blogs from "./screens/Blogs/Blogs";
+
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
@@ -48,7 +51,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ProviderProfile">
+      <Stack.Navigator initialRouteName="Welcome1">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -75,10 +78,22 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },}} />
+           <Stack.Screen
+        name="MapForAdopt"
+        component={MapForAdopt}
+        options={{
+          headerShown:false
+        }} />
          <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="Blogs"
+        component={Blogs}
         options={{
           headerShown:false
         }} />
@@ -382,7 +397,6 @@ export default function App() {
         name="ChatPage"
         component={ChatPage} />        
         <Stack.Screen
-        
         name="LostFound"
         component={LostFound} 
         options={{
@@ -394,10 +408,8 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}
-        />
+        }}/>
         <Stack.Screen
-        
         name="LostFounDetails"
         component={LostFounDetails} 
         options={{
@@ -409,8 +421,7 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}
-        />
+        }}/>
       </Stack.Navigator>
       {/* <Navbar/> */}
     </NavigationContainer>

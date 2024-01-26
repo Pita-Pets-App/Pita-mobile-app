@@ -18,8 +18,8 @@ export const updateUserData = createAsyncThunk<FetchUserDataResponse, any>(
       const token = (getState() as { auth: { authToken: string } }).auth.authToken;
       const userId = (getState() as { user: { userData: { id: Number } } }).user.userData.id;
 
-      const updatedUserData = await apiUpdateUserData(userId, token, userInfo);
-
+      const updatedUserData = await apiUpdateUserData(userId, token, userInfo);// until here done
+      
       dispatch(setUserData(updatedUserData));
 
       return { userData: updatedUserData };
