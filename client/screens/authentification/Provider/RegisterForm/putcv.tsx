@@ -25,7 +25,7 @@ interface FormData {
   provider_cv : string | null;
 }
 
-const RegisterProvider: React.FC = () => {
+const ProvCV: React.FC = () => {
   const navigation = useNavigation();
   const [selectedCV, setSelectedCV] = useState(null);
 
@@ -60,24 +60,6 @@ const RegisterProvider: React.FC = () => {
     setFormData({ ...formData, provider_cv: (selected as any).uri });
     setSelectedCV((selected as any).uri);
   };
-  const handleSubmit = async () => {
-    setLoading(true);
-
-    if (
-      !formData.email ||
-      !formData.provider_password ||
-      !formData.fname ||
-      !formData.lname
-    ) {
-      Alert.alert("Registration Error", "All fields are required");
-      setLoading(false);
-      return;
-    } else {
-      const data = await register_provider(formData);
-      Alert.alert("Registration Request Sent", "Your request is pending admin approval");
-      navigation.navigate("ProvCV" as never)
-    }
-  };
   const showImagePickerOptions = () => {
     Alert.alert(
       "Choose Resume",
@@ -103,70 +85,38 @@ const RegisterProvider: React.FC = () => {
   return (
     <View>
       <View style={styles.header}>
-        <View style={styles.design}></View>
-        <Text style={styles.pita}>PITA PITA </Text>
-      </View>
-      <View style={styles.allInput}>
-        <View style={{ display: 'flex', flexDirection: 'row', gap: 20 }}>
-          <TextInput
-            style={styles.inputname}
-            placeholder=" Your First Name"
-            value={formData.fname}
-            onChangeText={(text) => setFormData({ ...formData, fname: text })}
-          />
-          <TextInput
-            style={styles.inputname}
-            placeholder=" Your Family Name"
-            value={formData.lname}
-            onChangeText={(text) => setFormData({ ...formData, lname: text })}
-          />
-        </View>
-        <TextInput
-          style={styles.input}
-          placeholder=" Enter Your Email"
-          value={formData.email}
-          onChangeText={(text) => setFormData({ ...formData, email: text })}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="  Enter Your Password"
-          secureTextEntry
-          value={formData.provider_password}
-          onChangeText={(text) =>
-            setFormData({ ...formData, provider_password: text })
-          }
-        />
 
-        <TouchableOpacity
+         {!formData.provider_cv &&(<View
           style={styles.imageSelectionButton}
-          onPress={showImagePickerOptions}
+        //   onPress={showImagePickerOptions}
         >
-          <Text style={{ color: "#ffc368", fontSize: 16 }}>
-            Choose or Take a Photo for CV
+          <Text style={{ color: "grey", fontSize: 16 }}>
+            Choose or Take a Photo for 
           </Text>
-        </TouchableOpacity>
+          <TouchableOpacity  onPress={showImagePickerOptions}>
+          <Text style={{ color: "#4e9d91", fontSize: 16 }}>
+           , diploma 
+          </Text>
+          </TouchableOpacity>
+       
+        </View>)}
 
-        {formData.provider_cv ? (
+        {formData.provider_cv &&(
+            <View>
           <Image
             source={{ uri: formData.provider_cv }}
             style={{
-              borderRadius: width * 0.2,
-              width: width * 0.35,
-              height: height * 0.16,
+              borderRadius:10,
+              width: width * 0.85,
+              height: height * 0.6,
               marginVertical: 10,
+              marginBottom:80
             }}
           />
-        ) : null}
-
-        <TouchableOpacity
-          style={styles.registerButton}
-          onPress={handleSubmit}
-          disabled={loading}
-        >
-          <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>
-            Register
-          </Text>
-        </TouchableOpacity>
+             <TouchableOpacity style={{position:"absolute",bottom:20,right:120,backgroundColor:"#4e9d91",paddingVertical:10,paddingHorizontal:20,borderRadius:20}}><Text style={{color:"white",fontSize:15}}>Upload</Text></TouchableOpacity>
+          </View>
+          
+        ) }
       </View>
     </View>
   );
@@ -175,9 +125,10 @@ const RegisterProvider: React.FC = () => {
 const styles = StyleSheet.create({
   header: {
     height: height * 0.35,
-    padding: 5,
+    padding: 10,
+    marginTop:300,
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
     gap: 10,
   },
@@ -197,12 +148,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "red",
-  },
-  pita: {
-    marginTop: width * 0.15,
-    fontSize: 24,
-    fontWeight: "bold",
-    marginLeft: 25,
   },
   input: {
     backgroundColor: "rgb(238, 238, 238)",
@@ -240,15 +185,17 @@ const styles = StyleSheet.create({
   imageSelectionButton: {
     backgroundColor: "rgb(238, 238, 238)",
     width: width * 0.85,
-    height: height * 0.06,
+    height: height * 0.6,
     justifyContent: "center",
+    display:"flex",
+    flexDirection:"row",
     alignItems: "center",
     borderRadius: 10,
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
     marginVertical: 10,
   },
 });
 
-export default RegisterProvider;
+export default ProvCV;
 

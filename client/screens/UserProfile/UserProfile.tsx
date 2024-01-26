@@ -26,6 +26,7 @@ interface UserInfoProps {
 }
 
 const { width, height } = Dimensions.get("screen");
+
 const UserProfile: React.FC = () => {
   const userData = useSelector((state: RootState) => state.user?.userData);
   const authData = useSelector((state: RootState) => state.auth);
@@ -38,7 +39,7 @@ const UserProfile: React.FC = () => {
         <View><Image style={{width:width*1,height:height*0.35}} source={{uri:userData?.image}}></Image></View>
       <View style={styles.UsersProfile}>
         <UserInfo UserInf={userData}  />
-        <UserPets pets={userData.pets}/>
+        <UserPets pets={userData?.pets}/>
       </View>
     </ScrollView>
     <Navbar/> 

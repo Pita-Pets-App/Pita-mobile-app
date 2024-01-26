@@ -212,9 +212,9 @@ const createEvent = async () => {
   return (
     <ScrollView>
       <View style={styles.buttonContainer}>
-        {/* <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
+        <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
           <Text style={styles.addButtonText}>Add Event</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
 {allEvent.map((e)=>{
     // console.log("event latt before conv",typeof e.event_lattitude);
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   addButton: {
-    backgroundColor: "#FFA500", 
+    backgroundColor: "#4e9d91", 
     padding: 15,
     borderRadius: 10,
     width: "100%",
