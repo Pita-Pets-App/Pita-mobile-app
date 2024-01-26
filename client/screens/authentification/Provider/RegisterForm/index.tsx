@@ -39,27 +39,6 @@ const RegisterProvider: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const selectImage = async () => {
-    const pickerResult = await ImagePicker.launchImageLibraryAsync();
-
-    if (pickerResult.canceled === true) {
-      return;
-    }
-    const selected = pickerResult.assets[0];
-    setFormData({ ...formData, provider_cv: (selected as any).uri });
-    setSelectedCV((selected as any).uri);
-  };
-
-  const takePhoto = async () => {
-    const pickerResult = await ImagePicker.launchCameraAsync();
-
-    if (pickerResult.canceled === true) {
-      return;
-    }
-    const selected = pickerResult.assets[0];
-    setFormData({ ...formData, provider_cv: (selected as any).uri });
-    setSelectedCV((selected as any).uri);
-  };
   const handleSubmit = async () => {
     setLoading(true);
 
@@ -74,30 +53,11 @@ const RegisterProvider: React.FC = () => {
       return;
     } else {
       const data = await register_provider(formData);
-      Alert.alert("Registration Request Sent", "Your request is pending admin approval");
-      navigation.navigate("ProvCV" as never)
+      Alert.alert("Registration Request Sent", "Please Complete the Steps");
+      navigation.navigate(...["ProvCV",{email:formData.email}] as never)
     }
   };
-  const showImagePickerOptions = () => {
-    Alert.alert(
-      "Choose Resume",
-      "Would you like to choose an Resume from the gallery or make a photo?",
-      [
-        {
-          text: "Choose from Gallery",
-          onPress: selectImage,
-        },
-        {
-          text: "Make a Photo",
-          onPress: takePhoto,
-        },
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-      ]
-    );
-  };
+ 
 
 
   return (
@@ -136,28 +96,6 @@ const RegisterProvider: React.FC = () => {
             setFormData({ ...formData, provider_password: text })
           }
         />
-
-        <TouchableOpacity
-          style={styles.imageSelectionButton}
-          onPress={showImagePickerOptions}
-        >
-          <Text style={{ color: "#ffc368", fontSize: 16 }}>
-            Choose or Take a Photo for CV
-          </Text>
-        </TouchableOpacity>
-
-        {formData.provider_cv ? (
-          <Image
-            source={{ uri: formData.provider_cv }}
-            style={{
-              borderRadius: width * 0.2,
-              width: width * 0.35,
-              height: height * 0.16,
-              marginVertical: 10,
-            }}
-          />
-        ) : null}
-
         <TouchableOpacity
           style={styles.registerButton}
           onPress={handleSubmit}
@@ -182,7 +120,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   design: {
-    backgroundColor: "rgba(255, 195, 104,0.8)",
+    backgroundColor: "#4e9d91",
     width: width * 0.9,
     height: height * 0.2,
     borderBottomLeftRadius: width * 0.4,
@@ -210,7 +148,7 @@ const styles = StyleSheet.create({
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
   },
   inputname: {
@@ -219,7 +157,7 @@ const styles = StyleSheet.create({
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
   },
   allInput: {
@@ -230,7 +168,7 @@ const styles = StyleSheet.create({
     gap: 17,
   },
   registerButton: {
-    backgroundColor: "#ffc368",
+    backgroundColor: "#4e9d91",
     width: width * 0.85,
     height: height * 0.06,
     justifyContent: "center",
@@ -244,7 +182,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
     marginVertical: 10,
   },

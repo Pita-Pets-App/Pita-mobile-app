@@ -27,6 +27,7 @@ import store from "./lib/redux/store"
 import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
+import ProvCV from "./screens/authentification/Provider/RegisterForm/putcv";
 import { Provider } from "react-redux";
 import MapForAdopt from "./screens/MapForAdopt/MapForAdopt"
 import MapForEvent from "./screens/MapForEvent/MapForEvent";
@@ -43,13 +44,14 @@ import Blogs from "./screens/Blogs/Blogs";
 
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
+import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Blogs">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -93,8 +95,16 @@ export default function App() {
         name="Blogs"
         component={Blogs}
         options={{
-          headerShown:false
-        }} />
+          title: 'Blogs',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false,
+        }}/>
          <Stack.Screen
         name="AddNewAdoptation"
         component={AddNewAdoptation}
@@ -134,6 +144,12 @@ export default function App() {
           headerBackVisible: false,
         }} />
         <Stack.Screen
+        name="ProvCV"
+        component={ProvCV}
+        options={{
+          headerShown:false
+        }} />
+        <Stack.Screen
         name="RegisterOrLogin"
         component={RegisterOrLogin}
         options={{
@@ -166,6 +182,19 @@ export default function App() {
         component={Services} 
         options={{
           title: 'Services',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+         <Stack.Screen
+        name="ProviderProfile"
+        component={ProviderProfile} 
+        options={{
+          title: 'ProviderProfile',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },
@@ -402,7 +431,7 @@ export default function App() {
           },
         }}/>
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
     </Provider>
   );
