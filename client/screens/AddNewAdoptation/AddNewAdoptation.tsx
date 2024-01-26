@@ -11,6 +11,7 @@ import {
   Image,
   Alert,
   Pressable,
+  
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
@@ -22,9 +23,9 @@ import * as Location from "expo-location";
 
 const { width, height } = Dimensions.get("screen");
 
-const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
+const AddNewAdoptation: React.FC = ({ navigation }): React.ReactElement => {
   const eventLocation = useSelector(
-    (state:any) => state.location.selecteEventLocation
+    (state: any) => state.location.selecteEventLocation
   ) || { longitude: '', latitude: '' };
   const [formData, setFormData] = useState({
     "pet_name": "",
@@ -35,10 +36,10 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
     "birth_date": "",
     "pet_description": "",
     "status": 'Not Adopted',
-    "post_langitude":eventLocation.longitude,
-    "post_lattitude":eventLocation.latitude
+    "post_langitude": eventLocation.longitude,
+    "post_lattitude": eventLocation.latitude
   });
-  const [loc,setLoc]=useState("")
+  const [loc, setLoc] = useState("");
   const [showDetails, setShowDetails] = useState(false);
   const [showModal, setShowModal] = useState(false)
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -46,6 +47,7 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
   const [showImagePicker, setShowImagePicker] = useState(false);
   const token = useSelector((state: RootState) => state.auth.authToken);
   console.log("token", token);
+
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
@@ -53,32 +55,30 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
   const toggleModal = () => {
     setShowModal(!showModal);
   }
+
   const convertAdress = async (latitude, longitude) => {
     try {
       const parsedLatitude = parseFloat(JSON.parse(latitude));
-      // console.log("parsedLati",typeof parsedLatitude);
-      
       const parsedLongitude = parseFloat(JSON.parse(longitude));
-  
+
       if (isNaN(parsedLatitude) || isNaN(parsedLongitude)) {
         throw new Error('Invalid latitude or longitude values.');
       }
-  
+
       const nearestAddressResponse = await Location.reverseGeocodeAsync({
         latitude: parsedLatitude,
         longitude: parsedLongitude,
       });
-  
+
       const nearestAddress = nearestAddressResponse[0];
       const place = `${nearestAddress.city} ${nearestAddress.region} ${nearestAddress.country}`;
-      // console.log("place",place); return valid place
-      
       return place;
     } catch (error) {
       console.error('Error converting address:', error);
-      return null; // or throw the error if needed
+      return null;
     }
   };
+
   useEffect(() => {
     getUserLocationAndNearestAddress();
 
@@ -99,24 +99,26 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
 
   const handleSaveAdoptation = async () => {
     try {
-      // Your save logic here
-      const create = await axios.post(`${port}/api/LFA`, formData,  {headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      }},);
-      // handle success
+      const create = await axios.post(`${port}/api/LFA`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      navigation.navigate("Adoptation" as never)
     } catch (error) {
       console.log(error);
       // handle error
     }
   };
+
   const getUserLocationAndNearestAddress = async () => {
     try {
       const nearestAddressResponse = await Location.reverseGeocodeAsync({
         latitude: JSON.parse(eventLocation.latitude),
         longitude: JSON.parse(eventLocation.longitude),
       });
-  
+
       if (nearestAddressResponse.length > 0) {
         const nearestAddress = nearestAddressResponse[0];
         const place = `${nearestAddress.city}${nearestAddress.region} ${nearestAddress.country}`;
@@ -126,6 +128,7 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
       console.log(error);
     }
   };
+
   const handleDateChange = (event, selectedDate) => {
     setShowDatePicker(false);
     if (selectedDate !== undefined && event.type !== "dismissed") {
@@ -142,7 +145,7 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
         quality: 1,
       });
 
-      if (!result.cancelled) {
+      if (!result.canceled) {
         setFormData({ ...formData, pet_images: [result.uri] });
         setSelectedImage(result.uri);
       }
@@ -196,7 +199,6 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
         <View style={styles.imageInputContainer}>
           <TouchableOpacity  onPress={pickImage}
             style={styles.imageButton}
-            
           >
             <Text>Select Photo</Text>
           </TouchableOpacity>
@@ -211,20 +213,19 @@ const AddNewAdoptation: React.FC = ({navigation}): React.ReactElement => {
           value={formData.pet_description}
           onChangeText={(text) => handleInputChange("pet_description", text)}
         />
-                {eventLocation.longitude==="" && eventLocation.latitude==="" ? (
+        {eventLocation.longitude === "" && eventLocation.latitude === "" ? (
           <Pressable
             onPress={() => 
-              
-          {    setShowModal(false)
-            navigation.navigate("MapForAdopt")}
-              
+              {    
+                setShowModal(false)
+                navigation.navigate("MapForAdopt")
+              }
             }
           >
-            {/* <Loc style={styles.icon} /> */}
-            <Text>Use Your Event Location </Text>
+            <Text style={styles.locationButton}>choose your Location</Text>
           </Pressable>
         ) : (
-          <Text   style={styles.locationText}>{loc}</Text>
+          <Text style={styles.locationText}>{loc}</Text>
         )}
         <TouchableOpacity
           style={styles.saveButton}
@@ -248,14 +249,14 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: "gray",
+    borderColor: "#4e9d91",
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 10,
     justifyContent: "center",
   },
   saveButton: {
-    backgroundColor: "orange",
+    backgroundColor: "#4e9d91",
     padding: 10,
     borderRadius: 5,
     alignItems: "center",
@@ -280,16 +281,16 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 5,
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
+  locationButton: {
+    backgroundColor: "#4e9d91",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 20,
+    textAlign: "center",
+    color: "white",
   },
-  modalContent: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 20,
+  locationText: {
+    color: "#4e9d91",
   },
 });
 

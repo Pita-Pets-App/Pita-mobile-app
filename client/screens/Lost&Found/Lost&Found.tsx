@@ -107,7 +107,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             
           }}
         >
-          <Ionicons name="add" size={27} color="white" />
+          <Ionicons name="add" size={27} color="white" onPress={()=>{setModalVisible(true)}} />
         </TouchableOpacity>)
     });
   }, [navigation]);
@@ -169,11 +169,11 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             <Text style={active==2?styles.textact:styles.text}>Found</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>{setModalVisible(true)}} style={active==2?styles.btact:styles.bt}>
+        {/* <TouchableOpacity onPress={()=>{setModalVisible(true)}} style={active==2?styles.btact:styles.bt}>
           <View>
             <Text style={active==2?styles.textact:styles.text}>Add</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
        <View style={styles.line} />
           <ScrollView style={styles.apdpostes}>
@@ -311,7 +311,7 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
 };
 const styles = StyleSheet.create({
   cancelButton: {
-    backgroundColor: "orange", 
+    backgroundColor: "#e3edfb", 
     borderRadius: 20,
     padding: 15, 
     alignItems: "center",
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     marginTop: 10, 
   },
   AddLA: {
-    backgroundColor: "orange",
+    backgroundColor: "#e3edfb",
     borderRadius: 20,
     padding: 15, 
     alignItems: "center",

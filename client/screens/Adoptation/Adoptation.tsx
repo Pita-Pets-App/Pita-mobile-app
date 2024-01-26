@@ -1,4 +1,5 @@
 import React ,{useEffect, useState}from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   ScrollView,
   View,
@@ -7,6 +8,7 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  
 } from "react-native";
 import CartAdoptation from "./Components/CartAdoptation";
 import dog from "../../assets/dogcategories.png";
@@ -19,7 +21,8 @@ import { port } from "../../port";
 import axios from "axios";
 import {getOneAnimal} from "../../store/adaptSlice"
 import { useDispatch,useSelector} from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+
+
 import chien from "../../assets/chien.jpg";
 
 const { width, height } = Dimensions.get("screen");
@@ -36,11 +39,13 @@ interface Animal {
 }
 
 const Adoptation: React.FC<any> = ({route,navigation:any}): React.ReactElement => {
+  
 const dispatch=useDispatch()
   const [adaptationTable,setAdaptationTable]=useState([])
 const [element,setElement]=useState({})
 const [active,setActive]=useState(0)
 const token = useSelector((state: RootState) => state.auth.authToken);
+
 const getAllAdapt=async ()=>{
 try {
   const get=await axios.get(`${port}/api/Adp`,{
@@ -67,10 +72,7 @@ useEffect(() => {
     },
     headerRight: () => (
       <TouchableOpacity
-        onPress={() => {
-          console.log("hhhh");
-          
-        }}
+      onPress={() => navigation.navigate("AddNewAdoptation" as never)}
       >
         <Ionicons name="add" size={27} color="white" />
       </TouchableOpacity>)
