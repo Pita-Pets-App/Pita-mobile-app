@@ -10,6 +10,7 @@ const AddService = () => {
     state: 'Los Angeles',
     image: null,
   });
+  
 
   const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
