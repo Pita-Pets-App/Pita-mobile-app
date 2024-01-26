@@ -149,12 +149,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "red",
   },
-  pita: {
-    marginTop: width * 0.15,
-    fontSize: 24,
-    fontWeight: "bold",
-    marginLeft: 25,
-  },
   input: {
     backgroundColor: "rgb(238, 238, 238)",
     width: width * 0.85,
