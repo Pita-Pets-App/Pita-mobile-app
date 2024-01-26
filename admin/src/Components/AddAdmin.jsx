@@ -37,6 +37,7 @@ const Edit = () => {
         Cookies.set('authToken', tok, { expires: 7 }); 
         setUser(response.data);
         
+        
         setSuccessMessage('Registration successful');
         setErrorMessage('');
         response.data.user_role==="admin"?navigate(`/admin/${response.data.id}`)
