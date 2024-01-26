@@ -28,7 +28,7 @@ import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
 import { Provider } from "react-redux";
-
+import MapForAdopt from "./screens/MapForAdopt/MapForAdopt"
 import MapForEvent from "./screens/MapForEvent/MapForEvent";
 import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
@@ -38,9 +38,11 @@ import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/inde
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
 import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
 import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
+
+import Blogs from "./screens/Blogs/Blogs";
+
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -74,10 +76,22 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },}} />
+           <Stack.Screen
+        name="MapForAdopt"
+        component={MapForAdopt}
+        options={{
+          headerShown:false
+        }} />
          <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="Blogs"
+        component={Blogs}
         options={{
           headerShown:false
         }} />
