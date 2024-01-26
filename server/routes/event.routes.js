@@ -6,7 +6,7 @@ eventRoute.get('/events',AllEvents)
 eventRoute.get('/events/:id',OneEvent)
 eventRoute.post('/events',AddEvent)
 eventRoute.put('/events',UpdateEvent)
-eventRoute.delete('/events',DeleteLEvent)
+eventRoute.delete('/events/:id',DeleteLEvent)
 
 
 module.exports=eventRoute

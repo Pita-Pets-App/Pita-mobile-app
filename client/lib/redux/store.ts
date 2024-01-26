@@ -5,6 +5,7 @@ import userReducer from './user/userSlice';
 import { useDispatch } from 'react-redux';
 import mapReducer from './map/mapSlice'
 import location from './map/location';
+import providerReducer from './provider/providerSlice'
 
 
 
@@ -12,6 +13,7 @@ const store = configureStore({
   reducer: {
     user: userReducer,
     auth: authReducer,
+    provider: providerReducer,
     location:location
 }
 });

@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet ,Dimensions,TouchableOpacity,Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { login_me } from '../../../lib/apiCalls';
+import { login_provider } from '../../../../lib/apiCalls';
 import { useDispatch, useSelector } from 'react-redux'; 
-import { setAuthTokenAction } from '../../../lib/redux/auth/authThunks';
-import { setUserData } from '../../../lib/redux/user/userSlice';
-import pita from "../../../assets/pita.png"
+import { setAuthTokenAction } from '../../../../lib/redux/auth/authThunks';
+// import { setUserData } from '../../../../lib/redux/user/userSlice';
+import { setProviderData } from '../../../../lib/redux/provider/providerSlice';
+import pita from "../../../../assets/pita.png"
+
 const { width, height } = Dimensions.get("screen");
 
 
-const Login: React.FC = () => {
+const LoginProvider: React.FC = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
     email: '',
-    user_password: '',
+    provider_password: '',
   });
 
   const [loading, setLoading] = useState(false);
@@ -24,20 +26,20 @@ const Login: React.FC = () => {
   const handleSubmit = async () => {
     setLoading(true);
 
-    if (!formData.email || !formData.user_password) {
+    if (!formData.email || !formData.provider_password) {
       Alert.alert('Login Error', 'All fields are required');
       setLoading(false);
       return;
     }
       
     try {
-        const data = await login_me(formData);
-        const {token} = data
-        console.log("data from Api above succes",data);
+        const data = await login_provider(formData);
+       
   
-        if (token) {
+        if (data) {
+           console.log("data from Api succes",data);
           dispatch(setAuthTokenAction(data.token));
-          dispatch(setUserData(data))
+          dispatch(setProviderData(data))
   
           setLoading(false);
 
@@ -74,8 +76,8 @@ const Login: React.FC = () => {
         style={styles.input}
         placeholder="Password"
         secureTextEntry
-        value={formData.user_password}
-        onChangeText={(text) => setFormData({ ...formData, user_password: text })}
+        value={formData.provider_password}
+        onChangeText={(text) => setFormData({ ...formData, provider_password: text })}
       />
       <TouchableOpacity
           style={styles.button}
@@ -125,4 +127,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default LoginProvider;
