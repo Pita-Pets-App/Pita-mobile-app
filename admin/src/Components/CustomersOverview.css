@@ -7,7 +7,44 @@
     border-radius: 4px;
     overflow: auto;
   }
- 
+  /* Add this style to your CSS file or component */
+.selected-user-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200vh; /* Adjust this based on your layout */
+}
+
+.modal-content {
+  max-width: 100%; /* Adjust the maximum width as needed */
+  background-color: white; /* Set the background color as needed */
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.selected-user-image {
+  max-width: 100%; /* Adjust the maximum width of the image */
+  max-height: 1000px; /* Adjust the maximum height of the image */
+  margin: auto; /* Center the image within the modal content */
+}
+
+ /* Add this style to your CSS file or component */
+.selected-user-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust this based on your layout */
+}
+
+.modal-content {
+  max-width: 80%; /* Adjust the maximum width as needed */
+  background-color: white; /* Set the background color as needed */
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
 
 .delete-button {
   background-color: #ff4d4f; /* Red color */
@@ -28,7 +65,7 @@
   .header,
   .row {
     display: grid;
-    grid-template-columns: 97px 3fr 3.5fr 3fr 3fr 3fr;
+    grid-template-columns: 200px 3fr 3.5fr 3fr 3fr 3fr;
     align-items: center;
     padding: 25px;
     background-color: #f5f5f5;

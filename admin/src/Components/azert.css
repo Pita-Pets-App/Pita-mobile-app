@@ -27,6 +27,27 @@
     padding: 50px;
     gap: 50px;
   }
+  .card1 {
+    width: 20%;
+    height: 20%;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 50px;
+    gap: 50px;
+  }
+  .test{
+ display: flex;
+  }
+  .card2 {
+    width: 20%;
+    height: 20%;
+    background: #FFFFFF;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 50px;
+    gap: 50px;
+  }
   .form-group label {
     align-items:center;
     margin-bottom: 5px;
