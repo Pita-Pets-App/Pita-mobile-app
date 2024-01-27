@@ -6,7 +6,7 @@ usersRoute.get("/users",AllUsers)
 usersRoute.get("/users/pets",AllUsersWithPets)
 usersRoute.get("/users/:id",OneUser)
 // usersRoute.post("/users/updatePassword/:id",updatePassword)
-usersRoute.put("/users/:id",checkPassword, UpdateUser)
+usersRoute.put("/users/:id", UpdateUser) //to add the middelware
 usersRoute.delete("/users/:id",DeleteUser)
 
 

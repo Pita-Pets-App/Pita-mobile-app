@@ -27,26 +27,34 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
   const articles = [
     {
       id: 1,
-      title: " React Native",
-      subject: "Learn how to build mobile apps with React Native.",
-      author: "Jane Smith",
-      image: "https://placekitten.com/100/101",
+      title: " Balanced Diet",
+      subject: "Offer high-quality, species appropriate food suitable for your pet's age, size, and health condition.",
+      author: "Mr Mouhamed",
+      image: "https://tse3.mm.bing.net/th?id=OIP.jIWHnrukahcKVsriBZRc9wHaE8&pid=Api&P=0&h=180",
       articleImage: "https://placekitten.com/200/200", // Additional photo for the article
     },
     {
       id: 2,
-      title: "Cooking Tips ",
-      subject: "Discover easy recipes and cooking techniques for beginners.",
-      author: "Mike Johnson",
-      image: "https://placekitten.com/100/102",
+      title: "Regular Exercise",
+      subject: "Playtime and walks are essential for both mental and physical stimulation.",
+      author: "Mr Lousif",
+      image: "https://tse1.mm.bing.net/th?id=OIP.ZIyclPpdPSFRiXNl7dHp_wHaE8&pid=Api&P=0&h=180",
       articleImage: "https://placekitten.com/201/201", // Additional photo for the article
     },
     {
       id: 3,
-      title: "Fitness at Home",
-      subject: "Stay fit at home with these simple workout routines.",
-      author: "Emily Davis",
-      image: "https://placekitten.com/100/103",
+      title: "Grooming",
+      subject: "Brush your pet's fur, trim nails, and clean ears as needed.",
+      author: "Mr Lousif",
+      image: "https://tse1.mm.bing.net/th?id=OIP.ZIyclPpdPSFRiXNl7dHp_wHaE8&pid=Api&P=0&h=180",
+      articleImage: "https://placekitten.com/202/202", // Additional photo for the article
+    },
+    {
+      id: 4,
+      title: "Love and Attention",
+      subject: "Spend quality time with your pet to strengthen the bond..",
+      author: "Mrs Borni",
+      image: "https://tse2.mm.bing.net/th?id=OIP.n65WUhPj3VTrn4HULi1fnAHaE7&pid=Api&P=0&h=180",
       articleImage: "https://placekitten.com/202/202", // Additional photo for the article
     },
   ];
@@ -70,16 +78,16 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerRight: () => (
-        <TouchableOpacity
-          style={styles.headerButton}
-          onPress={() => {
-            console.log("hhhh");
+      // headerRight: () => (
+      //   <TouchableOpacity
+      //     style={styles.headerButton}
+      //     onPress={() => {
+      //       console.log("hhhh");
             
-          }}
-        >
-          <Ionicons name="add" size={27} color="white" onPress={()=>{setModalVisible(true)}} />
-        </TouchableOpacity>)
+      //     }}
+      //   >
+      //     <Ionicons name="add" size={27} color="white" onPress={()=>{setModalVisible(true)}} />
+      //   </TouchableOpacity>)
     });
   }, [navigation]);
 
@@ -113,7 +121,7 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
                 style={styles.articleImage}
                 resizeMode="cover"
               />
-              <View style={styles.iconContainer}>
+              {/* <View style={styles.iconContainer}>
                 <TouchableOpacity
                   onPress={() => handleLike(article.id)}
                   style={styles.iconButton}
@@ -126,7 +134,7 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
                 >
                   <Icon name="thumbs-down" size={20} color="#4e9d91" />
                 </TouchableOpacity>
-              </View>
+              </View> */}
             </View>
           </View>
         ))}

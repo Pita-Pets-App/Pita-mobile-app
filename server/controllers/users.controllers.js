@@ -84,7 +84,7 @@ const DeleteUser= async(req,res) => {
 
 const UpdateUser = async (req, res) => {
     const userId = req.params.id;
-    const { user_password, fname, lname } = req.body;
+    const { user_password, fname, lname, image } = req.body;
 
     try {
         let updateFields = {};
@@ -96,6 +96,10 @@ const UpdateUser = async (req, res) => {
         if (lname) {
             updateFields.lname = lname;
         }
+        
+        if (image) {
+            updateFields.image = image
+        }
 
         if (user_password) {
             const hashedPassword = await bcrypt.hash(user_password, 10);
@@ -103,10 +107,11 @@ const UpdateUser = async (req, res) => {
             updateFields.user_password = hashedPassword;
         }
 
-        await Users.update(updateFields, { where: { id: userId } });
-
+       await Users.update(req.body, { where: { id: userId } });
+    //    console.log();
         const result = await Users.findOne({ where: { id: userId },include: Pets  });
-
+        console.log('pets',result);
+         
         if (result) {
             res.json(result);
         } else {

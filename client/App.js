@@ -46,6 +46,7 @@ import ProvOrUser from "./screens/welcomingPages/providerOrUser"
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
+import CompleteProvider from "./screens/authentification/Complete/Complete"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -77,6 +78,18 @@ export default function App() {
         component={DynamicScreenAllServices} 
         options={{
           title: 'Service',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+           <Stack.Screen
+        name="CompleteProvider"
+        component={CompleteProvider} 
+        options={{
+          title: 'Complete Your Info',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },

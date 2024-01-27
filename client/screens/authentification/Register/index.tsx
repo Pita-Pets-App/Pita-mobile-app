@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   design: {
-    backgroundColor: "rgba(255, 195, 104,0.8)",
+    backgroundColor: "#4e9d91",
     width: width * 0.9,
     height: height * 0.2,
     borderBottomLeftRadius: width * 0.4,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
   },
   inputname: {
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
   },
   allInput: {
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     gap: 17,
   },
   registerButton: {
-    backgroundColor: "#ffc368",
+    backgroundColor: "#4e9d91",
     width: width * 0.85,
     height: height * 0.06,
     justifyContent: "center",
