@@ -32,22 +32,26 @@ const Edit = () => {
       ...form
       });
       console.log(response);
+
       const { user_phOrEmail, user_name, tok, id } = response.data;
-
+  
       if (user_phOrEmail && user_name && tok) {
-        Cookies.set('authToken', tok, { expires: 7 }); 
+        Cookies.set('authToken', tok, { expires: 7 });
         setUser(response.data);
-        
-
+  
+        // Show an alert when registration is successful
+        alert('Registration successful');
+  
         setSuccessMessage('Registration successful');
         setErrorMessage('');
-        response.data.user_role==="admin"?navigate(`/admin/${response.data.id}`)
-        :response.data.user_role==="seller"
-        ?navigate(`/seller/${response.data.id}`)
-        : navigate(`/`);
+  
+        response.data.user_role === "admin" ? navigate(`/admin/${response.data.id}`)
+          : response.data.user_role === "seller"
+            ? navigate(`/seller/${response.data.id}`)
+            : navigate(`/`);
       } else {
         setSuccessMessage('');
-        setErrorMessage('!Registration failed. Please try again.');
+        setErrorMessage('Registration failed. Please try again.');
       }
     } catch (error) {
       setSuccessMessage('');
@@ -55,7 +59,6 @@ const Edit = () => {
       console.error('Error during registration:', error);
     }
   };
-
   return (
     <div className="bg-stone-950 ">
     <div className="flex w-full items-stretch justify-between gap-5 max-md:max-w-full max-md:flex-wrap">

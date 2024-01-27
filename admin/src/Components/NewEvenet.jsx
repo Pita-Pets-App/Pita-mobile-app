@@ -128,7 +128,7 @@ const NewEvent = () => {
     <div className="selected-user-modal" onClick={closeModal}>
       <div className="modal-content center">
         <img
-          src={Allusers.find((user) => user.id === selectedUserId).provider_cv}
+          src={Allusers.find((user) => user.id === selectedUserId).event_images}
           alt="Selected User"
           className="selected-user-image"
         />

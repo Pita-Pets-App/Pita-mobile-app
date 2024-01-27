@@ -102,8 +102,7 @@ const CustomersOverview = () => {
                 <span>Email</span>
                 <span>Location</span>
                 <span>Provider Experience</span>
-                <span>Signed Up</span>
-
+                <span>Delete</span>
               </div>
               <div className="rows">
                 {All.map((e) => (
