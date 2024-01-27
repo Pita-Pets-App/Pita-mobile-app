@@ -51,22 +51,13 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
     },
   ];
 
-  const handleAddBlog = () => {
-    // Open the modal
-    setModalVisible(true);
-  };
-
   const handleSaveBlog = () => {
-    // Handle saving a new blog (you can implement this functionality)
-    // For now, let's just log the new title, subject, author name, and author image
     console.log("New Title:", newTitle);
     console.log("New Subject:", newSubject);
     console.log("Author Name:", authorName);
     console.log("Author Image:", authorImage);
-    // Clear the input fields after saving the blog
     setNewTitle("");
     setNewSubject("");
-    // Close the modal
     setModalVisible(false);
   };
   useEffect(() => {
@@ -102,19 +93,7 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Blogs</Text>
-      </View>
 
-      {/* Add Blog Form */}
-      <View style={styles.addBlogContainer}>
-        <TouchableOpacity style={styles.addButton} onPress={handleAddBlog}>
-          <Text style={styles.buttonText}>Add Blog</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Display Existing Blogs (You can map through your blogs data here) */}
       <View style={styles.existingBlogs}>
         {articles.map((article) => (
           <View key={article.id} style={styles.blogCard}>
@@ -129,21 +108,17 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
                 <Text style={styles.blogTitle}>{article.title}</Text>
               </View>
               <Text style={styles.blogContent}>{article.subject}</Text>
-
-              {/* Additional Photo for the Article */}
               <Image
                 source={{ uri: article.articleImage }}
                 style={styles.articleImage}
                 resizeMode="cover"
               />
-
-              {/* Like and Dislike Icons */}
               <View style={styles.iconContainer}>
                 <TouchableOpacity
                   onPress={() => handleLike(article.id)}
                   style={styles.iconButton}
                 >
-                  <Icon name="thumbs-up" size={20} color="#4e9d91" />
+                  <Icon name="thumbs-up" size={20} color="#4e9d91"/>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => handleDislike(article.id)}
@@ -156,8 +131,6 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
           </View>
         ))}
       </View>
-
-      {/* Modal for Adding Blog */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -166,7 +139,6 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            {/* Title Input */}
             <TextInput
               style={styles.input}
               placeholder="Enter Blog Title"
@@ -174,7 +146,6 @@ const Blogs: React.FC = ({ route,navigation }: any): React.ReactElement => {
               onChangeText={(text) => setNewTitle(text)}
             />
 
-            {/* Subject Input */}
             <TextInput
               style={styles.input}
               placeholder="Enter Blog Subject"
