@@ -7,6 +7,7 @@ import clsx from 'clsx';
 import { styled, css } from '@mui/system';
 import { Modal as BaseModal } from '@mui/material'; 
 import Cookies from "js-cookie";
+import { acceptProvider } from "../lib/apiCalls.ts";
 
 const Newprovider = () => {
   const [refresh, setRefresh] = useState(false);
@@ -28,9 +29,10 @@ const Newprovider = () => {
 
   const handleAcceptUser = async (id) => {
     try {
-      const acceptedUser = Allusers.find(user => user.id === id);
-      const providerId = acceptedUser.id
-      console.log("Accepted user details:", providerId);
+      // const acceptedUser = Allusers.find(user => user.id === id);
+      // const providerId = acceptedUser.id
+      const accept = await acceptProvider(id)
+      console.log("accept",accept);
       setRefresh(!refresh);
     } catch (err) {
       console.log(err);
