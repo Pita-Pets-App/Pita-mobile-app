@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './azert.css';
+import axios from "axios"
 import VeterinarianList from "./SideBar"
 const AddService = () => {
   const [form, setForm] = useState({
@@ -11,7 +12,8 @@ const AddService = () => {
     image: null,
   });
   
-
+  const [newServiceName, setNewServiceName] = useState("");
+  const [newServiceImage, setNewServiceImage] = useState("");
   const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -19,12 +21,26 @@ const AddService = () => {
   const handleImageChange = (e) => {
     setForm({ ...form, image: e.target.files[0] });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(form);
+    try {
+      // Send a POST request to add a new service
+      await axios.post("http://localhost:3000/api/service", {
+        service_name: newServiceName,
+        service_image: newServiceImage,
+      });
+      // Clear the form fields after submission
+      setNewServiceName("");
+      setNewServiceImage("");
+    } catch (err) {
+      console.log(err);
+    }
   };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Handle form submission here
+  //   console.log(form);
+  // };
 
   return (
     <div className="flex w-full items-stretch justify-between gap-5 max-md:max-w-full max-md:flex-wrap">
@@ -35,7 +51,7 @@ const AddService = () => {
         </div>
     <form onSubmit={handleSubmit} className="form">
       <div className="form-group">
-        <label htmlFor="firstName">First Name *</label>
+        <label htmlFor="firstName">Service</label>
         <input
           type="text"
           name="firstName"
@@ -45,55 +61,8 @@ const AddService = () => {
           required
         />
       </div>
-      <div className="form-group">
-        <label htmlFor="lastName">Last Name *</label>
-        <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          value={form.lastName}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">Email Address *</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={form.email}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="country">Country *</label>
-        <select
-          name="country"
-          id="country"
-          value={form.country}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="USA">USA</option>
-          {/* Add more country options here */}
-        </select>
-      </div>
-      <div className="form-group">
-        <label htmlFor="state">State *</label>
-        <select
-          name="state"
-          id="state"
-          value={form.state}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="Los Angeles">Los Angeles</option>
-          {/* Add more state options here */}
-          <option value="Los Angeles">jbal lahmer</option>
-        </select>
-      </div>
+    
+     
       <div className="form-group">
         <label htmlFor="image">Upload picture</label>
         <input

@@ -32,12 +32,9 @@ const Edit = () => {
         });
       }
 
-      // Successful request
       console.log('Request successful');
     } catch (err) {
-      // Log detailed error information
       console.error('Error:', err);
-      // Display a user-friendly error message
       alert('An error occurred. Please try again.');
     }
   };
@@ -51,9 +48,9 @@ const Edit = () => {
         <VeterinarianList />
         </div>
         <div className="card">
-    <form onSubmit={handleSubmit} className="form">
+    {/* <form onSubmit={handleSubmit} className="form">
       <div className="form-group">
-        <label htmlFor="firstName">First Name *</label>
+        <label htmlFor="firstName">Name *</label>
         <input
           type="text"
           name="firstName"
@@ -64,55 +61,28 @@ const Edit = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="lastName">Last Name *</label>
+        <label htmlFor="lastName"> Email Address *</label>
         <input
           type="text"
           name="lastName"
           id="lastName"
-          value={formData.lastName}
-          // onChange={handleInputChange}
-          required
-        />
-      </div >
-      <div className="form-group">
-        <label htmlFor="email">Email Address *</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
         />
+      </div >
+      <div className="form-group">
+        <label htmlFor="email">New Password *</label>
+        <input
+          type="password"
+          name="email"
+          id="email"
+          value={formData.newPassword}
+          onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
+          required
+        />
       </div>
-      {/* <div className="form-group">
-        <label htmlFor="country">Country *</label>
-        <select
-          name="country"
-          id="country"
-          value={form.country}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="">USA</option>
-        
-          <option value="">zambia</option>
-        </select>
-      </div> */}
-      {/* <div className="form-group">
-        <label htmlFor="state">State *</label>
-        <select
-          name="state"
-          id="state"
-          value={form.state}
-          onChange={handleInputChange}
-          required
-        >
-          <option value="">Los Angeles</option>
-         
-          <option value="Los Angeles">jbal lahmer</option>
-        </select>
-      </div> */}
+      
       <div className="form-group">
         <label htmlFor="image">Upload picture</label>
         <input
@@ -125,7 +95,41 @@ const Edit = () => {
       <button type="submit" className="submit-btn">
         Save details
       </button>
-    </form>
+    </form> */}
+    <form onSubmit={handleSubmit} className="form">
+            <div className="form-section">
+              <div className="text-zinc-900 text-2xl font-semibold">Name</div>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="form-input"
+              />
+            </div>
+            <div className="form-section">
+              <div className="text-zinc-900 text-2xl font-semibold">Email</div>
+              <input
+                type="text"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="form-input"
+              />
+            </div>
+            <div className="form-section">
+              <div className="text-zinc-900 text-2xl font-semibold">New Password</div>
+              <input
+                type="password"
+                value={formData.newPassword}
+                onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
+                className="form-input"
+              />
+            </div>
+            <div className="form-buttons">
+            <button type="submit" name="saveData">
+              Save Info and Password
+            </button>
+          </div>
+          </form>
     </div>
     </div>
     </div>
