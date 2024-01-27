@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {
   ScrollView,
   View,
@@ -9,162 +9,55 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-
+import female from "../../../assets/femalee.png";
+import male from "../../../assets/malee.png";
 const { width, height } = Dimensions.get("screen");
 import chien from "../../../assets/chien.jpg";
+import exem from "../../../assets/exemple.png";
+import exem1 from "../../../assets/exemple1.png";
+import { port } from "../../../port";
+import { useDispatch,useSelector } from "react-redux";
+import axios from "axios";
 
-const CartAdoptation: React.FC = (): React.ReactElement => {
+const CartAdoptation: React.FC <any>= ({el}:any): React.ReactElement => {
   const navigation=useNavigation()
   return (
-    <View style={styles.allPages}>
-      <TouchableOpacity onPress={()=>navigation.navigate("AdoptationDetails" as never)}>
+    <View key={el.id} style={styles.allPages}>
+      <TouchableOpacity style={{marginBottom:25}} onPress={()=>navigation.navigate(...["AdoptationDetails",{petData:el}]as never)}>
     <View style={styles.allPag}>
-      <Image source={chien} style={styles.animalPicture}></Image>
-      <Text style={{ fontSize: 11, fontWeight: "bold" }}>
-        MO213-Pominirania White
-      </Text>
-      <View style={styles.description}>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Genre:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-            male
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Age:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-          2 monthes
-          </Text>
-        </View>
+      <Image source={{uri:el.pet_images[0]}} style={styles.animalPicture}></Image>
+        <View style={{marginLeft:10}} >
+        <Text style={{fontSize:18,fontWeight:"bold",marginBottom:10}}>{el.pet_name}</Text>
+        <Text style={{marginBottom:10}}>{el.createdAt.slice(8,10)+"-"+el.createdAt.slice(5,7)+"-"+el.createdAt.slice(0,4)}</Text>
+        <Text >location</Text>
       </View>
+      <Image style={{width:width*0.11,height:width*0.11,position:"absolute",top:6,right:12}} source={el.pet_gender==="Male"?male:female}></Image>
     </View>
     </TouchableOpacity>
-    <TouchableOpacity>
-    <View style={styles.allPag}>
-      <Image source={chien} style={styles.animalPicture}></Image>
-      <Text style={{ fontSize: 11, fontWeight: "bold" }}>
-        MO213-Pominirania White
-      </Text>
-      <View style={styles.description}>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Genre:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-            male
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Age:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-          2 monthes
-          </Text>
-        </View>
-      </View>
-    </View>
-    </TouchableOpacity>
-    <TouchableOpacity>
-    <View style={styles.allPag}>
-      <Image source={chien} style={styles.animalPicture}></Image>
-      <Text style={{ fontSize: 11, fontWeight: "bold" }}>
-        MO213-Pominirania White
-      </Text>
-      <View style={styles.description}>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Genre:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-            male
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Age:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-          2 monthes
-          </Text>
-        </View>
-      </View>
-    </View>
-    </TouchableOpacity>
-    <TouchableOpacity>
-    <View style={styles.allPag}>
-      <Image source={chien} style={styles.animalPicture}></Image>
-      <Text style={{ fontSize: 11, fontWeight: "bold" }}>
-        MO213-Pominirania White
-      </Text>
-      <View style={styles.description}>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Genre:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-            male
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Age:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-          2 monthes
-          </Text>
-        </View>
-      </View>
-    </View>
-    </TouchableOpacity>
-    <TouchableOpacity>
-    <View style={styles.allPag}>
-      <Image source={chien} style={styles.animalPicture}></Image>
-      <Text style={{ fontSize: 11, fontWeight: "bold" }}>
-        MO213-Pominirania White
-      </Text>
-      <View style={styles.description}>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Genre:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-            male
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "flex-start" }}>
-          <Text style={{ fontSize: 11, color: "grey" }}>Age:</Text>
-
-          <Text style={{ fontSize: 11, color: "grey", fontWeight: "bold" }}>
-          2 monthes
-          </Text>
-        </View>
-      </View>
-    </View>
-    </TouchableOpacity>
-    
     </View>
   );
 };
 const styles = StyleSheet.create({
   allPages: {
     padding: 10,
-    flexDirection: "row",
-    flexWrap: "wrap",
     justifyContent: "space-between",
     columnGap: 10,
     rowGap: 10,
   },
   allPag: {
-    flexDirection: "column",
+    flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#e0e0e0",
-    width: width * 0.45,
-    height: height * 0.27,
+    backgroundColor: "#fff",
+    width: width * 0.93,
+    height: height * 0.16,
     gap: 7,
     borderRadius: 15,
     borderColor:"black",
-    paddingTop:10
   },
   animalPicture: {
-    width: width * 0.4,
-    height: height * 0.18,
+    width: width * 0.35,
+    height: width * 0.39,
     borderRadius: 15,
     
   },

@@ -1,21 +1,22 @@
 const jwt = require('jsonwebtoken');
 
-const authenticateUser = (req, res, next) => {
-  const expiresIn = 60 * 60 * 48; 
-  const token = jwt.sign({ userId: req.params.id }, 'secretKey', { expiresIn: expiresIn });
-  if (!token) {
-    return res.status(403).json({ message: 'Token not provided' });
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  console.log("auth",authHeader);
+  const token = authHeader && authHeader.split(" ")[1];
+  console.log("token",token);
+  if (token == null) {
+    return res.sendStatus(401); 
   }
 
-  jwt.verify(token, 'secretKey', (err, decoded) => {
+  jwt.verify(token, "process.env.ACCESS_TOKEN_SECRET", (err, decoded) => {
     if (err) {
-      return res.status(401).json({ message: 'Invalid token' });
+      console.error(err);
+      return res.sendStatus(403); 
     }
-    req.params.id = decoded.userId; 
+    req.userId = decoded.userId;
     next();
-  });  
-};
+  });
+}
 
-module.exports = {
-  authenticateUser,
-}; 
+module.exports = authenticateToken;

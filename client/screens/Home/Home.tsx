@@ -4,11 +4,16 @@ import  LostAndFound from "./Components/LostAndFound"
 import Carosel from "./Components/Carosel"
 import Publicite from "./Components/Publicité"
 import Adoptation from './Components/Adoptation';
+import { useSelector } from 'react-redux';
 // import Navbar from "./Components/Navbar"
 
 const { width, height } = Dimensions.get('screen')
 
 const Home: React.FC = (): React.ReactElement => {
+    // const userData = useSelector((state: RootState) => state.user?.userData);
+
+    // console.log("userfromhome", userData);
+    
 
     return (
         <ScrollView style={styles.container} >
@@ -25,11 +30,10 @@ const Home: React.FC = (): React.ReactElement => {
 const styles = StyleSheet.create({
     container: {
         display: "flex",
-        backgroundColor: "#ffc368",
+        backgroundColor: "#fff",
        
     },
     allPages: {
-   backgroundColor:"#ffc368",
         justifyContent: 'center',
         alignItems: 'center',
         paddingTop:20,

@@ -1,161 +1,227 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import axios from "axios";
-function Edit(props) {
-    const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [refrechers, setRefrechers] = useState(false); 
+import styled from "styled-components";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+
+
+const DashboardContainer = styled.div`
+  display: flex;
+  background-color: #121212; /* Dark background color */
+  height: 100vh;
+`;
+
+const Sidebar = styled.div`
+  width: 15%;
+  background-color: #121212;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+n
+  img {
+    aspect-ratio: 0.99;
+    object-fit: contain;
+    width: 86px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .user-info {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .user-email {
+    color: white;
+    font-size: 1rem;
+    margin-top: 5px;
+  }
+
+  .dashboard-buttons {
+    margin-top: 32px;
+
+    button {
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-top: 10px;
+      background-color: #121212;
+      border: 2px solid white;
+      border-radius: 15px;
+      padding: 8px 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #555;
+      }
+    }
+  }
+`;
+
+const MainContent = styled.div`
+  flex: 1;
+  padding: 20px;
+  background-color: #f0f0f0; /* Light background color */
+  border-radius: 30px;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin-top: 20px;
+
+  .form-section {
+    width: 100%;
+    margin-top: 20px;
+
+    .input-label {
+      font-size: 2xl;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #ff4500;
+      }
+    }
+  }
+
+  .form-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      flex: 1;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      margin: 10px;
+      padding: 10px;
+      border: 2px solid #ff4500;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #ff4500;
+      }
+    }
+  }
+`;
+function DashboardOverview() {
   const [formData, setFormData] = useState({
     name: '',
-    email:''
-
+    email: '',
+    newPassword: ''
   });
-  const handleClick = async (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3000/api/admin/update/${1}`, {
-        name: formData.name,
-        email: formData.email
-      });
-      setRefrechers(!refrechers);
+      if (e.nativeEvent.submitter.name === 'saveData') {
+        // Save both info and password
+        await axios.put(`http://localhost:3000/api/admin/update/${1}`, {
+          name: formData.name,
+          email: formData.email,
+        });
+
+        await axios.put(`http://localhost:3000/api/admin/updatePass/${1}`, {
+          newPassword: formData.newPassword,
+        });
+      }
+
+      // Successful request
+      console.log('Request successful');
     } catch (err) {
-      console.log(err);
+      // Log detailed error information
+      console.error('Error:', err);
+      // Display a user-friendly error message
+      alert('An error occurred. Please try again.');
     }
   };
-    return (
-        <div className="bg-white flex items-stretch justify-between gap-3.5 pr-10 max-md:flex-wrap max-md:pr-5">
-          <div className="w-[20%] max-md:w-full gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0" style={{ backgroundColor: 'black' }}>
-
-
-                <div className="flex flex-col items-stretch w-[15%] max-md:w-full max-md:ml-0" >
-                    <span className="flex flex-col mt-11 max-md:mt-10">
-                        <img
-                            loading="lazy"
-                            srcSet="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png"
-                            className="aspect-[0.99] object-contain object-center w-[86px] overflow-hidden max-w-full self-start"
-                        />
-                        <div className="text-white text-3xl font-semibold leading-9 self-stretch mt-7">
-                            Samantha
-                        </div>
-                        <div className="text-white text-lg leading-7 self-stretch whitespace-nowrap mt-5">
-                            samantha@email.com
-                        </div>
-                        <div className="text-white text-2xl font-semibold leading-9 self-stretch mt-32 max-md:mt-10">
-                            Dashboard:
-                        </div>
-                        <div className="text-white text-2xl font-semibold leading-9 self-stretch mt-12 max-md:mt-10"
-
-                        >
-                            All services
-                        </div>
-                        <div className="text-white text-2xl font-semibold leading-9 self-stretch mt-10"
-
-                        >
-                            All users
-                        </div>
-                        <div className="text-white text-2xl font-semibold leading-9 self-stretch mt-12 max-md:mt-10">
-                            Event request
-                        </div>
-                        <div className="text-white text-2xl font-semibold leading-9 self-stretch mt-10 max-md:mt-10">
-                            Accounts
-                        </div>
-                        <div className="text-white text-2xl font-semibold leading-9 self-stretch mt-11 max-md:mt-10">
-                            Settings
-                        </div>
-                    </span>
-                </div>
-
-
-
-
-            </div>
-            <div className="flex items-stretch justify-between gap-5 max-md:max-w-full max-md:flex-wrap">
-                <div className="bg-zinc-500 w-px shrink-0 h-[1117px]" />
-                <span className="self-center flex grow basis-[0%] flex-col my-auto max-md:max-w-full">
-                    <span className="self-stretch flex items-center justify-between gap-5 pr-1.5 max-md:max-w-full max-md:flex-wrap">
-                        <div className="text-black text-5xl font-semibold w-[249px] my-auto max-md:text-4xl">
-                            Edit profile
-                        </div>
-                        <img
-                            loading="lazy"
-                            srcSet="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png"
-                            className="aspect-square object-contain object-center w-[120px] overflow-hidden self-stretch shrink-0 max-w-full"
-                        />
-                    </span>
-                    <form onSubmit={handleClick}>
-            <div className="self-stretch mt-10 max-md:max-w-full max-md:mt-10">
-              <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-                <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
-                  <span className="flex grow flex-col items-stretch max-md:mt-10">
-                    <div className="text-zinc-900 text-2xl font-semibold">
-                     Name
-                    </div>
-                    <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="text-zinc-500 text-2xl font-medium whitespace-nowrap bg-white justify-center mt-3 pl-7 pr-16 py-7 rounded-md border-2 border-solid border-zinc-500 items-start max-md:px-5"
-                />
-                  </span>
-                </div>
-                        
-                        </div>
-                    </div>
-                    <div className="text-zinc-900 text-2xl font-semibold self-stretch mt-5 max-md:max-w-full">
-                        Email
-                    </div>
-                    <input
-          type="text"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="bg-white self-stretch flex items-center justify-between gap-5 mt-3 px-7 py-5 rounded-md border-2 border-solid border-zinc-500 max-md:max-w-full max-md:flex-wrap max-md:px-5"
+  
+  const handleCancel = () => {
+    navigate("/dash");
+  };
+  return (
+    <DashboardContainer>
+      <Sidebar>
+        <img
+          loading="lazy"
+          src={Cookies.get('image', { expires: 60 * 60 * 24 })}
+          alt="User Avatar"
         />
-
-
-
-                    <div className="self-stretch mt-5 max-md:max-w-full">
-                        <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-
-
-                        </div>
-                    </div>
-                    {/* <div className="text-zinc-900 text-2xl font-semibold self-stretch mt-5 max-md:max-w-full">
-                        Password
-                    </div>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="bg-white self-stretch flex items-center justify-between gap-5 mt-3 px-7 py-5 rounded-md border-2 border-solid border-zinc-500 max-md:max-w-full max-md:flex-wrap max-md:px-5"
-                    /> */}
-                    <div className="flex items-stretch justify-between gap-5 mt-12 self-start max-md:mt-10">
-              <button
-                className="text-orange-500 text-3xl whitespace-nowrap bg-white grow justify-center items-stretch px-12 py-5 rounded-md border-2 border-solid border-orange-500 max-md:px-5"
-                type="reset"
-              >
-                Cancel
-              </button>
-              <button
-                className="text-orange-500 text-3xl whitespace-nowrap bg-white grow justify-center items-stretch px-12 py-5 rounded-md border-2 border-solid border-orange-500 max-md:px-5"
-                type="submit"
-              >
-                Save
-              </button>
-            </div>
-          </form>
-                </span>
-            </div>
-            <img
-                loading="lazy"
-                srcSet="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png"
-                className="aspect-[2.6] object-contain object-center w-[104px] overflow-hidden shrink-0 max-w-full mt-10 self-start"
-            />
+        <div className="user-info">{Cookies.get('name', { expires: 60 * 60 * 24 })}</div>
+        <div className="user-email">{Cookies.get('email', { expires: 60 * 60 * 24 })}</div>
+        <div className="dashboard-buttons">
+          <button>All services</button>
+          <button>All users</button>
+          <button>Event request</button>
+          <button>Accounts</button>
         </div>
+      </Sidebar>
+      <MainContent>
 
-    );
+        <FormContainer>
+          <form onSubmit={handleSubmit}>
+            <div className="form-section">
+              <div className="text-zinc-900 text-2xl font-semibold">Name</div>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="form-input"
+              />
+            </div>
+            <div className="form-section">
+              <div className="text-zinc-900 text-2xl font-semibold">Email</div>
+              <input
+                type="text"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="form-input"
+              />
+            </div>
+            <div className="form-section">
+              <div className="text-zinc-900 text-2xl font-semibold">New Password</div>
+              <input
+                type="password"
+                value={formData.newPassword}
+                onChange={(e) => setFormData({ ...formData, newPassword: e.target.value })}
+                className="form-input"
+              />
+            </div>
+            <div className="form-buttons">
+            <button type="reset" onClick={handleCancel}>
+              Cancel
+            </button>
+            <button type="submit" name="saveData">
+              Save Info and Password
+            </button>
+          </div>
+          </form>
+        </FormContainer>
+      </MainContent>
+    </DashboardContainer>
+  );
 }
 
-
-export default Edit
+export default DashboardOverview;
