@@ -49,22 +49,7 @@ function DashboardOverview(props) {
         setSelecteduser(r.data)
       }).catch(err => console.log(err))
   }, [refresh]);
-  const handleAddService = async (e) => {
-    e.preventDefault();
-    try {
-      // Send a POST request to add a new service
-      await axios.post("http://localhost:3000/api/service", {
-        service_name: newServiceName,
-        service_image: newServiceImage,
-      });
-      setRefresh(!refresh);
-      // Clear the form fields after submission
-      setNewServiceName("");
-      setNewServiceImage("");
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
 
 
 
@@ -123,10 +108,11 @@ function DashboardOverview(props) {
 
                   <BarChart
                     series={[
-                      { data: [35, 44] },
-                      { data: [51, 6] },
-                      { data: [15, 25] },
-                      { data: [60, 50] },
+                      { data: [30, 120] },
+                      { data: [50] },
+                      { data: [20] },
+                      { data: [30] },
+                      { data: [50] },
                     ]}
                     height={290}
                     xAxis={[{ data: ['providers', 'users'], scaleType: 'band' }]}
@@ -159,9 +145,9 @@ function DashboardOverview(props) {
           <div className="card1" >
           <div className="user-statistics-container">
           <div className="user-stats">
-  <div className="total-users">$24k</div>
-  <div className="increase-percentage">↑ 12%</div>
-  <div className="since-last-month">Since last month</div>
+  <div className="total-users">120</div>
+  <div className="increase-percentage">↑ 19% Since last week</div>
+  <div className="since-last-month">User</div>
 </div>
 
 <style jsx>{`
@@ -212,9 +198,9 @@ function DashboardOverview(props) {
           <div className="card1" >
           <div className="user-statistics-container">
           <div className="user-stats">
-  <div className="total-users">$24k</div>
-  <div className="increase-percentage">↑ 12%</div>
-  <div className="since-last-month">Since last month</div>
+  <div className="total-users">150</div>
+  <div className="increase-percentage">↑ 12% Since last week</div>
+  <div className="since-last-month">Provider</div>
 </div>
 
 <style jsx>{`
@@ -265,9 +251,9 @@ function DashboardOverview(props) {
           <div className="card1" >
           <div className="user-statistics-container">
           <div className="user-stats">
-  <div className="total-users">$24k</div>
-  <div className="increase-percentage">↑ 12%</div>
-  <div className="since-last-month">Since last month</div>
+  <div className="total-users">6</div>
+  <div className="increase-percentage">↑ 0% Since last week </div>
+  <div className="since-last-month">Servives</div>
 </div>
 
 <style jsx>{`
