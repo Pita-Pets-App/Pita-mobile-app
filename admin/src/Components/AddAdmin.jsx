@@ -1,44 +1,57 @@
 import React, { useState } from 'react';
 import './azert.css';
-import axios from "axios";
 import VeterinarianList from "./SideBar"
+import {Link, useNavigate } from 'react-router-dom';
+import { useIdentity } from './IdentityContext';
+import Cookies from 'js-cookie';
+import axios from "axios"
 const Edit = () => {
-  const [formData, setFormData] = useState({
+  const [form, setForm] = useState({
     name: '',
+    admin_password: '',
     email: '',
-    newPassword: ''
+    image: null,
   });
-  
-  // const handleInputChange = (e) => {
-  //   setForm({ ...form, [e.target.name]: e.target.value });
-  // };
-
-  const handleImageChange = (e) => {
-    // setForm({ ...form, image: e.target.files[0] });
+  const navigate = useNavigate();
+  const { setUser } = useIdentity();
+ 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const handleInputChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleImageChange = (e) => {
+    setForm({ ...form, image: e.target.files[0] });
+  };
+
+  const handleSubmit =async  (e) => {
     try {
-      if (e.nativeEvent.submitter.name === 'saveData') {
-        // Save both info and password
-        await axios.put(`http://localhost:3000/api/admin/update/${1}`, {
-          name: formData.name,
-          email: formData.email,
-        });
+      const response = await axios.post('http://localhost:3000/api/admin/register', {
+      ...form
+      });
+      console.log(response);
+      const { user_phOrEmail, user_name, tok, id } = response.data;
 
-        await axios.put(`http://localhost:3000/api/admin/updatePass/${1}`, {
-          newPassword: formData.newPassword,
-        });
+      if (user_phOrEmail && user_name && tok) {
+        Cookies.set('authToken', tok, { expires: 7 }); 
+        setUser(response.data);
+        
+        
+        setSuccessMessage('Registration successful');
+        setErrorMessage('');
+        response.data.user_role==="admin"?navigate(`/admin/${response.data.id}`)
+        :response.data.user_role==="seller"
+        ?navigate(`/seller/${response.data.id}`)
+        : navigate(`/`);
+      } else {
+        setSuccessMessage('');
+        setErrorMessage('!Registration failed. Please try again.');
       }
-
-      // Successful request
-      console.log('Request successful');
-    } catch (err) {
-      // Log detailed error information
-      console.error('Error:', err);
-      // Display a user-friendly error message
-      alert('An error occurred. Please try again.');
+    } catch (error) {
+      setSuccessMessage('');
+      setErrorMessage('Error during registration. Please try again.');
+      console.error('Error during registration:', error);
     }
   };
 
@@ -53,24 +66,24 @@ const Edit = () => {
         <div className="card">
     <form onSubmit={handleSubmit} className="form">
       <div className="form-group">
-        <label htmlFor="firstName">First Name *</label>
+        <label htmlFor="name">First Name *</label>
         <input
           type="text"
-          name="firstName"
-          id="firstName"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          name="name"
+          id="name"
+          value={form.name}
+          onChange={handleInputChange}
           required
         />
       </div>
       <div className="form-group">
-        <label htmlFor="lastName">Last Name *</label>
+        <label htmlFor="admin_password">Password*</label>
         <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          value={formData.lastName}
-          // onChange={handleInputChange}
+          type="password"
+          name="admin_password"
+          id="admin_password"
+          value={form.admin_password}
+          onChange={handleInputChange}
           required
         />
       </div >
@@ -80,8 +93,8 @@ const Edit = () => {
           type="email"
           name="email"
           id="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          value={form.email}
+          onChange={handleInputChange}
           required
         />
       </div>
@@ -95,7 +108,7 @@ const Edit = () => {
           required
         >
           <option value="">USA</option>
-        
+         
           <option value="">zambia</option>
         </select>
       </div> */}
