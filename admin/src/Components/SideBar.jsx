@@ -7,7 +7,6 @@ const VeterinarianList = () => {
     
       
     <div className="bg-white flex w-full grow flex-col mx-auto pl-6 pr-4 py-7 rounded-2xl max-md:mt-4 max-md:pl-5" style={{ backgroundColor: '#1C2536' }}>
-
       <div className="rounded bg-blue-500 self-stretch flex items-stretch justify-between gap-5 px-3.5 py-2 max-md:pr-5">
         <img
           loading="lazy"
@@ -66,9 +65,12 @@ const VeterinarianList = () => {
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/19b355bff20ae4db0a6ed692cbb342e04c5f1a332b12dbde63d64469b20e0cc3?"
           className="aspect-square object-contain object-center w-6 overflow-hidden shrink-0 max-w-full"
         />
-        <div className="text-white text-opacity-90 text-sm font-medium leading-5 tracking-normal self-center my-auto">
-          Evenet requests
-        </div>
+        <Link to="/Newevent">
+
+<div className="text-white text-opacity-90 text-sm font-medium leading-5 tracking-normal mt-2 self-start">
+  Event requests
+</div>
+</Link>
         
       </div>
       <div className="flex items-stretch justify-between gap-5 ml-3.5 mt-6 self-start max-md:ml-2.5">
@@ -85,7 +87,7 @@ const VeterinarianList = () => {
 </Link>
         
       </div>
-      <div className="flex items-stretch justify-between gap-5 ml-3.5 mt-6 self-start max-md:ml-2.5">
+      {/* <div className="flex items-stretch justify-between gap-5 ml-3.5 mt-6 self-start max-md:ml-2.5">
         <img
           loading="lazy"
           src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png"
@@ -95,7 +97,7 @@ const VeterinarianList = () => {
           Add service
         </div>
         
-      </div>
+      </div> */}
       <div className="flex items-stretch justify-between gap-5 ml-3.5 mt-6 self-start max-md:ml-2.5">
         <img
           loading="lazy"

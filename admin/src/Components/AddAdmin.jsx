@@ -5,6 +5,7 @@ import {Link, useNavigate } from 'react-router-dom';
 import { useIdentity } from './IdentityContext';
 import Cookies from 'js-cookie';
 import axios from "axios"
+
 const Edit = () => {
   const [form, setForm] = useState({
     name: '',
@@ -37,7 +38,7 @@ const Edit = () => {
         Cookies.set('authToken', tok, { expires: 7 }); 
         setUser(response.data);
         
-        
+
         setSuccessMessage('Registration successful');
         setErrorMessage('');
         response.data.user_role==="admin"?navigate(`/admin/${response.data.id}`)

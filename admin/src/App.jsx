@@ -12,6 +12,7 @@ import AddService from "./Components/AddService.jsx"
 import CustomersOverview from "./Components/Allproviders.jsx"
 import  AddAdmin  from './Components/AddAdmin.jsx';
 import Newprov from "./Components/NewProvider.jsx"
+import Newevent from "./Components/NewEvenet.jsx"
 import { createContext, useState } from 'react';
 function App() {
  
@@ -30,6 +31,7 @@ function App() {
           <Route path="/AddService" element={<AddService />} />
           <Route path="/AddAdmin" element={<AddAdmin />} />
           <Route path="/Newprov" element={<Newprov />} />
+          <Route path="/Newevent" element={<Newevent />} />
         </Routes>
       </IdentityProvider>
     
