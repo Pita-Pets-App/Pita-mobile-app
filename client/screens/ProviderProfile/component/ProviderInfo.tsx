@@ -24,7 +24,7 @@ const ProviderInfo: React.FC = () => {
         <View style={styles.petContainer}>
             <View style={styles.UserNameContainer}>
             {/* {UserInf?.fname+" "+UserInf?.lname} */}
-                <Text style={{fontWeight:"bold",fontSize:20}}>name</Text>
+                <Text style={{fontWeight:"bold",fontSize:20}}>Bassem Ammar</Text>
                 <TouchableOpacity style={styles.logout} onPress={()=>{console.log("logOut");
                 }}>
                 <Image style={{width:width*0.05,height:height*0.022}} source={logOut}></Image>
@@ -35,7 +35,7 @@ const ProviderInfo: React.FC = () => {
             <View style={styles.userEmail}>
                 <Image style={{width:width*0.055,height:height*0.0185}} source={email}></Image>
                 {/* {UserInf?.email} */}
-                <Text>email</Text>
+                <Text>bassdmammar@gmail.com</Text>
             </View>
             <TouchableOpacity onPress={()=>{navigation.navigate('EditProfile' as never)}} ><Image style={{width:width*0.08,height:height*0.035}} source={edit}></Image></TouchableOpacity>
             </View>

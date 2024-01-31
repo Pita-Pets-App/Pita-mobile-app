@@ -50,17 +50,12 @@ import CompleteProvider from "./screens/authentification/Complete/Complete"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const navigation = useNavigation();
-  const isWelcome1Screen = () => {
-    const routeName = navigation.getCurrentRoute()?.name;
-    return routeName === 'Welcome1';
-  };
 
 
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="LoginProvider">
         <Stack.Screen
         name="Home"
         component={Home}

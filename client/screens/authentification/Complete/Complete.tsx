@@ -7,6 +7,7 @@ interface CompleteProviderProps {
 const { width, height } = Dimensions.get("screen");
 const CompleteProvider: React.FC<CompleteProviderProps> = ({ onButtonPress }) => {
   const [description, setDescription] = useState<string>('');
+  const [exp, setExp] = useState<string>('');
   const navigation=useNavigation()
   const handleButtonPress = () => {
     onButtonPress(description);
@@ -27,8 +28,8 @@ const CompleteProvider: React.FC<CompleteProviderProps> = ({ onButtonPress }) =>
         placeholder="Enter Your Experience"
         multiline
         numberOfLines={4}
-        value={description}
-        onChangeText={(text) => setDescription(text)}
+        value={exp}
+        onChangeText={(text) => setExp(text)}
       />
       <TouchableOpacity
       onPress={()=>{navigation.navigate("Home" as never)}}

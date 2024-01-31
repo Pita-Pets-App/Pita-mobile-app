@@ -39,27 +39,19 @@ const ProviderProfile: React.FC = () => {
 const articles = [
   {
     id: 1,
-    title: " React Native",
+    title: " Pet Care",
     subject: "Learn how to build mobile apps with React Native.",
-    author: "Jane Smith",
-    image: "https://placekitten.com/100/101",
+    author: "Bassem Ammar",
+    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
     articleImage: "https://placekitten.com/200/200", // Additional photo for the article
   },
   {
     id: 2,
     title: "Cooking Tips ",
     subject: "Discover easy recipes and cooking techniques for beginners.",
-    author: "Mike Johnson",
-    image: "https://placekitten.com/100/102",
+    author: "Bassem Ammar",
+    image: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
     articleImage: "https://placekitten.com/201/201",
-  },
-  {
-    id: 3,
-    title: "Fitness at Home",
-    subject: "Stay fit at home with these simple workout routines.",
-    author: "Emily Davis",
-    image: "https://placekitten.com/100/103",
-    articleImage: "https://placekitten.com/202/202",
   },
 ];
 const navigation=useNavigation()
@@ -95,24 +87,6 @@ const handleDislike = (articleId: number) => {
                 source={{uri:"https://placekitten.com/100/102"}}
                 style={styles.profileIcon}
               ></Image>
-              {/* {e.owner.fname} */}
-              <Text style={styles.createdBy}></Text>
-            </View>
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.containerEv}>
-      <TouchableOpacity>
-      {/* {{uri:e.event_images[0]}} */}
-<Image style={styles.image} source={adpimg} />
-          <View style={styles.overlay}>
-            <View style={styles.createdByContainer}>
-              <FontAwesome
-                name="user-circle"
-                size={24}
-                color="#fff"
-                style={styles.profileIcon}
-              />
               {/* {e.owner.fname} */}
               <Text style={styles.createdBy}></Text>
             </View>
