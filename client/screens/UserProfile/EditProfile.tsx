@@ -30,7 +30,7 @@ const EditProfile: React.FC = () => {
   const userData = useSelector((state: RootState) => state.user.userData);
   const [fname, setFname] = useState(userData.fname);
   const [lname, setLname] = useState(userData.lname);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("");//prevous
   const [newP, setNewP] = useState("");
   const [conf, setConf] = useState("");
   const [pass,setPass] = useState(true);
@@ -106,12 +106,13 @@ const EditProfile: React.FC = () => {
             fname,
             lname,
             image,
-            user_password : newP?newP:userData.password
+            user_password : newP,
+            previousPassword : password
         }
 
         try {
-          
           const actionResult = await dispatch(updateUserData(editedData));
+          console.log('actionres',actionResult);
           navigation.goBack();
 
         } catch (error) {

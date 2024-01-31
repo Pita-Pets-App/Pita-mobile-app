@@ -26,7 +26,7 @@ const AllTypeBf= async(req,res) => {
 const OneProviderBf= async(req,res) => {
     console.log(req.params);
     try {
-    const result=await Provider.findOne({where:{id:req.params.id}})
+    const result=await ProviderBf.findOne({where:{email:req.params.email}})
     res.json(result)   
     } catch (error) {
     res.send(error)    

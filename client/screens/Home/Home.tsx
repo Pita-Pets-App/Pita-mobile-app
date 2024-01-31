@@ -4,11 +4,17 @@ import  LostAndFound from "./Components/LostAndFound"
 import Carosel from "./Components/Carosel"
 import Publicite from "./Components/Publicité"
 import Adoptation from './Components/Adoptation';
+import Blogs from './Components/Blogs';
+import { useSelector } from 'react-redux';
 // import Navbar from "./Components/Navbar"
 
 const { width, height } = Dimensions.get('screen')
 
 const Home: React.FC = (): React.ReactElement => {
+    // const userData = useSelector((state: RootState) => state.user?.userData);
+
+    // console.log("userfromhome", userData);
+    
 
     return (
         <ScrollView style={styles.container} >
@@ -17,6 +23,7 @@ const Home: React.FC = (): React.ReactElement => {
                <Carosel/>
                <Adoptation   />
                <LostAndFound/>
+               <Blogs/>
             </View>
         </ScrollView>
 

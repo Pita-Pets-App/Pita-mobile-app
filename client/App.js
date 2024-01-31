@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
@@ -27,8 +27,9 @@ import store from "./lib/redux/store"
 import Comment from "./screens/Lost&Found/Comments"
 import Map from "./screens/MapForUser/Map"
 import Events from "./screens/Events/Events"
+import ProvCV from "./screens/authentification/Provider/RegisterForm/putcv";
 import { Provider } from "react-redux";
-
+import MapForAdopt from "./screens/MapForAdopt/MapForAdopt"
 import MapForEvent from "./screens/MapForEvent/MapForEvent";
 import EditProfile from "./screens/UserProfile/EditProfile";
 import AllPets from "./screens/UserProfile/AllPetsU";
@@ -36,23 +37,35 @@ import AddPet from "./screens/UserProfile/AddPet";
 import EditPet from "./screens/PetsProfiles/EditPet";
 import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
-import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
+import RegisterOrLogin from "./screens/welcomingPages/registerOrloginUser";
 import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
+import ProviderOneEvent from "./screens/ProviderEvents/OneEvent"
+import Blogs from "./screens/Blogs/Blogs";
+import RegisterOrLoginP from "./screens/welcomingPages/registerOrloginProvider";
+import ProvOrUser from "./screens/welcomingPages/providerOrUser"
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
-
+import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
+import CompleteProvider from "./screens/authentification/Complete/Complete"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Register">
+      <Stack.Navigator initialRouteName="LoginProvider">
         <Stack.Screen
         name="Home"
         component={Home}
         options={{
-          headerShown: false,}} />
+          headerShown: false}} />
+           <Stack.Screen
+        name="ProvOrUser"
+        component={ProvOrUser}
+        options={{
+          headerShown: false}} />
         <Stack.Screen
         name="Register"
         component={Register} />
@@ -74,6 +87,24 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },}} />
+           <Stack.Screen
+        name="CompleteProvider"
+        component={CompleteProvider} 
+        options={{
+          title: 'Complete Your Info',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+           <Stack.Screen
+        name="MapForAdopt"
+        component={MapForAdopt}
+        options={{
+          headerShown:false
+        }} />
          <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
         <Stack.Screen
         name="Welcome1"
@@ -81,6 +112,26 @@ export default function App() {
         options={{
           headerShown:false
         }} />
+        <Stack.Screen
+        name="RegisterOrLoginP"
+        component={RegisterOrLoginP}
+        options={{
+          headerShown:false
+        }} />
+         <Stack.Screen
+        name="Blogs"
+        component={Blogs}
+        options={{
+          title: 'Blogs',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerBackVisible: false,
+        }}/>
          <Stack.Screen
         name="AddNewAdoptation"
         component={AddNewAdoptation}
@@ -120,18 +171,16 @@ export default function App() {
           headerBackVisible: false,
         }} />
         <Stack.Screen
+        name="ProvCV"
+        component={ProvCV}
+        options={{
+          headerShown:false
+        }} />
+        <Stack.Screen
         name="RegisterOrLogin"
         component={RegisterOrLogin}
         options={{
-          title: 'Welcome',
-          headerStyle: {
-            backgroundColor: '#4e9d91',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-          headerBackVisible: false,
+          headerShown:false
         }} />
         
         <Stack.Screen
@@ -152,6 +201,19 @@ export default function App() {
         component={Services} 
         options={{
           title: 'Services',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+         <Stack.Screen
+        name="ProviderProfile"
+        component={ProviderProfile} 
+        options={{
+          title: 'ProviderProfile',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },
@@ -306,6 +368,19 @@ export default function App() {
           },}} />
           <Stack.Screen
         
+        name="ProviderOneEvent"
+        component={ProviderOneEvent}
+        options={{
+          title: 'ProviderOneEvent',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+          <Stack.Screen
+        
         name="EditPet"
         component={EditPet}
         options={{
@@ -362,7 +437,6 @@ export default function App() {
         name="ChatPage"
         component={ChatPage} />        
         <Stack.Screen
-        
         name="LostFound"
         component={LostFound} 
         options={{
@@ -374,10 +448,8 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}
-        />
+        }}/>
         <Stack.Screen
-        
         name="LostFounDetails"
         component={LostFounDetails} 
         options={{
@@ -389,8 +461,7 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}
-        />
+        }}/>
       </Stack.Navigator>
       <Navbar/>
     </NavigationContainer>

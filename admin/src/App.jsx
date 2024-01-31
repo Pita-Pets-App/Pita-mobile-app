@@ -4,11 +4,16 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 // import {Routes, Route, useNavigate } from 'react-router-dom';
 import { IdentityProvider } from './Components/IdentityContext.jsx';
-import Dash from "./Components/AllServices.jsx"
+import Dash from "./Components/DashBord.jsx"
 import Login from "./Components/Login.jsx"
-import Edit from "./Components/EditProfile.jsx"
+import Edit from "./Components/UpdateProfile.jsx"
+import AllUsers from "./Components/AllUsers.jsx"
+import AddService from "./Components/AddService.jsx"
+import CustomersOverview from "./Components/Allproviders.jsx"
+import  AddAdmin  from './Components/AddAdmin.jsx';
+import Newprov from "./Components/NewProvider.jsx"
+import Newevent from "./Components/NewEvenet.jsx"
 import { createContext, useState } from 'react';
-
 function App() {
  
   
@@ -21,6 +26,12 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/dash" element={<Dash />} />
           <Route path="/edit" element={<Edit />} />
+          <Route path="/test" element={<CustomersOverview/>} />
+          <Route path="/AllUsers" element={<AllUsers />} />
+          <Route path="/AddService" element={<AddService />} />
+          <Route path="/AddAdmin" element={<AddAdmin />} />
+          <Route path="/Newprov" element={<Newprov />} />
+          <Route path="/Newevent" element={<Newevent />} />
         </Routes>
       </IdentityProvider>
     

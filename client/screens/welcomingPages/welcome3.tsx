@@ -23,9 +23,9 @@ const Welcome3: React.FC <{navigation:any}>= ({navigation}) => {
         <View style={{display:"flex",flexDirection:"row",gap:4}}>
             <View style={{backgroundColor:"#d9d9d9",width:10,height:10,borderRadius:10}}></View>
             <View style={{backgroundColor:"#d9d9d9",width:10,height:10,borderRadius:10}}></View>
-            <View style={{backgroundColor:"#ffc368",width:10,height:10,borderRadius:10}}></View>
+            <View style={{backgroundColor:"#4e9d91",width:10,height:10,borderRadius:10}}></View>
             </View>
-            <TouchableOpacity onPress={()=>navigation.navigate("Register")}><View style={{backgroundColor: '#ffc368', paddingVertical:5,paddingHorizontal:15,borderRadius:20,borderColor:"#ffc368",borderWidth:1}}><Text style={{color: '#fff',}}>Get Started</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("ProvOrUser")}><View style={{backgroundColor: '#4e9d91', paddingVertical:5,paddingHorizontal:15,borderRadius:20,borderColor:"#4e9d91",borderWidth:1}}><Text style={{color: '#fff',}}>Get Started</Text></View></TouchableOpacity>
         
       </View>
     </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    color:"#ffc368",
+    color:"#4e9d91",
     fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 25,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   description: {
     
     textAlign: 'center',
-    color: '#ffc368',
+    color: '#4e9d91',
     fontSize: 16,
     marginBottom: 20,
   },

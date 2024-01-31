@@ -14,10 +14,10 @@ const Publicite: React.FC = (): React.ReactElement => {
     return (
            <View style={{marginTop:20,padding:20}}>
              <View style={styles.imageText} >
-                <Image style={{width:width*0.12,height:width*0.12,borderRadius:50,borderWidth:1.5,borderColor:"#4e9d91"}} source={{uri:user?.image}}></Image>
+                <Image style={{width:width*0.12,height:width*0.12,borderRadius:50,borderWidth:1.5,borderColor:"#4e9d91"}} source={{uri:"https://cdn-icons-png.flaticon.com/512/149/149071.png"}}></Image>
                 <View>
-                    <Text style={{fontWeight:'bold',fontSize:17}}>{user?.fname}</Text>
-                    <Text style={{color:'grey'}}>{user?.email}</Text>
+                    <Text style={{fontWeight:'bold',fontSize:17}}>Bassem Ammar</Text>
+                    <Text style={{color:'grey'}}>bassdmammar@gmail.com</Text>
                     </View>
                     <TouchableOpacity>
                     <Image style={{width:width*0.07,height:width*0.07,position:'absolute',left:40,top:10}} source={notif}></Image>

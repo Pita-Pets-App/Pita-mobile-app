@@ -41,7 +41,6 @@ const UserProfile: React.FC = () => {
         <UserPets pets={userData?.pets}/>
       </View>
     </ScrollView>
-    <Navbar/> 
     </View>
   );
 };

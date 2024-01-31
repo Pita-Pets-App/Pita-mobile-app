@@ -9,7 +9,15 @@ type Provider = {
   email: string;
   fname: string;
   lname: string;
+  image:any;
+  review:Review;
+  provider_experience:string
 };
+interface Review {
+  reviewsVal:number;
+  reviewsNum:number
+}
+
 
 const DynamicScreenAllServices: React.FC = () => {
   const route = useRoute<RouteProp<Record<string, { serviceId: number }>, string>>();
@@ -25,6 +33,8 @@ const DynamicScreenAllServices: React.FC = () => {
       try {
         const response = await getProvidersByServicesId(serviceId, token);
         setProviders(response);
+        console.log(response);
+        
       } catch (error) {
         console.error('Error fetching providers:', error);
       } finally {
@@ -36,7 +46,7 @@ const DynamicScreenAllServices: React.FC = () => {
   }, [serviceId, token]);
 
   const handleCardPress = (provider: Provider) => {
-    navigation.navigate('ProviderDetails' as never, { provider });
+    navigation.navigate(...['ProviderDetails', { provider }] as never);
   };
 
   return (
@@ -51,6 +61,9 @@ const DynamicScreenAllServices: React.FC = () => {
                 email={provider.email}
                 fname={provider.fname}
                 lname={provider.lname}
+                image={provider.image[0]}
+                review={provider.review}
+                provider_experience={provider.provider_experience}
               />
             </TouchableOpacity>
           ))}
@@ -62,7 +75,6 @@ const DynamicScreenAllServices: React.FC = () => {
 
 const styles = StyleSheet.create({
   allPages: {
-    backgroundColor: '#ffc368',
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 20,

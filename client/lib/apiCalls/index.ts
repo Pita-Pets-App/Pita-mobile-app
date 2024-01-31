@@ -70,7 +70,6 @@ export const getUserData = async (userId : Number, token : string) => {
 
 export const updateUserData = async (userId : Number, authToken : String, userData:any) => {
   try {
-    // console.log("updateUserData55",userId,authToken,userData);
     const response = await axios.put(`${port}/api/users/${userId}`, userData,
       {
         headers: {
@@ -79,6 +78,8 @@ export const updateUserData = async (userId : Number, authToken : String, userDa
         },
       }
     );
+    console.log("respon in apicalls",response.data);
+    
 
     return response.data;
   } catch (error) {
@@ -125,7 +126,7 @@ export const getProvidersByServicesId =async (serviceId : Number, authToken : St
   
 }
 
-  export const updatePassword = async (userId : Number, authToken : String) =>{
+  export const updateUserPassword = async (userId : Number, authToken : String) =>{
 
     try {
       const response = await axios.get(`${port}/api/users/updatePassword/${userId}`,

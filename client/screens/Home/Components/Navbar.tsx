@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, StyleSheet, Dimensions,TouchableOpacity} from 'react-native';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 import location from "../../../assets/maps-and-flags.png";
 import Home from "../../../assets/homegreen.png";
@@ -9,11 +9,17 @@ import user from "../../../assets/usernav.png";
 import { useSelector } from 'react-redux';
 import {AntDesign} from 'react-native-vector-icons'
 const { width, height } = Dimensions.get('screen');
+
 ///#DFBDE7
 const Navbar: React.FC = (): React.ReactElement => {
     const navigation = useNavigation();
+    // const route = useRoute()
     const userImage = useSelector((state: RootState) => state.user?.userData?.image);
-  console.log(userImage);
+    // const isWelcomeScreen = route.name === "Welcome1" 
+
+    // if (isWelcomeScreen) {
+    //     return null;
+    //   }
   
     return (
 
@@ -21,7 +27,7 @@ const Navbar: React.FC = (): React.ReactElement => {
             <TouchableOpacity onPress={()=>{navigation.navigate("Home" as never)}}><Image source={Home} style={styles.iconHome} /></TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("Map" as never)}}><Image source={location} style={styles.iconloc} /></TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("ChatContainer" as never)}}><Image source={message} style={styles.iconImage} /></TouchableOpacity>
-            <TouchableOpacity onPress={()=>{navigation.navigate("UserProfile" as never)}}><Image source={{uri:userImage}} style={styles.iconProfile} /></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{navigation.navigate("ProviderProfile" as never)}}><Image source={{uri:"https://cdn-icons-png.flaticon.com/512/149/149071.png"}} style={styles.iconProfile} /></TouchableOpacity>
 
         </View>
       
