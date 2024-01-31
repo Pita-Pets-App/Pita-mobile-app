@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Home from "./screens/Home/Home";
 import UserProfile from "./screens/UserProfile/UserProfile.tsx"
 import Services from "./screens/Servicess/services";
@@ -50,6 +50,13 @@ import CompleteProvider from "./screens/authentification/Complete/Complete"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const navigation = useNavigation();
+  const isWelcome1Screen = () => {
+    const routeName = navigation.getCurrentRoute()?.name;
+    return routeName === 'Welcome1';
+  };
+
+
   return (
     <Provider store={store}>
     <NavigationContainer>
@@ -461,7 +468,7 @@ export default function App() {
           },
         }}/>
       </Stack.Navigator>
-      {/* <Navbar/> */}
+      <Navbar/>
     </NavigationContainer>
     </Provider>
   );

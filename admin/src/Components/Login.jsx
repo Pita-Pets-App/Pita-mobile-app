@@ -160,9 +160,16 @@ function Login() {
   return (
     <div className="container">
     <div className="card">
-      <div className="left-section">
-        {/* Add the shapes using the .rectangle and .circle classes */}
-      </div>
+    <div className="left-section">
+    {/* Add the shapes using the .rectangle and .circle classes */}
+    <img
+        loading="lazy"
+        src="https://i.f1g.fr/media/eidos/805x453_crop/2020/12/07/XVM00718fb8-430c-11eb-b24a-89d459643e2c.jpg"
+        alt="Description of the image"
+        style={{ width: '100%', height: '100%' }}
+    />
+</div>
+
       <div className="right-section">
         <div className="form">
           <h1>Please fill in your unique admin login details below</h1>
