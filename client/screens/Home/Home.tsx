@@ -4,6 +4,7 @@ import  LostAndFound from "./Components/LostAndFound"
 import Carosel from "./Components/Carosel"
 import Publicite from "./Components/Publicité"
 import Adoptation from './Components/Adoptation';
+import Blogs from './Components/Blogs';
 import { useSelector } from 'react-redux';
 // import Navbar from "./Components/Navbar"
 
@@ -22,6 +23,7 @@ const Home: React.FC = (): React.ReactElement => {
                <Carosel/>
                <Adoptation   />
                <LostAndFound/>
+               <Blogs/>
             </View>
         </ScrollView>
 

@@ -211,11 +211,11 @@ const createEvent = async () => {
   
   return (
     <ScrollView>
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.addButton} onPress={toggleModal}>
           <Text style={styles.addButtonText}>Add Event</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
 {allEvent.map((e)=>{
     // console.log("event latt before conv",typeof e.event_lattitude);
   const convertAddressText :any= convertAdress(e.event_lattitude, e.event_langitude);

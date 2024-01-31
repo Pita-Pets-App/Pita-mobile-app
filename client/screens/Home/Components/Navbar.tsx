@@ -27,7 +27,7 @@ const Navbar: React.FC = (): React.ReactElement => {
             <TouchableOpacity onPress={()=>{navigation.navigate("Home" as never)}}><Image source={Home} style={styles.iconHome} /></TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("Map" as never)}}><Image source={location} style={styles.iconloc} /></TouchableOpacity>
             <TouchableOpacity onPress={()=>{navigation.navigate("ChatContainer" as never)}}><Image source={message} style={styles.iconImage} /></TouchableOpacity>
-            <TouchableOpacity onPress={()=>{navigation.navigate("UserProfile" as never)}}><Image source={{uri:userImage}} style={styles.iconProfile} /></TouchableOpacity>
+            <TouchableOpacity onPress={()=>{navigation.navigate("ProviderProfile" as never)}}><Image source={{uri:"https://cdn-icons-png.flaticon.com/512/149/149071.png"}} style={styles.iconProfile} /></TouchableOpacity>
 
         </View>
       

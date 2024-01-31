@@ -16,7 +16,7 @@ import * as ImagePicker from "expo-image-picker";
 import { register_provider } from "../../../../lib/apiCalls";
 const { width, height } = Dimensions.get("screen");
 import Pet from "../../../../assets/peticon.png";
-
+import pita from "../../../../assets/pita.png"
 interface FormData {
   fname: string;
   lname: string;
@@ -63,7 +63,19 @@ const RegisterProvider: React.FC = () => {
   return (
     <View>
       <View style={styles.header}>
-        <View style={styles.design}></View>
+        <View style={styles.design}>
+        <TouchableOpacity style={styles.userImage} >
+            <Image
+              source={pita}
+              style={{
+                borderRadius: width * 0.2,
+                width: width * 0.45,
+                height: width * 0.45,
+              }}
+            />
+        
+        </TouchableOpacity>
+        </View>
         <Text style={styles.pita}>PITA PITA </Text>
       </View>
       <View style={styles.allInput}>
@@ -129,12 +141,11 @@ const styles = StyleSheet.create({
   userImage: {
     position: "absolute",
     marginTop: width * 0.2,
-    borderRadius: width * 0.5,
+    left:85,
     width: width * 0.35,
     height: height * 0.16,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "red",
   },
   pita: {
     marginTop: width * 0.15,

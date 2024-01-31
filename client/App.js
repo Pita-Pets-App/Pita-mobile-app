@@ -37,32 +37,35 @@ import AddPet from "./screens/UserProfile/AddPet";
 import EditPet from "./screens/PetsProfiles/EditPet";
 import DynamicScreenAllServices from "./screens/DynamicScreenForAllServices/index"
 import ProviderDetails from "./screens/DynamicScreenForAllServices/providerDetails"
-import RegisterOrLogin from "./screens/welcomingPages/registerOrlogin";
+import RegisterOrLogin from "./screens/welcomingPages/registerOrloginUser";
 import AddNewAdoptation from "./screens/AddNewAdoptation/AddNewAdoptation"
-
+import ProviderOneEvent from "./screens/ProviderEvents/OneEvent"
 import Blogs from "./screens/Blogs/Blogs";
-
+import RegisterOrLoginP from "./screens/welcomingPages/registerOrloginProvider";
+import ProvOrUser from "./screens/welcomingPages/providerOrUser"
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
+import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
+import CompleteProvider from "./screens/authentification/Complete/Complete"
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const navigation = useNavigation();
-  const isWelcome1Screen = () => {
-    const routeName = navigation.getCurrentRoute()?.name;
-    return routeName === 'Welcome1';
-  };
 
 
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Blogs">
+      <Stack.Navigator initialRouteName="LoginProvider">
         <Stack.Screen
         name="Home"
         component={Home}
         options={{
-          headerShown: false,}} />
+          headerShown: false}} />
+           <Stack.Screen
+        name="ProvOrUser"
+        component={ProvOrUser}
+        options={{
+          headerShown: false}} />
         <Stack.Screen
         name="Register"
         component={Register} />
@@ -85,6 +88,18 @@ export default function App() {
             fontWeight: 'bold',
           },}} />
            <Stack.Screen
+        name="CompleteProvider"
+        component={CompleteProvider} 
+        options={{
+          title: 'Complete Your Info',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+           <Stack.Screen
         name="MapForAdopt"
         component={MapForAdopt}
         options={{
@@ -94,6 +109,12 @@ export default function App() {
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
+        options={{
+          headerShown:false
+        }} />
+        <Stack.Screen
+        name="RegisterOrLoginP"
+        component={RegisterOrLoginP}
         options={{
           headerShown:false
         }} />
@@ -159,15 +180,7 @@ export default function App() {
         name="RegisterOrLogin"
         component={RegisterOrLogin}
         options={{
-          title: 'Welcome',
-          headerStyle: {
-            backgroundColor: '#4e9d91',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-          headerBackVisible: false,
+          headerShown:false
         }} />
         
         <Stack.Screen
@@ -346,6 +359,19 @@ export default function App() {
         component={EditProfile}
         options={{
           title: 'Edit Profile',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },}} />
+          <Stack.Screen
+        
+        name="ProviderOneEvent"
+        component={ProviderOneEvent}
+        options={{
+          title: 'ProviderOneEvent',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },

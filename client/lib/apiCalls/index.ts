@@ -70,7 +70,6 @@ export const getUserData = async (userId : Number, token : string) => {
 
 export const updateUserData = async (userId : Number, authToken : String, userData:any) => {
   try {
-    // console.log("updateUserData55",userId,authToken,userData);
     const response = await axios.put(`${port}/api/users/${userId}`, userData,
       {
         headers: {

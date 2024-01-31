@@ -113,8 +113,6 @@ const EditProfile: React.FC = () => {
         try {
           const actionResult = await dispatch(updateUserData(editedData));
           console.log('actionres',actionResult);
-          
-          // if(actionResult)
           navigation.goBack();
 
         } catch (error) {

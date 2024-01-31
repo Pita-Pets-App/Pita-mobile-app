@@ -46,7 +46,7 @@ const LoginProvider: React.FC = () => {
           Alert.alert('Success', data.message);
           
           setTimeout(() => {
-            navigation.navigate('Home' as never); 
+            navigation.navigate('CompleteProvider' as never); 
           }, 2000);
 
         } else {
@@ -112,12 +112,12 @@ const styles = StyleSheet.create({
     height: height * 0.07,
     borderRadius: 10,
     textAlign: "center",
-    borderColor: "#ffc368",
+    borderColor: "#4e9d91",
     borderWidth: 2,
     marginBottom:20
   },
   button:{
-    backgroundColor: "#ffc368",
+    backgroundColor: "#4e9d91",
     width: width * 0.85,
     height: height * 0.06,
     justifyContent: "center",

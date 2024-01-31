@@ -163,7 +163,12 @@ const ProvCV: React.FC = () => {
                 marginVertical: 10,
               }}
             />
-            <TouchableOpacity>
+            <TouchableOpacity 
+            onPress={()=>{
+              Alert.alert("Registration Request Sent", "Please wait our Email");
+              navigation.navigate("LoginProvider"as never)
+            }}
+            style={{backgroundColor:"#4e9d91",padding:10,width:width*0.4,display:"flex",justifyContent:"center",alignItems:"center",marginLeft:80,borderRadius:20}}>
               <Text style={{ color: "white", fontSize: 15 }}>Upload</Text>
             </TouchableOpacity>
           </View>
