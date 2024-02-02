@@ -3,7 +3,7 @@ const {Users,Interested}=require('../database-Sequelize/index')
 
 const AllInterssetEvent= async(req,res) => {
     try {
-    const result=await Interested.findAll({where:{userId:req.params.id},include:Users})
+    const result=await Interested.findAll({where:{eventId:req.params.id},include:Users})
     res.json(result)   
     } catch (error) {
     res.send(error)    

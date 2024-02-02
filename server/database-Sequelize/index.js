@@ -71,7 +71,9 @@ PetsApp.Blogs.belongsTo(PetsApp.Provider)
 // users 1:n interested 
 PetsApp.Users.hasMany(PetsApp.Interested)
 PetsApp.Interested.belongsTo(PetsApp.Users)
-
+// event 1:n interested 
+PetsApp.Event.hasMany(PetsApp.Interested)
+PetsApp.Interested.belongsTo(PetsApp.Event)
 
 
 
