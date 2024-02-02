@@ -46,6 +46,7 @@ import ProvOrUser from "./screens/welcomingPages/providerOrUser"
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
+import OtherProfile from "./screens/OtherProfile/OtherProfile"
 import CompleteProvider from "./screens/authentification/Complete/Complete"
 const Stack = createNativeStackNavigator();
 
@@ -55,7 +56,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginProvider">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -186,6 +187,19 @@ export default function App() {
         <Stack.Screen
         name="UserProfile"
         component={UserProfile}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
+         <Stack.Screen
+        name="OtherProfile"
+        component={OtherProfile}
         options={{
           title: 'Profile',
           headerStyle: {
@@ -463,7 +477,7 @@ export default function App() {
           },
         }}/>
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
     </Provider>
   );

@@ -28,9 +28,6 @@ interface UserInfoProps {
 const { width, height } = Dimensions.get("screen");
 const UserProfile: React.FC = () => {
   const userData = useSelector((state: RootState) => state.user?.userData);
-  const authData = useSelector((state: RootState) => state.auth);
-  console.log("user from user profile",userData);
-  console.log("auth from userprofule",authData);
   
   return (
     <View style={styles.container}>

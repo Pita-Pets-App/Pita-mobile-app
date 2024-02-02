@@ -7,10 +7,6 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
-  Modal,
-  TextInput,
-  Button,
-  Alert
 
 } from "react-native";
 import { format } from "date-fns";
@@ -27,7 +23,7 @@ const { width, height } = Dimensions.get("screen");
 import { Ionicons } from "@expo/vector-icons"
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-const LFPost: React.FC <any>= ({el}): React.ReactElement => {
+const LFPost: React.FC <any>= ({el,i}): React.ReactElement => {
     const [likesCount,setLikesCount]=useState(0)
     const [coCount,setCoCount]=useState(0)
     const [likers,setLikers]=useState([])
@@ -39,8 +35,6 @@ const LFPost: React.FC <any>= ({el}): React.ReactElement => {
         axios.get(`${port}/api/likes/${el.id}`).then((ress)=>{
             setLikesCount(ress.data.length);
             setLikers(ress.data.map(el=>el.user.id))
-           
-            
         })
         axios.get(`${port}/api/comments/${el.id}`).then((ress)=>{
           setCoCount(ress.data.length);
@@ -64,18 +58,18 @@ const LFPost: React.FC <any>= ({el}): React.ReactElement => {
      const Upadate=()=>{setRefresh(!refresh)}
 
   return (
-<View style={{padding:5,marginBottom:30}}>
+<View key={i} style={{padding:5,marginBottom:30}}>
 <View style={styles.onepost}>
   <Image style={styles.image} source={{uri:el?.user?.image}}></Image>
   <View  style={{width:width*0.45,marginLeft:10}}>
-    <View>
+    <TouchableOpacity onPress={()=>{navigation.navigate(...["OtherProfile",{id:el?.user?.id}] as never)}}>
       <View>
         <Text style={{fontSize:20,fontWeight:"bold"}}>{el?.user?.fname+" "+el?.user?.lname}</Text>
       </View>
       <View>
         <Text>14/01/2024</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   </View>
   <View >
       <Text style={el.status==='Found'?styles.found:styles.lost} >{el.status}</Text>

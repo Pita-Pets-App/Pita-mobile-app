@@ -58,8 +58,8 @@ console.log(token);
         <Text style={{ fontSize: 16, color: "grey" }}>{item[item.length-1].msg}</Text>
       </View>
       <View style={{ justifyContent: "flex-end", alignItems: "center" }}>
-        <Text style={{ fontSize: 16, color: "grey" }}>{item[item.length-1].createdAt.slice(0,10)}</Text>
-        {(userId===item[item.length-1].user1)&&<Text style={{ fontSize: 16, color: "grey" }}>You</Text>}
+        <Text style={{ fontSize: 16, color: "grey" }}>{item[item.length-1].createdAt.slice(8,10)+"/"+item[item.length-1].createdAt.slice(5,7)+"/"+item[item.length-1].createdAt.slice(0,4)}</Text>
+        {(userId===item[item.length-1].user1)&&<Text style={{ fontSize: 16, color: "grey" }}>you</Text>}
       </View>
     </View>
     </TouchableOpacity>
@@ -76,13 +76,12 @@ console.log(token);
 
 const styles = StyleSheet.create({
   pageContainer: {
-    width: width,
+    width: width*0.9,
     height: height * 0.13,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    borderBottomColor: "grey",
-    borderBottomWidth: 1.5
+    marginHorizontal:15
   }
 });
 

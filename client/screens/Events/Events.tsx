@@ -39,7 +39,6 @@ const EventCard = ({navigation}) => {
 
 
 
-// console.log(eventLocation,"even")
   const [form, setForm] = useState({
     event_title: '',
   event_description: '',
@@ -47,7 +46,7 @@ const EventCard = ({navigation}) => {
   event_date: Date.now(),
   event_langitude:eventLocation.longitude,
   event_lattitude:eventLocation.latitude ,
-  email: "oussch1109@gmail.com",// to get it from the store
+  email: "",
   status: 'On Hold',
   })
   const [selectedImage, setSelectedImage] = useState(null);
@@ -171,7 +170,6 @@ const createEvent = async () => {
   const convertAdress = async (latitude, longitude) => {
   try {
     const parsedLatitude = parseFloat(JSON.parse(latitude));
-    // console.log("parsedLati",typeof parsedLatitude);
     
     const parsedLongitude = parseFloat(JSON.parse(longitude));
 
@@ -216,18 +214,13 @@ const createEvent = async () => {
           <Text style={styles.addButtonText}>Add Event</Text>
         </TouchableOpacity>
       </View> */}
-{allEvent.map((e)=>{
-    // console.log("event latt before conv",typeof e.event_lattitude);
+{allEvent.map((e,i)=>{
   const convertAddressText :any= convertAdress(e.event_lattitude, e.event_langitude);
-  // console.log("event latt after conver",typeof e.event_lattitude);
-  
-  // console.log("converted",convertAddressText);
-  
 
   return(
 
 
-      <View style={[styles.container, styles.customStyle]}>
+      <View key={i} style={[styles.container, styles.customStyle]}>
       <TouchableOpacity
   onPress={() => {
     toggleDetails();
