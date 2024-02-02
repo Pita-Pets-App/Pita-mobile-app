@@ -9,7 +9,7 @@ import * as geolib from "geolib";
 
 import { port } from "../../port";
 
-// import {getProviderData} from "../../store/mapSlice"
+import {getProviderData} from "../../store/mapSlice"
 // import ItineraryModal from "../components/ItinerairyModal.jsx";
 import { useNavigation } from "@react-navigation/native";
 
@@ -40,6 +40,8 @@ const [providers,setProviders]=useState([])
     const getData = async () => {
       try {
         const result = await axios.get(`${port}/api/service`);
+        console.log("hh",result.data);
+        
         const imageArray = result.data.map(item => item.service_image);
         setServiceData(imageArray);
         console.log(imageArray);
@@ -130,7 +132,7 @@ const [providers,setProviders]=useState([])
       featureType: "administrative.province",
       stylers: [
         {
-          visibility: "off",
+          visibility: "on",
         },
       ],
     },
@@ -174,7 +176,7 @@ const [providers,setProviders]=useState([])
       elementType: "geometry",
       stylers: [
         {
-          color: "#ffc368",
+          color: "#4e9d91",
         },
       ],
     },

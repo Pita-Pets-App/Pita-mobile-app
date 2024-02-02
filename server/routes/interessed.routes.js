@@ -4,7 +4,7 @@ const {AllInterssetEvent,DeleteInterrest,AddInters}=require('../controllers/inte
 
 intersRoute.get('/interested/:id',AllInterssetEvent)
 intersRoute.post('/interested',AddInters)
-intersRoute.delete('/interested/:id',DeleteInterrest)
+intersRoute.delete('/interested/:userId/:eventId',DeleteInterrest)
 
 
 module.exports=intersRoute

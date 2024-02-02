@@ -221,12 +221,7 @@ const createEvent = async () => {
 
 
       <View key={i} style={[styles.container, styles.customStyle]}>
-      <TouchableOpacity
-  onPress={() => {
-    toggleDetails();
-  }}
-  activeOpacity={0.7}
->
+  
 <Image style={styles.image} source={{uri:e.event_images[0]}} />
 {/* {e.event_images[0] && typeof e.event_images[0] === 'string' ? (
       <Image style={styles.image} source={{ uri: e.event_images[0] }} />
@@ -235,25 +230,21 @@ const createEvent = async () => {
     )} */}
           <View style={styles.overlay}>
             <View style={styles.createdByContainer}>
-              <FontAwesome
-                name="user-circle"
-                size={24}
-                color="#fff"
-                style={styles.profileIcon}
-              />
-              <Text style={styles.createdBy}>Created by: {e.owner.fname}</Text>
+              <View><Text style={styles.createdBy}>{e?.owner?.fname+" "+e?.owner?.lname}</Text></View>
+              <TouchableOpacity onPress={()=>{navigation.navigate(...["Event",{id:e.id}])}}>
+              <Text style={styles.createdBy}>See More</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </TouchableOpacity>
 
-        {showDetails && (
+        {/* {showDetails && (
           <View style={styles.content}>
             <Text style={[styles.title, styles.customText]}>Event Title : {e.event_title}</Text>
             <Text style={[styles.title, styles.customText]}>Event Description : {e.event_description}</Text>
             <Text style={[styles.title, styles.customText]}>Event Date:{e.createdAt.slice(0,10)}</Text>
             <Text style={[styles.title, styles.customText]}>Adress:</Text>
           </View>
-        )}
+        )} */}
       </View>
 )})}
       <Modal

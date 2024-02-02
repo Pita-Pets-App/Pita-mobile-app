@@ -48,6 +48,7 @@ import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
 import OtherProfile from "./screens/OtherProfile/OtherProfile"
 import CompleteProvider from "./screens/authentification/Complete/Complete"
+import OneEvent from "./screens/Events/OneEvent";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -56,7 +57,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome1">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -99,6 +100,19 @@ export default function App() {
         component={LoginProvider} 
         options={{
           title: 'Login',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+        <Stack.Screen
+        name="Event"
+        component={OneEvent} 
+        options={{
+          title: 'Event',
           headerStyle: {
             backgroundColor: '#4e9d91',
           },
