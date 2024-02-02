@@ -46,7 +46,9 @@ import ProvOrUser from "./screens/welcomingPages/providerOrUser"
 import RegisterProvider from "./screens/authentification/Provider/RegisterForm"
 import LoginProvider from "./screens/authentification/Provider/LoginProvider"
 import ProviderProfile from "./screens/ProviderProfile/ProviderProfile"
+import OtherProfile from "./screens/OtherProfile/OtherProfile"
 import CompleteProvider from "./screens/authentification/Complete/Complete"
+import OneEvent from "./screens/Events/OneEvent";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -55,7 +57,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginProvider">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -68,13 +70,57 @@ export default function App() {
           headerShown: false}} />
         <Stack.Screen
         name="Register"
-        component={Register} />
+        component={Register}
+        options={{
+          title: 'Register',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+         />
         <Stack.Screen
         name="RegisterProvider"
-        component={RegisterProvider} />
+        component={RegisterProvider}
+        options={{
+          title: 'Register',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
         <Stack.Screen
         name="LoginProvider"
-        component={LoginProvider} />
+        component={LoginProvider} 
+        options={{
+          title: 'Login',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+        <Stack.Screen
+        name="Event"
+        component={OneEvent} 
+        options={{
+          title: 'Event',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
         <Stack.Screen
         name="DynamicScreenAllServices"
         component={DynamicScreenAllServices} 
@@ -105,7 +151,19 @@ export default function App() {
         options={{
           headerShown:false
         }} />
-         <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
+         <Stack.Screen name="ProviderDetails"
+          component={ProviderDetails}
+          options={{
+            title: 'Provider',
+            headerStyle: {
+              backgroundColor: '#4e9d91',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+          />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
@@ -130,7 +188,6 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          headerBackVisible: false,
         }}/>
          <Stack.Screen
         name="AddNewAdoptation"
@@ -186,6 +243,19 @@ export default function App() {
         <Stack.Screen
         name="UserProfile"
         component={UserProfile}
+        options={{
+          title: 'Profile',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
+         <Stack.Screen
+        name="OtherProfile"
+        component={OtherProfile}
         options={{
           title: 'Profile',
           headerStyle: {
@@ -463,7 +533,7 @@ export default function App() {
           },
         }}/>
       </Stack.Navigator>
-      <Navbar/>
+      {/* <Navbar/> */}
     </NavigationContainer>
     </Provider>
   );

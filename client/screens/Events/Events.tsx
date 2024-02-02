@@ -39,7 +39,6 @@ const EventCard = ({navigation}) => {
 
 
 
-// console.log(eventLocation,"even")
   const [form, setForm] = useState({
     event_title: '',
   event_description: '',
@@ -47,7 +46,7 @@ const EventCard = ({navigation}) => {
   event_date: Date.now(),
   event_langitude:eventLocation.longitude,
   event_lattitude:eventLocation.latitude ,
-  email: "oussch1109@gmail.com",// to get it from the store
+  email: "",
   status: 'On Hold',
   })
   const [selectedImage, setSelectedImage] = useState(null);
@@ -171,7 +170,6 @@ const createEvent = async () => {
   const convertAdress = async (latitude, longitude) => {
   try {
     const parsedLatitude = parseFloat(JSON.parse(latitude));
-    // console.log("parsedLati",typeof parsedLatitude);
     
     const parsedLongitude = parseFloat(JSON.parse(longitude));
 
@@ -216,24 +214,14 @@ const createEvent = async () => {
           <Text style={styles.addButtonText}>Add Event</Text>
         </TouchableOpacity>
       </View> */}
-{allEvent.map((e)=>{
-    // console.log("event latt before conv",typeof e.event_lattitude);
+{allEvent.map((e,i)=>{
   const convertAddressText :any= convertAdress(e.event_lattitude, e.event_langitude);
-  // console.log("event latt after conver",typeof e.event_lattitude);
-  
-  // console.log("converted",convertAddressText);
-  
 
   return(
 
 
-      <View style={[styles.container, styles.customStyle]}>
-      <TouchableOpacity
-  onPress={() => {
-    toggleDetails();
-  }}
-  activeOpacity={0.7}
->
+      <View key={i} style={[styles.container, styles.customStyle]}>
+  
 <Image style={styles.image} source={{uri:e.event_images[0]}} />
 {/* {e.event_images[0] && typeof e.event_images[0] === 'string' ? (
       <Image style={styles.image} source={{ uri: e.event_images[0] }} />
@@ -242,25 +230,21 @@ const createEvent = async () => {
     )} */}
           <View style={styles.overlay}>
             <View style={styles.createdByContainer}>
-              <FontAwesome
-                name="user-circle"
-                size={24}
-                color="#fff"
-                style={styles.profileIcon}
-              />
-              <Text style={styles.createdBy}>Created by: {e.owner.fname}</Text>
+              <View><Text style={styles.createdBy}>{e?.owner?.fname+" "+e?.owner?.lname}</Text></View>
+              <TouchableOpacity onPress={()=>{navigation.navigate(...["Event",{id:e.id}])}}>
+              <Text style={styles.createdBy}>See More</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </TouchableOpacity>
 
-        {showDetails && (
+        {/* {showDetails && (
           <View style={styles.content}>
             <Text style={[styles.title, styles.customText]}>Event Title : {e.event_title}</Text>
             <Text style={[styles.title, styles.customText]}>Event Description : {e.event_description}</Text>
             <Text style={[styles.title, styles.customText]}>Event Date:{e.createdAt.slice(0,10)}</Text>
             <Text style={[styles.title, styles.customText]}>Adress:</Text>
           </View>
-        )}
+        )} */}
       </View>
 )})}
       <Modal

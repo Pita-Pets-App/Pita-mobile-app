@@ -45,8 +45,8 @@ const AdoptationDetails=({route})=>{
     <View><Text  style={{fontSize:17,fontWeight:'bold',marginBottom:10}}>Owner Details</Text></View>
     <View style={{display:"flex",flexDirection:"row",marginBottom:20}}>
       <Image style={{width:width*0.15,height:width*0.15,borderRadius:50}} source={{uri:petData.user?.image}}></Image>
-      <View style={{marginLeft:15,marginTop:5}}><Text style={{fontSize:15,fontWeight:'bold'}}>{petData.user?.fname+" "+petData.user?.lname}</Text>
-      <Text>{petData.user?.email}</Text></View>
+      <TouchableOpacity onPress={()=>{navigation.navigate(...["OtherProfile",{id:petData.user?.id}] as never)}} style={{marginLeft:15,marginTop:5}}><Text style={{fontSize:15,fontWeight:'bold'}}>{petData.user?.fname+" "+petData.user?.lname}</Text>
+      <Text>{petData.user?.email}</Text></TouchableOpacity>
       <TouchableOpacity onPress={()=>{navigation.navigate(...["ChatPage",{receiver:petData.user.id}] as never)}} style={{position:"absolute",top:15,right:25}}>
       <View><Image style={{width:width*0.07,height:width*0.07}} source={umsg}></Image></View>
       </TouchableOpacity>

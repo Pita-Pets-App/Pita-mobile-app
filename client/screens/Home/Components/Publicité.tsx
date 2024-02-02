@@ -9,20 +9,25 @@ const { width, height } = Dimensions.get('screen')
 
 const Publicite: React.FC = (): React.ReactElement => {
     const navigation=useNavigation()
-
     const user = useSelector((state: RootState) => state.user?.userData);
+    const provider=""
+    const handelNav=()=>{
+        user?navigation.navigate("UserProfile" as never):
+        provider?navigation.navigate("ProviderProfile" as never):
+        navigation.navigate("Login" as never)
+    }
     return (
            <View style={{marginTop:20,padding:20}}>
-             <View style={styles.imageText} >
-                <Image style={{width:width*0.12,height:width*0.12,borderRadius:50,borderWidth:1.5,borderColor:"#4e9d91"}} source={{uri:"https://cdn-icons-png.flaticon.com/512/149/149071.png"}}></Image>
+             <TouchableOpacity onPress={()=>{handelNav()}} style={styles.imageText} >
+                <Image style={{width:width*0.12,height:width*0.12,borderRadius:50,borderWidth:1.5,borderColor:"#4e9d91"}} source={{uri:user.image}}></Image>
                 <View>
-                    <Text style={{fontWeight:'bold',fontSize:17}}>Bassem Ammar</Text>
-                    <Text style={{color:'grey'}}>bassdmammar@gmail.com</Text>
+                    <Text style={{fontWeight:'bold',fontSize:17}}>{user.fname+" "+user.lname}</Text>
+                    <Text style={{color:'grey'}}>{user.email}</Text>
                     </View>
                     <TouchableOpacity>
                     <Image style={{width:width*0.07,height:width*0.07,position:'absolute',left:40,top:10}} source={notif}></Image>
                 </TouchableOpacity>
-                </View>    
+                </TouchableOpacity>    
             <Image style={{width:width*0.95,height:height*0.2,borderRadius:20}} source={pub}></Image>
             </View>
 

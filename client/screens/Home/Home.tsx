@@ -6,17 +6,18 @@ import Publicite from "./Components/Publicité"
 import Adoptation from './Components/Adoptation';
 import Blogs from './Components/Blogs';
 import { useSelector } from 'react-redux';
-// import Navbar from "./Components/Navbar"
+import Navbar from './Components/Navbar';
 
 const { width, height } = Dimensions.get('screen')
 
 const Home: React.FC = (): React.ReactElement => {
-    // const userData = useSelector((state: RootState) => state.user?.userData);
+    const userData = useSelector((state: RootState) => state.user?.userData);
 
-    // console.log("userfromhome", userData);
+    console.log("userfromhome", userData);
     
 
     return (
+        <View>
         <ScrollView style={styles.container} >
             <View style={styles.allPages}>
                <Publicite/>
@@ -25,8 +26,10 @@ const Home: React.FC = (): React.ReactElement => {
                <LostAndFound/>
                <Blogs/>
             </View>
+          
         </ScrollView>
-
+        <Navbar/>
+        </View>
     );
 };
 const styles = StyleSheet.create({

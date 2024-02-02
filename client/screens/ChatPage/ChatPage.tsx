@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Dimensions, Image, FlatList,TextInput,TouchableO
 import axios from 'axios';
 import { port } from '../../port';
 import { useNavigation } from '@react-navigation/native';
-import send from '../../assets/paper-plane.png'
+import send from '../../assets/paper-plane1.png'
 import io from 'socket.io-client';
 import { useSelector } from 'react-redux';
 
@@ -50,18 +50,17 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
   
     useEffect(() => {
       getData();
-    }, []);
+    }, [refresh]);
 
     const renderConv=({item})=>(
         
         <View key={item.id}>
-            {(item.user2==userId&&item.msg)?<View>
-        <View style={{justifyContent:"center",alignItems:"flex-start",flexDirection:"column",backgroundColor:"orange", padding:10,width:width*0.5,borderRadius:20,height:height*0.05}}>
+            {(item.user2==userId&&item.msg)?
+        <View style={{justifyContent:"center",alignItems:"flex-start",flexDirection:"column",backgroundColor:"#e9e9eb", padding:10,width:width*0.5,borderRadius:20,height:height*0.05,marginVertical:5}}>
             <Text>{item.msg}</Text>
 
-        </View>
-<Text   style={{fontSize:12,color:"grey"}}>12:55 pm</Text>
-</View>:item.msg?<View style={{marginLeft:width*0.4,justifyContent:"center",alignItems:"flex-start",flexDirection:"column",backgroundColor:"pink", padding:10,width:width*0.5,borderRadius:20,height:height*0.05}}>
+       
+</View>:item.msg?<View  style={{marginLeft:width*0.4,justifyContent:"center",alignItems:"flex-start",flexDirection:"column",backgroundColor:"#34ca5a", padding:10,width:width*0.5,borderRadius:20,height:height*0.05,marginVertical:5}}>
             <Text>{item.msg}</Text>
 
         </View>:"" }
@@ -73,7 +72,7 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
         navigation.setOptions({
           title: `${name?.fname} ${name?.lname}`,
           headerStyle: {
-            backgroundColor: '#ffc368',
+            backgroundColor: '#4e9d91',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -117,16 +116,17 @@ const ChatPage: React.FC = ({route}:any): React.ReactElement => {
     keyExtractor={(item) => item.id}
 
   />
-  <View  style={{display:"flex",flexDirection:"row",justifyContent:"space-between",padding:10}}>
+  <View  style={{display:"flex",flexDirection:"row",justifyContent:"space-between",padding:10,alignItems:"center"}}>
     <TextInput
-    style={{backgroundColor:"grey",width:width*0.8}}
+    placeholder='message'
+    style={{backgroundColor:"grey",width:width*0.8,height:height*0.05,borderRadius:20,paddingHorizontal:15}}
       onChangeText={setNewMsg}
       value={newMsg}
 
 
     />
     <TouchableOpacity onPress={()=>{handleSend()}}>
-    <Image source={send} style={{width:width*0.1,height:height*0.04}}></Image>
+    <Image source={send} style={{width:width*0.077,height:height*0.03}}></Image>
     </TouchableOpacity>
   </View>
 </View>

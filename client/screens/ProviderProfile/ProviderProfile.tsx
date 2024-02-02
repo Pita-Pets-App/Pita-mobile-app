@@ -142,6 +142,7 @@ const handleDislike = (articleId: number) => {
       </View>
       </View>
     </ScrollView>
+    <Navbar/>
     </View>
   );
 };

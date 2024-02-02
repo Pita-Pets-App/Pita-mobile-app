@@ -17,9 +17,10 @@ import axios from "axios";
 import { port } from "../../port";
 import { useSelector } from 'react-redux';
 import adpimg from '../../assets/adpimg.png'
-import favori from '../../assets/favori.png'
 import loc from '../../assets/locccc.png'
-import Vets from "../Allvets/Components/Top";
+import star from '../../assets/star.png'
+import starempty from '../../assets/starempty.png'
+
 interface UserInfo {
   image:string;
 
@@ -30,57 +31,86 @@ interface UserInfoProps {
   lname?: string;
   email?: string;
 }
+interface EventProps {
+    id?:number;
+    event_images?: string;
+    owner?: any;
+    event_description?: string;
+    event_title?: string;
+  }
 
 const { width, height } = Dimensions.get("screen");
-const ProviderOneEvent: React.FC = () => {
+const OneEvent: React.FC<any> = ({route}) => {
+    const [one, setOne] = useState<EventProps>({})
+    const [inters, setInters] = useState<any>([])
+    const [refresh, setRefresh] = useState<Boolean>(false)
     const [interestedUsers, setInterestedUsers] = useState<UserInfoProps[]>([
         { image: "dummy1.jpg", fname: "John", lname: "Doe", email: "john.doe@example.com" },
         { image: "dummy2.jpg", fname: "Jane", lname: "Doe", email: "jane.doe@example.com" },
-        // Add more dummy data as needed
-      ]);
     
-      const handleInterestedClick = (user: UserInfoProps) => {
-        setInterestedUsers((prevUsers) => [...prevUsers, user]);
+      ]);
+      const userData = useSelector((state: RootState) => state.user.userData);
+      const {id}=route.params
+    useEffect(()=>{
+        axios.get(`${port}/api/events/${id}`).then((ress)=>{setOne(ress.data)
+
+        })
+        .catch(err=>console.log(err))
+        axios.get(`${port}/api/interested/${id}`).then((ress)=>{
+            setInters(ress.data.map(e=>e.user.id))
+
+        })
+    },[refresh])
+      const handleInterestedDelClick = () => {
+          axios.delete(`${port}/api/interested/${userData.id}/${id}`).then((ress)=>{
+            setRefresh(!refresh)
+            console.log(ress);
+            
+          })
       };
+      const handleInterestedAddClick = () => {
+        axios.post(`${port}/api/interested`,{
+            userId:userData.id,
+            eventId:id
+        }).then((ress)=>{
+          setRefresh(!refresh)
+          
+        })
+    };
+      console.log(inters);
+      
   return (
     <View style={styles.container}>
     <View style={styles.containerEv}>
       <View>
-        <Image style={styles.image} source={adpimg} />
+        {one.event_images&&<Image style={styles.image} source={{uri:one?.event_images[0]}} />}
         <View style={styles.overlay}>
-          <View style={styles.createdByContainer}>
-            <FontAwesome
-              name="user-circle"
-              size={24}
-              color="#fff"
-              style={styles.profileIcon}
-            />
-            <Text style={styles.createdBy}></Text>
-          </View>
         </View>
       </View>
     </View>  
     <View style={{backgroundColor:"white",marginHorizontal:15,paddingVertical:15,paddingHorizontal:10,borderRadius:15,marginBottom:10}}>
-        <View  style={{display:"flex",flexDirection:"row"}}><Text style={{fontSize:17,fontWeight:"bold"}}>Title : </Text><Text style={{fontSize:16}}>event title</Text></View>
-        <View  style={{display:"flex",flexDirection:"row",width:width*0.6}}><Text style={{fontSize:17,fontWeight:"bold"}}>Description : </Text ><Text style={{fontSize:16}}>event gfgfggggggggggggg gggggggggggggggggggggggdescription</Text></View>
-        <View  style={{display:"flex",flexDirection:"row"}}><Image style={{width:width*0.06,height:width*0.06}} source={loc}></Image><Text style={{fontSize:16}}>event title</Text></View>
+        <View  style={{display:"flex",flexDirection:"row"}}><Text style={{fontSize:17,fontWeight:"bold"}}>Title : </Text><Text style={{fontSize:16}}>{one?.event_title}</Text></View>
+        <View  style={{display:"flex",flexDirection:"row",width:width*0.6}}><Text style={{fontSize:17,fontWeight:"bold"}}>Description : </Text ><Text style={{fontSize:16}}>{one?.event_description}</Text></View>
+        <View  style={{display:"flex",flexDirection:"row"}}><Image style={{width:width*0.06,height:width*0.06}} source={loc}></Image><Text style={{fontSize:16}}>Alghazala</Text></View>
     </View>
     <View>
         <View style={{backgroundColor:"white",marginHorizontal:15,paddingVertical:15,paddingHorizontal:10,borderRadius:15,marginBottom:10}}>
-            <View style={{display:"flex",flexDirection:"row"}}>
-                <Image style={{width:width*0.06,height:width*0.06, marginRight:15}} source={favori}></Image>
-                <Text style={{fontSize:16,fontWeight:"bold"}}>Bassem Ammar</Text>
-                <Text style={{fontSize:15}}> is interested</Text>
+            <Text style={{fontSize:20,fontWeight:"bold"}}>Organized by</Text>
+            <View style={{display:"flex",flexDirection:"row",alignItems:"center",marginHorizontal:10,paddingVertical:10}}>
+                <Image style={{width:width*0.15,height:width*0.15, marginRight:35,borderRadius:50}} source={{uri:one?.owner?.image[0]}}></Image>
+                <View>
+                <Text style={{fontSize:16,fontWeight:"bold"}}>Mr(s) {one?.owner?.fname+" "+one?.owner?.lname}</Text>
+                <Text style={{fontSize:15}}>{one?.owner?.email}</Text>
+                </View>
+                
             </View>
         </View>
-        <View style={{backgroundColor:"white",marginHorizontal:15,paddingVertical:15,paddingHorizontal:10,borderRadius:15}}>
-            <View style={{display:"flex",flexDirection:"row"}}>
-                <Image style={{width:width*0.06,height:width*0.06, marginRight:15}} source={favori}></Image>
-                <Text style={{fontSize:16,fontWeight:"bold"}}>Oussema Cherif</Text>
-                <Text style={{fontSize:15}}> is interested</Text>
-            </View>
-        </View>
+      
     </View>
+    <View style={{backgroundColor:"white",marginHorizontal:50,borderRadius:15,marginBottom:10,position:"absolute",width:width*0.7,height:height*0.06,bottom:2,display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"row",gap:20}}>
+        {inters.includes(userData.id)?<TouchableOpacity onPress={()=>{handleInterestedDelClick()}}><Image source={star} style={{width:width*0.07,height:width*0.07}}></Image></TouchableOpacity>:<TouchableOpacity onPress={()=>{handleInterestedAddClick()}}><Image source={starempty} style={{width:width*0.07,height:width*0.07}}></Image></TouchableOpacity>}
+            <Text style={{fontSize:17,fontWeight:"bold",color:"#FFC107"}}>Interested</Text>
+        </View>
   </View>
   );
 };
@@ -175,4 +205,4 @@ const styles = StyleSheet.create({
         color: "#555",
       },
 });
-export default ProviderOneEvent;
+export default OneEvent;

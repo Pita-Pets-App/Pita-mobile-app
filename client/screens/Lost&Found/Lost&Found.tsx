@@ -173,15 +173,10 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
             <Text style={active==2?styles.textact:styles.text}>Found</Text>
           </View>
         </TouchableOpacity>
-        {/* <TouchableOpacity onPress={()=>{setModalVisible(true)}} style={active==2?styles.btact:styles.bt}>
-          <View>
-            <Text style={active==2?styles.textact:styles.text}>Add</Text>
-          </View>
-        </TouchableOpacity> */}
       </View>
        <View style={styles.line} />
           <ScrollView style={styles.apdpostes}>
-            {lfdata.map((el,i)=>(<LFPost key={i} el={el}/>))}
+            {lfdata.map((el,i)=>(<LFPost key={i} i={i} el={el}/>))}
       </ScrollView>
       <Modal
         animationType="slide"
@@ -191,7 +186,6 @@ const LostFound: React.FC <{navigation:any}> = ({navigation}) => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            {/* Input fields for the new entry */}
             <TextInput placeholder="Name"
               style={styles.input}
               value={formData.pet_name}

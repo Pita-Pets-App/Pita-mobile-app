@@ -12,6 +12,8 @@ const LFARoute = require("./routes/LFA.routes");
 const rateRoute = require("./routes/rate.routes");
 const eventRoute = require("./routes/event.routes");
 const serviceRoute = require("./routes/service.routes");
+const blogsRoute = require("./routes/blogs.routes");
+const intersRoute = require("./routes/interessed.routes");
 const ChatRoute = require("./routes/chat.routes");
 const adminRoute = require("./routes/admin.routes");
 const authRoute = require("./routes/auth.routes")
@@ -37,6 +39,8 @@ app.use("/api",adminRoute)
 app.use("/api",providerBRoute)
 app.use("/api",likeslfRoute)
 app.use("/api",commentslfRoute)
+app.use("/api",intersRoute)
+app.use("/api",blogsRoute)
 
 // app.use("/api", authenticateToken);
 

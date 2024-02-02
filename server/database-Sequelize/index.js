@@ -25,6 +25,8 @@ PetsApp.Chat = require ('./chat.js')(connection,DataTypes)
 PetsApp.Admin = require ('./admin.js')(connection,DataTypes)
 PetsApp.CommentLF = require ('./commentslf.js')(connection,DataTypes)
 PetsApp.LikesLF = require ('./likeslf.js')(connection,DataTypes)
+PetsApp.Blogs = require ('./blogs.js')(connection,DataTypes)
+PetsApp.Interested = require ('./interested.js')(connection,DataTypes)
 
 // relation between User 1:n Pets
 PetsApp.Users.hasMany(PetsApp.Pets)
@@ -62,6 +64,17 @@ PetsApp.Chat.belongsTo(PetsApp.Users,{as:'asreciver',foreignKey:'user2'})
  PetsApp.LFA.hasMany(PetsApp.CommentLF)
  PetsApp.CommentLF.belongsTo(PetsApp.Users)
  PetsApp.CommentLF.belongsTo(PetsApp.LFA)
+ // providers 1:n Blogs
+PetsApp.Provider.hasMany(PetsApp.Blogs)
+PetsApp.Blogs.belongsTo(PetsApp.Provider)
+
+// users 1:n interested 
+PetsApp.Users.hasMany(PetsApp.Interested)
+PetsApp.Interested.belongsTo(PetsApp.Users)
+// event 1:n interested 
+PetsApp.Event.hasMany(PetsApp.Interested)
+PetsApp.Interested.belongsTo(PetsApp.Event)
+
 
 
 PetsApp.connection.authenticate()
