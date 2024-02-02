@@ -20,7 +20,7 @@ const AllLF= async(req,res) => {
             status: {
               [Op.or]: ["Lost","Found"]
             }
-          },include:Users})
+          }, order: [['createdAt', 'DESC']],include:Users})
         res.json(result)   
         } catch (error) {
         res.send(error)    

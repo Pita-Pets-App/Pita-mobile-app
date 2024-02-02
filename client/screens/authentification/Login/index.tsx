@@ -6,7 +6,7 @@ import { login_me } from '../../../lib/apiCalls';
 import { useDispatch, useSelector } from 'react-redux'; 
 import { setAuthTokenAction } from '../../../lib/redux/auth/authThunks';
 import { setUserData } from '../../../lib/redux/user/userSlice';
-import pita from "../../../assets/pita.png"
+import pita from "../../../assets/pitaouss.png"
 const { width, height } = Dimensions.get("screen");
 
 

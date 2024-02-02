@@ -1,22 +1,22 @@
-import { FontSize, FontFamily } from "../../../GlobalStyles";
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TextInput,
-  Button,
   Alert,
   StyleSheet,
   Image,
   Dimensions,
   TouchableOpacity,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import * as ImagePicker from "expo-image-picker";
-import { register_me } from "../../../lib/apiCalls";
-const { width, height } = Dimensions.get("screen");
-import Pet from "../../../assets/peticon.png";
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import * as ImagePicker from 'expo-image-picker';
+import { register_me } from '../../../lib/apiCalls';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Pet from '../../../assets/pitaouss.png';
+
+const { width, height } = Dimensions.get('screen');
+
 interface FormData {
   fname: string;
   lname: string;
@@ -27,13 +27,11 @@ interface FormData {
 
 const Register: React.FC = () => {
   const navigation = useNavigation();
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const [formData, setFormData] = useState<FormData>({
-    fname: "",
-    lname: "",
-    email: "",
-    user_password: "",
+    fname: '',
+    lname: '',
+    email: '',
+    user_password: '',
     image: null,
   });
 
@@ -47,7 +45,6 @@ const Register: React.FC = () => {
     }
     const selected = pickerResult.assets[0];
     setFormData({ ...formData, image: (selected as any).uri });
-    setSelectedImage((selected as any).uri);
   };
 
   const takePhoto = async () => {
@@ -58,89 +55,73 @@ const Register: React.FC = () => {
     }
     const selected = pickerResult.assets[0];
     setFormData({ ...formData, image: (selected as any).uri });
-    setSelectedImage((selected as any).uri);
   };
+
   const handleSubmit = async () => {
     setLoading(true);
 
-    if (
-      !formData.email ||
-      !formData.user_password ||
-      !formData.fname ||
-      !formData.lname
-    ) {
-      Alert.alert("Registration Error", "All fields are required");
+    if (!formData.email || !formData.user_password || !formData.fname || !formData.lname) {
+      Alert.alert('Registration Error', 'All fields are required');
       setLoading(false);
       return;
     } else {
       const data = await register_me(formData);
-      Alert.alert("You have successfully created your account");
-      navigation.navigate("Login" as never)
+      Alert.alert('You have successfully created your account');
+      navigation.navigate('Login' as never);
     }
   };
+
   const showImagePickerOptions = () => {
     Alert.alert(
-      "Choose Image Source",
-      "Would you like to choose an image from the gallery or take a photo?",
+      'Choose Image Source',
+      'Would you like to choose an image from the gallery or take a photo?',
       [
         {
-          text: "Choose from Gallery",
+          text: 'Choose from Gallery',
           onPress: selectImage,
         },
         {
-          text: "Take a Photo",
+          text: 'Take a Photo',
           onPress: takePhoto,
         },
         {
-          text: "Cancel",
-          style: "cancel",
+          text: 'Cancel',
+          style: 'cancel',
         },
       ]
     );
   };
 
-
   return (
-    <View>
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.container}
+      keyboardShouldPersistTaps="handled"
+    >
       <View style={styles.header}>
         <View style={styles.design}></View>
-        <TouchableOpacity style={styles.userImage} onPress={showImagePickerOptions}>
-          {formData.image ? (
-            <Image
-              source={{ uri: formData.image }}
-              style={{
-                borderRadius: width * 0.2,
-                width: width * 0.35,
-                height: height * 0.16,
-              }}
-            />
-          ) : (
+        <TouchableOpacity style={styles.userImage} >
+          
             <Image
               source={Pet}
-              style={{
-                borderRadius: width * 0.2,
-                width: width * 0.35,
-                height: height * 0.16,
-              }}
+              style={styles.userImageStyle}
             />
-          )}
+        
         </TouchableOpacity>
-        <Text style={styles.pita}>PITA PITA </Text>
       </View>
       <View style={styles.allInput}>
-      <View style={{display:'flex',flexDirection:'row',gap:20}} >
-        <TextInput
-          style={styles.inputname}
-          placeholder=" Your First Name"
-          value={formData.fname}
-          onChangeText={(text) => setFormData({ ...formData, fname: text })}
-        />
-        <TextInput
-          style={styles.inputname}
-          placeholder=" Your Family Name"
-          value={formData.lname}
-          onChangeText={(text) => setFormData({ ...formData, lname: text })}
-        />
+        <View style={styles.nameInputs}>
+          <TextInput
+            style={styles.inputname}
+            placeholder=" Your First Name"
+            value={formData.fname}
+            onChangeText={(text) => setFormData({ ...formData, fname: text })}
+          />
+          <TextInput
+            style={styles.inputname}
+            placeholder=" Your Family Name"
+            value={formData.lname}
+            onChangeText={(text) => setFormData({ ...formData, lname: text })}
+          />
         </View>
         <TextInput
           style={styles.input}
@@ -150,201 +131,98 @@ const Register: React.FC = () => {
         />
         <TextInput
           style={styles.input}
-          placeholder="  Enter Your Password"
+          placeholder=" Enter Your Password"
           secureTextEntry
           value={formData.user_password}
           onChangeText={(text) =>
             setFormData({ ...formData, user_password: text })
           }
         />
-
         <TouchableOpacity
           style={styles.registerButton}
           onPress={handleSubmit}
           disabled={loading}
         >
-          <Text style={{ color: "white", fontSize: 18, fontWeight: "bold" }}>
+          <Text style={styles.buttonText}>
             Register
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    alignItems: 'center',
+  },
   header: {
     height: height * 0.35,
     padding: 5,
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    gap: 10,
+    alignItems: 'center',
   },
   design: {
-    backgroundColor: "#4e9d91",
+    backgroundColor: '#4e9d91',
     width: width * 0.9,
     height: height * 0.2,
     borderBottomLeftRadius: width * 0.4,
     borderBottomRightRadius: width * 0.4,
   },
   userImage: {
-    position: "absolute",
+    position: 'absolute',
     marginTop: width * 0.2,
     borderRadius: width * 0.5,
     width: width * 0.35,
     height: height * 0.16,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "red",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  pita: {
-    marginTop: width * 0.15,
-    fontSize: 24,
-    fontWeight: "bold",
-    marginLeft: 25,
+  userImageStyle: {
+    borderRadius: width * 0.2,
+    width: width * 0.5,
+    height: width * 0.5,
+  },
+  nameInputs: {
+    flexDirection: 'row',
+    gap: 20,
   },
   input: {
-    backgroundColor: "rgb(238, 238, 238)",
+    backgroundColor: 'rgb(238, 238, 238)',
     width: width * 0.85,
     height: height * 0.07,
     borderRadius: 10,
-    textAlign: "center",
-    borderColor: "#4e9d91",
+    textAlign: 'center',
+    borderColor: '#4e9d91',
     borderWidth: 2,
   },
   inputname: {
-    backgroundColor: "rgb(238, 238, 238)",
+    backgroundColor: 'rgb(238, 238, 238)',
     width: width * 0.4,
     height: height * 0.07,
     borderRadius: 10,
-    textAlign: "center",
-    borderColor: "#4e9d91",
+    textAlign: 'center',
+    borderColor: '#4e9d91',
     borderWidth: 2,
   },
   allInput: {
     padding: 10,
-    justifyContent: "center",
-    alignItems: "center",
-
+    alignItems: 'center',
     gap: 17,
   },
   registerButton: {
-    backgroundColor: "#4e9d91",
+    backgroundColor: '#4e9d91',
     width: width * 0.85,
     height: height * 0.06,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
 export default Register;
-
-// const Register = () => {
-
-//   return (
-//     <View style={styles.clipPathGroup}>
-//       <View style={styles.group}>
-//         {/* <Image
-//           style={[styles.vectorIcon, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector.png")}
-//         /> */}
-//         {/* <Image
-//           style={[styles.vectorIcon1, styles.vectorIconLayout4]}
-//           resizeMode="cover"
-//           source={require("../assets/vector9.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon2, styles.vectorIconLayout3]}
-//           resizeMode="cover"
-//           source={require("../assets/vector10.png")}
-//         /> */}
-//         <Text style={styles.register}>Register</Text>
-//         {/* <Image
-//           style={[styles.vectorIcon3, styles.vectorIconLayout4]}
-//           resizeMode="cover"
-//           source={require("../assets/vector11.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon4, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector12.png")}
-//         /> */}
-//         {/* <Image
-//           style={[styles.vectorIcon5, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector13.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon6, styles.vectorIconLayout3]}
-//           resizeMode="cover"
-//           source={require("../assets/vector14.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon7, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector15.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon8, styles.vectorIconLayout2]}
-//           resizeMode="cover"
-//           source={require("../assets/vector16.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon9, styles.vectorIconLayout2]}
-//           resizeMode="cover"
-//           source={require("../assets/vector17.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon10, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector18.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon11, styles.vectorIconLayout1]}
-//           resizeMode="cover"
-//           source={require("../assets/vector19.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon12, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector20.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon13, styles.vectorIconLayout]}
-//           resizeMode="cover"
-//           source={require("../assets/vector3.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon14, styles.vectorIconLayout1]}
-//           resizeMode="cover"
-//           source={require("../assets/vector21.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon15, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector22.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon16, styles.vectorIconLayout]}
-//           resizeMode="cover"
-//           source={require("../assets/vector23.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon17, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector4.png")}
-//         />
-//         <Image
-//           style={[styles.vectorIcon18, styles.vectorIconLayout5]}
-//           resizeMode="cover"
-//           source={require("../assets/vector24.png")}
-//         /> */}
-//       </View>
-//     </View>
-//   );
-// };
-
-// export default Register;

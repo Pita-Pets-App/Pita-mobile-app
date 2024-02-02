@@ -40,9 +40,6 @@ const ProviderOneEvent: React.FC = () => {
       ]);
     
       const handleInterestedClick = (user: UserInfoProps) => {
-        // Add logic to handle user interest (e.g., send API request to server)
-    
-        // Update the state to include the interested user
         setInterestedUsers((prevUsers) => [...prevUsers, user]);
       };
   return (

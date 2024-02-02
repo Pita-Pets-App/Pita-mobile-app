@@ -67,7 +67,7 @@ const LFPost: React.FC <any>= ({el,i}): React.ReactElement => {
         <Text style={{fontSize:20,fontWeight:"bold"}}>{el?.user?.fname+" "+el?.user?.lname}</Text>
       </View>
       <View>
-        <Text>14/01/2024</Text>
+        <Text>{el.createdAt.slice(8,10)+"/"+el.createdAt.slice(5,7)+"/"+el.createdAt.slice(0,4)}</Text>
       </View>
     </TouchableOpacity>
   </View>

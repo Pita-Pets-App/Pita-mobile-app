@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Dimensions, Image, Text, Touchable, TouchableOpacity } from 'react-native';
 import welcomeVet from '../../assets/welcomevet.png';
-import pita from '../../assets/pita.png'
+import pita from '../../assets/pitaouss.png'
 const { width, height } = Dimensions.get('screen');
 
 const RegisterOrLogin: React.FC <{navigation:any}>= ({navigation}) => {

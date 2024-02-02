@@ -56,7 +56,7 @@ export default function App() {
   return (
     <Provider store={store}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Welcome1">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -69,13 +69,44 @@ export default function App() {
           headerShown: false}} />
         <Stack.Screen
         name="Register"
-        component={Register} />
+        component={Register}
+        options={{
+          title: 'Register',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+         />
         <Stack.Screen
         name="RegisterProvider"
-        component={RegisterProvider} />
+        component={RegisterProvider}
+        options={{
+          title: 'Register',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }} />
         <Stack.Screen
         name="LoginProvider"
-        component={LoginProvider} />
+        component={LoginProvider} 
+        options={{
+          title: 'Login',
+          headerStyle: {
+            backgroundColor: '#4e9d91',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
         <Stack.Screen
         name="DynamicScreenAllServices"
         component={DynamicScreenAllServices} 
@@ -106,7 +137,19 @@ export default function App() {
         options={{
           headerShown:false
         }} />
-         <Stack.Screen name="ProviderDetails" component={ProviderDetails} />
+         <Stack.Screen name="ProviderDetails"
+          component={ProviderDetails}
+          options={{
+            title: 'Provider',
+            headerStyle: {
+              backgroundColor: '#4e9d91',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+          />
         <Stack.Screen
         name="Welcome1"
         component={Welcome1}
@@ -131,7 +174,6 @@ export default function App() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          headerBackVisible: false,
         }}/>
          <Stack.Screen
         name="AddNewAdoptation"
